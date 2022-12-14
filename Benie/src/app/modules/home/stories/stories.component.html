@@ -1,17 +1,56 @@
-<div class="container">
-    <h1 class="text-center">6 Stories are Live <i class="fa-solid fa-face-smile-beam"></i></h1>
-    <br>
-    <div class="row  shadow" style="padding:2.5%;overflow: hidden;background-color: white;">
-        <div class="col-lg-6 disp" (mouseover)="onKey($event)" (mouseleave)="removeS($event)">
-            <img class="hover-img responsive" src="https://res.cloudinary.com/benie/image/upload/v1670946050/njkpsmgymyl2ccjh57ih.png" style="max-width:100%;max-height:100%;" alt="">
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-1"></div>
+        <div class="col-sm-7">
+          <div class="card mb-3" style="max-width: 720px;">
+              <div class="text-center">
+                <img class="img-fluid rounded-start shadow" style="height:100%;min-height:250px;max-width:210px;float:left;" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="https://res.cloudinary.com/benie/image/upload/v1670946050/njkpsmgymyl2ccjh57ih.png"  alt="">
+                <h3 class="card-title text-center">Story title here  <br> <span class="smaller text-muted"><small><i class="fa-solid fa-eye"></i> 6</small> &nbsp;&nbsp;&nbsp; <small><i class="fa-solid fa-star"></i> 5</small> &nbsp;&nbsp;&nbsp;   <small><i class="fa-solid fa-layer-group"></i> 12</small></span></h3>
+                <div class="card-body">
+                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dicta amet sint odit autem, quas inventore sed sit officiis quo debitis hic, magni voluptas? Eum sint rem voluptates placeat distinctio.</p>
+                  <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25">Read</button></span></small></p>
+                </div>
+              </div>
+          </div>
+          <div class="card mb-3" style="max-width: 720px;">
+            <div class="text-center">
+              <img class="img-fluid rounded-start shadow" style="height:100%;min-height:250px;max-width:210px;float:left;" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="https://res.cloudinary.com/benie/image/upload/v1670946050/njkpsmgymyl2ccjh57ih.png"  alt="">
+              <h3 class="card-title text-center">Story title here  <br> <span class="smaller text-muted"><small><i class="fa-solid fa-eye"></i> 6</small> &nbsp;&nbsp;&nbsp; <small><i class="fa-solid fa-star"></i> 5</small> &nbsp;&nbsp;&nbsp;   <small><i class="fa-solid fa-layer-group"></i> 12</small></span></h3>
+              <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dicta amet sint odit autem, quas inventore sed sit officiis quo debitis hic, magni voluptas? Eum sint rem voluptates placeat distinctio.</p>
+                <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25">Read</button></span></small></p>
+              </div>
+            </div>
         </div>
-        <div class="col-lg-6 disp" id="myDiv">
-            <h3>Story title here  <br> <span><small class="text-muted"><span><i class="fa-solid fa-star"></i> 5</span> | <span><i class="fa-solid fa-eye"></i> views</span> | <span>5 parts</span></small></span></h3>
+              
+        </div>
+        <div class="col-sm-3">
+          <br><br>
+          <div class="card text-bg-light mb-3" style="max-width: 100%;">
+              <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+              <div class="card-body">
+                <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" height="25" width="25" alt=""></span> Benie <span class="text-muted" style="float:right;">12/14/2022</span></h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+            <div class="card text-bg-light mb-3" style="max-width: 100%;">
+              <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+              <div class="card-body">
+                  <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" height="25" width="25" alt=""></span> Benie <span class="text-muted" style="float:right;">12/14/2022</span></h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+            <div class="card text-bg-light mb-3" style="max-width: 100%;">
+              <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+              <div class="card-body">
+                  <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" height="25" width="25" alt=""></span> Benie <span class="text-muted" style="float:right;">12/14/2022</span></h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
             
-            <br>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur omnis necessitatibus saepe tenetur cumque magni tempora a. Rerum aspernatur voluptate quis fuga in, natus et asperiores, aut quas, perferendis temporibus.</p>
-            <br>
-            <span><button mat-raised-button color="accent" class="w-50">Read</button></span>
-        </div>
+        
     </div>
+     
 </div>

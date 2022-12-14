@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <br>
+            <h3>A title</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit adipisci fugit maiores neque facere repudiandae eligendi expedita, impedit quos voluptas? Architecto, doloremque a nisi ducimus itaque tempore at nihil quidem!</p>
+            <h4>A subtitle</h4>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis vitae qui recusandae maxime temporibus quod libero, magni enim nisi id iste nesciunt quaerat quas laboriosam. Corrupti libero nostrum explicabo quidem?</p>
+        </div>
+        <div class="col-md-4">
+            <img src="https://res.cloudinary.com/benie/image/upload/v1670974359/undraw_reading_book_re_kqpk_y5d2ju.svg" style="max-height:100%;max-width:100%;" alt="">
+        </div>
+        <div class="col-md-4">
+            <div style="padding:5%;margin:2.5%;">
+                <form #subForm="ngForm" class="shadow">
+                    <h1 class="text-primary text-center">Monthly Newsletter <br> <span><h5>Never miss a story.</h5></span></h1>
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Name</mat-label>
+                                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                                <mat-hint>e.g Jay Kay</mat-hint>
+                                <mat-error *ngIf="name.hasError('required') || name.pristine">
+                                    Your name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            &nbsp;&nbsp;&nbsp;
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Email</mat-label>
+                                <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
+                                <mat-hint>e.g username@email.com</mat-hint>
+                                <mat-error *ngIf="email.hasError('required') || email.pristine">
+                                    Your email is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <br><br>
+                            <button mat-raised-button color="accent" class="w-100" [disabled]="subForm.invalid"><i class="fa-solid fa-user-plus"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://twitter.com/share?text=Benie Writes- with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="whatsapp://send?text=Benie Writes- with words, I give my thoughts life." data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
+</div>

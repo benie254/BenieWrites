@@ -11,7 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     transition: transform .6s ease;
 }
 .hover-img:hover{
-    transform: scale(1.08);
+    transform: scale(1.09);
     
 }
 
