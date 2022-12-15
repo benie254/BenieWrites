@@ -1,35 +1,63 @@
-<div class="container-fluid" style="height:auto;padding:1.5%;" id="readBg">
+<div class="container-fluid" style="height:auto;min-height:100vh;padding:1.5%;" id="readBg">
 <span>
-    <mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light/Dark</mat-slide-toggle> <span>1/1 | - 10% + |</span> <span style="float:right;color:blueviolet;">Share</span>
+    <mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle> <span style="float:right;color:blueviolet;"><button mat-stroked-button color="primary"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
 </span>    <br><br>
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="shadow container" id="content" style="padding:5%;height:auto;">
-                <h1 class="text-center">Chapter heading</h1>
+            <div >
                 <br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt dui a efficitur pharetra. Nam efficitur sapien in placerat finibus. Praesent orci risus, vulputate vel diam at, tempor facilisis sapien. Morbi placerat elit vitae magna porta accumsan. Nunc eget dui gravida, varius metus semper, rhoncus ligula. Mauris dignissim odio et erat ultricies mollis. Cras sed tristique sapien, nec iaculis arcu. Donec posuere, orci eu euismod pulvinar, eros lacus ultricies leo, sed ultrices erat massa in erat. Phasellus orci ipsum, fermentum ut ligula bibendum, vestibulum condimentum felis. Vestibulum commodo elit at viverra convallis. Nulla at mauris iaculis, convallis turpis ac, vestibulum sem. Quisque tincidunt felis sit amet vehicula sagittis. Mauris pharetra ante sed enim dapibus maximus. Sed fermentum lorem in laoreet molestie. Donec tincidunt tincidunt tellus, ac placerat nibh molestie a.
-        
-                    Nulla at justo neque. Integer feugiat augue eget eros pulvinar, ac auctor nibh suscipit. Mauris imperdiet lorem ac tellus auctor dictum. Integer volutpat porta enim finibus pulvinar. Phasellus pulvinar turpis at arcu gravida accumsan. Nulla metus mi, euismod tristique luctus et, pulvinar a metus. Quisque tempor elit auctor lectus feugiat eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    
-                    Integer consectetur nibh lorem. Quisque elementum leo purus. Phasellus eu arcu rutrum, semper diam porttitor, ornare tortor. Aliquam in tortor erat. Praesent vehicula lacus a nisi vehicula consectetur. Nulla auctor metus in commodo mollis. Vestibulum sagittis justo elit, eget sodales ante posuere vel. Aliquam erat volutpat. Nam ornare tellus a volutpat dictum. Nunc suscipit ipsum vel volutpat fermentum. Ut ut convallis nulla, tincidunt porta arcu. Maecenas vel ex ut neque aliquam suscipit a at ipsum. Maecenas vehicula, ipsum non auctor volutpat, turpis mauris blandit purus, quis tristique massa justo in massa. Integer sodales ipsum in ipsum commodo malesuada at sit amet nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-                    
-                    Proin nec finibus tellus, porta hendrerit nisl. In velit est, accumsan et ex placerat, condimentum vehicula odio. Vivamus eu ultricies neque. Morbi odio urna, feugiat congue facilisis sit amet, sagittis ac est. Sed sed scelerisque urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec tincidunt elementum dui in vulputate. Vestibulum placerat dolor venenatis nunc iaculis volutpat. Curabitur eu scelerisque mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius a metus eu mollis.
-                    
-                    Vestibulum tincidunt, sem sit amet interdum sagittis, libero justo auctor dui, vel ullamcorper quam eros imperdiet mauris. Suspendisse nec consequat sem. Sed vulputate sapien id sodales euismod. Nunc velit arcu, iaculis in nisl nec, rutrum finibus purus. Donec aliquam, nibh ac dignissim ultricies, urna est pulvinar tellus, eget faucibus sapien ante vel ante. Vestibulum feugiat ac magna in mollis. Praesent lobortis libero eu pharetra luctus. Donec sit amet ante vel ex lacinia tincidunt vitae a elit. Duis porttitor nisl tortor, eu feugiat massa maximus sodales. Suspendisse volutpat tristique pretium. Curabitur eget felis ipsum. Pellentesque consequat tellus id mauris molestie aliquet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eu libero tellus. Integer in ligula quis enim faucibus efficitur at vitae diam. Sed orci ipsum, fringilla eu elit vitae, dignissim laoreet enim.
-                    
-                    Sed imperdiet dui odio, sed consequat turpis pharetra sed. Aliquam ornare mi vestibulum nisl tristique, egestas consectetur sem commodo. Morbi porta est at lectus rhoncus malesuada. Fusce eget interdum velit. Nunc vel mollis dolor. Pellentesque venenatis euismod dolor a viverra. Suspendisse rhoncus eget ante a finibus. Quisque egestas sapien interdum justo condimentum congue. Donec vitae mi in lectus pulvinar rhoncus. Suspendisse potenti. Vivamus non accumsan orci.
-                    
-                    Duis tempus sagittis metus. Etiam hendrerit lectus et interdum tristique. Phasellus id elementum tortor, ut luctus massa. Proin velit diam, faucibus ac elit non, tincidunt egestas nisi. Morbi ullamcorper feugiat leo vel auctor. Proin orci magna, eleifend eget faucibus sit amet, sollicitudin ut elit. Donec posuere, ante at bibendum blandit, lacus justo commodo ipsum, sit amet volutpat neque quam posuere enim. Nunc blandit tellus a vestibulum tempor. Fusce eu risus sit amet tellus semper maximus vel et lectus. In vitae tempor turpis, at blandit ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed aliquam vulputate lobortis. Aliquam maximus nunc eget dui feugiat lobortis. Etiam sit amet faucibus nisl.
-                    
-                    Curabitur volutpat id sem sit amet tempor. Curabitur vitae vestibulum neque. Vestibulum at purus ac risus vulputate vulputate. Aenean iaculis mauris vel augue elementum, eu pharetra purus iaculis. Morbi malesuada urna at arcu tincidunt, quis fringilla mauris mollis. Praesent nec elit facilisis, tristique massa non, tempor turpis. Nam egestas nulla sed rutrum dignissim. Nulla facilisi. Donec ac aliquet sapien, a porta ligula. Proin semper ultrices sagittis. Nunc vel egestas ante. Proin felis nulla, mattis et auctor a, dapibus in eros. Nam placerat, justo quis maximus suscipit, quam mauris commodo ipsum, vel scelerisque tortor ipsum vel velit. Fusce laoreet eu enim quis posuere. Donec eu ex sodales, tincidunt odio at, molestie mauris.
-                    
-                    Fusce ipsum urna, rutrum et nisi id, elementum feugiat nisl. Ut non ante egestas, tincidunt tellus sit amet, accumsan turpis. Maecenas dictum nisl vitae ullamcorper tempor. Fusce egestas non orci ut facilisis. Nullam sed sagittis turpis, sit amet efficitur mi. Maecenas semper nisl id risus molestie, et posuere lorem placerat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    
-                    Curabitur ultrices velit at rhoncus dapibus. Aenean ac placerat magna, sit amet pellentesque metus. Phasellus consectetur turpis rutrum libero tristique, sed sollicitudin lectus mattis. Etiam vitae purus non purus mattis finibus ac eget ex. Nam sollicitudin eu risus id blandit. Sed facilisis diam non ullamcorper feugiat. Aliquam aliquet vehicula semper.
-                    
-                    Nullam sodales, orci sit amet tristique varius, felis massa placerat est, ac sollicitudin augue sapien in lectus. Curabitur ac nibh quam. Mauris convallis nisl id ipsum convallis, vel congue metus dignissim. Aliquam risus libero, scelerisque id enim et, interdum convallis eros. Aliquam erat volutpat. Donec ut nisi vel mauris tincidunt fermentum. Nulla in odio tellus. Nunc leo risus, pulvinar eget tellus vitae, hendrerit congue risus. Fusce vel dui dapibus, consectetur massa quis, viverra velit. In dignissim lobortis dolor, et molestie magna faucibus.</p>
+                <h1 class="text-center" style="font-family:'Courier New', Courier, monospace;font-size:xx-large;font-weight:bolder">Chapter heading <br> <span><h2>Tag Line</h2></span></h1>
+
+                <mat-stepper class="shadow container" id="content" style="padding:5%;height:auto;font-size:large;font-family:'Courier New', Courier, monospace;line-height: 1.5em;">
+
+                    <mat-step state="book">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, placeat! Dolores praesentium eius excepturi ab reprehenderit odio debitis, vitae molestias nihil beatae laudantium inventore ducimus nesciunt est libero magni sit?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quas aut impedit molestiae! Reprehenderit quibusdam ratione natus veritatis, impedit omnis minus nemo in ad accusamus totam, porro aperiam quod odit.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tenetur porro aliquid saepe quo minus, optio natus sapiente. Enim praesentium a quia amet aut quae laborum corporis ut aperiam possimus.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias maxime ea labore hic iste repudiandae suscipit praesentium ullam consequatur vitae, facere aperiam excepturi laboriosam odit aut esse nemo in.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi assumenda culpa sunt maxime, nam sapiente obcaecati facere quas earum vero, error similique doloribus et possimus qui atque praesentium ea consequuntur?</p>
+                      <div>
+                        <button mat-stroked-button color="primary" matStepperNext>Next</button>
+                      </div>
+                    </mat-step>
+                    <mat-step state="book">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, placeat! Dolores praesentium eius excepturi ab reprehenderit odio debitis, vitae molestias nihil beatae laudantium inventore ducimus nesciunt est libero magni sit?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quas aut impedit molestiae! Reprehenderit quibusdam ratione natus veritatis, impedit omnis minus nemo in ad accusamus totam, porro aperiam quod odit.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tenetur porro aliquid saepe quo minus, optio natus sapiente. Enim praesentium a quia amet aut quae laborum corporis ut aperiam possimus.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias maxime ea labore hic iste repudiandae suscipit praesentium ullam consequatur vitae, facere aperiam excepturi laboriosam odit aut esse nemo in.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi assumenda culpa sunt maxime, nam sapiente obcaecati facere quas earum vero, error similique doloribus et possimus qui atque praesentium ea consequuntur?</p>
+                      <div>
+                        <button mat-stroked-button matStepperPrevious>Back</button>
+                        <button mat-stroked-button color="primary" matStepperNext>Next</button>
+                      </div>
+                    </mat-step>
+                    <mat-step state="book">
+                      <ng-template matStepLabel>Done</ng-template>
+                      <p>You are now done.</p>
+                      <div>
+                        <button mat-stroked-button matStepperPrevious>Back</button>
+                      </div>
+                    </mat-step>
+                    <ng-template matStepperIcon="book">
+                        <mat-icon><i class="fa-solid fa-book-open-reader"></i></mat-icon>
+                      </ng-template>
+                  </mat-stepper>
             </div>
+            <br>
+            <mat-chip-list aria-label="Tags" style="float:left;">
+                <span style="font-size:smaller">Tags</span>
+                <mat-chip color="primary" selected>Mystery</mat-chip>
+                <mat-chip color="primary" selected>Thriller</mat-chip>
+                <mat-chip color="primary" selected>Love</mat-chip>
+                <mat-chip color="primary" selected>Life</mat-chip>
+              </mat-chip-list>
+              <br><br>
+              <mat-chip-list aria-label="Categories" style="float:right;">
+                <mat-chip color="accent" selected>Mystery</mat-chip>
+                <mat-chip color="accent" selected>Thriller</mat-chip>
+                <span style="font-size:smaller">Categories</span>
+              </mat-chip-list>
         </div>
         <div class="col-md-3"></div>
     </div>

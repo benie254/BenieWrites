@@ -11,9 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatStepperModule} from '@angular/material/stepper';
 import { StoriesComponent } from './stories/stories.component';
 import { AboutComponent } from './about/about.component';
 import { ReadComponent } from './read/read.component';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 
@@ -36,6 +39,14 @@ import { ReadComponent } from './read/read.component';
     MatInputModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatChipsModule,
+    MatStepperModule,
+  ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
   ]
 })
 export class HomeModule { }

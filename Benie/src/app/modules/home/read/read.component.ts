@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./read.component.css']
 })
 export class ReadComponent implements OnInit {
+  msg = '';
+  isLinear = false;
+  isOptional = true;
+  isEditable = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.msg = ""
   }
   changeBg(event: any){
     const myDiv = (<HTMLDivElement>document.getElementById('readBg'));
