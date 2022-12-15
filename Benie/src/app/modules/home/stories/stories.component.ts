@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Story } from '../classes/story/story';
+import { StoriesService } from '../services/stories/stories.service';
 
 @Component({
   selector: 'app-stories',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stories.component.css']
 })
 export class StoriesComponent implements OnInit {
+  stories: Story[] = [];
 
-  constructor() { }
+  constructor(
+    private storyService:StoriesService,
+  ) { }
 
   ngOnInit(): void {
+    this.allStories();
   }
   onKey(event: any){
     const myD = (<HTMLDivElement>document.getElementById('myDiv'));
@@ -18,6 +24,13 @@ export class StoriesComponent implements OnInit {
   removeS(event: any){
     const myD = (<HTMLDivElement>document.getElementById('myDiv'));
     myD.style.opacity = '1';
+  }
+  allStories(){
+    this.storyService.getAllStories().subscribe({
+      next: (data) => {
+        this.stories = data;
+      }
+    })
   }
 
 
