@@ -23,4 +23,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 #content{
     background-color: rgb(31, 39, 44);
 }
+input::placeholder{
+    color:white;
+}
 

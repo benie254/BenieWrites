@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',
@@ -10,8 +10,12 @@ export class ReadComponent implements OnInit {
   isLinear = false;
   isOptional = true;
   isEditable = false;
+  values = '';
+  noInput: boolean = true;
 
-  constructor() { }
+  constructor(
+    private _bottomSheet: MatBottomSheet
+  ) { }
 
   ngOnInit(): void {
     this.msg = ""
@@ -29,5 +33,31 @@ export class ReadComponent implements OnInit {
       myDiv.style.color = 'black';
     }
   }
+  back(){
+    history.back();
+  }
+  onKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.noInput = false;
+    }
+  }
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+  }
+  
 
+}
+
+@Component({
+  selector: 'bottom-sheet-overview-example-sheet',
+  templateUrl: 'share.html',
+})
+export class BottomSheetOverviewExampleSheet {
+  constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
 }

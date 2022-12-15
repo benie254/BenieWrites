@@ -12,7 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { StoriesComponent } from './stories/stories.component';
 import { AboutComponent } from './about/about.component';
 import { ReadComponent } from './read/read.component';
@@ -41,6 +43,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatSlideToggleModule,
     MatChipsModule,
     MatStepperModule,
+    MatListModule,
+    MatBottomSheetModule,
+    MatInputModule,
   ],
   providers: [
     {
