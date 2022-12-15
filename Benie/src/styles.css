@@ -15,3 +15,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
 }
 
+#readBg{
+    background-color: rgb(33, 33, 33);
+    color: whitesmoke;
+}
+#content{
+    background-color: rgb(31, 39, 44);
+}
+

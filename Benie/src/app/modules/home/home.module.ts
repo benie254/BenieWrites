@@ -10,6 +10,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { StoriesComponent } from './stories/stories.component';
 import { AboutComponent } from './about/about.component';
 import { ReadComponent } from './read/read.component';
@@ -34,6 +35,7 @@ import { ReadComponent } from './read/read.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatSlideToggleModule,
   ]
 })
 export class HomeModule { }
