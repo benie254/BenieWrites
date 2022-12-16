@@ -26,6 +26,12 @@ import { EditStoryComponent } from './components/stories/edit-story/edit-story.c
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { AllTagsComponent } from './components/tags/all-tags/all-tags.component';
+import { EditTagComponent } from './components/tags/edit-tag/edit-tag.component';
+import { AddTagComponent } from './components/tags/add-tag/add-tag.component';
+import { AllCategoriesComponent } from './components/categories/all-categories/all-categories.component';
+import { EditCategoryComponent } from './components/categories/edit-category/edit-category.component';
+import { AddCategoryComponent } from './components/categories/add-category/add-category.component';
 
 
 @NgModule({
@@ -43,6 +49,12 @@ import { MatSelectModule } from '@angular/material/select';
     AddStoryComponent,
     AllStoriesComponent,
     EditStoryComponent,
+    AllTagsComponent,
+    EditTagComponent,
+    AddTagComponent,
+    AllCategoriesComponent,
+    EditCategoryComponent,
+    AddCategoryComponent,
   ],
   imports: [
     CommonModule,

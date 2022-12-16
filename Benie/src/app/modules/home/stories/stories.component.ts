@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from '../classes/story/story';
 import { StoriesService } from '../services/stories/stories.service';
+import { NgOptimizedImage } from '@angular/common'
 
 @Component({
   selector: 'app-stories',

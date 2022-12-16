@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { NgOptimizedImage } from '@angular/common'
+
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',

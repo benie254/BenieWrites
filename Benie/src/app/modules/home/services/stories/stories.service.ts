@@ -11,6 +11,10 @@ const apiURL = 'http://127.0.0.1:8000/api/'
 export class StoriesService {
   allStories = apiURL + 'stories/all/';
   storyDet = apiURL + 'story/details/';
+  allTags = apiURL + 'tags/all/';
+  allChaps = apiURL + 'chapters/all/';
+  chapDet = apiURL + 'chapter/details/';
+  allCategs = apiURL + 'chapters/all/';
 
   constructor(
     private http: HttpClient,
@@ -21,5 +25,17 @@ export class StoriesService {
   }
   getStoryDetails(id: number): Observable<any>{
     return this.http.get<any>(this.storyDet + id);
+  }
+  getAllTags(): Observable<any>{
+    return this.http.get<any>(this.allTags);
+  }
+  getAllChapters(): Observable<any>{
+    return this.http.get<any>(this.allChaps);
+  }
+  getChapDetails(id: number): Observable<any>{
+    return this.http.get<any>(this.chapDet + id);
+  }
+  getAllCategs(): Observable<any>{
+    return this.http.get<any>(this.allCategs);
   }
 }

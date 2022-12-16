@@ -1,10 +1,40 @@
 <div class="container-fluid" id="adminCont">
     <mat-tab-group>
-        <mat-tab label="Stories"><app-all-stories></app-all-stories></mat-tab>
+        <mat-tab label="Stories">
+            <ng-template matTabContent>
+                <app-all-stories></app-all-stories>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Tags">
+            <ng-template matTabContent>
+                <app-all-tags></app-all-tags>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Categories">
+            <ng-template matTabContent>
+                <app-all-categories></app-all-categories>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Chapters">
+            <ng-template matTabContent>
+
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Feedbacks">
+            <ng-template matTabContent>
+
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Reactions">
+            <ng-template matTabContent>
+
+            </ng-template>
+        </mat-tab>
     </mat-tab-group>
 
    
     <br><br><br>
 
 </div>
+
 

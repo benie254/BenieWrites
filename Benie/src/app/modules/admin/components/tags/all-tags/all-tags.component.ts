@@ -5,16 +5,16 @@ import { StoriesService } from 'src/app/modules/home/services/stories/stories.se
 import { AuthService } from '../../../auth/services/auth/auth.service';
 
 @Component({
-  selector: 'app-all-stories',
-  templateUrl: './all-stories.component.html',
-  styleUrls: ['./all-stories.component.css']
+  selector: 'app-all-tags',
+  templateUrl: './all-tags.component.html',
+  styleUrls: ['./all-tags.component.css']
 })
-export class AllStoriesComponent implements OnInit {
+export class AllTagsComponent implements OnInit {
   myList: any;
   showData: boolean = false;
   hideContent: boolean= false;
   showEdit: boolean = false;
-  myModel = 'Story';
+  myModel = 'Tag';
   selected: any;
 
   constructor(
@@ -41,7 +41,7 @@ export class AllStoriesComponent implements OnInit {
   
   allRecords(){
     Notiflix.Loading.dots('Loading...');
-    this.service.getAllStories().subscribe({
+    this.service.getAllTags().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         this.myList = res;
@@ -59,7 +59,7 @@ export class AllStoriesComponent implements OnInit {
     }, 250)
   }
   reset = (): void => {
-    const form = (<HTMLFormElement>document.getElementById('storyForm'));
+    const form = (<HTMLFormElement>document.getElementById('tagForm'));
     setTimeout(() => {
       form.reset();
     }, 250)

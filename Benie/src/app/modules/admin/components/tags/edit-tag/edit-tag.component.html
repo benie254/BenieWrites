@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="row">
+          <div class="col-md-6">
+            <form #tagForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(tagForm.value)" id="tagForm">
+              <h5>Edit {{details.tag_name}} Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
+              
+            
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Tag name </mat-label>
+                  <input matInput type="text" name="tag_name" #tag_name="ngModel" [(ngModel)]="details.tag_name" ngModel required>
+                  <mat-error *ngIf="tag_name.hasError('required') || tag_name.pristine">
+                    Title is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+              <br>
+               
+
+             
+
+
+              
+                  <div class="form-group bg-light">
+                    <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="tagForm.invalid" (click)="reload()"> Save</button> &nbsp;&nbsp;<button style="margin-top:1%;" type="submit" mat-flat-button color="accent" [disabled]="tagForm.invalid">Save and continue editing</button> &nbsp;&nbsp; <button style="margin-top:1%;" type="submit" mat-flat-button color="accent"  [disabled]="tagForm.invalid" (click)="redirect()">Save and add another</button> <button style="margin-top:1%;" class="float-right" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+                  </div>
+                  
+            </form>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>

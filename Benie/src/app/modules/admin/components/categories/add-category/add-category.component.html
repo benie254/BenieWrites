@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="row">
+          <div class="col-md-6">
+            <form #categoryForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addCategory(categoryForm.value)" id="categoryForm">
+              <h5>Add Category</h5>  <br>
+              <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Category</mat-label>
+                    
+                    <mat-select name="category" ngModel #category="ngModel" required>
+                      <mat-option value="mys" name="category" ngModel #category="ngModel" type="text">Mystery</mat-option>
+                      <mat-option value="mys/thr" name="category" ngModel #category="ngModel" type="text">Mystery/Thriller</mat-option>
+                      <mat-option value="thr" name="category" ngModel #category="ngModel" type="text">Thriller</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="category.hasError('required') || category.pristine">
+                        Category is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Status</mat-label>
+                    
+                    <mat-select name="status" ngModel #status="ngModel" required>
+                      <mat-option value="on" name="status" ngModel #status="ngModel" type="text">Ongoing</mat-option>
+                      <mat-option value="com" name="status" ngModel #status="ngModel" type="text">Completed</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="status.hasError('required') || status.pristine">
+                        Status is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Title </mat-label>
+                      <input matInput type="text" name="title" #title="ngModel" ngModel required>
+                      <mat-error *ngIf="title.hasError('required') || title.pristine">
+                        Title is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+                  <br>
+                    <mat-label>Cover </mat-label>
+                      <input type="file" name="cover" #cover="ngModel" ngModel required>
+
+                      <mat-error *ngIf="cover.hasError('required') || cover.pristine">
+                        Cover is <strong>required</strong>
+                      </mat-error>
+                  <br>
+                
+                <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Description </mat-label>
+                      <textarea matInput type="text" name="description" #description="ngModel" ngModel required></textarea>
+                      <mat-error *ngIf="description.hasError('required') || description.pristine">
+                        Description is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>First published </mat-label>
+                      <input matInput type="date" name="first_published" #first_published="ngModel" ngModel required>
+                      <mat-error *ngIf="first_published.hasError('required') || first_published.pristine">
+                        This field is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+
+
+                  <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Tags</mat-label>
+                    <mat-chip-list #allTags aria-label="Tag selection">
+                      <mat-chip *ngFor="let t of tags" (removed)="remove(t)">
+                        {{t.name}}
+                        <button matChipRemove>
+                          <mat-icon>cancel</mat-icon>
+                        </button>
+                      </mat-chip>
+                      <input placeholder="New tag..."
+                             [matChipInputFor]="allTags"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="addOnBlur"
+                             (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                  </mat-form-field>
+                  
+               
+                  
+                  <div class="form-group bg-light">
+                    <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" [disabled]="categoryForm.invalid" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent" [disabled]="categoryForm.invalid">Save and add another</button>
+                  </div>
+                  
+            </form>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>

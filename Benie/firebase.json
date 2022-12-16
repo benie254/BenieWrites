@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "benie-writes",
+    "public": "dist/benie",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
