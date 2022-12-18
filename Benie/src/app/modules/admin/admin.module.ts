@@ -13,7 +13,7 @@ import { ChangePassFormComponent } from './auth/forms/change-pass-form/change-pa
 import { LoginFormComponent } from './auth/forms/login-form/login-form.component';
 import { ResetConfirmedFormComponent } from './auth/forms/reset-confirmed-form/reset-confirmed-form.component';
 import { ResetRequestFormComponent } from './auth/forms/reset-request-form/reset-request-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,9 +29,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { AllTagsComponent } from './components/tags/all-tags/all-tags.component';
 import { EditTagComponent } from './components/tags/edit-tag/edit-tag.component';
 import { AddTagComponent } from './components/tags/add-tag/add-tag.component';
-import { AllCategoriesComponent } from './components/categories/all-categories/all-categories.component';
-import { EditCategoryComponent } from './components/categories/edit-category/edit-category.component';
-import { AddCategoryComponent } from './components/categories/add-category/add-category.component';
+import { AddChapterComponent, DialogForm } from './components/chapters/add-chapter/add-chapter.component';
+import { EditChapterComponent } from './components/chapters/edit-chapter/edit-chapter.component';
+import { AllChaptersComponent } from './components/chapters/all-chapters/all-chapters.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AllReactionsComponent } from './components/reactions/all-reactions/all-reactions.component';
+import { EditReactionComponent } from './components/reactions/edit-reaction/edit-reaction.component';
+import { EditFeedbackComponent } from './components/feedbacks/edit-feedback/edit-feedback.component';
+import { AllFeedbacksComponent } from './components/feedbacks/all-feedbacks/all-feedbacks.component';
+import { CloudinaryModule } from '@cloudinary/ng';
+import { NgxEditorModule } from 'ngx-editor';
+
 
 
 @NgModule({
@@ -52,9 +60,14 @@ import { AddCategoryComponent } from './components/categories/add-category/add-c
     AllTagsComponent,
     EditTagComponent,
     AddTagComponent,
-    AllCategoriesComponent,
-    EditCategoryComponent,
-    AddCategoryComponent,
+    AddChapterComponent,
+    EditChapterComponent,
+    AllChaptersComponent,
+    DialogForm,
+    AllReactionsComponent,
+    EditReactionComponent,
+    EditFeedbackComponent,
+    AllFeedbacksComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +81,10 @@ import { AddCategoryComponent } from './components/categories/add-category/add-c
     MatTabsModule,
     MatButtonModule,
     MatSelectModule,
+    MatDialogModule,
+    CloudinaryModule,
+    NgxEditorModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }

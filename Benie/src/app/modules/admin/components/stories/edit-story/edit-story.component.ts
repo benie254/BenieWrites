@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
-import { Subject, takeUntil } from 'rxjs';
-import { StoriesService } from 'src/app/modules/home/services/stories/stories.service';
+import { MyStoryService } from 'src/app/services/story/my-story.service';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 import { User } from '../../../classes/user/user';
 import { StoryService } from '../../../services/story/story.service';
@@ -23,7 +22,7 @@ export class EditStoryComponent implements OnInit {
   constructor(
     private service:StoryService,
     private auth:AuthService,
-    private storiesService:StoriesService
+    private storiesService:MyStoryService
 
   ) { }
 

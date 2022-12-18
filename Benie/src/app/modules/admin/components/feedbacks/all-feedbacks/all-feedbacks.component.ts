@@ -5,16 +5,16 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 
 @Component({
-  selector: 'app-all-stories',
-  templateUrl: './all-stories.component.html',
-  styleUrls: ['./all-stories.component.css']
+  selector: 'app-all-feedbacks',
+  templateUrl: './all-feedbacks.component.html',
+  styleUrls: ['./all-feedbacks.component.css']
 })
-export class AllStoriesComponent implements OnInit {
+export class AllFeedbacksComponent implements OnInit {
   myList: any;
   showData: boolean = false;
   hideContent: boolean= false;
   showEdit: boolean = false;
-  myModel = 'Story';
+  myModel = 'Feedback';
   selected: any;
 
   constructor(
@@ -41,7 +41,7 @@ export class AllStoriesComponent implements OnInit {
   
   allRecords(){
     Notiflix.Loading.dots('Loading...');
-    this.service.getAllStories().subscribe({
+    this.service.getAllComments().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         this.myList = res;
@@ -59,7 +59,7 @@ export class AllStoriesComponent implements OnInit {
     }, 250)
   }
   reset = (): void => {
-    const form = (<HTMLFormElement>document.getElementById('storyForm'));
+    const form = (<HTMLFormElement>document.getElementById('feedbackForm'));
     setTimeout(() => {
       form.reset();
     }, 250)

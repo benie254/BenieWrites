@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { StoryService } from '../../../services/story/story.service';
@@ -10,13 +10,20 @@ import * as Notiflix from 'notiflix';
   styleUrls: ['./add-story.component.css']
 })
 export class AddStoryComponent implements OnInit {
+  @Input() onNoClick: () => void;
+  @Input() dialogOp: boolean = false;
 
   constructor(
     private storyService:StoryService,
   ) { }
 
   ngOnInit(): void {
+    }
+  uploadImg(data: any){
+    this.storyService.uploadImg(data).subscribe();
+    Notiflix.Notify.success('Uploaded!')
   }
+  
 
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;

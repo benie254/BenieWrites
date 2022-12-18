@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="row">
+          <div class="col-md-6">
+            <form #feedbackForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(feedbackForm.value)" id="feedbackForm">
+              <h2>Edit Feedback <i class="fa-solid fa-hashtag"></i> {{details.id}} Details <span class="text-success"></span></h2>  
+            
+            
+            <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Comment </mat-label>
+                  <textarea matInput disabled type="text" name="feedback" #feedback="ngModel" [(ngModel)]="details.comment" ngModel required></textarea>
+                  <mat-error *ngIf="feedback.hasError('required') || feedback.pristine">
+                    Comment is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field> 
+
+             
+              
+                  <div class="form-group bg-light">
+                    <button style="margin-top:1%;" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+                  </div>
+                  
+            </form>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>

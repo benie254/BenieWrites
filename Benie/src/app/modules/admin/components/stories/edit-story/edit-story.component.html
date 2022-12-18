@@ -3,7 +3,7 @@
         <div class="row">
           <div class="col-md-6">
             <form #storyForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(storyForm.value)" id="storyForm">
-              <h5>Edit {{details.title}} Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  
+              <h2>Edit {{details.title}} Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h2>  
               
               <mat-form-field class="w-75" appearance="fill">
                 <mat-label>Category (current: {{details.category}})</mat-label>
@@ -37,13 +37,14 @@
                   </mat-error>
               </mat-form-field>
               <br>
-                <label for="cover">Cover: </label><br>
+                <mat-form-field appearance="fill">
+                  <mat-label for="cover">Cover: </mat-label><br>
                 
-                  <input type="file" name="cover" #cover="ngModel" [(ngModel)]="details.cover.url" ngModel>
-                  <mat-hint>currently: {{details.cover}}</mat-hint>
+                  <input matInput type="url" name="cover" #cover="ngModel" [(ngModel)]="details.cover" ngModel>
                   <mat-error *ngIf="cover.hasError('required') || cover.pristine">
                     Cover is <strong>required</strong>
                   </mat-error>
+                </mat-form-field>
               <br>
             
             <mat-form-field class="w-75" appearance="fill">

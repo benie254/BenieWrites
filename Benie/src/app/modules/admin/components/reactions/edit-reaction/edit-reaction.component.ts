@@ -5,11 +5,11 @@ import { User } from '../../../classes/user/user';
 import { StoryService } from '../../../services/story/story.service';
 
 @Component({
-  selector: 'app-edit-tag',
-  templateUrl: './edit-tag.component.html',
-  styleUrls: ['./edit-tag.component.css']
+  selector: 'app-edit-reaction',
+  templateUrl: './edit-reaction.component.html',
+  styleUrls: ['./edit-reaction.component.css']
 })
-export class EditTagComponent implements OnInit {
+export class EditReactionComponent implements OnInit {
   details!: any;
   delConfirmed: boolean = false;
   currentUser!: User;
@@ -31,16 +31,9 @@ export class EditTagComponent implements OnInit {
       !this.currentUser;
     }
   }
-  editItem(data: any){
-    this.service.editTags(this.selected,data).subscribe({
-      next: (res) => {
-        Notiflix.Notify.success('Updated!');
-      }
-    })
-  }
   itemDetails(){
     Notiflix.Loading.dots('Loading...');
-    this.service.getTagDetails(this.selected).subscribe({
+    this.service.getReactionDetails(this.selected).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         this.details = res;
@@ -49,11 +42,11 @@ export class EditTagComponent implements OnInit {
   }
   delete(){
     Notiflix.Loading.arrows('Deleting... please wait.')
-    this.service.deleteTags(this.selected).subscribe({
+    this.service.deleteReaction(this.selected).subscribe({
       next: (res) => {
         Notiflix.Report.success(
           "Deleted!",
-          'The tag was deleted successfully.',
+          'The reaction was deleted successfully.',
           'Great',
         )
         Notiflix.Loading.remove();
@@ -63,7 +56,7 @@ export class EditTagComponent implements OnInit {
   delWarn(){
     Notiflix.Confirm.show(
       'Confirm delete',
-      "Are you sure you want to delete this tag? This action cannot be undone",
+      "Are you sure you want to delete this reaction? This action cannot be undone",
       "I'm sure",
       "Take me back",
       () => {
@@ -80,16 +73,6 @@ export class EditTagComponent implements OnInit {
         this.delConfirmed = false;
       }
     )
-  }
-  redirect = (): void => {
-    setTimeout(() => {
-      this.openForm();
-    }, 250)
-  }
-  openForm = (): void => {
-    this.showData = true;
-    this.hideContent = true;
-    this.showEdit = false;
   }
   reload(){
     setTimeout(() => {

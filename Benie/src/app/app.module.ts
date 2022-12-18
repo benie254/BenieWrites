@@ -9,7 +9,25 @@ import { HttpClientModule } from '@angular/common/http';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
+import { AboutComponent } from './components/about/about.component';
+import { BottomSheetOverviewExampleSheet, ReadComponent } from './components/read/read.component';
+import { StoriesComponent } from './components/stories/stories.component';
+import { NavComponent } from './nav/nav.component';
+import { HomeComponent } from './home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import {CloudinaryModule} from '@cloudinary/ng';// TODO: Add SDKs for Firebase products that you want to use
+import { NgxPaginationModule } from 'ngx-pagination';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -31,14 +49,40 @@ const analytics = getAnalytics(app);
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
+    ReadComponent,
+    StoriesComponent,
+    NavComponent,
+    HomeComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatListModule,
+    MatBottomSheetModule,
+    MatInputModule,
+    CloudinaryModule,
+    NgxPaginationModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

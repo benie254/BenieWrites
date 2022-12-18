@@ -5,17 +5,18 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 
 @Component({
-  selector: 'app-all-stories',
-  templateUrl: './all-stories.component.html',
-  styleUrls: ['./all-stories.component.css']
+  selector: 'app-all-chapters',
+  templateUrl: './all-chapters.component.html',
+  styleUrls: ['./all-chapters.component.css']
 })
-export class AllStoriesComponent implements OnInit {
+export class AllChaptersComponent implements OnInit {
   myList: any;
   showData: boolean = false;
   hideContent: boolean= false;
   showEdit: boolean = false;
-  myModel = 'Story';
+  myModel = 'Chapter';
   selected: any;
+  stories: any;
 
   constructor(
     private auth: AuthService,
@@ -36,15 +37,23 @@ export class AllStoriesComponent implements OnInit {
         'Too Bad',
       )
     }
+    this.allStories();
     this.allRecords();
   }
-  
+  allStories(){
+    this.service.getAllStories().subscribe({
+      next: (res) => {
+        this.stories = res;
+      }
+    })
+  }
   allRecords(){
     Notiflix.Loading.dots('Loading...');
-    this.service.getAllStories().subscribe({
+    this.service.getAllChapters().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         this.myList = res;
+        console.warn(res)
       }
     })
   }
@@ -59,7 +68,7 @@ export class AllStoriesComponent implements OnInit {
     }, 250)
   }
   reset = (): void => {
-    const form = (<HTMLFormElement>document.getElementById('storyForm'));
+    const form = (<HTMLFormElement>document.getElementById('chapterForm'));
     setTimeout(() => {
       form.reset();
     }, 250)

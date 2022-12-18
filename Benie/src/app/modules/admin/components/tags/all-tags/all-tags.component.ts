@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
-import { StoriesService } from 'src/app/modules/home/services/stories/stories.service';
+import { MyStoryService } from 'src/app/services/story/my-story.service';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class AllTagsComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private service: StoriesService
+    private service: MyStoryService
   ) { }
 
   ngOnInit(): void {

@@ -1,0 +1,108 @@
+<div class="container-fluid" style="height:auto;min-height:100vh;padding:1.5%;" id="readBg">
+    <span (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
+<span>
+    <span><button mat-stroked-button><mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;color:blueviolet;"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
+</span>    <br><br>
+    <div class="row">
+        <div class="col-md-1">
+            <br><br>
+        </div>
+        <div class="col-md-8">
+            <div *ngFor="let c of chaps | paginate: { id:'readStory', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                <h1 class="text-center" style="font-family:'Courier New', Courier, monospace;font-size:xx-large;font-weight:bolder">{{c.title}} <br> <span><h2>Tag Line</h2></span></h1>
+                <mat-stepper class="shadow container" id="content" style="padding:5%;height:auto;font-size:large;font-family:'Courier New', Courier, monospace;line-height: 1.5em;">
+
+                    <mat-step state="book">
+                    
+                      <div>
+                        <button mat-stroked-button color="primary" matStepperNext>Next</button> <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span> 
+                        
+                      </div>
+                    </mat-step>
+                    <!-- <mat-step state="book">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, placeat! Dolores praesentium eius excepturi ab reprehenderit odio debitis, vitae molestias nihil beatae laudantium inventore ducimus nesciunt est libero magni sit?</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quas aut impedit molestiae! Reprehenderit quibusdam ratione natus veritatis, impedit omnis minus nemo in ad accusamus totam, porro aperiam quod odit.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tenetur porro aliquid saepe quo minus, optio natus sapiente. Enim praesentium a quia amet aut quae laborum corporis ut aperiam possimus.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum molestias maxime ea labore hic iste repudiandae suscipit praesentium ullam consequatur vitae, facere aperiam excepturi laboriosam odit aut esse nemo in.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi assumenda culpa sunt maxime, nam sapiente obcaecati facere quas earum vero, error similique doloribus et possimus qui atque praesentium ea consequuntur?</p>
+                      <div>
+                        <button mat-stroked-button matStepperPrevious>Back</button>
+                        <button mat-stroked-button color="primary" matStepperNext>Next</button> <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
+                      </div>
+                    </mat-step> -->
+                    <mat-step state="book">
+                      <ng-template matStepLabel>Done</ng-template>
+                      <p>You are now done.</p>
+                      <button mat-raised-button color="accent"><i class="fa-regular fa-star"></i> Vote</button> 
+                      <br><br>
+                        <form (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
+                            <mat-form-field appearance="fill">
+                                <mat-label class="bg-light" color="accent">Comment</mat-label>
+                                <input type="text" matInput name="comment">
+                            </mat-form-field>
+                            &nbsp;<button mat-raised-button color="accent" *ngIf="!noInput">Add <i class="fa-regular fa-comment"></i></button>
+                        </form><br>
+                      <div>
+                        <button mat-stroked-button matStepperPrevious>Back</button>  <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
+                      </div>
+                      
+                      
+                    </mat-step>
+                    <ng-template matStepperIcon="book">
+                        <mat-icon><i class="fa-solid fa-book-open-reader"></i></mat-icon>
+                      </ng-template>
+                  </mat-stepper>
+                  <pagination-controls
+                  id="readStory"
+                previousLabel="Prev Chapt..."
+                nextLabel="Next Chap..."
+                (pageChange)="onTableDataChange($event)"
+              >
+              </pagination-controls>
+              {{c.description}}
+              {{c.length}} chapters
+            </div>
+            <br>
+            
+        </div>
+        <div class="col-md-3">
+            <div class="shadow" style="padding:1.5%;">
+                <br>
+                <small>
+                    <h4>{{story.title}} <br> 
+                        <span><small><span><i class="fa-regular fa-eye"></i> 100</span> &nbsp;&nbsp; <span><i class="fa-regular fa-star"></i> 10</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> 5</span> &nbsp;&nbsp; <span><i class="fa-regular fa-clock"></i> 10s</span></small></span>
+                    </h4>
+                    <p>{{story.description}}</p>
+                    <p>{{story.author}}</p>
+                    <span>
+                        <mat-chip-list aria-label="Categories">
+                            <mat-chip color="accent" selected>{{story.category}}</mat-chip>
+                          </mat-chip-list>
+                          <mat-chip-list aria-label="Tags">
+                            <mat-chip color="primary" selected>Mystery</mat-chip>
+                            <mat-chip color="primary" selected>Thriller</mat-chip>
+                            <mat-chip color="primary" selected>Love</mat-chip>
+                            <mat-chip color="primary" selected>Life</mat-chip>
+                          </mat-chip-list>
+                </span>
+                </small>
+          
+        <hr>
+        <small>
+            <span>
+                <span>Comments</span><br>
+                <span>
+                    <p class="shadow" style="font-size:smaller;margin:1.5%;padding:1.5%;"><span style="font-size:xx-small;">12/15/2022 &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> Anonymous</span> <br> Lorem ipsum do tempora perspiciatis ipsam ipsum ipsa libero eligendi accusantium ullam, inciime.</p>
+                    <p class="shadow" style="font-size:smaller;margin:1.5%;padding:1.5%;"><span style="font-size:xx-small;">12/15/2022 &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> Anonymous</span> <br> Lorem ipsum dolor sit amet consectetur adipisicing eliaxime. </p>
+                </span>
+            </span>
+        </small>
+        <hr>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1671110874/png_20221211_102745_0000_b7vjnr.png" style="max-height:100%;max-width:100%;" alt="" priority>
+            </div>
+        
+        </div>
+    </div>
+    <br><br>
+
+</div>

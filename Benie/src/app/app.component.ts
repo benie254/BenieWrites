@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Benie';
+  img!: CloudinaryImage;
+
+  ngOnInit(){
+    const cloudinary = new Cloudinary({
+      cloud: {
+        cloudName: 'benie'
+      }
+    });
+  }
 }

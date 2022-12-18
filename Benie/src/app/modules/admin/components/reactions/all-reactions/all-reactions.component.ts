@@ -5,22 +5,22 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 
 @Component({
-  selector: 'app-all-stories',
-  templateUrl: './all-stories.component.html',
-  styleUrls: ['./all-stories.component.css']
+  selector: 'app-all-reactions',
+  templateUrl: './all-reactions.component.html',
+  styleUrls: ['./all-reactions.component.css']
 })
-export class AllStoriesComponent implements OnInit {
+export class AllReactionsComponent implements OnInit {
   myList: any;
   showData: boolean = false;
   hideContent: boolean= false;
   showEdit: boolean = false;
-  myModel = 'Story';
+  myModel = 'Reaction';
   selected: any;
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private service: MyStoryService
+    private service: MyStoryService,
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class AllStoriesComponent implements OnInit {
   
   allRecords(){
     Notiflix.Loading.dots('Loading...');
-    this.service.getAllStories().subscribe({
+    this.service.getAllReactions().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         this.myList = res;
@@ -59,7 +59,7 @@ export class AllStoriesComponent implements OnInit {
     }, 250)
   }
   reset = (): void => {
-    const form = (<HTMLFormElement>document.getElementById('storyForm'));
+    const form = (<HTMLFormElement>document.getElementById('reactionForm'));
     setTimeout(() => {
       form.reset();
     }, 250)
