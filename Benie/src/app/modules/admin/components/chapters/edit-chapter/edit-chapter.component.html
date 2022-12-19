@@ -2,7 +2,13 @@
     <div class="padding-2">
         <div class="row">
           <div class="col-md-6">
-            {{details.description}}
+            <div id="htmlDiv" class="html" [innerHTML]="htmlContent">
+     {{htmlContent}}
+            </div>
+            <input type="text" [innerHTML]="htmlContent">
+            <div class="html">
+              {{htmlContentWithoutStyles}}
+           </div>
             <form [formGroup]="chapterForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(chapterForm.value)" id="chapterForm">
               <h2>Edit {{details.title}} Details <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h2>  
               
@@ -14,19 +20,15 @@
                 </mat-error> -->
               </mat-form-field>
               <br>
+
             
-              <div class="NgxEditor__Wrapper">
-                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-                <ngx-editor
-                  [editor]="editor"
-                  [ngModel]="html"
-                  [disabled]="false"
-                  [placeholder]="'Type here...'"
-                  ngModel 
-                  [(ngModel)]="details.description"
-                  formControlName="details"
-                ></ngx-editor>
-              </div>
+              <!-- <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput type="text" formControlName="description" ngModel [(ngModel)]="details.description" required></textarea> -->
+                <!-- <mat-error *ngIf="title.hasError('required') || title.pristine">
+                    Title is <strong>required</strong>
+                </mat-error> -->
+              <!-- </mat-form-field> -->
 
               <mat-form-field class="w-75" appearance="fill">
                 <mat-label>First published </mat-label>
@@ -39,9 +41,12 @@
 
               <mat-form-field class="example-chip-list" appearance="fill">
                 <mat-label>Story (currently: ID {{details.story}}</mat-label>
-                <mat-select formControlName="chapter" ngModel required>
-                    <mat-option *ngFor="let s of stories" value="s.id" name="chapter" ngModel #chapter="ngModel" type="number">{{s.id}}. {{s.title}}</mat-option>
-                  </mat-select>
+                <select matNativeControl required formControlName="story">
+                  <option *ngFor="let s of stories" value="{{s.id}}" ngMode type="number">{{s.id}}. {{s.title}}</option>
+                </select>
+                <!-- <mat-select formControlName="chapter" [(value)]="picked" ngModel required>
+                    <mat-option *ngFor="let s of stories" value="{{s.id}}" ngMode type="number">{{s.id}}. {{s.title}}</mat-option>
+                  </mat-select> -->
                   <!-- <mat-error *ngIf="chapter.hasError('required') || chapter.pristine">
                     This field is <strong>required</strong>
                   </mat-error> -->

@@ -3,7 +3,7 @@
         <h2>All {{myModel}}s</h2> 
         <div *ngIf="myList">
             <hr>
-            <p *ngFor="let m of myList" type="button" (click)="copy(m.id);edit();" class="text-primary">Reaction <i class="fa-solid fa-hashtag"></i> {{m.id}} added on {{m.date | date}}</p>
+            <p *ngFor="let m of myList" type="button" (click)="copy(m.id);edit();" class="text-primary">Reaction <i class="fa-solid fa-hashtag"></i> {{m.id}}. {{m.like}} added on {{m.date | date}}</p>
             <hr>
             <p class="text-muted">{{myList.length}} {{myModel | lowercase}}s. Click a {{myModel | lowercase}} to edit it.</p>
         </div>

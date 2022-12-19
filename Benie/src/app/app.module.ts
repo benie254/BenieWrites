@@ -23,11 +23,13 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatListModule} from '@angular/material/list';
+import {MatBadgeModule} from '@angular/material/badge';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import {CloudinaryModule} from '@cloudinary/ng';// TODO: Add SDKs for Firebase products that you want to use
 import { NgxPaginationModule } from 'ngx-pagination';
+import { StoryDialog, StoryPagesComponent } from './components/story-pages/story-pages.component';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -54,7 +56,9 @@ const analytics = getAnalytics(app);
     StoriesComponent,
     NavComponent,
     HomeComponent,
-    BottomSheetOverviewExampleSheet
+    BottomSheetOverviewExampleSheet,
+    StoryPagesComponent,
+    StoryDialog
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ const analytics = getAnalytics(app);
     CloudinaryModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    MatBadgeModule,
   ],
   providers: [
     {

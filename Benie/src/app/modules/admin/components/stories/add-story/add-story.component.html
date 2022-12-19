@@ -2,15 +2,23 @@
     <div class="padding-2">
         <div class="row">
           <div class="col-md-6">
-            <form #storyForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="uploadImg(cover.value);addStory(storyForm.value)" id="storyForm">
+            <form #storyForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addStory(storyForm.value)" id="storyForm">
               <h2>Add Story</h2>  <br>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Author </mat-label>
+                  <textarea matInput type="text" name="author" #author="ngModel" ngModel required></textarea>
+                  <mat-error *ngIf="author.hasError('required') || author.pristine">
+                    Author is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
               <mat-form-field class="w-75" appearance="fill">
                     <mat-label>Category</mat-label>
                     
                     <mat-select name="category" ngModel #category="ngModel" required>
-                      <mat-option value="mys" name="category" ngModel #category="ngModel" type="text">Mystery</mat-option>
-                      <mat-option value="mys/thr" name="category" ngModel #category="ngModel" type="text">Mystery/Thriller</mat-option>
-                      <mat-option value="thr" name="category" ngModel #category="ngModel" type="text">Thriller</mat-option>
+                      <mat-option value="mystery" name="category" ngModel #category="ngModel" type="text">Mystery</mat-option>
+                      <mat-option value="mystery/thriller" name="category" ngModel #category="ngModel" type="text">Mystery/Thriller</mat-option>
+                      <mat-option value="thriller" name="category" ngModel #category="ngModel" type="text">Thriller</mat-option>
+                      <mat-option value="teen-fiction" name="category" ngModel #category="ngModel" type="text">Teen Fiction</mat-option>
                     </mat-select>
                     <mat-error *ngIf="category.hasError('required') || category.pristine">
                         Category is <strong>required</strong>
@@ -21,8 +29,8 @@
                     <mat-label>Status</mat-label>
                     
                     <mat-select name="status" ngModel #status="ngModel" required>
-                      <mat-option value="on" name="status" ngModel #status="ngModel" type="text">Ongoing</mat-option>
-                      <mat-option value="com" name="status" ngModel #status="ngModel" type="text">Completed</mat-option>
+                      <mat-option value="ongoing" name="status" ngModel #status="ngModel" type="text">Ongoing</mat-option>
+                      <mat-option value="complete" name="status" ngModel #status="ngModel" type="text">Completed</mat-option>
                     </mat-select>
                     <mat-error *ngIf="status.hasError('required') || status.pristine">
                         Status is <strong>required</strong>

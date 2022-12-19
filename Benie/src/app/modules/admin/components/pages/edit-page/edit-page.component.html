@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="htmlDiv" class="html" [innerHTML]="htmlContent">
+     {{htmlContent}}
+            </div>
+            <input type="text" [innerHTML]="htmlContent">
+            <div class="html">
+              {{htmlContentWithoutStyles}}
+           </div>
+            <form #editPageForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(editPageForm.value)" id="editPageForm">
+              <h2>Edit Page <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span> Details </h2>  
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Title </mat-label>
+                  <input matInput type="text" name="title" [(ngModel)]="details.title" #title="ngModel" ngModel required>
+                  <mat-error *ngIf="title.hasError('required') || title.pristine">
+                    Title is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor
+                  [editor]="editor"
+                  [ngModel]="html"
+                  [disabled]="false"
+                  [placeholder]="'Type here...'"
+                  ngModel 
+                  name="description"
+                  [(ngModel)]="details.description" 
+                  #description="ngModel" 
+                  (keyup)="countWords(details.description)"
+                ></ngx-editor>
+              </div>
+
+              <!-- <angular-editor ngModel name="description" [config]="config" maxlength="1250" [(ngModel)]="details.description" #description="ngModel" (keyup)="countWords(details.description)"></angular-editor> -->
+              <div id="wordCount">{{counted}}</div> words
+           <div *ngIf="!limitReached">Not there yet</div>
+           <div *ngIf="limitReached">Perfect!</div>
+              <!-- <span class="alert alert-danger" *ngIf="description.hasError('maxlength') || description.pristine">
+              Max length: 250 words
+            </span> -->
+              <!-- <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput type="text" formControlName="description" ngModel [(ngModel)]="details.description" required></textarea> -->
+                <!-- <mat-error *ngIf="title.hasError('required') || title.pristine">
+                    Title is <strong>required</strong>
+                </mat-error> -->
+              <!-- </mat-form-field> -->
+
+
+
+              <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-label>Chapter</mat-label>
+                <input matInput name="chapter" [(ngModel)]="details.chapter" type="number">
+                <!-- <mat-select formControlName="page" [(value)]="picked" ngModel required>
+                    <mat-option *ngFor="let s of stories" value="{{s.id}}" ngMode type="number">{{s.id}}. {{s.title}}</mat-option>
+                  </mat-select> -->
+                  <!-- <mat-error *ngIf="page.hasError('required') || page.pristine">
+                    This field is <strong>required</strong>
+                  </mat-error> -->
+              </mat-form-field>
+
+              <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-label>Story (currently: ID {{details.story}}</mat-label>
+                <mat-select name="story" ngModel #story="ngModel" required>
+                  <mat-option *ngFor="let s of stories" value="{{s.id}}" name="story" ngModel #story="ngModel" type="number">{{s.id}}. {{s.title}}</mat-option>
+                </mat-select>
+                <!-- <mat-select formControlName="chapter" [(value)]="picked" ngModel required>
+                    <mat-option *ngFor="let s of stories" value="{{s.id}}" ngMode type="number">{{s.id}}. {{s.title}}</mat-option>
+                  </mat-select> -->
+                  <!-- <mat-error *ngIf="chapter.hasError('required') || chapter.pristine">
+                    This field is <strong>required</strong>
+                  </mat-error> -->
+              </mat-form-field>
+
+             
+
+
+              
+                  <div class="form-group bg-light">
+                    <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" (click)="reload()"> Save</button> &nbsp;&nbsp;<button style="margin-top:1%;" type="submit" mat-flat-button color="accent" >Save and continue editing</button> &nbsp;&nbsp; <button style="margin-top:1%;" type="submit" mat-flat-button color="accent"   (click)="redirect()">Save and add another</button> <button style="margin-top:1%;" class="float-right" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+                  </div>
+                  
+            </form>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>

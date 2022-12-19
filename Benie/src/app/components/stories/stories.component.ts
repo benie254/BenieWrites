@@ -19,16 +19,13 @@ export class StoriesComponent implements OnInit {
   ngOnInit(): void {
     this.allStories();
   }
-  onKey(event: any){
-    const myD = (<HTMLDivElement>document.getElementById('myDiv'));
-    myD.style.opacity = '0.7';
-  }
+  
   removeS(event: any){
     const myD = (<HTMLDivElement>document.getElementById('myDiv'));
     myD.style.opacity = '1';
   }
   allStories(){
-    Notiflix.Loading.hourglass('Prepping the Lib...')
+    Notiflix.Loading.pulse('Prepping the Lib...')
     this.storyService.getAllStories().subscribe({
       next: (data) => {
         this.stories = data;

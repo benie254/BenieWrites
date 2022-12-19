@@ -39,6 +39,10 @@ import { EditFeedbackComponent } from './components/feedbacks/edit-feedback/edit
 import { AllFeedbacksComponent } from './components/feedbacks/all-feedbacks/all-feedbacks.component';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { NgxEditorModule } from 'ngx-editor';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AddPageComponent, PageDialogForm } from './components/pages/add-page/add-page.component';
+import { AllPagesComponent } from './components/pages/all-pages/all-pages.component';
+import { EditPageComponent } from './components/pages/edit-page/edit-page.component';
 
 
 
@@ -68,6 +72,10 @@ import { NgxEditorModule } from 'ngx-editor';
     EditReactionComponent,
     EditFeedbackComponent,
     AllFeedbacksComponent,
+    AddPageComponent,
+    AllPagesComponent,
+    EditPageComponent,
+    PageDialogForm,
   ],
   imports: [
     CommonModule,
@@ -85,6 +93,7 @@ import { NgxEditorModule } from 'ngx-editor';
     CloudinaryModule,
     NgxEditorModule,
     ReactiveFormsModule,
+    AngularEditorModule,
   ]
 })
 export class AdminModule { }

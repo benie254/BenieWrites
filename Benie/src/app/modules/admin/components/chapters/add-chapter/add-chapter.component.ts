@@ -11,10 +11,12 @@ import { StoryService } from '../../../services/story/story.service';
 })
 export class AddChapterComponent implements OnInit, OnDestroy {
   @Input() stories: any;
-  dialogOpen: boolean = false;
+  @Input() dialogOp: boolean = false;
   value = 1;
   editor: Editor;
   html: '';
+  dialogOpen: boolean = false;
+  @Input() onNullClick: () => void;
 
   constructor(
     private storyService:StoryService,

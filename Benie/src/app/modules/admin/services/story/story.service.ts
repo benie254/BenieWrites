@@ -19,11 +19,14 @@ export class StoryService {
   addChap = apiURL + 'admin/chapter/add/';
   chapDet = apiURL + 'chapter/details/';
   updateChap = apiURL + 'admin/chapter/update/';
-  addReact = apiURL + 'admin/reaction/add/';
   reactDet = apiURL + 'admin/reaction/details/';
-  addFeed = apiURL + 'admin/feedback/add/';
+  addFeed = apiURL + 'feedbacks/all/';
   feedDet = apiURL + 'admin/feedback/details/';
   upload = cloudURL;
+  addChapPage = apiURL + 'admin/page/add/';
+  allPages = apiURL + 'admin/pages/all/';
+  updatePage = apiURL + 'admin/page/update/';
+  pageDet = apiURL + 'admin/page/details/';
 
   constructor(
     private handler: ReqHandlerService,
@@ -60,8 +63,17 @@ export class StoryService {
   deleteChapter(id: number): Observable<any>{
     return this.http.delete<any>(this.updateChap + id);
   }
-  addReaction(data: any): Observable<any>{
-    return this.http.post<any>(this.addReact, data);
+  getAllPages(): Observable<any>{
+    return this.http.get<any>(this.allPages);
+  }
+  addPage(data: any): Observable<any>{
+    return this.http.post<any>(this.addChapPage, data);
+  }
+  editPage(id: number, data: any): Observable<any>{
+    return this.http.put<any>(this.updatePage + id, data);
+  }
+  deletePage(id: number): Observable<any>{
+    return this.http.delete<any>(this.updatePage + id);
   }
   getReactionDetails(id: number): Observable<any>{
     return this.http.get<any>(this.reactDet + id);
@@ -83,5 +95,8 @@ export class StoryService {
   }
   uploadImg(data: any): Observable<any>{
     return this.http.post<any>(this.upload, data);
+  }
+  getPageDetails(id: number): Observable<any>{
+    return this.http.get<any>(this.pageDet + id);
   }
 }

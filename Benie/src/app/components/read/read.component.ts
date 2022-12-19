@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { NgOptimizedImage } from '@angular/common'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
+import * as Notiflix from 'notiflix';
+import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 
 @Component({
   selector: 'app-read',
@@ -23,18 +25,79 @@ export class ReadComponent implements OnInit {
   tableSize: number = 1;
   tableSizes: any = [2, 5, 10, 15];
   id: number;
+  selectedId: any;
+  chapSelected: boolean = false;
+  chapterPages: any;
+  chapDet: any;
+  show: boolean = false;
+  hide: boolean = false;
+  storyDet: any;
+  chapId: any;
+  firstChap: any;
+  liked: string = 'like';
+  storyLikes: any;
+  storyComments: any;
+  views: string[] = [];
 
   constructor(
     private _bottomSheet: MatBottomSheet,
     private service:MyStoryService,
+    private stoyService: StoryService,
     private route:ActivatedRoute,
+    private router:Router
   ) { }
+
 
   ngOnInit(): void {
     this.msg = "";
     this.id = this.route.snapshot.params['id'];
     this.route.params.subscribe(params => this.storyDetails(params['id']));
     this.route.params.subscribe(params => this.storyChaps(params['id']));
+    this.route.params.subscribe(params => this.chapDetails(params['id']));
+    this.route.params.subscribe(params => this.storyReactions(params['id']));
+    this.route.params.subscribe(params => this.storyFeedbacks(params['id']));
+    this.checkViews();
+    
+  }
+  likeStory(data: any){
+    Notiflix.Loading.pulse('Processing...')
+    this.service.addReaction(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success("Story liked!")
+        this.ngOnInit();
+      }
+    })
+  }
+  commentStory(data: any){
+    Notiflix.Loading.pulse('Processing...')
+    this.stoyService.addFeedback(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success("Story liked!")
+        this.ngOnInit();
+        this.values = '';
+      }
+    })
+  }
+  storyReactions(id: any){
+    this.service.getStoryReactions(id).subscribe({
+      next: (res) => {
+        this.storyLikes = res;
+      }
+    })
+  }
+  storyFeedbacks(id: any){
+    this.service.getStoryFeedbacks(id).subscribe({
+      next: (res) => {
+        this.storyComments = res;
+        console.warn("comments",res)
+      }
+    })
+  }
+  goToChap = (): void => {
+    this.show = true;
+    // this.router.navigate(['/read/story/chapter/' + this.id])
   }
   storyDetails(id: number){
     this.service.getStoryDetails(id).subscribe({
@@ -43,14 +106,52 @@ export class ReadComponent implements OnInit {
       }
     })
   }
-  storyChaps(id: number){
+  copy = (text: any): void => {
+    localStorage.removeItem('chapId');
+    localStorage.setItem('chapId',text);
+    this.chapId = localStorage.getItem('chapId');
+    console.warn('chap id:',this.chapId)
+    this.router.navigate(['/read/story/chapter/' + this.chapId]);
+  }
+  
+  
+  
+  storyChaps(id: any){
     this.service.getStoryChapters(id).subscribe({
       next: (res) => {
         this.chaps = res;
         console.warn(res,"chaps")
+        this.firstChap = this.chaps[0];
       }
     })
   }
+  checkId(){
+    // alert("a")
+    let cId = parseInt(document.getElementById('chapId').textContent) +1;
+    Notiflix.Notify.success(cId.toString());
+    // this.chapPages(cId);
+    // console.warn("s")
+  }
+  prevId(){
+    let cId = parseInt(document.getElementById('chapId').textContent);
+    Notiflix.Notify.success(cId.toString());
+    // this.chapPages(cId);
+    console.warn("s")
+  }
+  chapPages(id: any){
+    
+    this.service.getChapterPages(id).subscribe({
+      next: (res) => {
+        this.chapterPages = res;
+        console.warn("chap pages:",res)
+      }
+    })
+  }
+  
+  selectChap(){
+    this.chapSelected = true;
+  }
+  
   onTableDataChange = (event: any): void => {
     this.page = event;
     this.storyChaps(this.id);
@@ -74,7 +175,27 @@ export class ReadComponent implements OnInit {
     }
   }
   back(){
-    history.back();
+    this.router.navigate(['/'])
+  }
+  
+ 
+  chapDetails(id: number){
+    return this.service.getChapDetails(id).subscribe({
+      next: (res) => {
+        this.chapDet = res;
+      }
+    })
+  }
+  checkViews(){
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === 'visible') {
+        this.views.push("active");
+        Notiflix.Notify.success("active")
+      } else {
+        this.views.push("inactive");
+        Notiflix.Notify.failure("inactive")
+      }
+    });
   }
   onKey(event: any){
     this.values = event.target.value;
@@ -85,6 +206,8 @@ export class ReadComponent implements OnInit {
   openBottomSheet(): void {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
+
+ 
   
 
 }
@@ -94,10 +217,26 @@ export class ReadComponent implements OnInit {
   templateUrl: 'share.html',
 })
 export class BottomSheetOverviewExampleSheet {
+  storyLink = '';
+  currentSite = window.location.href;
+
   constructor(private _bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
+  }
+  myLink(){
+    this.copyLink(window.location.href);
+  }
+  copyLink(text: any){
+    localStorage.setItem('myLink',text);
+    this.storyLink = localStorage.getItem('myLink')
+    console.warn("my link",this.storyLink)
+    this.clipBoard(this.storyLink)
+  }
+  clipBoard(text: any){
+    navigator.clipboard.writeText(text);
+    Notiflix.Notify.success('Link Copied!')    
   }
 }

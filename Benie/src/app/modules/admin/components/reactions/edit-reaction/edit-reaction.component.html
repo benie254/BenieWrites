@@ -2,7 +2,7 @@
     <div class="padding-2">
         <div class="shadow padding-2 bg-light" style="padding:2.5%;">
             <h5>Edit Reaction <span class="text-success"><i class="fa-solid fa-hashtag"></i> {{details.id}}</span></h5>  <br>
-            <p class="text-success">{{details.id}}. {{details.reaction}} &nbsp;&nbsp; | &nbsp;&nbsp; added on {{details.date | date}}</p>
+            <p class="text-success">{{details.id}}. {{details.like}} &nbsp;&nbsp; | &nbsp;&nbsp; added on {{details.date | date}} | book ID: {{details.book}}</p>
             <button type="button" mat-flat-button color="warn" (click)="delWarn()">Delete</button>
         </div>
     </div>

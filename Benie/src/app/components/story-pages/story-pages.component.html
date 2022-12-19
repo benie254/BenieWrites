@@ -1,0 +1,137 @@
+<div class="container-fluid" style="height:auto;min-height:100vh;padding:1.5%;" id="readSBg">
+  <span (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
+<span>
+  <span><button mat-stroked-button><mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;color:blueviolet;"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
+</span>    
+  <div class="row">
+      <div class="col-md-1">
+          <br><br>
+      </div>
+      <div class="col-md-8">
+        <!-- <div *ngIf="!chapSelected">
+            <a *ngFor="let c of chaps" type="button" (click)="copy(c.id);selectChap()" style="margin:2.5%;padding:1.5%;">{{c.title}}</a>
+        </div> -->
+        <div>
+          <div   >
+            
+              <!-- <h1 id="chapId">{{c.id}}</h1> -->
+                    
+                    <div>
+                      <div >
+                          <!-- <button *ngFor="let c of chaps" style="margin:1.5%;padding:1.5%;" mat-raised-button color="accent" routerLink="/read/story/chapter/{{c.id}}">{{c.title}}</button> -->
+                        </div>
+                    </div>
+                   
+                    
+                    <div>
+                      
+                      <mat-stepper class="shadow container" id="sContent" style="padding:2.5%;height:auto;font-size:large;font-family:'Courier New', Courier, monospace;line-height: 1.5em;">
+                        <mat-step *ngFor="let p of chapterPages" state="book">
+                          
+                          <ng-template matStepContent>
+                            <h1 class="text-center" style="font-family:'Courier New', Courier, monospace;font-size:xx-large;font-weight:bolder">{{chapDet.title}} <br> <span><h5>{{chapterPages.length}} Pages</h5></span></h1>
+                          <div [innerHTML]="p.description"></div>
+                          <div>
+                            <button mat-stroked-button matStepperPrevious>Prev Page</button>
+                            <button mat-stroked-button color="primary" matStepperNext>Next Page</button> <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span> 
+                            
+                          </div>
+                          </ng-template>
+                          
+                          
+                        </mat-step>
+                        <mat-step state="book">
+                          <ng-template matStepLabel>Feedback</ng-template>
+                          <ng-template matStepContent>
+                            <p>Enjoying this story? Drop your feedback below.</p>
+                          <button mat-raised-button color="accent"><i class="fa-regular fa-star"></i> Vote</button> 
+                          <br><br>
+                            <form (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
+                                <mat-form-field appearance="fill">
+                                    <mat-label class="bg-light" color="accent">Comment</mat-label>
+                                    <input type="text" matInput name="comment">
+                                </mat-form-field>
+                                &nbsp;<button mat-raised-button color="accent" *ngIf="!noInput">Add <i class="fa-regular fa-comment"></i></button>
+                            </form><br>
+                          <div>
+                            <button mat-stroked-button matStepperPrevious>Prev Page</button>  <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
+                          </div>
+                          <br>
+                          <div *ngIf="chaps">
+                            <h2 class="text-center">{{chaps.length}} chapters</h2>
+                            <button style="padding:0.5%;margin:1%;" *ngFor="let c of chaps" mat-raised-button color="accent" (click)="copy(c.id);">{{c.title}}</button>
+                          </div>
+                          </ng-template>
+                          </mat-step>
+                          <ng-template matStepperIcon="book">
+                            <mat-icon><i class="fa-solid fa-book-open-reader"></i></mat-icon>
+                          </ng-template>
+                          
+                          </mat-stepper>
+                      <!-- <app-story-pages [story]="story" [chapDet]="chapDet"></app-story-pages> -->
+                    </div>
+                
+                    
+                  
+                
+                
+              
+             
+                  
+              
+          
+          
+        </div>
+        </div>
+          
+          <br>
+          
+      </div>
+      <div class="col-md-3">
+          <div class="shadow" style="padding:1.5%;">
+              <br>
+              <small>
+                  <h4>{{story.title}} <br> 
+                      <span><small><span><i class="fa-regular fa-eye"></i> 100</span> &nbsp;&nbsp; <span><i class="fa-regular fa-star"></i> 10</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> 5</span> &nbsp;&nbsp; <span><i class="fa-regular fa-clock"></i> 10s</span></small></span>
+                  </h4>
+                  <p>{{story.description}}</p>
+                  <span>
+                      <mat-chip-list aria-label="Categories">
+                          <mat-chip color="primary" selected>{{story.category}}</mat-chip>
+                        </mat-chip-list>
+                        <!-- <mat-chip-list aria-label="Tags">
+                          <mat-chip color="primary" selected>Mystery</mat-chip>
+                          <mat-chip color="primary" selected>Thriller</mat-chip>
+                          <mat-chip color="primary" selected>Love</mat-chip>
+                          <mat-chip color="primary" selected>Life</mat-chip>
+                        </mat-chip-list> -->
+                        
+              </span>
+              <br>
+              <p><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="35" width="35" style="border-radius:50%;" alt=""></span> By {{story.author}}</p>
+
+              </small>
+        
+      <hr>
+      <small>
+          <span>
+              <span>Comments</span><br>
+              <span>
+                  <p class="shadow" style="font-size:smaller;margin:1.5%;padding:1.5%;"><span style="font-size:xx-small;">12/15/2022 &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> Anonymous</span> <br> Lorem ipsum do tempora perspiciatis ipsam ipsum ipsa libero eligendi accusantium ullam, inciime.</p>
+                  <p class="shadow" style="font-size:smaller;margin:1.5%;padding:1.5%;"><span style="font-size:xx-small;">12/15/2022 &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> Anonymous</span> <br> Lorem ipsum dolor sit amet consectetur adipisicing eliaxime. </p>
+              </span>
+          </span>
+      </small>
+      <hr>
+      <img src="{{story.cover}}" style="max-height:100%;max-width:100%;" alt="" priority>
+          </div>
+      
+      </div>
+  </div>
+  <br><br>
+
+</div>
+
+
+
+     

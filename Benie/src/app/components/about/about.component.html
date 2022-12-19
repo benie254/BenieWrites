@@ -12,8 +12,8 @@
         </div>
         <div class="col-md-4">
             <div style="padding:5%;margin:2.5%;">
-                <form #subForm="ngForm" class="shadow">
-                    <h1 class="text-primary text-center">Monthly Newsletter <br> <span><h5>Never miss a story.</h5></span></h1>
+                <form #subForm="ngForm" class="shadow" (ngSubmit)="subscribe(subForm.value)">
+                    <h1 style="color:blueviolet" class=" text-center">Monthly Newsletter <br> <span><h5>Never miss a story.</h5></span></h1>
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Name</mat-label>
                                 <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>

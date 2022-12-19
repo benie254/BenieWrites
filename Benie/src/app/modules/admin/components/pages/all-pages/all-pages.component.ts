@@ -1,0 +1,91 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as Notiflix from 'notiflix';
+import { MyStoryService } from 'src/app/services/story/my-story.service';
+import { AuthService } from '../../../auth/services/auth/auth.service';
+import { StoryService } from '../../../services/story/story.service';
+
+@Component({
+  selector: 'app-all-pages',
+  templateUrl: './all-pages.component.html',
+  styleUrls: ['./all-pages.component.css']
+})
+export class AllPagesComponent implements OnInit {
+  myList: any;
+  showData: boolean = false;
+  hideContent: boolean= false;
+  showEdit: boolean = false;
+  myModel = 'Page';
+  selected: any;
+  chaps: any;
+
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private service: MyStoryService,
+    private storyService: StoryService,
+  ) { }
+
+  ngOnInit(): void {
+    if(!this.auth.currentUserValue){
+      this.auth.logout();
+      this.router.navigate[('/auth')]
+    }else if(!this.auth.currentUserValue.is_staff || !this.auth.currentUserValue.is_superuser){
+      this.auth.logout();
+      this.router.navigate[('/auth')];
+      Notiflix.Report.failure(
+        'Not Permitted!',
+        "Your log in was successful, but you don't have the permissions to access this page.",
+        'Too Bad',
+      )
+    }
+    this.allChapters();
+    this.allRecords();
+  }
+  allChapters(){
+    this.service.getAllChapters().subscribe({
+      next: (res) => {
+        this.chaps = res;
+      }
+    })
+  }
+  allRecords(){
+    Notiflix.Loading.dots('Loading...');
+    this.storyService.getAllPages().subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        this.myList = res;
+        console.warn(res)
+      }
+    })
+  }
+  openForm = (): void => {
+    this.showData = true;
+    this.hideContent = true;
+    this.showEdit = false;
+  }
+  redirect = (): void => {
+    setTimeout(() => {
+      this.openForm();
+    }, 250)
+  }
+  reset = (): void => {
+    const form = (<HTMLFormElement>document.getElementById('pageForm'));
+    setTimeout(() => {
+      form.reset();
+    }, 250)
+  }
+  close(){
+    this.showData = false;
+    this.hideContent = false;
+    this.showEdit = false;
+  }
+  edit(){
+    this.showEdit = true;
+    this.hideContent = true;
+  }
+  copy = (text: any): void => {
+    localStorage.setItem('mySavedId',text);
+    this.selected = localStorage.getItem('mySavedId')
+  }
+}

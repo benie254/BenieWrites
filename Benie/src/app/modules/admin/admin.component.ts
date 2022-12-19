@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-admin',
