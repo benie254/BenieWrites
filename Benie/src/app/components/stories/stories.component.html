@@ -1,13 +1,22 @@
 <div class="container-fluid">
+  <div class="text-center">
+    <mat-form-field class="w-50">
+      <input matInput type="text" placeholder="Search anything e.g title/description/story contents..." list="datalistOptions" id="exampleDataList" (change)="titleValue($any($event.target).value)" name="search" [(ngModel)]="searchText">
+      <mat-icon matSuffix>search</mat-icon>
+      <datalist id="datalistOptions">
+          <option value="Lomayo" *ngFor="let s of searchResults" [value]="s.title">  
+      </datalist>
+    </mat-form-field> 
+  </div>
     <div class="row">
-      <div class="col-sm-1"></div>
-        <div class="col-sm-7">
-          <div class="card mb-3" *ngFor="let s of stories" style="max-width: 720px;">
+      
+        <div class="col-sm-6" *ngFor="let s of searchResults | filter: searchText">
+          <div class="card mb-3"  style="max-width: 720px;">
               <div class="text-center" >
                 <img class="img-fluid rounded-start shadow" style="min-height:250px;max-width:210px;float:left;" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{s.cover}}"  alt="" priority>
-                <h3 class="card-title text-center">{{s.title}} &nbsp;&nbsp;  &nbsp;&nbsp;  <span style="color:blueviolet"><i><i class="fa-solid fa-spinner"></i> {{s.status}}</i></span> 
+                <h3 class="card-title text-center">{{s.title}}  
                   <br> 
-                  <span class="smaller text-muted"><small><i class="fa-solid fa-eye"></i> 6</small> &nbsp;&nbsp;&nbsp; <small><i class="fa-solid fa-star"></i> 5</small> &nbsp;&nbsp;&nbsp;   <small><i class="fa-solid fa-layer-group"></i> 12</small></span>
+                  <span class="smaller text-muted">  <span style="color:blueviolet"><i><i class="fa-solid fa-spinner"></i> {{s.status}}</i></span></span>
                 </h3>
                 <div class="card-body">
                   <p class="card-text">{{s.description}}</p>
@@ -18,32 +27,7 @@
           </div>
               
         </div>
-        <div class="col-sm-3">
-          <br><br>
-          <div class="card text-bg-light mb-3" style="max-width: 100%;">
-              <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-              <div class="card-body">
-                <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">12/14/2022</span></h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-            <div class="card text-bg-light mb-3" style="max-width: 100%;">
-              <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-              <div class="card-body">
-                  <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" height="25" width="25" alt="" priority></span> Benie <span class="text-muted" style="float:right;">12/14/2022</span></h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-            <div class="card text-bg-light mb-3" style="max-width: 100%;">
-              <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-              <div class="card-body">
-                  <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" height="25" width="25" alt="" priority></span> Benie <span class="text-muted" style="float:right;">12/14/2022</span></h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-        </div>
-        <div class="col-sm-1"></div>
-            
+        <i class="text-center" style="color:blueviolet">Stay tuned for more!</i>
         
     </div>
      

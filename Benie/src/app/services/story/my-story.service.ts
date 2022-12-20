@@ -10,6 +10,8 @@ const apiURL = 'http://127.0.0.1:8000/api/';
 })
 export class MyStoryService {
   allStories = apiURL + 'stories/all/';
+  onStories = apiURL + 'stories/ongoing/';
+  compStories = apiURL + 'stories/completed/';
   storyDet = apiURL + 'story/details/';
   allTags = apiURL + 'tags/all/';
   allChaps = apiURL + 'chapters/all/';
@@ -20,7 +22,8 @@ export class MyStoryService {
   storyReacts = apiURL + 'story/reactions/';
   storyFeeds = apiURL + 'story/feedbacks/';
   allFeeds = apiURL + 'feedbacks/all/';
-  sub = apiURL + 'newsletter/subscribers/'
+  sub = apiURL + 'newsletter/subscribers/';
+  notifs = apiURL + 'notifications/all/';
 
   myStory: string[] = [];
 
@@ -31,12 +34,19 @@ export class MyStoryService {
   getAllStories(): Observable<any>{
     return this.http.get<any>(this.allStories);
   }
+  getOngoingStories(): Observable<any>{
+    return this.http.get<any>(this.onStories);
+  }
+  getCompletedStories(): Observable<any>{
+    return this.http.get<any>(this.compStories);
+  }
+  getAllNotifications(): Observable<any>{
+    return this.http.get<any>(this.notifs);
+  }
   getAllSubscribers(): Observable<any>{
     return this.http.get<any>(this.sub);
   }
-  subscribeNewsletter(data: any): Observable<any>{
-    return this.http.post<any>(this.sub, data);
-  }
+  
   getStoryDetails(id: number): Observable<any>{
     return this.http.get<any>(this.storyDet + id);
   }

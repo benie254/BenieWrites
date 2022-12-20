@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { MyStoryService } from '../services/story/my-story.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,28 @@ import * as Notiflix from 'notiflix';
 })
 export class HomeComponent implements OnInit {
   notifs: any = 6;
+  searchResults: any;
+  searchText: any;
+  title: any;
+  
 
-  constructor() { }
+  constructor(
+    private service: MyStoryService,
+  ) { }
 
   ngOnInit(): void {
+    // this.checkViews();
+    this.allStories();
+  }
+  allStories(){
+    this.service.getAllStories().subscribe({
+      next: (res) => {
+        this.searchResults = res;
+      }
+    })
+  }
+  titleValue = (text: any): void => {
+    this.title = text;
   }
   checkViews(){
     let hasVisited = sessionStorage.getItem('washere');

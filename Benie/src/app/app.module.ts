@@ -30,6 +30,12 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import {CloudinaryModule} from '@cloudinary/ng';// TODO: Add SDKs for Firebase products that you want to use
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StoryDialog, StoryPagesComponent } from './components/story-pages/story-pages.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CompletedStoriesComponent } from './components/completed-stories/completed-stories.component';
+import { OngoingStoriesComponent } from './components/ongoing-stories/ongoing-stories.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DateAgoPipe } from './pipes/date/date-ago.pipe';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -58,7 +64,11 @@ const analytics = getAnalytics(app);
     HomeComponent,
     BottomSheetOverviewExampleSheet,
     StoryPagesComponent,
-    StoryDialog
+    StoryDialog,
+    NotificationsComponent,
+    CompletedStoriesComponent,
+    OngoingStoriesComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -81,6 +91,8 @@ const analytics = getAnalytics(app);
     NgxPaginationModule,
     ReactiveFormsModule,
     MatBadgeModule,
+    MatExpansionModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
     {

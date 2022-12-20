@@ -33,7 +33,7 @@
                             <div class="col-lg-6">
                                 <small>
                                     <h4>{{story.title}} <br> 
-                                        <span><small> <span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-clock"></i> 10s</span> &nbsp;&nbsp;<span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span></small></span>
+                                        <span><small> <span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span> &nbsp;&nbsp;<span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span> &nbsp;&nbsp; <span *ngIf="story.status == 'ongoing'"><i><i class="fa-solid fa-spinner"></i> {{story.status}}</i></span> <span *ngIf="story.status == 'completed'"><i><i class="fa-regular fa-circle-check"></i> {{story.status}}</i></span></small></span>
                                     </h4>
                                     <p>{{story.description}}</p>
                                     <span>
@@ -48,7 +48,7 @@
                                           </mat-chip-list> -->
                                 </span>
                                 <br>
-                                <p><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="35" width="35" style="border-radius:50%;" alt=""></span> By {{story.author}}</p>
+                                <p><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="35" width="35" style="border-radius:50%;" alt=""></span> By {{story.author}} &nbsp;&nbsp;|&nbsp;&nbsp; <span>First published {{story.first_published | date}}</span></p>
                                 <hr>
                                 
                                 <div class="row">
@@ -90,10 +90,32 @@
                                 
                                 <span>
                                     <div class="row">
-                                        <span class="text-center"><h3>{{storyComments.length}} Comment(s) <hr></h3></span>
-                                        <div class="col-md-6" *ngFor="let sc of storyComments">
-                                            <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">{{sc.date | date}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="sc.commented_by">&nbsp;{{sc.commented_by}}</span><span *ngIf="!sc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="sc.comment">{{sc.comment}}</span><span *ngIf="!sc.comment">Beautiful story!</span> </p>
+                                        <span class="text-center"><h3>{{storyComments.length}} Comments <hr></h3></span>
+                                        <div class="col-md-6" *ngFor="let tc of topComments">
+                                            <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">{{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span><span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="tc.comment">{{tc.comment}}</span><span *ngIf="!tc.comment">Beautiful story!</span> </p>
                                         </div>
+                                        <mat-accordion >
+                                            <mat-expansion-panel id="comment" style="color:whitesmoke;" (opened)="panelOpenState = true"
+                                            (closed)="panelOpenState = false">
+                                          <mat-expansion-panel-header style="color:whitesmoke;">
+                                          <mat-panel-title style="color:whitesmoke;">
+                                            View all
+                                          </mat-panel-title>
+                                          <mat-panel-description style="color:whitesmoke;">
+                                            {{storyComments.length}} comments
+                                          </mat-panel-description>
+                                          </mat-expansion-panel-header>
+                                          <ng-template matExpansionPanelContent>
+                                            <div class="row">
+                                                <div class="col-md-6" *ngFor="let sc of storyComments">
+                                                    <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">{{sc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="sc.commented_by">&nbsp;{{sc.commented_by}}</span><span *ngIf="!sc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="sc.comment">{{sc.comment}}</span><span *ngIf="!sc.comment">Beautiful story!</span> </p>
+                                                </div>
+                                              </div>
+                                          </ng-template>
+                                          
+                                          </mat-expansion-panel>
+                                          </mat-accordion>
+                                        
                                     </div>
                                 </span>
                             </span>

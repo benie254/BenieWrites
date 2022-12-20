@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="row">
+          <div class="col-md-6">
+            <form #notifForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="addItem(notifForm.value)" id="notifForm">
+              <h2>Add Notification</h2>  <br>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Subject </mat-label>
+                  <input matInput type="text" name="subject"  #subject="ngModel" ngModel required>
+                  <mat-error *ngIf="subject.hasError('required') || subject.pristine">
+                    Subject is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Message </mat-label>
+                  <textarea matInput type="text" name="message"  #message="ngModel" ngModel required></textarea>
+                  <mat-error *ngIf="message.hasError('required') || message.pristine">
+                    Message is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+
+
+             
+               
+                  
+                  <div class="form-group bg-light">
+                    <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" (click)="reload()">Save</button> &nbsp;&nbsp; <button type="submit" (click)="reset();" style="margin-top:1%;" mat-flat-button color="accent">Save and add another</button>
+                  </div>
+                  
+            </form>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6" *ngFor="let os of onStories">
+            <div class="card mb-3"  style="max-width: 720px;">
+                <div class="text-center" >
+                  <img class="img-fluid rounded-start shadow" style="min-height:250px;max-width:210px;float:left;" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{os.cover}}"  alt="" priority>
+                  <h3 class="card-title text-center">{{os.title}} 
+                    <br> 
+                    <span class="smaller text-muted"><span style="color:blueviolet"><i><i class="fa-solid fa-spinner"></i> {{os.status}}</i></span></span>
+                  </h3>
+                  <div class="card-body">
+                    <p class="card-text">{{os.description}}</p>
+                    <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{os.id}}">Read</button></span></small></p>
+                  </div>
+                  
+                </div>
+            </div>
+              
+        </div>
+        <i class="text-center" style="color:blueviolet">Stay tuned for more!</i>
+
+            
+        
+    </div>
+    
+     
+</div>

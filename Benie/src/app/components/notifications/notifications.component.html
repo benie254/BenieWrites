@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div *ngIf="notifs">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-sm-6" *ngFor="let ln of latestNotifs">
+                        <div class="card text-bg-light mb-3" style="max-width: 100%;" >
+                            <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+                            <div class="card-body">
+                              <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{ln.date | dateAgo}}</span></h5>
+                              <p class="card-text">{{ln.message}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="col-lg-4">
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                    (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                  <mat-panel-title>
+                  View all
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{notifs.length}} notifications
+                  </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <div class="card text-bg-light mb-3" style="max-width: 100%;" *ngFor="let n of notifs">
+                      <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+                      <div class="card-body">
+                        <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{n.date | dateAgo}}</span></h5>
+                        <p class="card-text">{{n.message}}</p>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+                  </mat-accordion>
+            </div>
+            
+        </div>
+        
+        
+        
+    </div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div *ngIf="!notifs">
+                <div class="card text-bg-light mb-3" style="max-width: 100%;">
+                    <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+                    <div class="card-body">
+                      <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="25" style="border-radius:50%;" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{today | date}}</span></h5>
+                      <p class="card-text">Latest Notifications will appear here.</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>

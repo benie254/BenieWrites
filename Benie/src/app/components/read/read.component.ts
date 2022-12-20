@@ -38,6 +38,8 @@ export class ReadComponent implements OnInit {
   storyLikes: any;
   storyComments: any;
   views: string[] = [];
+  panelOpenState = false;
+  topComments: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -56,8 +58,6 @@ export class ReadComponent implements OnInit {
     this.route.params.subscribe(params => this.chapDetails(params['id']));
     this.route.params.subscribe(params => this.storyReactions(params['id']));
     this.route.params.subscribe(params => this.storyFeedbacks(params['id']));
-    this.checkViews();
-    
   }
   likeStory(data: any){
     Notiflix.Loading.pulse('Processing...')
@@ -74,7 +74,7 @@ export class ReadComponent implements OnInit {
     this.stoyService.addFeedback(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
-        Notiflix.Notify.success("Story liked!")
+        Notiflix.Notify.success("Comment added!")
         this.ngOnInit();
         this.values = '';
       }
@@ -91,6 +91,8 @@ export class ReadComponent implements OnInit {
     this.service.getStoryFeedbacks(id).subscribe({
       next: (res) => {
         this.storyComments = res;
+        this.topComments = this.storyComments.slice(0,4);
+        console.warn(this.topComments,"tc")
         console.warn("comments",res)
       }
     })
@@ -100,8 +102,10 @@ export class ReadComponent implements OnInit {
     // this.router.navigate(['/read/story/chapter/' + this.id])
   }
   storyDetails(id: number){
+    Notiflix.Loading.pulse('Fetching...')
     this.service.getStoryDetails(id).subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.story = res;
       }
     })
@@ -164,14 +168,18 @@ export class ReadComponent implements OnInit {
   changeBg(event: any){
     const myDiv = (<HTMLDivElement>document.getElementById('readBg'));
     const content = (<HTMLDivElement>document.getElementById('content'));
+    const comm = (<HTMLDivElement>document.getElementById('comment'));
+    const read = (<HTMLDivElement>document.getElementById('reader'));
     if(myDiv.style.backgroundColor == 'whitesmoke'){
       myDiv.style.backgroundColor = 'rgb(33, 33, 33)';
       myDiv.style.color = 'whitesmoke';
       content.style.backgroundColor = 'rgb(31, 39, 44)';
+      comm.style.backgroundColor = 'rgb(31, 39, 44)';
     }else{
       myDiv.style.backgroundColor = 'whitesmoke';
       content.style.backgroundColor = 'white';
       myDiv.style.color = 'black';
+      content.style.backgroundColor = 'white';
     }
   }
   back(){

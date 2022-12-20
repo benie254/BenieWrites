@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
 
 @Component({
@@ -8,16 +9,18 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
+  currentSite = window.location.href;
+  
   constructor(
     private service:MyStoryService,
+    private storyService: StoryService,
   ) { }
 
   ngOnInit(): void {
   }
   subscribe(data){
     Notiflix.Loading.pulse('Processing...')
-    this.service.subscribeNewsletter(data).subscribe({
+    this.storyService.addSub(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         Notiflix.Report.success(

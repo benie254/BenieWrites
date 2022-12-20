@@ -49,7 +49,7 @@ export class EditFeedbackComponent implements OnInit {
   }
   delete(){
     Notiflix.Loading.arrows('Deleting... please wait.')
-    this.service.deleteStory(this.selected).subscribe({
+    this.service.deleteFeedback(this.selected).subscribe({
       next: (res) => {
         Notiflix.Report.success(
           "Deleted!",

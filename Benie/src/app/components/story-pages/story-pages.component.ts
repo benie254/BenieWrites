@@ -3,6 +3,7 @@ import { async } from '@angular/core/testing';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
 
 @Component({
@@ -21,7 +22,15 @@ export class StoryPagesComponent implements OnInit {
   myStory: any;
   storyId = localStorage.getItem('storyId');
   chapId: any;
-  
+  storyLikes: any;
+  storyComments: any;
+  topComments: any;
+  liked = 'like';
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 1;
+  tableSizes: any = [2, 5, 10, 15];
+  id: number;
   
 
   constructor(
@@ -29,12 +38,51 @@ export class StoryPagesComponent implements OnInit {
     public service: MyStoryService,
     private route:ActivatedRoute,
     private router:Router,
+    private storyService: StoryService,
   ) { }
 
   ngOnInit(): void {
     // this.storyChaps();
     this.route.params.subscribe(params => this.chapDetails(params['id']));
     this.route.params.subscribe(params => this.chapPages(params['id']));
+  }
+  likeStory(data: any){
+    Notiflix.Loading.pulse('Processing...')
+    this.service.addReaction(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success("Story liked!")
+        this.ngOnInit();
+      }
+    })
+  }
+  commentStory(data: any){
+    Notiflix.Loading.pulse('Processing...')
+    this.storyService.addFeedback(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success("Comment added!")
+        this.ngOnInit();
+        this.values = '';
+      }
+    })
+  }
+  storyReactions(id: any){
+    this.service.getStoryReactions(id).subscribe({
+      next: (res) => {
+        this.storyLikes = res;
+      }
+    })
+  }
+  storyFeedbacks(id: any){
+    this.service.getStoryFeedbacks(id).subscribe({
+      next: (res) => {
+        this.storyComments = res;
+        this.topComments = this.storyComments.slice(0,2);
+        console.warn(this.topComments,"tc")
+        console.warn("comments",res)
+      }
+    })
   }
   
   
@@ -51,6 +99,8 @@ export class StoryPagesComponent implements OnInit {
       next: (res) => {
         this.story = res;
         console.warn("tags",res)
+        this.storyFeedbacks(this.story.id);
+        this.storyReactions(this.story.id);
       }
     })
   }
@@ -74,10 +124,11 @@ export class StoryPagesComponent implements OnInit {
     
   }
   chapPages(id: any){
+    Notiflix.Loading.pulse('Fetching...');
     this.service.getChapterPages(id).subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.chapterPages = res;
-        Notiflix.Notify.success("success!")
         console.warn("chap pages",res);
         this.storyDetails(this.storyId)
         this.storyChaps(this.storyId);
@@ -100,6 +151,15 @@ export class StoryPagesComponent implements OnInit {
   }
   back(){
     this.router.navigate(['/read/story/' + this.storyId])
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.storyChaps(this.story.id);
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.storyChaps(this.story.id);
   }
   onKey(event: any){
     this.values = event.target.value;

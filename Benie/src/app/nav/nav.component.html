@@ -1,9 +1,9 @@
 
-<nav class="navbar navbar-expand-lg opacity" style="background-color:white;">
-    <div class="container-fluid">
+<nav  class="navbar navbar-expand-lg opacity" style="background-color:white;">
+    <div class="container-fluid" >
       <a class="navbar-brand" href="/">
-        <i class="fa-solid fa-book-open-reader"></i>
-        <span class="brand-font font-md-2">Benie Writes <br><span style="font-size:x-small">With words, I give my thoughts life...</span></span>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" height="25" width="25" style="border-radius:50%;" alt="">
+        <span class="brand-font font-md-2" style="color:blueviolet">Benie Writes </span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,12 @@
         </ul>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active font-md-3 brand-font" aria-current="page" href="/">Welcome <i class="fa-solid fa-house"></i></a>
+            <a style="color:orange" class="nav-link active font-md-3 brand-font" aria-current="page" href="/">Welcome <i class="fa-solid fa-house"></i></a>
           </li>
         </ul>
         <div>
-            <a type="button" routerLink="/logs/search" mat-button><i class="fa-solid fa-magnifying-glass"></i> Search</a>
+          <p style="color:blueviolet"><i class="fa-solid fa-book-open-reader"></i> {{searchResults.length}} stories</p>
+            
           </div>
       </div>
     </div>

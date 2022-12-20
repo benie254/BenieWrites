@@ -27,12 +27,22 @@ export class StoryService {
   allPages = apiURL + 'admin/pages/all/';
   updatePage = apiURL + 'admin/page/update/';
   pageDet = apiURL + 'admin/page/details/';
+  notifDet = apiURL + 'admin/notification/details/';
+  notifs = apiURL + 'notifications/all/';
+  sub = apiURL + 'newsletter/subscribers/';
+  subDet = apiURL + 'admin/subscriber/details/';
 
   constructor(
     private handler: ReqHandlerService,
     private http: HttpClient,
   ) { }
 
+  addNotif(data: any): Observable<any>{
+    return this.http.post<any>(this.notifs, data);
+  }
+  addSub(data: any): Observable<any>{
+    return this.http.post<any>(this.sub, data);
+  }
   addStory(data: any): Observable<any>{
     return this.http.post<any>(this.addSt, data);
   }
@@ -50,6 +60,21 @@ export class StoryService {
   }
   getTagDetails(id: number): Observable<any>{
     return this.http.get<any>(this.tagDet + id);
+  }
+  getSubscriberDetails(id: number): Observable<any>{
+    return this.http.get<any>(this.subDet + id);
+  }
+  deleteSubscriber(id: number): Observable<any>{
+    return this.http.delete<any>(this.subDet + id);
+  }
+  getNotificationDetails(id: number): Observable<any>{
+    return this.http.get<any>(this.notifDet + id);
+  }
+  editNotification(id: number, data: any): Observable<any>{
+    return this.http.put<any>(this.notifDet + id, data);
+  }
+  deleteNotification(id: number): Observable<any>{
+    return this.http.delete<any>(this.notifDet + id);
   }
   deleteTags(id: number): Observable<any>{
     return this.http.delete<any>(this.tagDet + id);

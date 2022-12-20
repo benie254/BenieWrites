@@ -39,10 +39,17 @@ import { EditFeedbackComponent } from './components/feedbacks/edit-feedback/edit
 import { AllFeedbacksComponent } from './components/feedbacks/all-feedbacks/all-feedbacks.component';
 import { CloudinaryModule } from '@cloudinary/ng';
 import { NgxEditorModule } from 'ngx-editor';
+import {MatExpansionModule} from '@angular/material/expansion'
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AddPageComponent, PageDialogForm } from './components/pages/add-page/add-page.component';
 import { AllPagesComponent } from './components/pages/all-pages/all-pages.component';
 import { EditPageComponent } from './components/pages/edit-page/edit-page.component';
+import { AllNotificationsComponent } from './components/notifications/all-notifications/all-notifications.component';
+import { AddNotificationComponent } from './components/notifications/add-notification/add-notification.component';
+import { EditNotificationComponent } from './components/notifications/edit-notification/edit-notification.component';
+import { AllSubscribersComponent } from './components/subscribers/all-subscribers/all-subscribers.component';
+import { AddSubscriberComponent } from './components/subscribers/add-subscriber/add-subscriber.component';
+import { EditSubscriberComponent } from './components/subscribers/edit-subscriber/edit-subscriber.component';
 
 
 
@@ -76,6 +83,12 @@ import { EditPageComponent } from './components/pages/edit-page/edit-page.compon
     AllPagesComponent,
     EditPageComponent,
     PageDialogForm,
+    AllNotificationsComponent,
+    AddNotificationComponent,
+    EditNotificationComponent,
+    AllSubscribersComponent,
+    AddSubscriberComponent,
+    EditSubscriberComponent,
   ],
   imports: [
     CommonModule,
@@ -94,6 +107,7 @@ import { EditPageComponent } from './components/pages/edit-page/edit-page.compon
     NgxEditorModule,
     ReactiveFormsModule,
     AngularEditorModule,
+    MatExpansionModule,
   ]
 })
 export class AdminModule { }

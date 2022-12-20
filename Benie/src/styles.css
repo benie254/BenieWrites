@@ -16,11 +16,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
 }
 
-#readBg, #readSBg{
+#readBg, #readSBg, #reader{
     background-color: rgb(33, 33, 33);
     color: whitesmoke;
 }
-#content, #content-1, #sContent{
+#content, #content-1, #sContent, #comment{
     background-color: rgb(31, 39, 44);
 }
 input::placeholder{
