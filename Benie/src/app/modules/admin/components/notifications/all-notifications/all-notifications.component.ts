@@ -45,6 +45,10 @@ export class AllNotificationsComponent implements OnInit {
         Notiflix.Loading.remove();
         this.myList = res;
         console.warn(res)
+      },
+      error: (err) => {
+        Notiflix.Notify.failure('Error!');
+        Notiflix.Loading.remove();
       }
     })
   }

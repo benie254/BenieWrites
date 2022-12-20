@@ -40,6 +40,8 @@ export class ReadComponent implements OnInit {
   views: string[] = [];
   panelOpenState = false;
   topComments: any;
+  words: number = 200;
+  readTime: number;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -107,6 +109,7 @@ export class ReadComponent implements OnInit {
       next: (res) => {
         Notiflix.Loading.remove();
         this.story = res;
+        this.readTime = Math.floor(this.story.words/this.words);
       }
     })
   }

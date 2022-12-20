@@ -5,7 +5,6 @@ import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service'
 
 // const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
 const apiURL = 'http://127.0.0.1:8000/api/';
-const cloudURL = 'https://api.cloudinary.com/v1_1/benie/image/upload'
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,6 @@ export class StoryService {
   reactDet = apiURL + 'admin/reaction/details/';
   addFeed = apiURL + 'feedbacks/all/';
   feedDet = apiURL + 'admin/feedback/details/';
-  upload = cloudURL;
   addChapPage = apiURL + 'admin/page/add/';
   allPages = apiURL + 'admin/pages/all/';
   updatePage = apiURL + 'admin/page/update/';
@@ -117,9 +115,6 @@ export class StoryService {
   }
   deleteFeedback(id: number): Observable<any>{
     return this.http.delete<any>(this.feedDet + id);
-  }
-  uploadImg(data: any): Observable<any>{
-    return this.http.post<any>(this.upload, data);
   }
   getPageDetails(id: number): Observable<any>{
     return this.http.get<any>(this.pageDet + id);

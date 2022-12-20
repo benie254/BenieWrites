@@ -70,10 +70,10 @@ export class AddPageComponent implements OnInit {
   addItem(data: any){
     this.storyService.addPage(data).subscribe({
       next: (res) => {
-
+        Notiflix.Notify.success('Added!');
+        this.ngOnInit();
       }
     });
-    Notiflix.Notify.success('Added!');
   }
   reset(){
     const form = (<HTMLFormElement>document.getElementById('chapterForm'));

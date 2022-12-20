@@ -45,6 +45,10 @@ export class AllStoriesComponent implements OnInit {
       next: (res) => {
         Notiflix.Loading.remove();
         this.myList = res;
+      },
+      error: (err) => {
+        Notiflix.Notify.failure('Error!');
+        Notiflix.Loading.remove();
       }
     })
   }

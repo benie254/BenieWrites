@@ -37,6 +37,13 @@
               <div id="wordCount">{{counted}}</div> words
            <div *ngIf="!limitReached">Not there yet</div>
            <div *ngIf="limitReached">Perfect!</div>
+           <mat-form-field class="w-75" appearance="fill">
+            <mat-label>Words </mat-label>
+              <input matInput type="number" name="words"  #words="ngModel" ngModel [(ngModel)]="counted" required>
+              <mat-error *ngIf="words.hasError('required') || words.pristine">
+                Word count is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
               <!-- <span class="alert alert-danger" *ngIf="description.hasError('maxlength') || description.pristine">
               Max length: 250 words
             </span> -->

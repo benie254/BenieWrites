@@ -7,7 +7,7 @@ import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Benie';
+  title = 'Benie Writes';
   img!: CloudinaryImage;
 
   ngOnInit(){

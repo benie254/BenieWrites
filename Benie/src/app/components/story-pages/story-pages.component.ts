@@ -31,6 +31,8 @@ export class StoryPagesComponent implements OnInit {
   tableSize: number = 1;
   tableSizes: any = [2, 5, 10, 15];
   id: number;
+  readTime: number;
+  words: number = 200;
   
 
   constructor(
@@ -91,6 +93,7 @@ export class StoryPagesComponent implements OnInit {
     this.service.getChapDetails(id).subscribe({
       next: (res) => {
         this.chapDet = res;
+        this.readTime = Math.floor(this.chapDet.words/this.words);
       }
     })
   }

@@ -94,6 +94,7 @@ export class EditPageComponent implements OnInit {
     this.service.editPage(this.selected,data).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Updated!');
+        this.ngOnInit();
       }
     })
   }

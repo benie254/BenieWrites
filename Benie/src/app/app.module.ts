@@ -5,10 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { AboutComponent } from './components/about/about.component';
 import { BottomSheetOverviewExampleSheet, ReadComponent } from './components/read/read.component';
 import { StoriesComponent } from './components/stories/stories.component';
@@ -36,6 +32,11 @@ import { CompletedStoriesComponent } from './components/completed-stories/comple
 import { OngoingStoriesComponent } from './components/ongoing-stories/ongoing-stories.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { DateAgoPipe } from './pipes/date/date-ago.pipe';
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -46,8 +47,8 @@ const firebaseConfig = {
   projectId: "notif-d6fbe",
   storageBucket: "notif-d6fbe.appspot.com",
   messagingSenderId: "649923585220",
-  appId: "1:649923585220:web:1f2f61edaf803474d95591",
-  measurementId: "G-0KGQSXRG83"
+  appId: "1:649923585220:web:a67de8b9808fc392d95591",
+  measurementId: "G-J7BT3LNHY1"
 };
 
 // Initialize Firebase

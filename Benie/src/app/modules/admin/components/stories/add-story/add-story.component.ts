@@ -19,10 +19,6 @@ export class AddStoryComponent implements OnInit {
 
   ngOnInit(): void {
     }
-  uploadImg(data: any){
-    this.storyService.uploadImg(data).subscribe();
-    Notiflix.Notify.success('Uploaded!')
-  }
   
 
   addOnBlur = true;
