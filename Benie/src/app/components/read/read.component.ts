@@ -109,6 +109,7 @@ export class ReadComponent implements OnInit {
       next: (res) => {
         Notiflix.Loading.remove();
         this.story = res;
+        localStorage.setItem('storyId',this.story.id);
         this.readTime = Math.floor(this.story.words/this.words);
       }
     })

@@ -20,7 +20,7 @@ export class StoryPagesComponent implements OnInit {
   hide: boolean = false;
   story: any;
   myStory: any;
-  storyId = localStorage.getItem('storyId');
+  storyId: any;
   chapId: any;
   storyLikes: any;
   storyComments: any;
@@ -98,7 +98,7 @@ export class StoryPagesComponent implements OnInit {
     })
   }
   storyDetails(id: any){
-    this.service.getStoryDetails(parseInt(id)).subscribe({
+    this.service.getStoryDetails(id).subscribe({
       next: (res) => {
         this.story = res;
         console.warn("tags",res)
@@ -123,7 +123,7 @@ export class StoryPagesComponent implements OnInit {
     this.router.navigate(['/read/story/chapter/' + this.chapId]);
     setTimeout(() => {
       location.reload();
-    },0)
+    },10)
     
   }
   chapPages(id: any){
@@ -133,7 +133,8 @@ export class StoryPagesComponent implements OnInit {
         Notiflix.Loading.remove();
         this.chapterPages = res;
         console.warn("chap pages",res);
-        this.storyDetails(this.storyId)
+        this.storyId = localStorage.getItem('storyId');
+        this.storyDetails(this.storyId);
         this.storyChaps(this.storyId);
       }
     })
