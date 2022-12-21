@@ -36,6 +36,8 @@ import { DateAgoPipe } from './pipes/date/date-ago.pipe';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { NgxEditorModule } from 'ngx-editor';
+import { TruncatePipe } from './pipes/trunc/truncate.pipe';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -69,7 +71,8 @@ const analytics = getAnalytics(app);
     NotificationsComponent,
     CompletedStoriesComponent,
     OngoingStoriesComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ const analytics = getAnalytics(app);
     MatBadgeModule,
     MatExpansionModule,
     Ng2SearchPipeModule,
+    NgxEditorModule,
   ],
   providers: [
     {

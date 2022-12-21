@@ -16,7 +16,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
 }
 
-#readBg, #readSBg, #reader{
+#readBg, #readSBg, #reader, .dark{
     background-color: rgb(33, 33, 33);
     color: whitesmoke;
 }

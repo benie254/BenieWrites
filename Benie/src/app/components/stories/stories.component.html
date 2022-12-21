@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="text-center">
     <mat-form-field class="w-50">
-      <input matInput type="text" placeholder="Search anything e.g title/description/story contents..." list="datalistOptions" id="exampleDataList" (change)="titleValue($any($event.target).value)" name="search" [(ngModel)]="searchText">
+      <input matInput type="text" placeholder="Search anything..." list="datalistOptions" id="exampleDataList" (change)="titleValue($any($event.target).value)" name="search" [(ngModel)]="searchText">
       <mat-icon matSuffix>search</mat-icon>
       <datalist id="datalistOptions">
           <option value="Lomayo" *ngFor="let s of searchResults" [value]="s.title">  
@@ -19,7 +19,7 @@
                   <span class="smaller text-muted">  <span style="color:blueviolet"><i><i class="fa-solid fa-spinner"></i> {{s.status}}</i></span></span>
                 </h3>
                 <div class="card-body">
-                  <p class="card-text">{{s.description}}</p>
+                  <p class="card-text">{{s.description | truncate:[300, '...']}}</p>
                   <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{s.id}}">Read</button></span></small></p>
                 </div>
                 

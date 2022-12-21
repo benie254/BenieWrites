@@ -11,7 +11,7 @@
                     <span class="smaller text-muted"> <span style="color:blueviolet"><i><i class="fa-regular fa-circle-check"></i> {{cs.status}}</i></span></span>
                   </h3>
                   <div class="card-body">
-                    <p class="card-text">{{cs.description}}</p>
+                    <p class="card-text">{{cs.description | truncate:[300, '...']}}</p>
                     <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{cs.id}}">Read</button></span></small></p>
                   </div>
                   

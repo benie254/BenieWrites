@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Editor } from 'ngx-editor';
 import * as Notiflix from 'notiflix';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
@@ -10,6 +11,8 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
 })
 export class AboutComponent implements OnInit {
   currentSite = window.location.href;
+  editor: Editor;
+  html: '';
   
   constructor(
     private service:MyStoryService,
@@ -39,5 +42,7 @@ export class AboutComponent implements OnInit {
       }
     })
   }
+
+  
 
 }

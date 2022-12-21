@@ -1,18 +1,17 @@
 <div class="container">
     <div class="row g-0">
         <div class="col-md-4">
+            <h1 style="color:blueviolet">Benie Langat <br> <h5>With words, I give my thoughts life.</h5></h1>
+            <p>I am a passionate writer and software developer. I enjoy the challenge in chess and love the freedom in swimming. I love music and art.</p>
+            <p>I write from the depths of the heart. I write for you and for me.</p>
             <br>
-            <h1 style="color:blueviolet">Benie Writes <br> <h5>With words, I give my thoughts life.</h5></h1>
+            <div style="margin:2.5%;">
+                <a href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://twitter.com/share?text={{currentSite}} - Benie Writes- with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="whatsapp://send?text={{currentSite}} - Benie Writes- with words, I give my thoughts life." data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
             
-            <br>
-            <p>I was born Benson Kipngeno. I am a software developer and passionate writer. I enjoy the challenge in chess and love how swimming feels. I love art, music, and anything that makes the heart tick. </p>
-            <p>I write from the depths of the heart.</p>
-            <p>To connect with you, to talk about life and the things that matter; to talk about genuine feelings and the state of things.</p>
-            <p>Stories are divine. They are true. They are life. And as I bleed through my ink, I want you to see what comes out.</p>
-            <p>Join me through this journey--it never ends.</p>
+            </div> 
         </div>
         <div class="col-md-4">
-            <img src="https://res.cloudinary.com/benie/image/upload/v1670974359/undraw_reading_book_re_kqpk_y5d2ju.svg" style="max-height:100%;max-width:100%;" alt="">
+            <img src="https://res.cloudinary.com/benie/image/upload/v1670974359/undraw_reading_book_re_kqpk_y5d2ju.svg" style="max-height:300px;max-width:100%;" alt="">
         </div>
         <div class="col-md-4">
             <div style="padding:5%;margin:2.5%;">
@@ -21,7 +20,6 @@
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Name</mat-label>
                                 <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-                                <mat-hint>e.g Jay Kay</mat-hint>
                                 <mat-error *ngIf="name.hasError('required') || name.pristine">
                                     Your name is <strong>required</strong>
                                 </mat-error>
@@ -30,7 +28,6 @@
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Email</mat-label>
                                 <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
-                                <mat-hint>e.g username@email.com</mat-hint>
                                 <mat-error *ngIf="email.hasError('required') || email.pristine">
                                     Your email is <strong>required</strong>
                                 </mat-error>
@@ -40,7 +37,61 @@
                 </form>
             </div>
         </div>
+        
     </div>
-    <a href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://twitter.com/share?text={{currentSite}} - Benie Writes- with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a href="whatsapp://send?text={{currentSite}} - Benie Writes- with words, I give my thoughts life." data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
-    <br><br>
+</div>
+<div class="container-fluid shadow" style="padding:1.5%;">
+    <div class="row" style="padding:1.5%;">
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+    <form #contForm="ngForm" class="shadow" (ngSubmit)="subscribe(contForm.value)">
+        <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5>I built and designed this website <br> & own all the written content.</h5></span></h1>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Name</mat-label>
+                    <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                    <mat-error *ngIf="name.hasError('required') || name.pristine">
+                        Your name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
+                    <mat-error *ngIf="email.hasError('required') || email.pristine">
+                        Your email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        
+                
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput name="message" placeholder="Type your message here..." ngModel #message="ngModel" required></textarea>
+                    <mat-error *ngIf="message.hasError('required') || message.pristine">
+                        Message is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <br><br>
+                <button mat-raised-button color="accent" class="w-100" [disabled]="contForm.invalid"><i class="fa-regular fa-paper-plane"></i> Send Email</button>
+    </form>
+        </div>
+        <div class="col-md-5">
+            <div class="row g-0 text-center">
+                <div class="col-sm-6">
+                    <img src="https://res.cloudinary.com/benie/image/upload/v1671583589/IMG_20220119_175206_763_lb4sg3-removebg-preview_dkprqf.png" style="max-height:250px;" alt="">
+                </div>
+                <div class="col-sm-6">
+                    <mat-list>
+                        <mat-list-item><i class="fa-solid fa-user"></i> Benson Langat</mat-list-item>
+                        <mat-list-item><i class="fa-solid fa-location-pin"></i> Nairobi, Kenya</mat-list-item>
+                        <mat-list-item><i class="fa-solid fa-envelope"></i> <span><a href="mailto:davinci.monalissa@gmail.com">Mail to Benie</a></span></mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
