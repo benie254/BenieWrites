@@ -2,52 +2,42 @@
     <mat-tab-group dynamicHeight>
         <mat-tab label="Stories">
             
-            <ng-template matTabContent>
                 <br>
                 <app-all-stories></app-all-stories>
-            </ng-template>
         </mat-tab>
-        <mat-tab label="Tags">
-            <ng-template matTabContent>
-                <br>
-                <app-all-tags></app-all-tags>
-            </ng-template>
-        </mat-tab>
+        
         <mat-tab label="Chapters">
-            <ng-template matTabContent>
                 <br>
                 <app-all-chapters></app-all-chapters>
-            </ng-template>
-        </mat-tab>
-        <mat-tab label="Feedbacks">
-            <ng-template matTabContent>
-                <br>
-                <app-all-feedbacks></app-all-feedbacks>
-            </ng-template>
-        </mat-tab>
-        <mat-tab label="Reactions">
-            <ng-template matTabContent>
-                <br>
-                <app-all-reactions></app-all-reactions>
-            </ng-template>
         </mat-tab>
         <mat-tab label="Pages">
-            <ng-template matTabContent>
+            <br>
+            <app-all-pages></app-all-pages>
+    </mat-tab>
+        <mat-tab label="Feedbacks">
                 <br>
-                <app-all-pages></app-all-pages>
-            </ng-template>
+                <app-all-feedbacks></app-all-feedbacks>
         </mat-tab>
+        <mat-tab label="Reactions">
+                <br>
+                <app-all-reactions></app-all-reactions>
+        </mat-tab>
+        <mat-tab label="Tags">
+                <br>
+                <app-all-tags></app-all-tags>
+        </mat-tab>
+        
         <mat-tab label="Notifications">
-            <ng-template matTabContent>
                 <br>
                 <app-all-notifications></app-all-notifications>
-            </ng-template>
+        </mat-tab>
+        <mat-tab label="Contacts">
+                <br>
+                <app-all-contacts></app-all-contacts>
         </mat-tab>
         <mat-tab label="Subscribers">
-            <ng-template matTabContent>
                 <br>
                 <app-all-subscribers></app-all-subscribers>
-            </ng-template>
         </mat-tab>
     </mat-tab-group>
 

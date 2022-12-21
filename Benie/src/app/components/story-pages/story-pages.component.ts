@@ -33,6 +33,9 @@ export class StoryPagesComponent implements OnInit {
   id: number;
   readTime: number;
   words: number = 200;
+  readGen: any;
+  readHrs: any;
+  readSecs: any;
   
 
   constructor(
@@ -104,6 +107,22 @@ export class StoryPagesComponent implements OnInit {
         console.warn("tags",res)
         this.storyFeedbacks(this.story.id);
         this.storyReactions(this.story.id);
+        this.readGen = this.story.words/this.words;
+        if(this.readGen >= 60){
+          this.readHrs = this.readGen/60;
+          let hrs = this.readHrs.toFixed(1)
+          let secs = (hrs+"").split(".")[1];
+          const mins = parseInt(secs)/10 * 60;
+          this.readHrs = Math.floor(this.readHrs) + ' hrs ' + mins + ' mins'
+        }else if(this.readGen < 1){
+          this.readSecs = Math.round(this.readGen * 60) + ' secs';
+        }else{
+          this.readGen = this.story.words/this.words;
+          let read = this.readGen.toFixed(1);
+          let deci = (read+"").split(".")[1];
+          const sec = parseInt(deci)/10 * 60;
+          this.readGen = Math.floor(read) + ' mins ' + sec + ' secs';
+        }
       }
     })
   }
@@ -123,7 +142,7 @@ export class StoryPagesComponent implements OnInit {
     this.router.navigate(['/read/story/chapter/' + this.chapId]);
     setTimeout(() => {
       location.reload();
-    },10)
+    },0)
     
   }
   chapPages(id: any){

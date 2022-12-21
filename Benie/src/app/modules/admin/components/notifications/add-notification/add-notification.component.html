@@ -18,7 +18,20 @@
                     Message is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
-
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Story/Chapter Link </mat-label>
+                  <input matInput type="url" name="link"  #link="ngModel" ngModel required>
+                  <mat-error *ngIf="link.hasError('required') || link.pristine">
+                    Link is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Cover URL </mat-label>
+                  <input matInput type="url" name="img"  #img="ngModel" ngModel required>
+                  <mat-error *ngIf="img.hasError('required') || img.pristine">
+                    Cover URL is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
 
              
                

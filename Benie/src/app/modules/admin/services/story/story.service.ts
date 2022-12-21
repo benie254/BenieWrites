@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service';
 
-const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
-// const apiURL = 'http://127.0.0.1:8000/api/';
+// const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
+const apiURL = 'http://127.0.0.1:8000/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +29,25 @@ export class StoryService {
   notifs = apiURL + 'notifications/all/';
   sub = apiURL + 'newsletter/subscribers/';
   subDet = apiURL + 'admin/subscriber/details/';
+  contact = apiURL + 'admin/contacts/all/';
+  contactDet = apiURL + 'admin/contact/details/';
 
   constructor(
     private handler: ReqHandlerService,
     private http: HttpClient,
   ) { }
-
+  getAllContacts(): Observable<any>{
+    return this.http.get<any>(this.contact);
+  }
+  addContact(data: any): Observable<any>{
+    return this.http.post<any>(this.contact, data);
+  }
+  getContactDetails(id: any): Observable<any>{
+    return this.http.get<any>(this.contactDet + id);
+  }
+  deleteContact(id: number): Observable<any>{
+    return this.http.delete<any>(this.contactDet + id);
+  }
   addNotif(data: any): Observable<any>{
     return this.http.post<any>(this.notifs, data);
   }

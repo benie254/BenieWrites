@@ -42,6 +42,27 @@ export class AboutComponent implements OnInit {
       }
     })
   }
+  contact(data){
+    Notiflix.Loading.pulse('Processing...')
+    this.storyService.addContact(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.success(
+          'Sent!',
+          'Your message was delivered successfully. Please check your email.',
+          'Okay',
+        )
+      },
+      error: (err) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.failure(
+          'Sending Failed',
+          'Something went wrong as we tried to send your message. Please try again.',
+          'Okay',
+        )
+      }
+    })
+  }
 
   
 

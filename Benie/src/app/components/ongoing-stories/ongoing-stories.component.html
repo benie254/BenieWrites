@@ -10,7 +10,7 @@
                     <span class="smaller text-muted"><span style="color:blueviolet"><i><i class="fa-solid fa-spinner"></i> {{os.status}}</i></span></span>
                   </h3>
                   <div class="card-body">
-                    <p class="card-text">{{os.description | truncate:[300, '...']}}</p>
+                    <p class="card-text">{{os.description | truncate:[265, '...']}}</p>
                     <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{os.id}}">Read</button></span></small></p>
                   </div>
                   

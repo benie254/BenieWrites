@@ -33,7 +33,7 @@
                             <div class="col-lg-6">
                                 <small>
                                     <h4>{{story.title}} <br> 
-                                        <span><small> <span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span> &nbsp;&nbsp;<span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> {{readTime}} min  &nbsp;&nbsp; <span *ngIf="story.status == 'ongoing'"><i><i class="fa-solid fa-spinner"></i> {{story.status}}</i></span> <span *ngIf="story.status == 'completed'"><i><i class="fa-regular fa-circle-check"></i> {{story.status}}</i></span></small></span>
+                                        <span><small> <span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span> &nbsp;&nbsp;<span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> <span *ngIf="!readHrs && !readSecs"> {{readTime}}</span> <span *ngIf="!readSecs && readHrs"> {{readHrs}}</span> <span *ngIf="!readHrs && readSecs"> {{readSecs}}</span>  &nbsp;&nbsp; <span *ngIf="story.status == 'ongoing'"><i><i class="fa-solid fa-spinner"></i> {{story.status}}</i></span> <span *ngIf="story.status == 'completed'"><i><i class="fa-regular fa-circle-check"></i> {{story.status}}</i></span></small></span>
                                     </h4>
                                     <p>{{story.description}}</p>
                                     <span>

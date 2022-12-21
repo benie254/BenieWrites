@@ -41,7 +41,9 @@ export class ReadComponent implements OnInit {
   panelOpenState = false;
   topComments: any;
   words: number = 200;
-  readTime: number;
+  readTime: any;
+  readSecs: any;
+  readHrs: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -110,7 +112,22 @@ export class ReadComponent implements OnInit {
         Notiflix.Loading.remove();
         this.story = res;
         localStorage.setItem('storyId',this.story.id);
-        this.readTime = Math.floor(this.story.words/this.words);
+        this.readTime = this.story.words/this.words;
+        if(this.readTime >= 60){
+          this.readHrs = this.readTime/60;
+          let hrs = this.readHrs.toFixed(1)
+          let secs = (hrs+"").split(".")[1];
+          const mins = parseInt(secs)/10 * 60;
+          this.readHrs = Math.floor(this.readHrs) + ' hrs ' + mins + ' mins'
+        }else if(this.readTime < 1){
+          this.readSecs = Math.round(this.readTime * 60) + ' secs';
+        }else{
+          this.readTime = this.story.words/this.words;
+          let read = this.readTime.toFixed(1);
+          let deci = (read+"").split(".")[1];
+          const sec = parseInt(deci)/10 * 60;
+          this.readTime = Math.floor(read) + ' mins ' + sec + ' secs';
+        }
       }
     })
   }

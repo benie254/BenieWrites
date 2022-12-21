@@ -50,6 +50,9 @@ import { EditNotificationComponent } from './components/notifications/edit-notif
 import { AllSubscribersComponent } from './components/subscribers/all-subscribers/all-subscribers.component';
 import { AddSubscriberComponent } from './components/subscribers/add-subscriber/add-subscriber.component';
 import { EditSubscriberComponent } from './components/subscribers/edit-subscriber/edit-subscriber.component';
+import { AllContactsComponent } from './components/contacts/all-contacts/all-contacts.component';
+import { AddContactComponent } from './components/contacts/add-contact/add-contact.component';
+import { EditContactComponent } from './components/contacts/edit-contact/edit-contact.component';
 
 
 
@@ -89,6 +92,9 @@ import { EditSubscriberComponent } from './components/subscribers/edit-subscribe
     AllSubscribersComponent,
     AddSubscriberComponent,
     EditSubscriberComponent,
+    AllContactsComponent,
+    AddContactComponent,
+    EditContactComponent,
   ],
   imports: [
     CommonModule,
