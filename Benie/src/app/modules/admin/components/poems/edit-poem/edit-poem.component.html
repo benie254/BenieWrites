@@ -13,7 +13,7 @@
                 </mat-form-field>
                 <mat-form-field class="w-75" appearance="fill">
                   <mat-label>Cover </mat-label>
-                    <input matInput type="url" name="cover" [(ngModel)]="details.url"  #cover="ngModel" ngModel required>
+                    <input matInput type="url" name="cover" [(ngModel)]="details.cover"  #cover="ngModel" ngModel required>
                     <mat-error *ngIf="cover.hasError('required') || cover.pristine">
                       Cover is <strong>required</strong>
                     </mat-error>
@@ -48,9 +48,22 @@
 
 
           <mat-form-field class="example-chip-list" appearance="fill">
-            <mat-label>Category</mat-label>
-            <input matInput type="text" name="category"  #category="ngModel" ngModel [(ngModel)]="details.category" required>
-        </mat-form-field>
+            <mat-label>Category (currently {{details.category}}</mat-label>
+            <mat-select name="category" ngModel #category="ngModel" required>
+              <mat-option value="Spoken Word" name="category" ngModel #category="ngModel" type="text">Spoken Word</mat-option>
+              <mat-option value="Poetic Chains" name="category" ngModel #category="ngModel" type="text">Poetic Chains</mat-option>
+              <mat-option value="Poetic Notes" name="category" ngModel #category="ngModel" type="text">Poetic Notes</mat-option>
+              <mat-option value="One-Liners" name="category" ngModel #category="ngModel" type="text">One-Liners</mat-option>
+              <mat-option value="One-Liners" name="category" ngModel #category="ngModel" type="text">Poem</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Status (currently {{details.status}}</mat-label>
+            <mat-select name="status" ngModel #category="ngModel" required>
+              <mat-option value="pinned" name="status" ngModel #category="ngModel" type="text">Pinned</mat-option>
+              <mat-option value="unpinned" name="status" ngModel #category="ngModel" type="text">Unpinned</mat-option>
+            </mat-select>
+          </mat-form-field>
                 
 
              

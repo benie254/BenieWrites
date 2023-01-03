@@ -16,7 +16,7 @@
                 <mat-label>Cover </mat-label>
                   <input matInput type="url" name="cover"  #cover="ngModel" ngModel required>
                   <mat-error *ngIf="cover.hasError('required') || cover.pristine">
-                    COver is <strong>required</strong>
+                    Cover is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
               <angular-editor ngModel name="description" [config]="config" maxlength="1250" [(ngModel)]="htmlContent" #description="ngModel" (keyup)="countWords(htmlContent)"></angular-editor>
@@ -39,9 +39,17 @@
                   <mat-option value="Poetic Chains" name="category" ngModel #category="ngModel" type="text">Poetic Chains</mat-option>
                   <mat-option value="Poetic Notes" name="category" ngModel #category="ngModel" type="text">Poetic Notes</mat-option>
                   <mat-option value="One-Liners" name="category" ngModel #category="ngModel" type="text">One-Liners</mat-option>
+                  <mat-option value="Poem" name="category" ngModel #category="ngModel" type="text">Poem</mat-option>
                 </mat-select>
               </mat-form-field>
-                  
+              <mat-form-field class="example-chip-list" appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select name="status" ngModel #category="ngModel" required>
+                  <mat-option value="pinned" name="status" ngModel #category="ngModel" type="text">Pinned</mat-option>
+                  <mat-option value="unpinned" name="status" ngModel #category="ngModel" type="text">Unpinned</mat-option>
+                </mat-select>
+              </mat-form-field>
+             
                
                   
                   <div class="form-group bg-light">
