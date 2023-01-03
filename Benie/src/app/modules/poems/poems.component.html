@@ -1,0 +1,102 @@
+<app-nav></app-nav>
+<div>
+    <div class="container-fluid shadow">
+        <div class="row">
+            <div class="col-lg-8">
+                <img src="https://res.cloudinary.com/benie/image/upload/v1670944606/mxus8glvminn1nx17g0u.png" style="max-height:400px;" class="w-100 img-fluid" alt="">
+            </div>
+            <div class="col-lg-4 bg-light">
+                <mat-card-content>
+                    <br>
+                    <span>
+                        <mat-card-title style="color:blueviolet" id="featuredTitle"><a [routerLink]="'/poems/read/1'">Poem Title</a> <br> <span class="text-muted" style="font-size:x-small">Jan 3, 2023</span></mat-card-title>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    <p>
+                        What a day, I thought about it,
+                    </p>
+                    </span>
+                </mat-card-content>
+            </div>
+        <br>
+        </div>
+</div>
+<div class="container" style="padding:1.5%;">
+    <br>
+    <div>
+        <h1 class="text-center" style="color:blueviolet">Latest Poems</h1>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-3">
+                    <div class="text-center" >
+                      <h3 class="card-title text-center" class="poemTitle"> <a [routerLink]="'/poems/read/1'"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg"  alt="" priority> Poem Title</a> </h3>
+                        <p class="card-text"> {{text | truncate:[350, '...']}} <small><span><button class="btn btn-sm btn-primary" [routerLink]="'/poems/read/1'">Read</button></span></small></p>
+                        
+                      
+                    </div>
+                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">Jan 2, 2023</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; tagged <a href="">Spoken Word</a></span></div>
+                </div>
+                <div class="card mb-3">
+                    <div class="text-center" >
+                        <h3 class="card-title text-center" class="poemTitle"> <a [routerLink]="'/poems/read/1'"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg"  alt="" priority> Poem Title</a> </h3>
+                        <p class="card-text"> {{text | truncate:[350, '...']}} <small><span><button class="btn btn-sm btn-primary" routerLink="/read/story/1">Read</button></span></small></p>
+                        
+                      
+                    </div>
+                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">Jan 2, 2023</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; tagged <a href="">Spoken Word</a></span></div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                
+                <div class="card mb-3">
+                    <div class="text-center" >
+                        <h3 class="card-title text-center" class="poemTitle"> <a [routerLink]="'/poems/read/1'"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg"  alt="" priority> Poem Title</a> </h3>
+                        <p class="card-text"> {{text | truncate:[350, '...']}} <small><span><button class="w-5 btn btn-sm btn-primary" routerLink="/read/story/1">Read</button></span></small></p>
+                        
+                      
+                    </div>
+                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">Jan 2, 2023</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; tagged <a href="">Spoken Word</a></span></div>
+                </div>
+                <div class="card mb-3">
+                    <div class="text-center" >
+                        <h3 class="card-title text-center" class="poemTitle"> <a [routerLink]="'/poems/read/1'"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg"  alt="" priority> Poem Title</a> </h3>
+                        <p class="card-text"> {{text | truncate:[350, '...']}} <small><span><button class="btn btn-sm btn-primary" routerLink="/read/story/1">Read</button></span></small></p>
+                        
+                      
+                    </div>
+                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">Jan 2, 2023</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; tagged <a href="">Spoken Word</a></span></div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<br><br><br><br>
+<div class="content" style="padding:1.5%;">
+    <app-search></app-search>
+</div>
+<app-footer></app-footer>

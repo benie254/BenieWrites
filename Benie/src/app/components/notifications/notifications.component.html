@@ -7,7 +7,7 @@
                         <div class="card text-bg-light mb-3" style="max-width: 100%;" >
                           <div class="text-center" >
                             <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-                            <img *ngIf="ln.img" class="img-fluid shadow" style="max-height:120px;max-width:210px;float:left;" src="{{ln.img}}"  alt="" priority>
+                            <a *ngIf="ln.link" href="{{ln.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{ln.img}}"  alt="" priority></a>
                             <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{ln.date | dateAgo}}</span></h5>
                             <div class="card-body">
                               <p class="card-text">{{ln.message}}</p>
@@ -37,7 +37,7 @@
                   <div class="card text-bg-light mb-3" style="max-width: 100%;" *ngFor="let n of notifs">
                     <div class="text-center" >
                       <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-                      <img *ngIf="n.img" class="img-fluid rounded-start shadow" style="max-height:100px;max-width:210px;float:left;" src="{{n.img}}"  alt="" priority>
+                      <a *ngIf="n.link" href="{{n.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{n.img}}"  alt="" priority></a>
                       <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{n.date | dateAgo}}</span></h5>
                       <div class="card-body">
                         <p class="card-text">{{n.message}}</p>

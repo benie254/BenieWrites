@@ -1,0 +1,32 @@
+<app-nav [titleValue]="titleValue" [searchResults]="searchResults" [searchText]="searchText"></app-nav>
+
+<mat-tab-group dynamicHeight>
+    <mat-tab label="All Stories">
+            <app-all-stories [searchText]="searchText" [searchResults]="searchResults"></app-all-stories>
+    </mat-tab>
+    <mat-tab label="Ongoing">
+            <br>
+            <app-ongoing-stories></app-ongoing-stories>
+    </mat-tab>
+    <mat-tab label="Completed">
+            <br>
+            <app-completed-stories></app-completed-stories>
+    </mat-tab>
+    
+    <mat-tab>
+        <ng-template matTabLabel>
+           <span class="position-relative">
+            Notifications &nbsp;&nbsp; <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+            <span class="visually-hidden">New alerts</span>
+          </span>
+           </span>
+        </ng-template>
+        <br>
+        <app-notifications></app-notifications>
+    </mat-tab>
+    <mat-tab label="About">
+        <br>
+        <!-- <app-about></app-about> -->
+    </mat-tab>
+    
+</mat-tab-group>

@@ -15,21 +15,23 @@
         </div>
         <div class="col-md-4">
             <div style="padding:5%;margin:2.5%;">
-                <form #subForm="ngForm" class="shadow" (ngSubmit)="subscribe(subForm.value)">
+                <form #subForm="ngForm" class="shadow" (ngSubmit)="subscribe(subForm.value)" (mouseover)="subKey($event)" (keydown)="subKey($event)" (keypress)="subKey($event)" (keyup)="subKey($event)">
                     <h1 style="color:blueviolet" class=" text-center">Monthly Newsletter <br> <span><h5>Never miss a story.</h5></span></h1>
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>Name</mat-label>
-                                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-                                <mat-error *ngIf="name.hasError('required') || name.pristine">
-                                    Your name is <strong>required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                            &nbsp;&nbsp;&nbsp;
+                            
+                            
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Email</mat-label>
                                 <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
                                 <mat-error *ngIf="email.hasError('required') || email.pristine">
                                     Your email is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            &nbsp;&nbsp;&nbsp;
+                            <mat-form-field appearance="fill" class="w-100" *ngIf="subInput">
+                                <mat-label>Name</mat-label>
+                                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                                <mat-error *ngIf="name.hasError('required') || name.pristine">
+                                    Your name is <strong>required</strong>
                                 </mat-error>
                             </mat-form-field>
                             <br><br>
@@ -45,28 +47,9 @@
     <div class="row" style="padding:1.5%;">
         <div class="col-md-1"></div>
         <div class="col-md-5">
-    <form #contForm="ngForm" class="shadow" (ngSubmit)="contact(contForm.value)">
+    <form #contForm="ngForm" class="shadow" (ngSubmit)="contact(contForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
         <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5>I built and designed this website <br> & own all the written content.</h5></span></h1>
-        <div class="row">
-            <div class="col-md-6">
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Name</mat-label>
-                    <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-                    <mat-error *ngIf="name.hasError('required') || name.pristine">
-                        Your name is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="col-md-6">
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Email</mat-label>
-                    <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
-                    <mat-error *ngIf="email.hasError('required') || email.pristine">
-                        Your email is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
+        
         
                 
                 <mat-form-field appearance="fill" class="w-100">
@@ -76,6 +59,26 @@
                         Message is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
+                <div class="row" *ngIf="!noInput">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Name</mat-label>
+                            <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                            <mat-error *ngIf="name.hasError('required') || name.pristine">
+                                Your name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
+                            <mat-error *ngIf="email.hasError('required') || email.pristine">
+                                Your email is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
                 <br><br>
                 <button mat-raised-button color="accent" class="w-100" [disabled]="contForm.invalid"><i class="fa-regular fa-paper-plane"></i> Send Email</button>
     </form>

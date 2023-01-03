@@ -6,9 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './components/about/about.component';
-import { BottomSheetOverviewExampleSheet, ReadComponent } from './components/read/read.component';
-import { StoriesComponent } from './components/stories/stories.component';
-import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,19 +22,13 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import {CloudinaryModule} from '@cloudinary/ng';// TODO: Add SDKs for Firebase products that you want to use
 import { NgxPaginationModule } from 'ngx-pagination';
-import { StoryDialog, StoryPagesComponent } from './components/story-pages/story-pages.component';
-import { NotificationsComponent } from './components/notifications/notifications.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { CompletedStoriesComponent } from './components/completed-stories/completed-stories.component';
-import { OngoingStoriesComponent } from './components/ongoing-stories/ongoing-stories.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { DateAgoPipe } from './pipes/date/date-ago.pipe';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { NgxEditorModule } from 'ngx-editor';
-import { TruncatePipe } from './pipes/trunc/truncate.pipe';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -61,18 +52,7 @@ const analytics = getAnalytics(app);
   declarations: [
     AppComponent,
     AboutComponent,
-    ReadComponent,
-    StoriesComponent,
-    NavComponent,
     HomeComponent,
-    BottomSheetOverviewExampleSheet,
-    StoryPagesComponent,
-    StoryDialog,
-    NotificationsComponent,
-    CompletedStoriesComponent,
-    OngoingStoriesComponent,
-    DateAgoPipe,
-    TruncatePipe
   ],
   imports: [
     BrowserModule,

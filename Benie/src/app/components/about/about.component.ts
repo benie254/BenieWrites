@@ -13,6 +13,10 @@ export class AboutComponent implements OnInit {
   currentSite = window.location.href;
   editor: Editor;
   html: '';
+  values = '';
+  subValues = '';
+  noInput: boolean = true;
+  subInput: boolean = false;
   
   constructor(
     private service:MyStoryService,
@@ -62,6 +66,19 @@ export class AboutComponent implements OnInit {
         )
       }
     })
+  }
+
+  onKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.noInput = false;
+    }
+  }
+  subKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.subInput = true;
+    }
   }
 
   

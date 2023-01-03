@@ -1,15 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common'
+import * as Notiflix from 'notiflix';
 import { Story } from 'src/app/classes/story/story';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
-import * as Notiflix from 'notiflix';
 
 @Component({
-  selector: 'app-stories',
-  templateUrl: './stories.component.html',
-  styleUrls: ['./stories.component.css']
+  selector: 'app-all-stories',
+  templateUrl: './all-stories.component.html',
+  styleUrls: ['./all-stories.component.css']
 })
-export class StoriesComponent implements OnInit {
+export class AllStoriesComponent implements OnInit {
   stories: Story[] = [];
   onStories: Story[] = [];
   compStories: Story[] = [];

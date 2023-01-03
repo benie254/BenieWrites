@@ -20,10 +20,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: rgb(33, 33, 33);
     color: whitesmoke;
 }
-#content, #content-1, #sContent, #comment{
+#comments, #content-2, #search, #filter{
+    color: whitesmoke;
+}
+#content,.content, #content-1, #sContent, #comment, #expansion, #content-2, #search, #filter{
     background-color: rgb(31, 39, 44);
 }
 input::placeholder{
     color:white;
 }
-
+a:hover, .poemTitle:hover{
+    color: blueviolet;
+}
+.divide {
+    display: flex;
+    flex-direction: row;
+}
+.divide:before, .divide:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid;
+    margin: auto;
+}
+.divide:before {
+    margin-right: 10px
+}
+.divide:after {
+    margin-left: 10px
+}
+.col2{
+    color:rgb(185, 121, 0)
+}
+.col1{
+    color: blueviolet;
+}

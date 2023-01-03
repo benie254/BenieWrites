@@ -1,0 +1,83 @@
+<div class="container-fluid" style="min-height:100vh;" id="readBg">
+    <app-follow></app-follow>
+    <span (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
+<span>
+    <span><button mat-stroked-button><mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;color:blueviolet;"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
+</span>  
+<div class="row">
+    <div class="col-md-2">
+        <br><br>
+    </div>
+    <div class="col-md-8" id="content" style="padding:2.5%;">
+        <small style="font-size:xx-small;">Photo by <a href="">Jay Jay</a></small><br><br>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" width="100%" style="min-height:200px;max-height:500px;" alt="">
+        
+
+        <br>
+        <br>
+        <h1 class="text-primary">This will be my contejt are</h1>
+        <span class="col2"><small> <span><i class="fa-regular fa-star"></i> 2</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> 6</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> 1 min 3 sec  &nbsp;&nbsp; </small></span>
+<br><br>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <br>
+        <p><span><small class="col2">published on <a href="">Jan 2, 2023</a> by <a href="">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> tagged <a href="">Poetry Chain</a></small></span></p>
+        <hr class="w-50">
+        <small>
+       <app-feedback [openBottomSheet]="openBottomSheet"></app-feedback>
+        
+        </small>
+    </div>
+    
+    <div class="col-md-2">
+    </div>  
+    </div>
+    <br>
+    <span>
+        <div class="row">
+            <div class="col-lg-6">
+                <app-related></app-related>
+                <br>
+            </div>
+            <div class="col-lg-6">
+                <app-recent></app-recent>
+            </div>
+        </div>
+        
+    </span>
+
+        <br>
+        <div class="container-fluid">
+            <small>
+                <span>
+                    
+                    <span>
+                        <app-comments></app-comments>
+                    </span>
+                </span>
+            </small> 
+        </div>
+        <br>
+        <div class="container-fluid">
+            <app-search></app-search>
+    
+            
+        </div>
+        <br><br><br><br>
+</div>
+<app-footer></app-footer>
+
