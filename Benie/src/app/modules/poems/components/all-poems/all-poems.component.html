@@ -1,33 +1,13 @@
 
-<app-nav></app-nav>
+<!-- <app-nav></app-nav> -->
 <div class="container-fluid" style="padding:1.5%;">
     <div class="row">
         <h1 class="text-center">All Poems</h1>
-        <div class="col-lg-6">
-            <span class="divide col2">published &nbsp;<a href="" class="col2"> Jan 3, 2023</a> &nbsp;&nbsp; tagged &nbsp;<a href="" class="col2">Poetry Wednesday</a></span>
-            <h1 class="text-primary"><a href="">Poem Title Here</a></h1>
-            <p>Poem summary here. It should not be so long, it can be pretty short</p>
-            <img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" width="100%" style="min-height:200px;max-height:500px;" alt="">
-            
-            <br><br><br><br>
-            <span class="divide col2">published &nbsp;<a href="" class="col2"> Jan 3, 2023</a> &nbsp;&nbsp; tagged &nbsp;<a href="" class="col2">Poetry Wednesday</a></span>
-            <h1 class="text-primary"><a href="">Poem Title Here</a></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus corporis quaerat, nostrum culpa assumenda eos quo commodi tenetur doloribus. Aliquam, architecto placeat? Quidem dolorum cupiditate quo, consequuntur quaerat quis eaque!</p>
-            <img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" width="100%" style="min-height:200px;max-height:500px;" alt="">
-            <br><br><br><br>
-        </div>
-        <div class="col-lg-6">
-            <span class="divide col2">published &nbsp;<a href="" class="col2"> Jan 3, 2023</a> &nbsp;&nbsp; tagged &nbsp;<a href="" class="col2">Poetry Wednesday</a></span>
-            <h1 class="text-primary"><a href="">Poem Title Here</a></h1>
-            <p>Poem summary here. It should not be so long, it can be pretty short</p>
-            <img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" width="100%" style="min-height:200px;max-height:500px;" alt="">
-            
-            <br><br><br>
-            <br>
-            <span class="divide col2">published &nbsp;<a href="" class="col2"> Jan 3, 2023</a> &nbsp;&nbsp; tagged &nbsp;<a href="" class="col2">Poetry Wednesday</a></span>
-            <h1 class="text-primary"><a href="">Poem Title Here</a></h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus corporis quaerat, nostrum culpa assumenda eos quo commodi tenetur doloribus. Aliquam, architecto placeat? Quidem dolorum cupiditate quo, consequuntur quaerat quis eaque!</p>
-            <img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" width="100%" style="min-height:200px;max-height:500px;" alt="">
+        <div class="col-lg-6" *ngFor="let p of poems">
+            <span class="divide col2">published &nbsp;<a href="" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;<a href="" class="col2">{{p.category}}</a></span>
+            <h1 class="text-primary"><a routerLink="/poems/read/{{p.id}}">{{p.title}}</a></h1>
+            <p>{{p.excerpt}}</p>
+            <img src="{{p.cover}}" width="100%" style="min-height:200px;max-height:540px;" alt="">
             <br><br><br><br>
         </div>
     </div>

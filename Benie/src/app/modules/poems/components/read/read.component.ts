@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { PoetryService } from '../../services/poetry.service';
 
@@ -12,6 +12,14 @@ import { PoetryService } from '../../services/poetry.service';
 export class ReadComponent implements OnInit {
   text = 'So, we live–we make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidable  make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidab';
   locale: any;
+  @Input() poemId: number;
+  details: any;
+  poemCategory = '';
+  related: any;
+  topRelated: any;
+  allPoems: any;
+  poems: any;
+  count = 0;
 
   today = new Date();
 
@@ -20,12 +28,44 @@ export class ReadComponent implements OnInit {
   constructor(
     private _bottomSheet: MatBottomSheet,
     private router:Router,
-    private poetryService:PoetryService
+    private poetryService:PoetryService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      params => this.poemDetails(params['id'])
+    )
+    this.getAllPoems();
   }
-  
+  getAllPoems(){
+    Notiflix.Loading.pulse('Retrieving...')
+    this.poetryService.getAllPoems().subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        this.allPoems = res;
+        this.poems = res.slice(0,2);
+        this.count = parseInt(this.allPoems.length) - parseInt(this.poems.length);
+      }
+    })
+  }
+  poemDetails(id: number){
+    this.poetryService.getPoemDetails(id).subscribe({
+      next: (res) => {
+        this.details = res;
+        this.poemCategory = res.category;
+        this.relatedPoems();
+      }
+    })
+  }
+  relatedPoems(){
+    this.poetryService.getRelatedPoems(this.poemCategory).subscribe({
+      next: (res) => {
+        this.related = res;
+        this.topRelated = res.slice(0,2);
+      }
+    })
+  }
   
   poemReactions(id: any){
   }

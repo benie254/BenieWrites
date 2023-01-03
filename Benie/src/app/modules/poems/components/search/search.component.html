@@ -40,7 +40,7 @@
             <br>
     </div>
     <div class="col-lg-6 text-center">
-        <div id="filter" style="padding:1.5%;">
+        <div id="filter" style="padding:1%;">
             <mat-form-field class="w-50">
                 <mat-label class="text-primary">Search anything...</mat-label>
                 <input matInput type="text" list="datalistOptions" id="exampleDataList" (change)="titleValue($any($event.target).value);" (keydown)="onFilter($event)" name="search" [(ngModel)]="searchText">

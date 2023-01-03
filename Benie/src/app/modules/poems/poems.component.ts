@@ -10,22 +10,29 @@ import { PoetryService } from './services/poetry.service';
 export class PoemsComponent implements OnInit {
   text = 'So, we live–we make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidable  make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidab';
   poems: any;
+  twoPoems: any;
   pinned: any;
+  allPoems: any;
+  count = 0;
+  poemId = '';
 
   constructor(
     private poetryService:PoetryService,
   ) { }
 
   ngOnInit(): void {
-    this.allPoems();
+    this.getAllPoems();
     this.pinnedPoem();
   }
-  allPoems(){
+  getAllPoems(){
     Notiflix.Loading.pulse('Retrieving...')
     this.poetryService.getAllPoems().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
+        this.allPoems = res;
         this.poems = res.slice(0,4);
+        this.twoPoems = res.slice(0,2);
+        this.count = parseInt(this.allPoems.length) - parseInt(this.poems.length);
       }
     })
   }

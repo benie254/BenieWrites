@@ -25,6 +25,13 @@
                       Cover is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
+                <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Cover Source</mat-label>
+                      <input matInput type="url" name="cover_source"  #cover_source="ngModel" ngModel [(ngModel)]="details.cover_source" required>
+                      <mat-error *ngIf="cover_source.hasError('required') || cover_source.pristine">
+                        Cover Source is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
               <div class="NgxEditor__Wrapper">
                 <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
                 <ngx-editor

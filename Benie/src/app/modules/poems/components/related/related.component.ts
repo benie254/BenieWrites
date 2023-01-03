@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-related',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./related.component.css']
 })
 export class RelatedComponent implements OnInit {
+  @Input() topRelated: any;
 
   constructor() { }
 

@@ -26,6 +26,13 @@
                     Cover is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Cover Source</mat-label>
+                  <input matInput type="url" name="cover_source"  #cover_source="ngModel" ngModel required>
+                  <mat-error *ngIf="cover_source.hasError('required') || cover_source.pristine">
+                    Cover Source is <strong>required</strong>
+                  </mat-error>
+              </mat-form-field>
               <angular-editor ngModel name="description" [config]="config" maxlength="1250" [(ngModel)]="htmlContent" #description="ngModel" (keyup)="countWords(htmlContent)"></angular-editor>
            <div id="wordCount">{{counted}}</div> words
            <div *ngIf="!limitReached">Not there yet</div>

@@ -1,4 +1,4 @@
-<app-nav></app-nav>
+<app-nav [poems]="allPoems"></app-nav>
 <div>
     <div class="container-fluid shadow">
         <div class="row">
@@ -10,7 +10,7 @@
                     <mat-card-content *ngIf="pinned">
                         <br>
                         <span>
-                            <mat-card-title style="color:blueviolet" id="featuredTitle"><a [routerLink]="'/poems/read/1'">{{pinned.title}}</a> <br> <span class="text-muted" style="font-size:x-small">{{pinned.uploaded | date}}</span></mat-card-title>
+                            <mat-card-title style="color:blueviolet" id="featuredTitle"><a routerLink="/poems/read/{{pinned.id}}">{{pinned.title}}</a> <br> <span class="text-muted" style="font-size:x-small">{{pinned.uploaded | date}}</span></mat-card-title>
                         <p [innerHTML]="pinned.description"></p>
                         </span>
                     </mat-card-content>
@@ -28,14 +28,18 @@
             <div class="col-lg-6" *ngFor="let p of poems">
                 <div class="card mb-3">
                     <div class="text-center" >
-                      <h3 class="card-title text-center" class="poemTitle"> <a [routerLink]="'/poems/read/1'"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="{{p.cover}}"  alt="" priority> {{p.title}}</a> </h3>
-                        <p class="card-text" [innerHTML]="p.description | truncate:[350, '...']"><small><span><button class="btn btn-sm btn-primary" [routerLink]="'/poems/read/1'">Read</button></span></small></p>
+                      <h3 class="card-title text-center" class="poemTitle"> <a routerLink="/poems/read/{{p.id}}"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="{{p.cover}}"  alt="" priority> {{p.title}}</a> </h3>
+                        <p class="card-text"> {{p.excerpt | truncate:[350, '...']}}</p>
                         
                       
                     </div>
-                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">Jan 2, 2023</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; tagged <a href="">Spoken Word</a></span></div>
+                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">{{p.uploaded | date}}</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; in <a href="">{{p.category}}</a></span></div>
                 </div>
             </div>
+    </div>
+    <br>
+    <div class="text-center">
+        <button mat-raised-button class="w-50" color="primary" [routerLink]="'/poems/all'">{{count}} more poem(s)</button>
     </div>
 </div>
 </div>

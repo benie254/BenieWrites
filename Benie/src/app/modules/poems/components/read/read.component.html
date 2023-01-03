@@ -6,36 +6,22 @@
 </span>  
 <div class="row">
     <div class="col-md-2">
-        <br><br>
+        <br>
     </div>
     <div class="col-md-8" id="content" style="padding:2.5%;">
-        <small style="font-size:xx-small;">Photo by <a href="">Jay Jay</a></small><br><br>
-        <img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" width="100%" style="min-height:200px;max-height:500px;" alt="">
+        <small style="font-size:xx-small;"><a href="{{details.cover_source}}">Photo Source</a></small><br><br>
+        <img src="{{details.cover}}" width="100%" style="min-height:200px;max-height:500px;" alt="">
         
 
         <br>
         <br>
-        <h1 class="text-primary">This will be my contejt are</h1>
+        <h1 class="text-primary">{{details.title}}</h1>
         <span class="col2"><small> <span><i class="fa-regular fa-star"></i> 2</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> 6</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> 1 min 3 sec  &nbsp;&nbsp; </small></span>
 <br><br>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
-        <p>And as I stood there, watching her watch me; watching her feel my eyes on her, </p>
+        <p style="font-size:large;line-height:24px;" [innerHTML]="details.description"></p>
+        
         <br>
-        <p><span><small class="col2">published on <a href="">Jan 2, 2023</a> by <a href="">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> tagged <a href="">Poetry Chain</a></small></span></p>
+        <p><span><small class="col2">published <a href="">{{details.uploaded | date }}</a> by <a href="">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> in <a href="">{{details.category}}</a></small></span></p>
         <hr class="w-50">
         <small>
        <app-feedback [openBottomSheet]="openBottomSheet"></app-feedback>
@@ -50,11 +36,11 @@
     <span>
         <div class="row">
             <div class="col-lg-6">
-                <app-related></app-related>
+                <app-related [topRelated]="topRelated"></app-related>
                 <br>
             </div>
             <div class="col-lg-6">
-                <app-recent></app-recent>
+                <app-recent [poems]="poems"></app-recent>
             </div>
         </div>
         
