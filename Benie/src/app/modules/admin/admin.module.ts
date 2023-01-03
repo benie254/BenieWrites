@@ -53,6 +53,9 @@ import { EditSubscriberComponent } from './components/subscribers/edit-subscribe
 import { AllContactsComponent } from './components/contacts/all-contacts/all-contacts.component';
 import { AddContactComponent } from './components/contacts/add-contact/add-contact.component';
 import { EditContactComponent } from './components/contacts/edit-contact/edit-contact.component';
+import { AllPoemsComponent } from './components/poems/all-poems/all-poems.component';
+import { AddPoemComponent } from './components/poems/add-poem/add-poem.component';
+import { EditPoemComponent } from './components/poems/edit-poem/edit-poem.component';
 
 
 
@@ -95,6 +98,9 @@ import { EditContactComponent } from './components/contacts/edit-contact/edit-co
     AllContactsComponent,
     AddContactComponent,
     EditContactComponent,
+    AllPoemsComponent,
+    AddPoemComponent,
+    EditPoemComponent,
   ],
   imports: [
     CommonModule,

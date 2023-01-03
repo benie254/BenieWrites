@@ -8,7 +8,7 @@ const api = 'http://127.0.0.1:8000/api/admin/';
 @Injectable({
   providedIn: 'any'
 })
-export class PoetryService {
+export class AdminPoetryService {
   addPoem = api + 'poems/add/';
   updatePoem = api + 'poem/update/';
 

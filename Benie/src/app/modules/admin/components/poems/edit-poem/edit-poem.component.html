@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="padding-2">
+        <div class="row">
+          <div class="col-md-6">
+            <form #editPageForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(editPageForm.value)" id="editPageForm">
+                <h2>Edit Poem</h2>  <br>
+                <mat-form-field class="w-75" appearance="fill">
+                  <mat-label>Title </mat-label>
+                    <input matInput type="text" name="title"  #title="ngModel" [(ngModel)]="details.title" ngModel required>
+                    <mat-error *ngIf="title.hasError('required') || title.pristine">
+                      Title is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-75" appearance="fill">
+                  <mat-label>Cover </mat-label>
+                    <input matInput type="url" name="cover" [(ngModel)]="details.url"  #cover="ngModel" ngModel required>
+                    <mat-error *ngIf="cover.hasError('required') || cover.pristine">
+                      Cover is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor
+                  [editor]="editor"
+                  [ngModel]="html"
+                  [disabled]="false"
+                  [placeholder]="'Type here...'"
+                  ngModel 
+                  name="description"
+                  [(ngModel)]="details.description" 
+                  #description="ngModel" 
+                  (keyup)="countWords(details.description)"
+                ></ngx-editor>
+              </div>
+
+              <!-- <angular-editor ngModel name="description" [config]="config" maxlength="1250" [(ngModel)]="details.description" #description="ngModel" (keyup)="countWords(details.description)"></angular-editor> -->
+              <div id="wordCount">{{counted}}</div> words
+           <div *ngIf="!limitReached">Not there yet</div>
+           <div *ngIf="limitReached">Perfect!</div>
+           <mat-form-field class="w-75" appearance="fill">
+            <mat-label>Words </mat-label>
+              <input matInput type="number" name="words"  #words="ngModel" ngModel [(ngModel)]="counted" required>
+              <mat-error *ngIf="words.hasError('required') || words.pristine">
+                Word count is <strong>required</strong>
+              </mat-error>
+          </mat-form-field>
+            
+
+
+          <mat-form-field class="example-chip-list" appearance="fill">
+            <mat-label>Category</mat-label>
+            <input matInput type="text" name="category"  #category="ngModel" ngModel [(ngModel)]="details.category" required>
+        </mat-form-field>
+                
+
+             
+
+
+              
+                  <div class="form-group bg-light">
+                    <button type="submit" style="margin-top:1%;" mat-raised-button color="accent" (click)="reload()"> Save</button> &nbsp;&nbsp;<button style="margin-top:1%;" type="submit" mat-flat-button color="accent" >Save and continue editing</button> &nbsp;&nbsp; <button style="margin-top:1%;" type="submit" mat-flat-button color="accent"   (click)="redirect()">Save and add another</button> <button style="margin-top:1%;" class="float-right" type="button" mat-flat-button color="warn"  (click)="delWarn()">Delete</button>
+                  </div>
+                  
+            </form>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+    </div>
+</div>
