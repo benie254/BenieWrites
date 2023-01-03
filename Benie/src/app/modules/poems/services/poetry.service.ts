@@ -12,12 +12,16 @@ export class PoetryService {
   allPoems = api + 'poems/all/';
   poemDet = api + 'poem/details/';
   pastPoems = api + 'poems/past/';
+  pinned = api + 'poem/pinned/';
 
   constructor(
     private handler: ReqHandlerService,
   ) { }
   getAllPoems(): Observable<any>{
     return this.handler.handleGET<any>(this.allPoems)
+  }
+  getPinnedPoems(): Observable<any>{
+    return this.handler.handleGET<any>(this.pinned)
   }
   getPoemDetails(id: number): Observable<any>{
     return this.handler.handleGET<any>(this.poemDet + id)

@@ -12,6 +12,13 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Excerpt </mat-label>
+                      <textarea matInput type="text" name="excerpt"  #excerpt="ngModel" ngModel required [(ngModel)]="details.excerpt"></textarea>
+                      <mat-error *ngIf="excerpt.hasError('required') || excerpt.pristine">
+                        Excerpt is <strong>required</strong>
+                      </mat-error>
+                  </mat-form-field>
+                <mat-form-field class="w-75" appearance="fill">
                   <mat-label>Cover </mat-label>
                     <input matInput type="url" name="cover" [(ngModel)]="details.cover"  #cover="ngModel" ngModel required>
                     <mat-error *ngIf="cover.hasError('required') || cover.pristine">
@@ -54,7 +61,7 @@
               <mat-option value="Poetic Chains" name="category" ngModel #category="ngModel" type="text">Poetic Chains</mat-option>
               <mat-option value="Poetic Notes" name="category" ngModel #category="ngModel" type="text">Poetic Notes</mat-option>
               <mat-option value="One-Liners" name="category" ngModel #category="ngModel" type="text">One-Liners</mat-option>
-              <mat-option value="One-Liners" name="category" ngModel #category="ngModel" type="text">Poem</mat-option>
+              <mat-option value="Poem" name="category" ngModel #category="ngModel" type="text">Poem</mat-option>
             </mat-select>
           </mat-form-field>
         <mat-form-field class="example-chip-list" appearance="fill">
