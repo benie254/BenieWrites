@@ -1,27 +1,27 @@
 <div class="container-fluid" style="min-height:100vh;" id="readBg">
-    <app-follow></app-follow>
-    <span (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
-<span>
-    <span><button mat-stroked-button><mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;color:blueviolet;"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
-</span>  
-<div class="row">
+    <span class="sticky-top" style="opacity:0.95;font-weight: bolder;"><span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
+    <span>
+        <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
+    </span>  </span>
+<div class="row g-0">
     <div class="col-md-2">
         <br>
     </div>
-    <div class="col-md-8" id="content" style="padding:2.5%;">
+    <div class="col-md-8" id="content">
         <small style="font-size:xx-small;"><a href="{{details.cover_source}}">Photo Source</a></small><br><br>
-        <img src="{{details.cover}}" width="100%" style="min-height:200px;max-height:500px;" alt="">
+        <img src="{{details.cover}}" class="img-fluid mb-3" style="max-height:540px;max-width:100%;" alt="">
         
 
         <br>
         <br>
-        <h1 class="text-primary">{{details.title}}</h1>
+        <div style="padding:2%;">
+            <h1 class="text-primary">{{details.title}}</h1>
         <span class="col2"><small> <span><i class="fa-regular fa-star"></i> 2</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> 6</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> 1 min 3 sec  &nbsp;&nbsp; </small></span>
 <br><br>
-        <p style="font-size:large;line-height:24px;" [innerHTML]="details.description"></p>
-        
+        <p style="font-size:large;line-height:24px;font-family:monospace" [innerHTML]="details.description"></p>
+        <p><span><small class="col2">published <a routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> by <a href="">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> in <a routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a></small></span></p>
+        </div>
         <br>
-        <p><span><small class="col2">published <a href="">{{details.uploaded | date }}</a> by <a href="">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> in <a href="">{{details.category}}</a></small></span></p>
         <hr class="w-50">
         <small>
        <app-feedback [openBottomSheet]="openBottomSheet"></app-feedback>

@@ -2,7 +2,7 @@
 <app-nav [poems]="poems"></app-nav>
 <div class="container" >
     <div class="row" style="padding:2.5%;">
-        <h1 class="text-center">All Poems</h1>
+        <h1 class="text-center"><span *ngIf="categ === 'Poems' || categ === 'Spoken-Word' || categ === 'One-Liners' || categ === 'Poetic-Notes' || categ === 'Poetic-Chains' else date">{{categ}}</span> <span><ng-template #date>{{categ | date}} Posts</ng-template></span></h1>
         <div class="col-lg-6" style="padding:3%;" *ngFor="let p of poems">
             <small class="divide col2">published &nbsp;<a routerLink="/poems/related/date/{{p.uploaded | date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;<a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></small>
             <a routerLink="/poems/{{p.title}}/{{p.id}}"><img src="{{p.cover}}" style="min-height:200px;max-height:360px;max-width:100%;" alt=""></a>

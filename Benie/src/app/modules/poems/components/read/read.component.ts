@@ -81,27 +81,54 @@ export class ReadComponent implements OnInit {
     const read = (<HTMLDivElement>document.getElementById('reader'));
     const exp = (<HTMLDivElement>document.getElementById('expansion'));
     const comments = document.getElementById('comments');
+    const search = document.getElementById('search');
+    const filter = document.getElementById('filter');
+    const footer = document.getElementById('footer');
+    const back = document.getElementById('back');
+    const toggle = document.getElementById('toggle');
+    const share = document.getElementById('share');
+    const follow = document.getElementById('follow');
+    const filterIn = document.getElementById('exampleDataList');
+    const searchIn = document.getElementById('searchInput');
     if(myDiv.style.backgroundColor == 'whitesmoke'){
       myDiv.style.backgroundColor = 'rgb(33, 33, 33)';
       myDiv.style.color = 'whitesmoke';
       comments.style.color = 'whitesmoke';
       recent.style.color = 'whitesmoke';
+      filterIn.style.color = 'white';
+      searchIn.style.color = 'white';
       content.style.backgroundColor = 'rgb(31, 39, 44)';
       related.style.backgroundColor = 'rgb(31, 39, 44)';
       recent.style.backgroundColor = 'rgb(31, 39, 44)';
       comment.style.backgroundColor = 'rgb(31, 39, 44)';
       exp.style.backgroundColor = 'rgb(31, 39, 44)';
       exp.style.backgroundColor = 'rgb(31, 39, 44)';
+      search.style.backgroundColor = 'rgb(31, 39, 44)';
+      filter.style.backgroundColor = 'rgb(31, 39, 44)';
+      footer.style.backgroundColor = 'rgb(31, 39, 44)';
+      back.style.backgroundColor = 'rgb(31, 39, 44)';
+      toggle.style.backgroundColor = 'rgb(31, 39, 44)';
+      share.style.backgroundColor = 'rgb(31, 39, 44)';
+      follow.style.backgroundColor = 'rgb(31, 39, 44)';
     }else{
       myDiv.style.backgroundColor = 'whitesmoke';
       content.style.backgroundColor = 'white';
       myDiv.style.color = 'black';
       comments.style.color = 'black';
       recent.style.color = 'black';
+      filterIn.style.color = 'black';
+      searchIn.style.color = 'black';
       comment.style.backgroundColor = 'white';
       related.style.backgroundColor = 'white';
       exp.style.backgroundColor = 'white';
       recent.style.backgroundColor = 'white';
+      search.style.backgroundColor = 'whitesmoke';
+      filter.style.backgroundColor = 'whitesmoke';
+      footer.style.backgroundColor = 'white';
+      back.style.backgroundColor = 'whitesmoke';
+      toggle.style.backgroundColor = 'whitesmoke';
+      share.style.backgroundColor = 'whitesmoke';
+      follow.style.backgroundColor = 'whitesmoke';
     }
   }
   back(){

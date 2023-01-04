@@ -1,3 +1,4 @@
+import { P } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { PoetryService } from '../../services/poetry.service';
@@ -20,12 +21,24 @@ export class SearchComponent implements OnInit {
   poems: any;
   sInput: boolean = false;
   sValues = '';
+  pInput: boolean = false;
 
   constructor(
     private poetryService:PoetryService,
   ) { }
 
   ngOnInit(): void {
+    this.allPoems();
+  }
+  reset(){
+    this.sInput = false;
+    let filter = (<HTMLFormElement>document.getElementById('filterForm'));
+    filter.reset();
+  }
+  resetAlt(){
+    this.pInput = false;
+    let search = (<HTMLFormElement>document.getElementById('searchForm'));
+    search.reset();
   }
   allPoems(){
     Notiflix.Loading.pulse('Fetching...')
@@ -33,6 +46,7 @@ export class SearchComponent implements OnInit {
       next: (data) => {
         this.poems = data;
         Notiflix.Loading.remove();
+        this.searchResults = data;
       }
     })
   }
@@ -43,6 +57,7 @@ export class SearchComponent implements OnInit {
     this.pValues = event.target.value; 
     this.fetchPoemSuccess = false;
     this.noPoem = false;
+    this.pInput = true;
   }
   onFilter(event: any){
     this.sValues = event.target.value;
@@ -60,6 +75,7 @@ export class SearchComponent implements OnInit {
   getByDate(poemDate): void{
     this.poetryService.searchByDate(poemDate).subscribe( data => {
         this.foundPoems = data;
+        console.warn(data)
         if (this.foundPoems == undefined || this.foundPoems && this.foundPoems.length == 0){
           this.noPoem = true;
         } else {

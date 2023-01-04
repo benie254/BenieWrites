@@ -103,7 +103,6 @@ export class ReadComponent implements OnInit {
   }
   goToChap = (): void => {
     this.show = true;
-    // this.router.navigate(['/read/story/chapter/' + this.id])
   }
   storyDetails(id: number){
     Notiflix.Loading.pulse('Fetching...')
@@ -136,7 +135,7 @@ export class ReadComponent implements OnInit {
     localStorage.setItem('chapId',text);
     this.chapId = localStorage.getItem('chapId');
     console.warn('chap id:',this.chapId)
-    this.router.navigate(['/read/story/chapter/' + this.chapId]);
+    this.router.navigate(['/stories/' + this.story.title + '/chapter/' + this.chapId]);
   }
   
   

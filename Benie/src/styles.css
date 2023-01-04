@@ -54,3 +54,9 @@ a:hover, .poemTitle:hover{
 .col1{
     color: blueviolet;
 }
+.zoom{
+    transition: transform 1s;
+    }
+.zoom:hover{
+    transform: scale(1.55);
+}

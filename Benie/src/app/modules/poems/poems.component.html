@@ -3,17 +3,15 @@
     <div class="container-fluid shadow">
         <div class="row">
             <div class="col-lg-8">
-                <img src="{{pinned.cover}}" style="max-height:540px;" class="w-100 img-fluid" alt="">
+                <img src="{{pinned.cover}}" style="max-height:540px;" class="mb-3 img-fluid w-100" alt="">
             </div>
             <div class="col-lg-4 bg-light">
                 <div>
-                    <mat-card-content *ngIf="pinned">
                         <br>
-                        <span>
-                            <mat-card-title style="color:blueviolet" id="featuredTitle"><a routerLink="/poems/read/{{pinned.id}}">{{pinned.title}}</a> <br> <span class="text-muted" style="font-size:x-small">{{pinned.uploaded | date}}</span></mat-card-title>
-                        <p [innerHTML]="pinned.description"></p>
+                        <span *ngIf="pinned">
+                            <h1 style="color:blueviolet" id="featuredTitle"><a routerLink="/poems/{{pinned.title}}/{{pinned.id}}">{{pinned.title}}</a> <br> <span class="col2" style="font-size:x-small">{{pinned.uploaded | date}}</span></h1>
+                        <p [innerHTML]="pinned.description | truncate:[760, '...']"></p>
                         </span>
-                    </mat-card-content>
                 </div>
                 
             </div>
@@ -28,12 +26,12 @@
             <div class="col-lg-6" *ngFor="let p of poems">
                 <div class="card mb-3">
                     <div class="text-center" >
-                      <h3 class="card-title text-center" class="poemTitle"> <a routerLink="/poems/read/{{p.id}}"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="{{p.cover}}"  alt="" priority> {{p.title}}</a> </h3>
+                      <h2 class="card-title text-center zoom poemTitle"> <a routerLink="/poems/{{p.title}}/{{p.id}}"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="{{p.cover}}"  alt="" priority> {{p.title}}</a> </h2>
                         <p class="card-text"> {{p.excerpt | truncate:[350, '...']}}</p>
                         
                       
                     </div>
-                    <div class="card-footer text-center"><span class="text-muted" style="font-size:x-small"><a href="">{{p.uploaded | date}}</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; in <a href="">{{p.category}}</a></span></div>
+                    <div class="card-footer text-center"><span class="col2" style="font-size:x-small"><a routerLink="/poems/related/date/{{p.uploaded|date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> by Benson Langat &nbsp;&nbsp;|&nbsp;&nbsp; <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></span></div>
                 </div>
             </div>
     </div>

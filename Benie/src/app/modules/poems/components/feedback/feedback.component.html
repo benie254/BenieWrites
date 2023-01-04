@@ -9,6 +9,7 @@
        </form> 
        <br>
        <button mat-raised-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+       <br><br>
     </div>
     <div class="col-md-6">
         <form #commentForm="ngForm" (ngSubmit)="commentPoem(commentForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">

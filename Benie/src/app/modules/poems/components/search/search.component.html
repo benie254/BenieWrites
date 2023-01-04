@@ -4,12 +4,12 @@
             <form class="form" role="search" id="searchForm">
                 <mat-form-field appearance="fill" class="padding-2 full-width">
                     <mat-label class="text-primary">Search Poems By Date</mat-label>
-                    <input matInput type="date" (keydown)="onSearch($event)" (keypress)="onSearch($event)" (keyup)="onSearch($event)" (mousedown)="onSearch($event)" (mouseenter)="onSearch($event)" (mousemove)="onSearch($event)" (mouseout)="onSearch($event)" (mouseup)="onSearch($event)" (mousewheel)="onSearch($event)" (touch)="onSearch($event)" (touched)="onSearch($event)" (hover)="onSearch($event)" placeholder="Select date" aria-label="Search" required>
+                    <input id="searchInput" matInput type="date" (keydown)="onSearch($event)" (keypress)="onSearch($event)" (keyup)="onSearch($event)" (mousedown)="onSearch($event)" (mouseenter)="onSearch($event)" (mousemove)="onSearch($event)" (mouseout)="onSearch($event)" (mouseup)="onSearch($event)" (mousewheel)="onSearch($event)" (touch)="onSearch($event)" (touched)="onSearch($event)" (hover)="onSearch($event)" placeholder="Select date" aria-label="Search" required>
                     <mat-icon matSuffix>date</mat-icon>
-                  </mat-form-field>
+                  </mat-form-field>&nbsp;&nbsp;<button mat-stroked-button color="warn" *ngIf="pValues && pInput" (click)="resetAlt()">reset</button>
                 <div>
-                    <div *ngIf="pValues">
-                        <p class="bold">{{pValues | date: 'fullDate'}}&nbsp; <span><button class="margin" mat-raised-button color="primary" type="button" (click)="search($event.value);unClear()" [disabled]="!pValues"><i class="fa-solid fa-magnifying-glass"></i> </button></span></p>
+                    <div *ngIf="pValues && pInput">
+                        <p class="bold">{{pValues | date}}&nbsp; <span><button class="margin" mat-raised-button color="primary" type="button" (click)="search($event.value);unClear()" [disabled]="!pValues"><i class="fa-solid fa-magnifying-glass"></i> </button></span></p>
                       </div>
                 </div>
               </form>
@@ -17,18 +17,32 @@
                 <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
                     <span class="sr-only"> Searching; please wait... </span>
                 </div>
-                <div *ngIf="empty">
-                    <h4>Sorry, we found no poems posted on <small>{{pValues | date: 'fullDate'}}</small></h4>
+                <div *ngIf="empty || noPoem && pInput">
+                    <h4>Sorry, no poems were posted on <small>{{pValues | date}}</small></h4>
                 </div>
                 
                 <div class="container padding">
                     <div *ngIf="foundPoems">
                         <div>
-                            <div *ngIf="!empty">
+                            <div *ngIf="!empty && !noPoem && pInput">
                                 <div class="card-body">
-                                    <h4 class="card-title text-center"> 
-                                        <i class="fa-regular fa-file-lines"></i>  We found the following poems for {{pValues}}
-                                    </h4>
+                                    <h2 class="card-title text-center"> 
+                                        <i class="fa-regular fa-file-lines"></i> We found the following poem(s)...
+                                    </h2>
+                                    <div class="row">
+                                        <div class="col-lg-6" *ngFor="let p of foundPoems">
+                                            <div class="mb-3 content text-light">
+                                                <div class="text-center divide"><span class="col2" style="font-size:x-small"><a routerLink="/poems/related/date/{{p.uploaded|date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;&nbsp; <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></span></div>
+
+                                                <div class="text-center" >
+                                                  <h2 class="card-title text-center poemTitle"> <a routerLink="/poems/{{p.title}}/{{p.id}}"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="{{p.cover}}"  alt="" priority> {{p.title}}</a> </h2>
+                                                    <p class="card-text"> {{p.excerpt | truncate:[350, '...']}}</p>
+                                                    
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
                                     
                                 </div>
                             </div>
@@ -41,34 +55,34 @@
     </div>
     <div class="col-lg-6 text-center">
         <div id="filter" style="padding:1%;">
-            <mat-form-field class="w-50">
-                <mat-label class="text-primary">Search anything...</mat-label>
-                <input matInput type="text" list="datalistOptions" id="exampleDataList" (change)="titleValue($any($event.target).value);" (keydown)="onFilter($event)" name="search" [(ngModel)]="searchText">
-                <mat-icon matSuffix>search</mat-icon>
-                <datalist id="datalistOptions">
-                    <option value="A New Page" *ngFor="let s of searchResults" [value]="s.title">  
-                </datalist>
-              </mat-form-field> 
+            <form id="filterForm">
+                <mat-form-field class="w-50">
+                    <mat-label class="text-primary">Search anything...</mat-label>
+                    <input matInput type="text" list="datalistOptions" id="exampleDataList" (change)="titleValue($any($event.target).value);" (keydown)="onFilter($event)" name="search" [(ngModel)]="searchText">
+                    <mat-icon matSuffix>search</mat-icon>
+                    
+                    <datalist id="datalistOptions">
+                        <option value="A New Page" *ngFor="let s of searchResults" [value]="s.title">  
+                    </datalist>
+                  </mat-form-field> &nbsp;&nbsp;
+                  <button mat-stroked-button color="warn" *ngIf="sInput" (click)="reset()">reset</button>
+                  <br>
+            </form>
               <div *ngIf="sInput">
                 <div>
                     <div class="row">
-                        <div class="col-lg-6" *ngFor="let s of searchResults | filter: searchText">
-                            <h4 class="text-primary">
-                                <a href="">Poem Title</a> 
-                                <br> 
-                                <span><small class="col2">Jan 3, 2023 tagged Poetry Chains</small></span>
-                                <br>
-                                <span><img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" height="60" width="120" alt=""></span>
-                            </h4>
-                        </div>
-                        <div class="col-lg-6">
-                            <h4 class="text-primary">
-                                <a href="">Poem Title</a> 
-                                <br> 
-                                <span><small class="col2">Jan 3, 2023 tagged Poetry Chains</small></span>
-                                <br>
-                                <span><img src="https://res.cloudinary.com/benie/image/upload/v1672678810/fantasy-gfba08a1e1_1920_v9uskp.jpg" height="60" width="120" alt=""></span>
-                            </h4>
+                        <h2 class="text-center"><i class="fa-regular fa-file-lines"></i> We found the following poem(s)...</h2>
+                        <div class="col-lg-6" *ngFor="let p of searchResults | filter: searchText">
+                            <div class="mb-3 content text-light">
+                                <div class="text-center divide"><span class="col2" style="font-size:x-small"><a routerLink="/poems/related/date/{{p.uploaded|date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;&nbsp; <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></span></div>
+
+                                <div class="text-center" >
+                                  <h2 class="card-title text-center poemTitle"> <a routerLink="/poems/{{p.title}}/{{p.id}}"><img class="img-fluid card-img-top rounded-start shadow" style="width:75px;height:35px;" src="{{p.cover}}"  alt="" priority> {{p.title}}</a> </h2>
+                                    <p class="card-text"> {{p.excerpt | truncate:[350, '...']}}</p>
+                                    
+                                  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

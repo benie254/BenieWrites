@@ -6,8 +6,8 @@ import { StoriesComponent } from './stories.component';
 
 const routes: Routes = [
   { path: '', component: StoriesComponent },
-  { path: 'read/story/:id', component: ReadComponent },
-  { path: 'read/story/chapter/:id', component: StoryPagesComponent },
+  { path: ':id/:id', component: ReadComponent },
+  { path: ':id/chapter/:id', component: StoryPagesComponent },
 ];
 
 @NgModule({

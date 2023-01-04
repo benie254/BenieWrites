@@ -1,13 +1,13 @@
-<div id="content-2" style="padding:1.5%;">
-    <h2 class="text-center">Recent Posts</h2>
+<div id="content-2" class="text-center" style="padding:1.5%;">
+    <h2>Recent Posts</h2>
     <div class="row">
         <div class="col-lg-6" *ngFor="let p of poems">
             <h4 class="text-primary">
-                <a routerLink="/poems/read/{{p.id}}">{{p.title}}</a> 
+                <a routerLink="/poems/{{p.title}}/{{p.id}}">{{p.title}}</a> 
                 <br> 
-                <span><small class="col2"><a href="" class="col2">{{p.uploaded | date}}</a> in <a href="" class="col2">{{p.category}}</a></small></span>
+                <span style="font-size:smaller;"><small class="col2"><a routerLink="/poems/related/date/{{p.uploaded | date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> in <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></small></span>
                 <br>
-                <span><a routerLink="/stories/read/{{p.id}}"><img src="{{p.cover}}" height="60" width="120" alt=""></a></span>
+                <span><a routerLink="/poems/{{p.title}}/{{p.id}}"><img class="zoom" src="{{p.cover}}" style="max-height:60px;max-width:100%;" alt=""></a></span>
             </h4>
         </div>
     </div>

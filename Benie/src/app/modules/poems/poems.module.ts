@@ -10,7 +10,7 @@ import { TruncatePipe } from '../stories/pipes/trunc/truncate.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NavComponent } from './nav/nav.component';
-import { ReadComponent } from './components/read/read.component';
+import { BottomSheetOverviewExampleSheet, ReadComponent } from './components/read/read.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +26,8 @@ import { RecentComponent } from './components/recent/recent.component';
 import { RelatedComponent } from './components/related/related.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { SearchComponent } from './components/search/search.component';
+import { ResultsComponent } from './components/results/results.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { SearchComponent } from './components/search/search.component';
     RelatedComponent,
     CommentsComponent,
     SearchComponent,
+    ResultsComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     CommonModule,
@@ -56,6 +60,7 @@ import { SearchComponent } from './components/search/search.component';
     MatIconModule,
     MatInputModule,
     Ng2SearchPipeModule,
+    MatListModule,
   ]
 })
 export class PoemsModule { }

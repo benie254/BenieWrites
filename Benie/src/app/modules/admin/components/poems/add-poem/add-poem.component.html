@@ -11,13 +11,14 @@
                   <mat-error *ngIf="title.hasError('required') || title.pristine">
                     Title is <strong>required</strong>
                   </mat-error>
-                  <mat-form-field class="w-75" appearance="fill">
-                    <mat-label>Excerpt </mat-label>
-                      <textarea matInput type="text" name="excerpt"  #excerpt="ngModel" ngModel required></textarea>
-                      <mat-error *ngIf="excerpt.hasError('required') || excerpt.pristine">
-                        Excerpt is <strong>required</strong>
-                      </mat-error>
-                  </mat-form-field>
+                  
+              </mat-form-field>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Excerpt </mat-label>
+                  <textarea matInput type="text" name="excerpt"  #excerpt="ngModel" ngModel required></textarea>
+                  <mat-error *ngIf="excerpt.hasError('required') || excerpt.pristine">
+                    Excerpt is <strong>required</strong>
+                  </mat-error>
               </mat-form-field>
               <mat-form-field class="w-75" appearance="fill">
                 <mat-label>Cover </mat-label>
