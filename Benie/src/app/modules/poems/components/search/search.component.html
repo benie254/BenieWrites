@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-6 text-center">
-        <div id="search" style="padding:1.5%;">
+        <div style="padding:1.8%;">
             <form class="form" role="search" id="searchForm">
                 <mat-form-field appearance="fill" class="padding-2 full-width">
                     <mat-label class="text-primary">Search Poems By Date</mat-label>
@@ -8,18 +8,18 @@
                     <mat-icon matSuffix>date</mat-icon>
                   </mat-form-field>&nbsp;&nbsp;<button mat-stroked-button color="warn" *ngIf="pValues && pInput" (click)="resetAlt()">reset</button>
                 <div>
-                    <div *ngIf="pValues && pInput">
+                    <div *ngIf="pValues && pInput" id="mySearchA">
                         <p class="bold">{{pValues | date}}&nbsp; <span><button class="margin" mat-raised-button color="primary" type="button" (click)="search($event.value);unClear()" [disabled]="!pValues"><i class="fa-solid fa-magnifying-glass"></i> </button></span></p>
                       </div>
                 </div>
               </form>
 
-                <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
-                    <span class="sr-only"> Searching; please wait... </span>
-                </div>
-                <div *ngIf="empty || noPoem && pInput">
-                    <h4>Sorry, no poems were posted on <small>{{pValues | date}}</small></h4>
-                </div>
+                    <div class="spinner-border text-primary" role="status" *ngIf="isLoading">
+                        <span class="sr-only"> Searching; please wait... </span>
+                    </div>
+                    <div *ngIf="empty || noPoem && pInput">
+                        <h4>Sorry, no poems were posted on <small>{{pValues | date}}</small></h4>
+                    </div>
                 
                 <div class="container padding">
                     <div *ngIf="foundPoems">
@@ -27,11 +27,11 @@
                             <div *ngIf="!empty && !noPoem && pInput">
                                 <div class="card-body">
                                     <h2 class="card-title text-center"> 
-                                        <i class="fa-regular fa-file-lines"></i> We found the following poem(s)...
+                                        <i class="fa-regular fa-file-lines"></i> We found the following poems...
                                     </h2>
                                     <div class="row">
                                         <div class="col-lg-6" *ngFor="let p of foundPoems">
-                                            <div class="mb-3 content text-light">
+                                            <div class="mb-3">
                                                 <div class="text-center divide"><span class="col2" style="font-size:x-small"><a routerLink="/poems/related/date/{{p.uploaded|date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;&nbsp; <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></span></div>
 
                                                 <div class="text-center" >
@@ -54,7 +54,7 @@
             <br>
     </div>
     <div class="col-lg-6 text-center">
-        <div id="filter" style="padding:1%;">
+        <div>
             <form id="filterForm">
                 <mat-form-field class="w-50">
                     <mat-label class="text-primary">Search anything...</mat-label>
@@ -71,9 +71,9 @@
               <div *ngIf="sInput">
                 <div>
                     <div class="row">
-                        <h2 class="text-center"><i class="fa-regular fa-file-lines"></i> We found the following poem(s)...</h2>
+                        <h2 class="text-center"><i class="fa-regular fa-file-lines"></i> We found the following poems...</h2>
                         <div class="col-lg-6" *ngFor="let p of searchResults | filter: searchText">
-                            <div class="mb-3 content text-light">
+                            <div id="myFilter" class="mb-3">
                                 <div class="text-center divide"><span class="col2" style="font-size:x-small"><a routerLink="/poems/related/date/{{p.uploaded|date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;&nbsp; <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></span></div>
 
                                 <div class="text-center" >

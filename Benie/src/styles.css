@@ -20,10 +20,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: rgb(33, 33, 33);
     color: whitesmoke;
 }
-#comments, #content-2, #search, #filter{
+#comments, #content-2, #search, #filter, .light, #mySearch, #recent, #related, #expansion{
     color: whitesmoke;
 }
-#content,.content, #content-1, #sContent, #comment, #expansion, #content-2, #search, #filter{
+#content,.content, #content-1, #sContent, #comment, #comments, #expansion, #content-2, #search, #filter, #related, #recent{
     background-color: rgb(31, 39, 44);
 }
 input::placeholder{

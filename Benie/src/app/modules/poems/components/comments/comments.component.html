@@ -1,13 +1,10 @@
 <div>
-    <div class="row" style="padding:1.5%;" id="comment">
-        <span class="text-center"><h1>10 Comments</h1></span>
-        <div class="col-md-6">
-            <span class="divide col2">2 seconds ago &nbsp;&nbsp; | &nbsp;&nbsp; <span><i class="fa-regular fa-circle-user"></i></span> &nbsp;Anonymous</span> 
-            <p style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, odio voluptatibus? Enim quod tempore est quas, delectus atque nemo in consectetur nesciunt temporibus, tenetur nihil, magnam saepe suscipit recusandae tempora. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et ipsam laboriosam animi provident mollitia, dignissimos ullam molestias eius accusantium, repellat, id consequatur cum quas voluptates fuga omnis eum minima vitae.</span> </p>
-        </div>
-        <div class="col-md-6">
-            <span class="divide col2">2 seconds ago &nbsp;&nbsp; | &nbsp;&nbsp; <span><i class="fa-regular fa-circle-user"></i></span> &nbsp;Anonymous</span> 
-            <p class="content" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">Beautiful poem!</span> </p>
+    <div class="row" style="padding:1.5%;">
+        <span class="text-center"><h1><span class="text-primary">{{topComments.length}}</span> of <span class="col1">{{comments.length}}</span> Comments</h1></span>
+        <div class="col-md-6" *ngFor="let tc of topComments">
+            <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;" class="col2">{{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span><span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="tc.comment">{{tc.comment}}</span><span *ngIf="!tc.comment">Beautiful piece!</span> </p>
+
+            
         </div>
         <mat-accordion>
             <mat-expansion-panel id="expansion" (opened)="panelOpenState = true"
@@ -17,17 +14,16 @@
             View all
           </mat-panel-title>
           <mat-panel-description style="color:blueviolet;">
-           10 comments
+           {{comments.length}} comments
           </mat-panel-description>
           </mat-expansion-panel-header>
-            <div class="row" id="comments">
-                <div class="col-md-6">
-                    <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;" class="col2">2 seconds ago &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> &nbsp;Anonymous<br></span><span>Beautiful poem!</span> </p>
-                </div>
-                <div class="col-md-6">
-                    <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;" class="col2">2 seconds ago &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> &nbsp;Anonymous<br></span> <span>Beautiful poem!</span> </p>
+            <div class="row">
+                <div class="col-md-6" *ngFor="let c of comments">
+                    <span class="divide" style="font-size:smaller;"><span class="col2"><span>{{c.date | dateAgo}}</span> &nbsp;&nbsp; | &nbsp;&nbsp; <span><i class="fa-regular fa-circle-user"></i></span> &nbsp; <span *ngIf="c.commented_by">&nbsp;{{c.commented_by}}</span><span *ngIf="!c.commented_by">&nbsp;Anonymous</span></span> </span> 
+            <p style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;"><span *ngIf="c.comment">{{c.comment}}</span> <span *ngIf="!c.comment">Beautiful poem!</span></span> </p>
                 </div>
               </div>
+
           
           </mat-expansion-panel>
           </mat-accordion>                  

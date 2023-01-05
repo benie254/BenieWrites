@@ -13,7 +13,6 @@ import { PoetryService } from '../../services/poetry.service';
 export class ReadComponent implements OnInit {
   text = 'So, we live–we make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidable  make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidab';
   locale: any;
-  @Input() poemId: number;
   details: any;
   poemCategory = '';
   related: any;
@@ -26,6 +25,10 @@ export class ReadComponent implements OnInit {
   today = new Date();
   readTime: any;
   readGen: any;
+  likes: any;
+  comments: any;
+  poemId: any;
+  topComments: any;
 
   
 
@@ -38,9 +41,49 @@ export class ReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(
-      params => this.poemDetails(params['id'])
+      params => {
+        this.poemDetails(params['id']),
+        this.poemReactions(params['id']),
+        this.poemFeedbacks(params['id'])
+      } 
     )
     this.getAllPoems();
+  }
+  likePoem = (data: any): void => {
+    Notiflix.Loading.pulse('processing...')
+    this.poetryService.likePoem(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('poem liked!')
+        this.ngOnInit();
+      }
+    })
+  }
+  commentPoem = (data: any): void => {
+    Notiflix.Loading.pulse('posting comment...')
+    this.poetryService.commentPoem(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('comment added!')
+        this.ngOnInit();
+      }
+    })
+  }
+  poemReactions(id: any){
+    this.poetryService.poemLikes(id).subscribe({
+      next: (res) => {
+        this.likes = res;
+        console.warn(res)
+      }
+    })
+  }
+  poemFeedbacks(id: any){
+    this.poetryService.poemComments(id).subscribe({
+      next: (res) => {
+        this.comments = res;
+        this.topComments = res.slice(0,2)
+      }
+    })
   }
   getAllPoems(){
     Notiflix.Loading.pulse('Retrieving...')
@@ -57,6 +100,7 @@ export class ReadComponent implements OnInit {
     this.poetryService.getPoemDetails(id).subscribe({
       next: (res) => {
         this.details = res;
+        this.poemId = res.id;
         this.poemCategory = res.category;
         this.relatedPoems();
         this.readGen = this.details.words/this.words;
@@ -90,63 +134,44 @@ export class ReadComponent implements OnInit {
     })
   }
   
-  poemReactions(id: any){
-  }
-  poemFeedbacks(id: any){
-  }
   
   changeBg(event: any){
     const myDiv = (<HTMLDivElement>document.getElementById('readBg'));
     const content = (<HTMLDivElement>document.getElementById('content'));
-    const related = (<HTMLDivElement>document.getElementById('content-1'));
-    const recent = (<HTMLDivElement>document.getElementById('content-2'));
-    const comment = (<HTMLDivElement>document.getElementById('comment'));
-    const read = (<HTMLDivElement>document.getElementById('reader'));
-    const exp = (<HTMLDivElement>document.getElementById('expansion'));
-    const comments = document.getElementById('comments');
-    const search = document.getElementById('search');
-    const filter = document.getElementById('filter');
+    const related = (<HTMLDivElement>document.getElementById('related'));
+    const recent = (<HTMLDivElement>document.getElementById('recent'));
     const footer = document.getElementById('footer');
     const back = document.getElementById('back');
     const toggle = document.getElementById('toggle');
     const share = document.getElementById('share');
     const follow = document.getElementById('follow');
-    const filterIn = document.getElementById('exampleDataList');
-    const searchIn = document.getElementById('searchInput');
+    const exp = document.getElementById('expansion');
     if(myDiv.style.backgroundColor == 'whitesmoke'){
       myDiv.style.backgroundColor = 'rgb(33, 33, 33)';
       myDiv.style.color = 'whitesmoke';
-      comments.style.color = 'whitesmoke';
-      recent.style.color = 'whitesmoke';
-      filterIn.style.color = 'white';
-      searchIn.style.color = 'white';
+      related.style.color = 'white';
+      recent.style.color = 'white';
+      exp.style.color = 'white';
+      exp.style.backgroundColor = 'rgb(31, 39, 44)';
       content.style.backgroundColor = 'rgb(31, 39, 44)';
       related.style.backgroundColor = 'rgb(31, 39, 44)';
-      recent.style.backgroundColor = 'rgb(31, 39, 44)';
-      comment.style.backgroundColor = 'rgb(31, 39, 44)';
-      exp.style.backgroundColor = 'rgb(31, 39, 44)';
-      exp.style.backgroundColor = 'rgb(31, 39, 44)';
-      search.style.backgroundColor = 'rgb(31, 39, 44)';
-      filter.style.backgroundColor = 'rgb(31, 39, 44)';
       footer.style.backgroundColor = 'rgb(31, 39, 44)';
       back.style.backgroundColor = 'rgb(31, 39, 44)';
       toggle.style.backgroundColor = 'rgb(31, 39, 44)';
       share.style.backgroundColor = 'rgb(31, 39, 44)';
       follow.style.backgroundColor = 'rgb(31, 39, 44)';
+      related.style.backgroundColor = 'rgb(31, 39, 44)';
+      recent.style.backgroundColor = 'rgb(31, 39, 44)';
     }else{
       myDiv.style.backgroundColor = 'whitesmoke';
       content.style.backgroundColor = 'white';
       myDiv.style.color = 'black';
-      comments.style.color = 'black';
+      related.style.color = 'black';
       recent.style.color = 'black';
-      filterIn.style.color = 'black';
-      searchIn.style.color = 'black';
-      comment.style.backgroundColor = 'white';
+      exp.style.color = 'black';
       related.style.backgroundColor = 'white';
-      exp.style.backgroundColor = 'white';
+      exp.style.backgroundColor = 'whitesmoke';
       recent.style.backgroundColor = 'white';
-      search.style.backgroundColor = 'whitesmoke';
-      filter.style.backgroundColor = 'whitesmoke';
       footer.style.backgroundColor = 'white';
       back.style.backgroundColor = 'whitesmoke';
       toggle.style.backgroundColor = 'whitesmoke';

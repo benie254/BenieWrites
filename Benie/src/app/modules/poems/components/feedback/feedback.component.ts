@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
+import { PoetryService } from '../../services/poetry.service';
 
 @Component({
   selector: 'app-feedback',
@@ -12,24 +14,21 @@ export class FeedbackComponent implements OnInit {
   values = '';
   noInput = true;
   liked = 'like';
-  poemId = 1;
+  @Input() poemId: any;
+  @Input() likes: any;
+  @Input() likePoem: (data: any) => void;
+  @Input() commentPoem: (data: any) => void;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
+    private poetryService:PoetryService,
+    private route:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
   }
-  likePoem(data: any){
-    Notiflix.Notify.success('LIked!')
-  }
-  commentPoem(data: any){
-    Notiflix.Notify.success('commented!')
-  }
-  poemReactions(id: any){
-  }
-  poemFeedbacks(id: any){
-  }
+  
+  
   onKey(event: any){
     this.values = event.target.value;
     if(this.values){

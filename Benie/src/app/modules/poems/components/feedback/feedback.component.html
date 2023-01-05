@@ -5,7 +5,7 @@
         
         <input type="text" name="like" ngModel style="display:none;" [(ngModel)]="liked">
         <input type="number" name="poem" ngModel style="display:none;" [(ngModel)]="poemId">
-        <button mat-raised-button color="primary" type="submit"><i class="fa-solid fa-star"></i> Like <span style="font-size:x-small;" class="text-warning">12 likes</span></button> 
+        <button mat-raised-button color="primary" type="submit"><i class="fa-solid fa-star"></i> Like <span style="font-size:x-small;" class="text-warning">{{likes.length}} likes</span></button> 
        </form> 
        <br>
        <button mat-raised-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>

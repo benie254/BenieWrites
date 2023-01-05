@@ -14,6 +14,10 @@ export class PoetryService {
   pastPoems = api + 'poems/past/';
   pinned = api + 'poem/pinned/';
   related = api + 'poems/related/';
+  like = api + 'reactions/all/';
+  comment = api + 'feedbacks/all/';
+  reacts = api + 'poem/reactions/';
+  feeds = api + 'poem/feedbacks/';
 
   constructor(
     private handler: ReqHandlerService,
@@ -32,5 +36,17 @@ export class PoetryService {
   }
   searchByDate(poemDate: string): Observable<any>{
     return this.handler.handleGET<any>(this.pastPoems + poemDate)
+  }
+  likePoem(data: any):Observable<any>{
+    return this.handler.handlePOST<any>(this.like, data)
+  }
+  commentPoem(data: any):Observable<any>{
+    return this.handler.handlePOST<any>(this.comment, data)
+  }
+  poemLikes(id: number):Observable<any>{
+    return this.handler.handleGET<any>(this.reacts + id)
+  }
+  poemComments(id: number):Observable<any>{
+    return this.handler.handleGET<any>(this.feeds + id)
   }
 }
