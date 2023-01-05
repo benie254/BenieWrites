@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { PoetryService } from '../../services/poetry.service';
 
 @Component({
@@ -20,8 +21,11 @@ export class ReadComponent implements OnInit {
   allPoems: any;
   poems: any;
   count = 0;
+  words = 150;
 
   today = new Date();
+  readTime: any;
+  readGen: any;
 
   
 
@@ -55,6 +59,25 @@ export class ReadComponent implements OnInit {
         this.details = res;
         this.poemCategory = res.category;
         this.relatedPoems();
+        this.readGen = this.details.words/this.words;
+        if(this.readGen >= 60){
+          let readHrs: any = this.readGen/60;
+          let hrs = readHrs.toFixed(1)
+          let secs = (hrs+"").split(".")[1];
+          const mins = parseInt(secs)/10 * 60;
+          readHrs = Math.floor(readHrs) + ' hrs ' + mins + ' mins';
+          this.readTime = readHrs;
+        }else if(this.readGen < 1){
+          let readSecs = Math.round(this.readGen * 60) + ' secs';
+          this.readTime = readSecs;
+        }else{
+          this.readGen = this.details.words/this.words;
+          let read = this.readGen.toFixed(1);
+          let deci = (read+"").split(".")[1];
+          const sec = parseInt(deci)/10 * 60;
+          this.readGen = Math.floor(read) + ' mins ' + sec + ' secs';
+          this.readTime = this.readGen;
+        }
       }
     })
   }
@@ -137,6 +160,9 @@ export class ReadComponent implements OnInit {
   openBottomSheet(): void {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
+  followBottomSheet(): void {
+    this._bottomSheet.open(FollowerBottomSheet);
+  }
 
 }
 
@@ -167,5 +193,53 @@ export class BottomSheetOverviewExampleSheet {
     navigator.clipboard.writeText(text);
     Notiflix.Notify.success('Link Copied!')    
   }
+}
+
+@Component({
+  selector: 'follower-bottom-sheet',
+  templateUrl: 'follow.html',
+})
+export class FollowerBottomSheet {
+  currentSite = window.location.href;
+  values = '';
+  subInput: boolean = false;
+
+  constructor(
+    private _bottomSheetRef: MatBottomSheetRef<FollowerBottomSheet>,
+    private storyService:StoryService,
+    ) {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
+  subscribe(data){
+    Notiflix.Loading.pulse('Processing...')
+    this.storyService.addSub(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.success(
+          'Subscribed!',
+          'Your subscription was successful. Please check your email.',
+          'Okay',
+        )
+      },
+      error: (err) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.failure(
+          'Subscription Failed',
+          'Something went wrong as we tried to subscribe you. Please try again.',
+          'Okay',
+        )
+      }
+    })
+  }
+  subKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.subInput = true;
+    }
+  }
+ 
 }
 

@@ -10,7 +10,7 @@ import { TruncatePipe } from '../stories/pipes/trunc/truncate.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NavComponent } from './nav/nav.component';
-import { BottomSheetOverviewExampleSheet, ReadComponent } from './components/read/read.component';
+import { BottomSheetOverviewExampleSheet, FollowerBottomSheet, ReadComponent } from './components/read/read.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FollowComponent } from './components/follow/follow.component';
 import { FooterComponent } from './footer/footer.component';
-import { FeedbackComponent } from './components/feedback/feedback.component';
+import { FeedbackBottomSheet, FeedbackComponent, FollowBottomSheet } from './components/feedback/feedback.component';
 import { RecentComponent } from './components/recent/recent.component';
 import { RelatedComponent } from './components/related/related.component';
 import { CommentsComponent } from './components/comments/comments.component';
@@ -44,7 +44,10 @@ import { MatListModule } from '@angular/material/list';
     CommentsComponent,
     SearchComponent,
     ResultsComponent,
-    BottomSheetOverviewExampleSheet
+    BottomSheetOverviewExampleSheet,
+    FeedbackBottomSheet,
+    FollowBottomSheet,
+    FollowerBottomSheet,
   ],
   imports: [
     CommonModule,

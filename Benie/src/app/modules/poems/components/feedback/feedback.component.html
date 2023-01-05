@@ -9,6 +9,8 @@
        </form> 
        <br>
        <button mat-raised-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+       &nbsp;&nbsp;&nbsp;&nbsp;
+       <button mat-raised-button color="primary" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
        <br><br>
     </div>
     <div class="col-md-6">
@@ -25,7 +27,9 @@
                 </mat-form-field>
             </div>
             &nbsp;<button mat-raised-button color="primary" *ngIf="!noInput" type="submit">Add <i class="fa-regular fa-comment"></i></button>
+
         </form>
+        <br><br>
     </div>
     <div class="col-md-1"></div>
 </div>
