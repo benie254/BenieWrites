@@ -6,7 +6,7 @@ const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
 // const apiURL = 'http://127.0.0.1:8000/api/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class MyStoryService {
   allStories = apiURL + 'stories/all/';

@@ -6,7 +6,7 @@ import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service'
 const api = 'https://beniewrites-api-production.up.railway.app/api/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class PoetryService {
   allPoems = api + 'poems/all/';

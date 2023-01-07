@@ -5,13 +5,13 @@ import { map } from 'rxjs/operators';
 import { User } from '../../../classes/user/user';
 import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service';
 
-const authAPI = 'http://127.0.0.1:8000/api/auth/';
-// const authAPI = 'https://beniewrites-api-production.up.railway.app/api/auth/';
-const apiURL = 'http://127.0.0.1:8000/api/';
-// const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
+// const authAPI = 'http://127.0.0.1:8000/api/auth/';
+const authAPI = 'https://beniewrites-api-production.up.railway.app/api/auth/';
+// const apiURL = 'http://127.0.0.1:8000/api/';
+const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
