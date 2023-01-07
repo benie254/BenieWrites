@@ -1,10 +1,11 @@
 <div class="container-fluid">
     <div *ngIf="notifs">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-4">
                 <div class="row">
-                    <div class="col-sm-6" *ngFor="let ln of latestNotifs">
-                        <div class="card text-bg-light mb-3" style="max-width: 100%;" >
+                  <div class="col-sm-1"></div>
+                    <div class="col-sm-11">
+                        <div class="card text-bg-light mb-3" style="max-width: 100%;" *ngFor="let ln of latestNotifs">
                           <div class="text-center" >
                             <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
                             <a *ngIf="ln.link" href="{{ln.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{ln.img}}"  alt="" priority></a>
@@ -22,7 +23,7 @@
                 
                 
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-8">
                 <mat-accordion>
                     <mat-expansion-panel (opened)="panelOpenState = true"
                     (closed)="panelOpenState = false">
@@ -34,20 +35,24 @@
                     {{notifs.length}} notifications
                   </mat-panel-description>
                   </mat-expansion-panel-header>
-                  <div class="card text-bg-light mb-3" style="max-width: 100%;" *ngFor="let n of notifs">
-                    <div class="text-center" >
-                      <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-                      <a *ngIf="n.link" href="{{n.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{n.img}}"  alt="" priority></a>
-                      <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{n.date | dateAgo}}</span></h5>
-                      <div class="card-body">
-                        <p class="card-text">{{n.message}}</p>
-                      </div>
+                  <div class="row">
+                    <div class="col-md-6" *ngFor="let n of notifs">
+                      <div class="card text-bg-light mb-3" style="max-width: 100%;">
+                        <div class="text-center" >
+                          <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+                          <a *ngIf="n.link" href="{{n.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{n.img}}"  alt="" priority></a>
+                          <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{n.date | dateAgo}}</span></h5>
+                          <div class="card-body">
+                            <p class="card-text">{{n.message}}</p>
+                          </div>
+                        </div>
+                        <div class="card-footer" *ngIf="n.link">
+                          <a href="{{n.link}}">Check it out</a>
+                        </div>
+                          
+                        </div>
                     </div>
-                    <div class="card-footer" *ngIf="n.link">
-                      <a href="{{n.link}}">Check it out</a>
-                    </div>
-                      
-                    </div>
+                  </div>
                   </mat-expansion-panel>
                   </mat-accordion>
             </div>

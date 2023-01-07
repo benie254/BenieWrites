@@ -5,9 +5,9 @@ import { StoriesRoutingModule } from './stories-routing.module';
 import { StoriesComponent } from './stories.component';
 import { CompletedStoriesComponent } from './components/completed-stories/completed-stories.component';
 import { OngoingStoriesComponent } from './components/ongoing-stories/ongoing-stories.component';
-import { BottomSheetOverviewExampleSheet, ReadComponent } from './components/read/read.component';
+import { BottomSheetOverviewExampleSheet, FollowBottomSheet, ReadComponent, RepliesBottomSheet } from './components/read/read.component';
 import { AllStoriesComponent } from './components/all-stories/all-stories.component';
-import { StoryDialog, StoryPagesComponent } from './components/story-pages/story-pages.component';
+import { FollowAltBottomSheet, StoryDialog, StoryPagesComponent } from './components/story-pages/story-pages.component';
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +31,9 @@ import { NgxEditorModule } from 'ngx-editor';
 import { NotificationsComponent } from '../../components/notifications/notifications.component';
 import { DateAgoPipe } from './pipes/date/date-ago.pipe';
 import { TruncatePipe } from './pipes/trunc/truncate.pipe';
+import { HomeComponent } from './home/home.component';
+import { StoryFooterComponent } from './story-footer/story-footer.component';
+import { ResultsComponent } from './components/results/results.component';
 
 
 @NgModule({
@@ -47,6 +50,12 @@ import { TruncatePipe } from './pipes/trunc/truncate.pipe';
     NotificationsComponent,
     DateAgoPipe,
     TruncatePipe,
+    HomeComponent,
+    StoryFooterComponent,
+    ResultsComponent,
+    FollowBottomSheet,
+    FollowAltBottomSheet,
+    RepliesBottomSheet
   ],
   imports: [
     CommonModule,
@@ -71,10 +80,12 @@ import { TruncatePipe } from './pipes/trunc/truncate.pipe';
     MatExpansionModule,
     Ng2SearchPipeModule,
     NgxEditorModule,
+    MatListModule,
   ],
   exports: [
     TruncatePipe,
     DateAgoPipe,
+    StoryFooterComponent,
   ],
 })
 export class StoriesModule { }

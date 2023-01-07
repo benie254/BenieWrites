@@ -12,6 +12,10 @@ export class StoriesComponent implements OnInit {
   searchResults: any;
   searchText: any;
   title: any;
+  ongoing: any;
+  completed: any;
+  topOn: any;
+  topCom: any;
   
 
   constructor(
@@ -21,11 +25,31 @@ export class StoriesComponent implements OnInit {
   ngOnInit(): void {
     // this.checkViews();
     this.allStories();
+    this.ongoingStories();
+    this.completedStories();
   }
   allStories(){
+    Notiflix.Loading.pulse('Retrieving...')
     this.service.getAllStories().subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.searchResults = res;
+      }
+    })
+  }
+  ongoingStories(){
+    this.service.getOngoingStories().subscribe({
+      next: (res) => {
+        this.ongoing = res;
+        this.topOn = res.slice(0,2);
+      }
+    })
+  }
+  completedStories(){
+    this.service.getCompletedStories().subscribe({
+      next: (res) => {
+        this.completed = res;
+        this.topCom = res.slice(0,2);
       }
     })
   }
@@ -42,5 +66,4 @@ export class StoriesComponent implements OnInit {
       sessionStorage.removeItem('washere')
     }
   }
-
 }

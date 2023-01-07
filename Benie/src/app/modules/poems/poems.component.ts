@@ -22,6 +22,7 @@ export class PoemsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPoems();
     this.pinnedPoem();
+    this.bg();
   }
   getAllPoems(){
     Notiflix.Loading.pulse('Retrieving...')
@@ -32,8 +33,13 @@ export class PoemsComponent implements OnInit {
         this.poems = res.slice(0,4);
         this.twoPoems = res.slice(0,2);
         this.count = parseInt(this.allPoems.length) - parseInt(this.poems.length);
+        this.bg();
       }
     })
+  }
+  bg(){
+    let s = (<HTMLDivElement>document.getElementById('sch'));
+    s.style.color = 'white';
   }
   pinnedPoem(){
     Notiflix.Loading.pulse('Retrieving...')

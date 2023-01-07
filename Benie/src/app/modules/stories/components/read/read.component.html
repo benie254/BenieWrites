@@ -1,8 +1,8 @@
-<div class="container-fluid" style="padding:1.5%;" id="readBg">
-    <span (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
-<span>
-    <span><button mat-stroked-button><mat-slide-toggle (click)="changeBg($event)" style="color:blueviolet;">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;color:blueviolet;"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
-</span>    
+<div class="container-fluid" id="readBg" style="min-height:100vh">
+    <span class="sticky-top" style="opacity:0.95;font-weight: bolder;"><span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
+    <span>
+        <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
+    </span>  </span>   
     <div class="row">
         <div class="col-md-2">
             <br><br>
@@ -17,7 +17,7 @@
                 <!-- <h1 id="chapId">{{c.id}}</h1> -->
                       <div>
                         <div >
-                            <button *ngFor="let c of chaps" style="margin:1%;padding:0.5%;" mat-raised-button color="accent" (click)="copy(c.id);">{{c.title}}</button>
+                            <button *ngFor="let c of chaps" style="margin:1%;padding:0.5%;" mat-raised-button color="primary" (click)="copy(c.id);">{{c.title}}</button>
                           </div>
                       </div>
                       
@@ -32,13 +32,15 @@
                             </div>
                             <div class="col-lg-6">
                                 <small>
-                                    <h4>{{story.title}} <br> 
-                                        <span><small> <span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span> &nbsp;&nbsp;<span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> <span *ngIf="!readHrs && !readSecs"> {{readTime}}</span> <span *ngIf="!readSecs && readHrs"> {{readHrs}}</span> <span *ngIf="!readHrs && readSecs"> {{readSecs}}</span>  &nbsp;&nbsp; <span *ngIf="story.status == 'ongoing'"><i><i class="fa-solid fa-spinner"></i> {{story.status}}</i></span> <span *ngIf="story.status == 'completed'"><i><i class="fa-regular fa-circle-check"></i> {{story.status}}</i></span></small></span>
-                                    </h4>
+                                    <h1 class="text-primary">{{story.title}} <br> 
+                                        <span class="col2"><h4 style="font-size:x-small;"> <span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span> &nbsp;&nbsp;<span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> <span *ngIf="!readHrs && !readSecs"> {{readTime}}</span> <span *ngIf="!readSecs && readHrs"> {{readHrs}}</span> <span *ngIf="!readHrs && readSecs"> {{readSecs}}</span>  &nbsp;&nbsp; <span *ngIf="story.status == 'ongoing'"><i><i class="fa-solid fa-spinner"></i>  <a routerLink="/stories/related/status/{{story.status}}" class="col2">{{story.status}}</a></i></span> <span *ngIf="story.status == 'completed'"><i><i class="fa-regular fa-circle-check"></i> <a routerLink="/stories/related/status/{{story.status}}" class="col2">{{story.status}}</a></i></span></h4></span>
+                                    </h1>
                                     <p>{{story.description}}</p>
                                     <span>
                                         <mat-chip-list aria-label="Categories">
-                                            <mat-chip color="primary" selected>{{story.category}}</mat-chip>
+                                            <mat-chip style="margin:1.5%;" color="primary" selected routerLink="/stories/related/genre/{{story.genre}}">{{story.genre}}</mat-chip>
+                                            &nbsp;&nbsp;
+                                            <mat-chip style="margin:1.5%;" color="primary" selected routerLink="/stories/related/category/{{story.category}}">{{story.category}}</mat-chip>
                                           </mat-chip-list>
                                           <!-- <mat-chip-list aria-label="Tags">
                                             <mat-chip color="primary" selected>Mystery</mat-chip>
@@ -48,7 +50,7 @@
                                           </mat-chip-list> -->
                                 </span>
                                 <br>
-                                <p><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="35" width="35" style="border-radius:50%;" alt=""></span> By {{story.author}} &nbsp;&nbsp;|&nbsp;&nbsp; <span>First published {{story.first_published | date}}</span></p>
+                                <p><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="35" width="35" style="border-radius:50%;" alt=""></span> By <a routerLink="/about" class="col2">{{story.author}}</a> &nbsp;&nbsp;|&nbsp;&nbsp; <span>First published {{story.first_published | date}}</span></p>
                                 <hr>
                                 
                                 <div class="row">
@@ -58,15 +60,17 @@
                                         
                                         <input type="text" name="like" ngModel style="display:none;" [(ngModel)]="liked">
                                         <input type="number" name="story" ngModel style="display:none;" [(ngModel)]="story.id">
-                                        <button mat-raised-button color="accent" type="submit"><i class="fa-regular fa-star"></i> Vote <span style="font-size:x-small;">{{storyLikes.length}} votes</span></button> 
-                                       </form> 
+                                        <button style="margin:1.5%;" mat-raised-button color="accent" type="submit"><i class="fa-regular fa-star"></i> Like <span style="font-size:x-small;" class="col1">{{storyLikes.length}} likes</span></button> 
+                                        &nbsp;&nbsp;&nbsp;
+                                        <button style="margin:1.5%;" type="button" mat-raised-button color="accent" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
+                                    </form> 
                                     </div>
                                     <div class="col-md-6">
                                         <form #commentForm="ngForm" (ngSubmit)="commentStory(commentForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
                                             <mat-form-field appearance="fill">
                                                 <mat-label class="bg-light" color="accent">Comment</mat-label>
                                                 <input type="number" name="story" ngModel style="display:none;" [(ngModel)]="story.id">
-                                                <input type="text" matInput ngModel name="comment">
+                                                <textarea style="height:100px;width:200px;" type="text" matInput ngModel name="comment"></textarea>
                                             </mat-form-field>
                                             <div *ngIf="!noInput">
                                                 <mat-form-field>
@@ -79,47 +83,11 @@
                                     </div>
                                     <div class="col-md-1"></div>
                                 </div>
-                                <br><br>
-                                  <br>
                                 </small>
                                 
                             </div>
                         </div>
-                        <small>
-                            <span>
-                                
-                                <span>
-                                    <div class="row">
-                                        <span class="text-center"><h3>{{storyComments.length}} Comments <hr></h3></span>
-                                        <div class="col-md-6" *ngFor="let tc of topComments">
-                                            <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">{{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span><span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="tc.comment">{{tc.comment}}</span><span *ngIf="!tc.comment">Beautiful story!</span> </p>
-                                        </div>
-                                        <mat-accordion >
-                                            <mat-expansion-panel id="comment" style="color:whitesmoke;" (opened)="panelOpenState = true"
-                                            (closed)="panelOpenState = false">
-                                          <mat-expansion-panel-header style="color:whitesmoke;">
-                                          <mat-panel-title style="color:whitesmoke;">
-                                            View all
-                                          </mat-panel-title>
-                                          <mat-panel-description style="color:whitesmoke;">
-                                            {{storyComments.length}} comments
-                                          </mat-panel-description>
-                                          </mat-expansion-panel-header>
-                                          <ng-template matExpansionPanelContent>
-                                            <div class="row">
-                                                <div class="col-md-6" *ngFor="let sc of storyComments">
-                                                    <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;">{{sc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="sc.commented_by">&nbsp;{{sc.commented_by}}</span><span *ngIf="!sc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="sc.comment">{{sc.comment}}</span><span *ngIf="!sc.comment">Beautiful story!</span> </p>
-                                                </div>
-                                              </div>
-                                          </ng-template>
-                                          
-                                          </mat-expansion-panel>
-                                          </mat-accordion>
-                                        
-                                    </div>
-                                </span>
-                            </span>
-                        </small>
+                        
                   
                 
                 
@@ -143,12 +111,73 @@
           </div>
           </div>
             
-            <br>
             
         </div>
         <div class="col-md-2">
             
     </div>
+    <br>
+    <div class="container">
+        <small>
+            <span>
+                
+                <span>
+                    <div class="row">
+                        <span class="text-center"><h1><span class="text-primary">{{topComments.length}}</span> of <span class="col1">{{storyComments.length}}</span> Comments </h1></span>
+                        <div class="col-md-6" *ngFor="let tc of topComments ; trackBy: trackByFn">
+                            <p class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;" class="col2">{{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span><span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="tc.comment">{{tc.comment}}</span><span *ngIf="!tc.comment">Beautiful story!</span> 
+                                <span>
+                                    <span>
+                                        <form #likeCommentForm="ngForm" (ngSubmit)="(likeComment(likeCommentForm.value))">
+                                            <mat-form-field style="display:none;">
+                                                <input matInput type="text" name="like" ngModel style="display:none;" [(ngModel)]="like">
+                                            </mat-form-field>
+                                            <mat-form-field style="display:none;">
+                                                <input matInput type="number" name="comment" ngModel [(ngModel)]="tc.id">
+                                            </mat-form-field>
+                                            <span><button class="btn col1 btn-sm" type="submit"> <i class="fa-solid fa-star col1"></i> <span style="font-size:x-small;"> Like</span></button>  <span style="font-size:x-small;" class="col2"> {{tc.likes}} likes</span></span>
+                                           </form> 
+                                    </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-sm col1" type="button" (click)="copyComment(tc.id);replyBottomSheet()"> <i class="fa-regular fa-comment col1"></i> <span style="font-size:x-small"> Reply </span> &nbsp;&nbsp; </button> <span> <span style="font-size:x-small;" class="col2"> <a type="button" (click)="copyComment(tc.id);replyBottomSheet()"> &nbsp;{{tc.replies}} replies</a></span></span>
+                                </span>
+                            </p>
+                            
+                        </div>
+                        <mat-accordion>
+                            <mat-expansion-panel id="expansion" (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+                          <mat-expansion-panel-header>
+                          <mat-panel-title style="color:blueviolet;">
+                            View all
+                          </mat-panel-title>
+                          <mat-panel-description style="color:blueviolet;">
+                           {{storyComments.length}} comments
+                          </mat-panel-description>
+                          </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-md-6" *ngFor="let c of storyComments">
+                                    <span class="divide" style="font-size:smaller;"><span class="col2"><span>{{c.date | dateAgo}}</span> &nbsp;&nbsp; | &nbsp;&nbsp; <span><i class="fa-regular fa-circle-user"></i></span> &nbsp; <span *ngIf="c.commented_by">&nbsp;{{c.commented_by}}</span><span *ngIf="!c.commented_by">&nbsp;Anonymous</span></span> </span> 
+                                    <p style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;"><span *ngIf="c.comment">{{c.comment}}</span> <span *ngIf="!c.comment">Beautiful poem!</span></span> 
+                                        <span>
+                                            <span>
+                                                <form #likeCommentForm="ngForm" (ngSubmit)="(likeComment(likeCommentForm.value))">
+                                                    <input type="text" name="like" ngModel style="display:none;" [(ngModel)]="liked">
+                                                    <input type="number" name="comment" ngModel style="display:none;" [(ngModel)]="c.id">
+                                                    <span><button class="btn col1 btn-sm" type="submit"> <i class="fa-solid fa-star col1"></i> <span style="font-size:x-small;"> Like</span></button>  <span style="font-size:x-small;" class="col2"> {{c.likes}} likes</span></span>
+                                                   </form> 
+                                            </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="btn btn-sm col1" type="button" (click)="copyComment(c.id);replyBottomSheet()"> <i class="fa-regular fa-comment col1"></i> <span style="font-size:x-small"> Reply </span> &nbsp;&nbsp; </button> <span> <span style="font-size:x-small;" class="col2"> <a type="button" (click)="copyComment(c.id);replyBottomSheet()"> &nbsp;{{c.replies}} replies</a></span></span>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                          </mat-expansion-panel>
+                          </mat-accordion>  
+                        
+                    </div>
+                </span>
+            </span>
+        </small>
+    </div>
     <br><br>
-
+    
+    <app-story-footer></app-story-footer>
 </div>

@@ -12,9 +12,19 @@
                   </mat-error>
               </mat-form-field>
               <mat-form-field class="w-75" appearance="fill">
-                <mat-label>Category </mat-label>
+                <mat-label>Genre </mat-label>
+                
+                <input matInput name="genre" ngModel #genre="ngModel" [(ngModel)]="details.genre" type="text" required>
+                <mat-error *ngIf="genre.hasError('required') || genre.pristine">
+                    Genre is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Category</mat-label>
                 
                 <input matInput name="category" ngModel #category="ngModel" [(ngModel)]="details.category" type="text" required>
+
                 <mat-error *ngIf="category.hasError('required') || category.pristine">
                     Category is <strong>required</strong>
                 </mat-error>
@@ -26,6 +36,14 @@
                 <input matInput name="status" [(ngModel)]="details.status" ngModel #status="ngModel" required>
                 <mat-error *ngIf="status.hasError('required') || status.pristine">
                     Status is <strong>required</strong>
+                </mat-error>
+              </mat-form-field><br>
+              <mat-form-field class="w-75" appearance="fill">
+                <mat-label>Pin</mat-label>
+                
+                <input matInput name="pin" [(ngModel)]="details.pin" ngModel #pin="ngModel" required>
+                <mat-error *ngIf="pin.hasError('required') || pin.pristine">
+                    Pin is <strong>required</strong>
                 </mat-error>
               </mat-form-field><br>
               <mat-form-field class="w-75" appearance="fill">

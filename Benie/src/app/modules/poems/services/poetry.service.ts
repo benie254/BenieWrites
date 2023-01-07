@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service';
 
-const api = 'http://127.0.0.1:8000/api/';
-// const api = '';
+// const api = 'http://127.0.0.1:8000/api/';
+const api = 'https://beniewrites-api-production.up.railway.app/api/';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class PoetryService {
   allPoems = api + 'poems/all/';
@@ -18,6 +18,9 @@ export class PoetryService {
   comment = api + 'feedbacks/all/';
   reacts = api + 'poem/reactions/';
   feeds = api + 'poem/feedbacks/';
+  replies = api + 'replies/all/';
+  comLike = api + 'feedback/likes/';
+  comReply = api + 'feedback/replies/';
 
   constructor(
     private handler: ReqHandlerService,
@@ -48,5 +51,17 @@ export class PoetryService {
   }
   poemComments(id: number):Observable<any>{
     return this.handler.handleGET<any>(this.feeds + id)
+  }
+  likeComment(data: any):Observable<any>{
+    return this.handler.handlePOST<any>(this.like, data)
+  }
+  replyComment(data: any):Observable<any>{
+    return this.handler.handlePOST<any>(this.replies, data)
+  }
+  commentLikes(id: number):Observable<any>{
+    return this.handler.handleGET<any>(this.comLike + id)
+  }
+  commentReplies(id: number):Observable<any>{
+    return this.handler.handleGET<any>(this.comReply + id)
   }
 }

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   title = 'Poetry';
   @Input() poems: any;
+  today = new Date();
 
   constructor() { }
 

@@ -1,0 +1,23 @@
+<form class="bg-light" #subForm="ngForm" (ngSubmit)="subscribe(subForm.value)" (mouseover)="subKey($event)" (keydown)="subKey($event)" (keypress)="subKey($event)" (keyup)="subKey($event)">
+    <h1 style="color:blueviolet" class=" text-center"><span><span><br><div class="row g-0 text-center"><div class="col-lg-2"></div><div class="col-lg-2"><span><img class="img-fluid mb-3" src="https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png" style="max-height:100px;max-width:100%;" alt=""></span></div><div class="col-lg-6"><span>Monthly Newsletter <br><span style="font-size:smaller">Never miss a post.</span></span></div></div></span> </span> </h1>
+            
+            
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" required>
+                <mat-error *ngIf="email.hasError('required') || email.pristine">
+                    Your email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="fill" class="w-100" *ngIf="subInput">
+                <mat-label>Name</mat-label>
+                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                <mat-error *ngIf="name.hasError('required') || name.pristine">
+                    Your name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <button mat-raised-button color="primary" class="w-100" [disabled]="subForm.invalid"><i class="fa-solid fa-user-plus"></i> Subscribe</button>
+</form>
+<br><br>

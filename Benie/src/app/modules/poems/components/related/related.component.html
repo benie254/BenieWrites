@@ -3,11 +3,11 @@
 <div class="row">
     <div class="col-lg-6" *ngFor="let tr of topRelated">
         <h4 class="text-primary">
-            <a routerLink="/poems/{{tr.title}}/{{tr.id}}">{{tr.title}}</a> 
+            <a type="button" (click)="copy(tr.id);copyT(tr.title);refresh()">{{tr.title}}</a> 
             <br> 
             <span  style="font-size:smaller;"><small class="col2"><a routerLink="/poems/related/date/{{tr.uploaded | date: 'YYYY-MM-dd'}}" class="col2">{{tr.uploaded | date}}</a> in <a routerLink="/poems/related/category/{{tr.category}}" class="col2">{{tr.category}}</a></small></span>
             <br>
-            <span><a routerLink="/poems/{{tr.title}}/{{tr.id}}"><img class="zoom" src="{{tr.cover}}" style="max-height:60px;max-width:100%;" alt=""></a></span>
+            <span><a type="button" (click)="copy(tr.id);copyT(tr.title);refresh()"><img class="zoom" src="{{tr.cover}}" style="max-height:60px;max-width:100%;" alt=""></a></span>
         </h4>
     </div>
 </div>

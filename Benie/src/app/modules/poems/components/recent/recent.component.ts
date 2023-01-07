@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-recent',
@@ -7,10 +9,31 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RecentComponent implements OnInit {
   @Input() poems: any;
+  poemId: any;
+  poemT: any;
 
-  constructor() { }
+  constructor(
+    private router:Router
+  ) { }
 
   ngOnInit(): void {
+  }
+  copy(text: any){
+    localStorage.setItem("poemId",text);
+    this.poemId = localStorage.getItem("poemId");
+    console.warn("id",this.poemId)
+  }
+  copyT(text: any){
+    localStorage.setItem("poemTitle",text);
+    this.poemT = localStorage.getItem("poemTitle");
+  }
+  refresh(){
+    this.router.navigate(['/poems/' + this.poemT + '/' + this.poemId])
+    setTimeout(() => {
+      location.reload();
+      localStorage.removeItem("poemId");
+      localStorage.removeItem("poemTitle");
+    },2)
   }
 
 }

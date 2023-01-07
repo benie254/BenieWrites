@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { User } from 'src/app/modules/admin/classes/user/user';
 import { MessageService } from 'src/app/modules/admin/services/errors/message.service';
 import { ErrorsService } from '../errors/errors.service';
@@ -25,25 +25,29 @@ export class ReqHandlerService {
     
 
     if (error.status === 0) {
+      Notiflix.Loading.remove();
       console.error('An error occurred:', error.error);
       Notiflix.Report.failure(
         'Sorry!',
-        'An error occured',
+        'An error occured as we attempted to retrieve the requested data.',
         'Okay',
       )
     } else if (error.status === 204){
+      Notiflix.Loading.remove();
       Notiflix.Report.failure(
         error.statusText,
         'Sorry, we could not find any content in the requested resource.',
         'Okay',
       )
     } else if (error.status === 301){
+      Notiflix.Loading.remove();
       Notiflix.Report.failure(
         error.statusText,
         'Sorry, the requested page has been moved permanently.',
         'Okay',
       )
     }  else if (error.status === 400){
+      Notiflix.Loading.remove();
       Notiflix.Report.failure(
         error.statusText,
         'Please fix the highlighted errors and try again',
@@ -51,37 +55,44 @@ export class ReqHandlerService {
       )
       console.warn(error)
     }  else if (error.status === 401){
+      Notiflix.Loading.remove();
       if (error.error.detail){
         this.logout();
       } else {
         this.logout();
       }
     } else if (error.status === 403){
+      Notiflix.Loading.remove();
       Notiflix.Report.warning(
         error.statusText,
         'Sorry, you do not have permission to view or modify the requested resource',
         'Okay',
       )
     } else if (error.status === 404){
+      Notiflix.Loading.remove();
     } else if (error.status === 407){
+      Notiflix.Loading.remove();
       Notiflix.Report.warning(
         error.statusText,
         '',
         'Okay',
       )
     } else if (error.status === 408 || 504){
+      Notiflix.Loading.remove();
       Notiflix.Report.warning(
         error.statusText,
         "Don't worry, this has nothing to do with you. Please give it another try.",
         'Okay',
       )
     } else if (error.status === 500 || 501 || 503){
+      Notiflix.Loading.remove();
       Notiflix.Report.warning(
         error.statusText,
         'Sorry, we ran into a problem while processing your request. Please try again',
         'Okay',
       )
     } else {
+      Notiflix.Loading.remove();
       Notiflix.Report.failure(
         error.statusText,
         'Sorry, we ran into a problem while processing your request. Please try again',
@@ -105,7 +116,6 @@ export class ReqHandlerService {
 
   handleGET<T>(apiURL: string, options?): Observable<any>{
     return this.http.get<T>(apiURL, options).pipe(
-      retry(3), 
       catchError(
       (err) => this.handleError(err)
       ) 
@@ -113,7 +123,6 @@ export class ReqHandlerService {
   }
   handlePOST<T>(apiURL: string, payload?, options?): Observable<any>{
     return this.http.post<T>(apiURL, payload, options).pipe(
-      retry(3),
       catchError(
         (err) => this.handleError(err)
       )
@@ -121,7 +130,6 @@ export class ReqHandlerService {
   }
   handlePUT<T>(apiURL: string, payload?, options?): Observable<any>{
     return this.http.put<T>(apiURL, payload, options).pipe(
-      retry(3),
       catchError(
         (err) => this.handleError(err)
       )
@@ -129,7 +137,6 @@ export class ReqHandlerService {
   }
   handleDEL<T>(apiURL: string, options?): Observable<any>{
     return this.http.delete<T>(apiURL, options).pipe(
-      retry(3), 
       catchError(
       (err) => this.handleError(err)
       ) 

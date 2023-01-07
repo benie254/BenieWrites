@@ -12,13 +12,27 @@
                   </mat-error>
               </mat-form-field>
               <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Genre</mat-label>
+                    
+                    <mat-select name="genre" ngModel #genre="ngModel" required>
+                      <mat-option value="mystery" name="genre" ngModel #genre="ngModel" type="text">Mystery</mat-option>
+                      <mat-option value="mystery/thriller" name="genre" ngModel #genre="ngModel" type="text">Mystery/Thriller</mat-option>
+                      <mat-option value="thriller" name="genre" ngModel #genre="ngModel" type="text">Thriller</mat-option>
+                      <mat-option value="teen-fiction" name="genre" ngModel #genre="ngModel" type="text">Teen Fiction</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="genre.hasError('required') || genre.pristine">
+                        Genre is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field class="w-75" appearance="fill">
                     <mat-label>Category</mat-label>
                     
                     <mat-select name="category" ngModel #category="ngModel" required>
-                      <mat-option value="mystery" name="category" ngModel #category="ngModel" type="text">Mystery</mat-option>
-                      <mat-option value="mystery/thriller" name="category" ngModel #category="ngModel" type="text">Mystery/Thriller</mat-option>
-                      <mat-option value="thriller" name="category" ngModel #category="ngModel" type="text">Thriller</mat-option>
-                      <mat-option value="teen-fiction" name="category" ngModel #category="ngModel" type="text">Teen Fiction</mat-option>
+                      <mat-option value="short-story" name="category" ngModel #category="ngModel" type="text">Short Story</mat-option>
+                      <mat-option value="novelette" name="category" ngModel #category="ngModel" type="text">Novelette</mat-option>
+                      <mat-option value="novel" name="category" ngModel #category="ngModel" type="text">Novel</mat-option>
+                      <mat-option value="play" name="category" ngModel #category="ngModel" type="text">Play</mat-option>
                     </mat-select>
                     <mat-error *ngIf="category.hasError('required') || category.pristine">
                         Category is <strong>required</strong>
@@ -34,6 +48,17 @@
                     </mat-select>
                     <mat-error *ngIf="status.hasError('required') || status.pristine">
                         Status is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field><br>
+                  <mat-form-field class="w-75" appearance="fill">
+                    <mat-label>Pin</mat-label>
+                    
+                    <mat-select name="pin" ngModel #pin="ngModel" required>
+                      <mat-option value="pinned" name="pin" ngModel #pin="ngModel" type="text">Pinned</mat-option>
+                      <mat-option value="unpinned" name="pin" ngModel #pin="ngModel" type="text">Unpinned</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="pin.hasError('required') || pin.pristine">
+                        Pin is <strong>required</strong>
                     </mat-error>
                   </mat-form-field><br>
                   <mat-form-field class="w-75" appearance="fill">

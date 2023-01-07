@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { PoetryService } from '../../services/poetry.service';
 
@@ -29,6 +30,8 @@ export class ReadComponent implements OnInit {
   comments: any;
   poemId: any;
   topComments: any;
+  commentLikes: any;
+  commentReplies: any;
 
   
 
@@ -48,6 +51,9 @@ export class ReadComponent implements OnInit {
       } 
     )
     this.getAllPoems();
+  }
+  public trackByFn = (index, item): void => {
+    return item.id;
   }
   likePoem = (data: any): void => {
     Notiflix.Loading.pulse('processing...')
@@ -81,7 +87,44 @@ export class ReadComponent implements OnInit {
     this.poetryService.poemComments(id).subscribe({
       next: (res) => {
         this.comments = res;
-        this.topComments = res.slice(0,2)
+        this.topComments = res.slice(0,2);
+        for (let id of this.comments){
+          console.log("ids:",id.id)
+          this.commentReactions(id.id);
+        }
+      }
+    })
+  }
+  commentReactions(id: number){
+    this.poetryService.commentLikes(id).subscribe({
+      next: (res) => {
+        this.commentLikes = res;
+        console.warn("comment likes",res);
+      }
+    })
+  }
+  likeComment = (data: any): void => {
+    this.poetryService.likeComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('comment liked!');
+        this.ngOnInit();
+        setTimeout( () => {
+          location.reload();
+        },10)
+      }
+    })
+  }
+  replyComment = (data: any): void => {
+    this.poetryService.replyComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('reply posted!')
+        this.ngOnInit();
+        setTimeout( () => {
+          location.reload();
+        }, 10
+        )
       }
     })
   }
@@ -228,6 +271,7 @@ export class FollowerBottomSheet {
   currentSite = window.location.href;
   values = '';
   subInput: boolean = false;
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<FollowerBottomSheet>,

@@ -2,6 +2,8 @@
     <div class="padding-2">
         <div class="row">
           <div class="col-md-6">
+            {{details.replies}} replies
+            {{details.likes}} likes
             <form #feedbackForm="ngForm" class="bg-light rounded padding-2" (ngSubmit)="editItem(feedbackForm.value)" id="feedbackForm">
               <h2>Edit Feedback <i class="fa-solid fa-hashtag"></i> {{details.id}} Details <span class="text-success"></span></h2>  
             

@@ -1,7 +1,7 @@
 <div class="container-fluid" style="min-height:100vh;" id="readBg">
     <span class="sticky-top" style="opacity:0.95;font-weight: bolder;"><span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
     <span>
-        <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
+        <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
     </span>  </span>
 <div class="row g-0">
     <div class="col-md-2">
@@ -50,10 +50,8 @@
         <div class="container-fluid">
             <small>
                 <span>
+                    <app-comments [trackByFn]="trackByFn" [comments]="comments" [topComments]="topComments" [likeComment]="likeComment" [replyComment]="replyComment"></app-comments>
                     
-                    <span>
-                        <app-comments [comments]="comments" [topComments]="topComments"></app-comments>
-                    </span>
                 </span>
             </small> 
         </div>
@@ -65,5 +63,5 @@
         </div>
         <br><br><br><br>
 </div>
-<app-footer></app-footer>
+<app-poem-footer></app-poem-footer>
 

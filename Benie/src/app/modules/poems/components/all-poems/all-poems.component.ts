@@ -16,6 +16,7 @@ export class AllPoemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPoems();
+    this.bg();
   }
   getAllPoems(){
     Notiflix.Loading.pulse('Retrieving...')
@@ -24,8 +25,13 @@ export class AllPoemsComponent implements OnInit {
         Notiflix.Loading.remove();
         this.poems = res;
         console.warn(res)
+        this.bg();
       }
     })
+  }
+  bg(){
+    let s = (<HTMLDivElement>document.getElementById('sch'));
+    s.style.color = 'white';
   }
 
 }

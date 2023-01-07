@@ -26,7 +26,7 @@ export class NotificationsComponent implements OnInit {
       next: (res) => {
         Notiflix.Loading.remove();
         this.notifs = res;
-        this.latestNotifs = this.notifs.slice(0,4)
+        this.latestNotifs = this.notifs.slice(0,2)
       }
     })
   }

@@ -20,14 +20,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FollowComponent } from './components/follow/follow.component';
-import { FooterComponent } from './footer/footer.component';
 import { FeedbackBottomSheet, FeedbackComponent, FollowBottomSheet } from './components/feedback/feedback.component';
 import { RecentComponent } from './components/recent/recent.component';
 import { RelatedComponent } from './components/related/related.component';
-import { CommentsComponent } from './components/comments/comments.component';
+import { CommentsComponent, RepliesBottomSheet } from './components/comments/comments.component';
 import { SearchComponent } from './components/search/search.component';
 import { ResultsComponent } from './components/results/results.component';
 import { MatListModule } from '@angular/material/list';
+import {MatTreeModule} from '@angular/material/tree';
+import { PoemFooterComponent } from './poem-footer/poem-footer.component';
 
 
 @NgModule({
@@ -37,7 +38,6 @@ import { MatListModule } from '@angular/material/list';
     NavComponent,
     ReadComponent,
     FollowComponent,
-    FooterComponent,
     FeedbackComponent,
     RecentComponent,
     RelatedComponent,
@@ -48,6 +48,8 @@ import { MatListModule } from '@angular/material/list';
     FeedbackBottomSheet,
     FollowBottomSheet,
     FollowerBottomSheet,
+    RepliesBottomSheet,
+    PoemFooterComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +66,7 @@ import { MatListModule } from '@angular/material/list';
     MatInputModule,
     Ng2SearchPipeModule,
     MatListModule,
+    MatTreeModule,
   ]
 })
 export class PoemsModule { }

@@ -1,10 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 import { NgOptimizedImage } from '@angular/common'
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
 import * as Notiflix from 'notiflix';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
+import { AdminPoetryService } from 'src/app/modules/admin/services/poetry/poetry.service';
+import { PoetryService } from 'src/app/modules/poems/services/poetry.service';
+import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 
 @Component({
   selector: 'app-read',
@@ -26,6 +29,7 @@ export class ReadComponent implements OnInit {
   tableSizes: any = [2, 5, 10, 15];
   id: number;
   selectedId: any;
+  commentId: any;
   chapSelected: boolean = false;
   chapterPages: any;
   chapDet: any;
@@ -35,6 +39,7 @@ export class ReadComponent implements OnInit {
   chapId: any;
   firstChap: any;
   liked: string = 'like';
+  like = 'like';
   storyLikes: any;
   storyComments: any;
   views: string[] = [];
@@ -44,24 +49,35 @@ export class ReadComponent implements OnInit {
   readTime: any;
   readSecs: any;
   readHrs: any;
+  commentLikes: any;
+  commentReplies: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
     private service:MyStoryService,
     private stoyService: StoryService,
     private route:ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private poetryService:PoetryService
   ) { }
 
 
   ngOnInit(): void {
+    this.bg();
     this.msg = "";
     this.id = this.route.snapshot.params['id'];
-    this.route.params.subscribe(params => this.storyDetails(params['id']));
-    this.route.params.subscribe(params => this.storyChaps(params['id']));
-    this.route.params.subscribe(params => this.chapDetails(params['id']));
-    this.route.params.subscribe(params => this.storyReactions(params['id']));
-    this.route.params.subscribe(params => this.storyFeedbacks(params['id']));
+    this.route.params.subscribe(
+      params => {
+        this.storyDetails(params['id']),
+        this.storyReactions(params['id'])
+        this.storyFeedbacks(params['id']),
+        this.storyChaps(params['id']),
+        this.chapDetails(params['id'])
+      }
+    )
+  }
+  public trackByFn = (index, item): void => {
+    return item.id;
   }
   likeStory(data: any){
     Notiflix.Loading.pulse('Processing...')
@@ -95,12 +111,23 @@ export class ReadComponent implements OnInit {
     this.service.getStoryFeedbacks(id).subscribe({
       next: (res) => {
         this.storyComments = res;
-        this.topComments = this.storyComments.slice(0,4);
+        this.topComments = res.slice(0,2);
         console.warn(this.topComments,"tc")
-        console.warn("comments",res)
+        for (let id of this.storyComments){
+          this.commentReactions(id.id);
+        }
       }
     })
   }
+  commentReactions(id: number){
+    this.poetryService.commentLikes(id).subscribe({
+      next: (res) => {
+        this.commentLikes = res;
+        console.warn("comment likes",res);
+      }
+    })
+  }
+  
   goToChap = (): void => {
     this.show = true;
   }
@@ -152,13 +179,11 @@ export class ReadComponent implements OnInit {
   checkId(){
     // alert("a")
     let cId = parseInt(document.getElementById('chapId').textContent) +1;
-    Notiflix.Notify.success(cId.toString());
     // this.chapPages(cId);
     // console.warn("s")
   }
   prevId(){
     let cId = parseInt(document.getElementById('chapId').textContent);
-    Notiflix.Notify.success(cId.toString());
     // this.chapPages(cId);
     console.warn("s")
   }
@@ -185,25 +210,82 @@ export class ReadComponent implements OnInit {
     this.page = 1;
     this.storyChaps(this.id);
   }
+  bg(){
+    const footer = document.getElementById('footer');
+    footer.style.backgroundColor = 'rgb(31, 39, 44)';
+  }
   changeBg(event: any){
     const myDiv = (<HTMLDivElement>document.getElementById('readBg'));
     const content = (<HTMLDivElement>document.getElementById('content'));
-    const comm = (<HTMLDivElement>document.getElementById('comment'));
-    const read = (<HTMLDivElement>document.getElementById('reader'));
+    const back = document.getElementById('back');
+    const toggle = document.getElementById('toggle');
+    const share = document.getElementById('share');
+    const follow = document.getElementById('follow');
+    const exp = document.getElementById('expansion');
+    const footer = document.getElementById('footer');
     if(myDiv.style.backgroundColor == 'whitesmoke'){
       myDiv.style.backgroundColor = 'rgb(33, 33, 33)';
       myDiv.style.color = 'whitesmoke';
       content.style.backgroundColor = 'rgb(31, 39, 44)';
-      comm.style.backgroundColor = 'rgb(31, 39, 44)';
+      back.style.backgroundColor = 'rgb(31, 39, 44)';
+      toggle.style.backgroundColor = 'rgb(31, 39, 44)';
+      share.style.backgroundColor = 'rgb(31, 39, 44)';
+      follow.style.backgroundColor = 'rgb(31, 39, 44)';
+      exp.style.backgroundColor = 'rgb(31, 39, 44)';
+      footer.style.backgroundColor = 'rgb(31, 39, 44)';
     }else{
       myDiv.style.backgroundColor = 'whitesmoke';
       content.style.backgroundColor = 'white';
       myDiv.style.color = 'black';
       content.style.backgroundColor = 'white';
+      back.style.backgroundColor = 'whitesmoke';
+      toggle.style.backgroundColor = 'whitesmoke';
+      share.style.backgroundColor = 'whitesmoke';
+      follow.style.backgroundColor = 'whitesmoke';
+      exp.style.backgroundColor = 'whitesmoke';
+      footer.style.backgroundColor = 'whitesmoke';
     }
   }
   back(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/stories/library'])
+  }
+  likeComment(data: any){
+    this.poetryService.likeComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('comment liked!');
+        this.ngOnInit();
+        setTimeout( () => {
+          location.reload();
+        },10)
+      }
+    })
+  }
+  replyComment(data: any){
+    this.poetryService.replyComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('reply posted!')
+        this.ngOnInit();
+        setTimeout( () => {
+          location.reload();
+        }, 10
+        )
+      }
+    })
+  }
+  copyComment(text: any){
+    localStorage.setItem("commentId",text);
+    this.commentId = localStorage.getItem('commentId');
+    this.commentFeedbacks(this.commentId)
+  }
+  commentFeedbacks(id: number){
+    this.poetryService.commentReplies(id).subscribe({
+      next: (res) => {
+        this.commentReplies = res;
+        console.warn("comment likes",res);
+      }
+    })
   }
   
  
@@ -233,6 +315,14 @@ export class ReadComponent implements OnInit {
   }
   openBottomSheet(): void {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
+  }
+  followBottomSheet(): void {
+    this._bottomSheet.open(FollowBottomSheet);
+  }
+  replyBottomSheet(): void {
+    this._bottomSheet.open(RepliesBottomSheet, {
+      data: {myId: this.commentId},
+    });
   }
 
  
@@ -266,5 +356,119 @@ export class BottomSheetOverviewExampleSheet {
   clipBoard(text: any){
     navigator.clipboard.writeText(text);
     Notiflix.Notify.success('Link Copied!')    
+  }
+}
+
+@Component({
+  selector: 'follow-bottom-sheet',
+  templateUrl: 'follow.html',
+})
+export class FollowBottomSheet {
+  currentSite = window.location.href;
+  values = '';
+  subInput: boolean = false;
+  matcher = new MyErrorStateMatcher();
+
+  constructor(
+    private _bottomSheetRef: MatBottomSheetRef<FollowBottomSheet>,
+    private storyService:StoryService,
+    ) {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
+  subscribe(data){
+    Notiflix.Loading.pulse('Processing...')
+    this.storyService.addSub(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.success(
+          'Subscribed!',
+          'Your subscription was successful. Please check your email.',
+          'Okay',
+        )
+      },
+      error: (err) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.failure(
+          'Subscription Failed',
+          'Something went wrong as we tried to subscribe you. Please try again.',
+          'Okay',
+        )
+      }
+    })
+  }
+  subKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.subInput = true;
+    }
+  }
+ 
+}
+
+@Component({
+  selector: 'feedback-bottom-sheet',
+  templateUrl: 'replies.html',
+})
+export class RepliesBottomSheet implements OnInit {
+  storyLink = '';
+  currentSite = window.location.href;
+  det: any;
+  showRep = false;
+  liked = 'like';
+  cReplies: any;
+
+  constructor(
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: {myId: any},
+    private _bottomSheetRef: MatBottomSheetRef<RepliesBottomSheet>,
+    private adminPoetry:AdminPoetryService,
+    private poetryService:PoetryService,
+    ) {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
+
+  ngOnInit(){
+    this.commentFeedbacks();
+    this.commentDetails();
+  }
+  commentFeedbacks(){
+    this.poetryService.commentReplies(this.data.myId).subscribe({
+      next: (res) => {
+        this.cReplies = res;
+      }
+    })
+  }
+
+  commentDetails(){
+    this.adminPoetry.commentDetails(this.data.myId).subscribe({
+      next: (res) => {
+        this.det = res;
+      }
+    })
+  }
+  replyComment = (data: any): void => {
+    this.poetryService.replyComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('reply posted!')
+        this.ngOnInit();
+        setTimeout(() => {
+          location.reload();
+        },5)
+      }
+    })
+  }
+  toggleRep(){
+    this.showRep = true;
+  }
+  closeRep(){
+    setTimeout(() => {
+      this.showRep = false;
+    },5)
   }
 }

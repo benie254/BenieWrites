@@ -60,3 +60,9 @@ a:hover, .poemTitle:hover{
 .zoom:hover{
     transform: scale(1.55);
 }
+.zoom-x1{
+    transition: transform 1s;
+    }
+.zoom-x1:hover{
+    transform: scale(2);
+}

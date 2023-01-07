@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service';
 
-// const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
-const apiURL = 'http://127.0.0.1:8000/api/';
+const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
+// const apiURL = 'http://127.0.0.1:8000/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -24,61 +24,62 @@ export class MyStoryService {
   allFeeds = apiURL + 'feedbacks/all/';
   sub = apiURL + 'newsletter/subscribers/';
   notifs = apiURL + 'notifications/all/';
+  related = apiURL + 'stories/related/';
 
   myStory: string[] = [];
 
   constructor(
-    private http: HttpClient,
+    private handler: ReqHandlerService,
   ) { }
 
   getAllStories(): Observable<any>{
-    return this.http.get<any>(this.allStories);
+    return this.handler.handleGET<any>(this.allStories);
   }
   getOngoingStories(): Observable<any>{
-    return this.http.get<any>(this.onStories);
+    return this.handler.handleGET<any>(this.onStories);
   }
   getCompletedStories(): Observable<any>{
-    return this.http.get<any>(this.compStories);
+    return this.handler.handleGET<any>(this.compStories);
   }
   getAllNotifications(): Observable<any>{
-    return this.http.get<any>(this.notifs);
+    return this.handler.handleGET<any>(this.notifs);
   }
   getAllSubscribers(): Observable<any>{
-    return this.http.get<any>(this.sub);
+    return this.handler.handleGET<any>(this.sub);
   }
   
   getStoryDetails(id: number): Observable<any>{
-    return this.http.get<any>(this.storyDet + id);
+    return this.handler.handleGET<any>(this.storyDet + id);
   }
   getAllTags(): Observable<any>{
-    return this.http.get<any>(this.allTags);
+    return this.handler.handleGET<any>(this.allTags);
   }
   getAllChapters(): Observable<any>{
-    return this.http.get<any>(this.allChaps);
+    return this.handler.handleGET<any>(this.allChaps);
   }
   getChapDetails(id: number): Observable<any>{
-    return this.http.get<any>(this.chapDet + id);
+    return this.handler.handleGET<any>(this.chapDet + id);
   }
   getAllReactions(): Observable<any>{
-    return this.http.get<any>(this.allReacts);
+    return this.handler.handleGET<any>(this.allReacts);
   }
   addReaction(data: any): Observable<any>{
-    return this.http.post<any>(this.allReacts, data);
+    return this.handler.handlePOST<any>(this.allReacts, data);
   }
   getStoryReactions(id: number): Observable<any>{
-    return this.http.get<any>(this.storyReacts + id);
+    return this.handler.handleGET<any>(this.storyReacts + id);
   }
   getStoryFeedbacks(id: number): Observable<any>{
-    return this.http.get<any>(this.storyFeeds + id);
+    return this.handler.handleGET<any>(this.storyFeeds + id);
   }
   getAllComments(): Observable<any>{
-    return this.http.get<any>(this.allFeeds);
+    return this.handler.handleGET<any>(this.allFeeds);
   }
   getStoryChapters(id: number): Observable<any>{
-    return this.http.get<any>(this.storyChaps + id);
+    return this.handler.handleGET<any>(this.storyChaps + id);
   }
   getChapterPages(id: number): Observable<any>{
-    return this.http.get<any>(this.chapPages + id);
+    return this.handler.handleGET<any>(this.chapPages + id);
   }
 
   saveStory(story){
@@ -86,5 +87,9 @@ export class MyStoryService {
   }
   clearStories(){
     this.myStory = [];
+  }
+
+  getRelatedStories(id: any): Observable<any>{
+    return this.handler.handleGET<any>(this.related + id);
   }
 }

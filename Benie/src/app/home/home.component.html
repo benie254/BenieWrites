@@ -1,11 +1,29 @@
-<h1>
-    This will be a landing a page
-</h1>
-<h3>Click 
-    <br> 
-    <a [routerLink]="'/stories'">here to read stories</a>
+<app-navbar></app-navbar>
+
+<div class="container-fluid" style="padding:5%;">
     <br>
-    <a [routerLink]="'/poems'">here to read poems</a>
-    <br>
-    <a [routerLink]="'/discussions'">here to read discussions</a>
-</h3>
+    <div class="row">
+        <div class="col-lg-4">
+            <h1 class="text-center"><span style="font-size:xx-large;">Find Stories Where They Live</span> <br> <span><small><span><small>A thrilling mix of everything you love.</small></span>  <small><br><i>a beautiful reader mode</i></small></small></span></h1>
+            <img src="{{storiesImg}}" style="height:250px;max-width:100%;" alt="">
+            <button mat-raised-button color="primary" class="w-100" routerLink="/stories">Go to Stories</button>
+            <br><br>
+        </div>
+        <div class="col-lg-4">
+            <div class="shadow">
+                <h1 class="text-center"><span style="font-size:xx-large;">The Poetry Hub Is A Trip!</span> <br><small><span><small>And a dive down the depth of the soul.</small></span></small> <small><br><small><i>every week!</i></small></small></h1>
+                
+                <img src="{{poetryImg}}" style="height:250px;max-width:100%;" alt="">
+                <button mat-raised-button color="primary" class="w-100" routerLink="/poems">Go to Poetry</button>
+            </div>
+            <br><br>
+        </div>
+        <div class="col-lg-4">
+            <h1 class="text-center"><span style="font-size:xx-large;">Open Discussions And More</span> <br><small><span><small><small>Experiences, stories, articles, stuff you don't want to miss.</small></small></span></small> <small><br><small><i>every week!</i></small></small> </h1>
+            <img src="{{discussionImg}}" style="height:250px;max-width:100%;" alt="">
+            <button mat-raised-button color="primary" class="w-100" routerLink="/discussions">Go to Discussions</button>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+<app-footer></app-footer>

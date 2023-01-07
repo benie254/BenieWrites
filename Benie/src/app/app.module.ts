@@ -29,6 +29,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { NgxEditorModule } from 'ngx-editor';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -53,6 +55,8 @@ const analytics = getAnalytics(app);
     AppComponent,
     AboutComponent,
     HomeComponent,
+    FooterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +82,7 @@ const analytics = getAnalytics(app);
     MatExpansionModule,
     Ng2SearchPipeModule,
     NgxEditorModule,
+    MatChipsModule,
   ],
   providers: [
     {

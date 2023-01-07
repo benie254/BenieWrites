@@ -14,5 +14,10 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  reload(){
+    setTimeout(() => {
+      location.reload();
+    },3)
+  }
 
 }

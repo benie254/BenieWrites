@@ -1,6 +1,7 @@
-
+<div *ngIf="poems && poems.length !== 0">
 <app-nav [poems]="poems"></app-nav>
-<div class="container" >
+</div>
+<div class="container-fluid" *ngIf="poems && poems.length !== 0">
     <div class="row" style="padding:2.5%;">
         <h1 class="text-center"><span *ngIf="categ === 'Poems' || categ === 'Spoken-Word' || categ === 'One-Liners' || categ === 'Poetic-Notes' || categ === 'Poetic-Chains' else date">{{categ}}</span> <span><ng-template #date>{{categ | date}} Posts</ng-template></span></h1>
         <div class="col-lg-6" style="padding:3%;" *ngFor="let p of poems">
@@ -13,7 +14,24 @@
     <br><br>
     
 </div>
-<div class="content" style="padding:1.5%;">
-    <app-search></app-search>
+<div *ngIf="!poems || poems.length === 0">
+    <span class="sticky-top"><span (click)="back()" type="button" class="btn btn-sm" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;</span>
+
+    <div class="container" style="padding:2.5%">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9">
+            <h1 class="col2">Sorry, no poems have been posted today yet.</h1>
+            <p>However, we have plenty more options you could try.</p>
+            <button mat-raised-button class="w-25" color="primary" routerLink="/poems/all">Explore options</button>
+        </div>
+        <img src="https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg" style="max-height:390px;" alt="">
+    </div>
+    </div>
 </div>
-<app-footer></app-footer>
+<div class="content" style="padding:1.5%;">
+        <app-search></app-search>
+</div>
+<div>
+    <app-poem-footer></app-poem-footer>
+</div>

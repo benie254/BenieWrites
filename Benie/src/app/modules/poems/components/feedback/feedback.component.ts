@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { PoetryService } from '../../services/poetry.service';
 
@@ -81,6 +82,7 @@ export class FollowBottomSheet {
   currentSite = window.location.href;
   values = '';
   subInput: boolean = false;
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<FollowBottomSheet>,

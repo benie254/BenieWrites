@@ -24,6 +24,7 @@ export class ResultsComponent implements OnInit {
         this.searchByDate(params['id'])
       }
     )
+    this.bg();
   }
   relatedPoems(id: string){
     Notiflix.Loading.pulse('Retrieving...');
@@ -32,8 +33,13 @@ export class ResultsComponent implements OnInit {
         Notiflix.Loading.remove();
         this.poems = res;
         this.categ = id;
+        this.bg();
       }
     })
+  }
+  bg(){
+    let s = (<HTMLDivElement>document.getElementById('sch'));
+    s.style.color = 'white';
   }
   searchByDate(date: string){
     Notiflix.Loading.pulse('Retrieving...');
@@ -43,6 +49,9 @@ export class ResultsComponent implements OnInit {
         this.poems = res;
       }
     })
+  }
+  back(){
+    history.back();
   }
 
 }

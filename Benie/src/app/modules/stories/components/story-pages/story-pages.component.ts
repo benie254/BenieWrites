@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
@@ -36,6 +35,7 @@ export class StoryPagesComponent implements OnInit {
   readGen: any;
   readHrs: any;
   readSecs: any;
+  st: any;
   
 
   constructor(
@@ -158,22 +158,36 @@ export class StoryPagesComponent implements OnInit {
       }
     })
   }
-  
   changeBg(event: any){
     const myDiv = (<HTMLDivElement>document.getElementById('readSBg'));
     const content = (<HTMLDivElement>document.getElementById('sContent'));
+    const back = document.getElementById('back');
+    const toggle = document.getElementById('toggle');
+    const share = document.getElementById('share');
+    const follow = document.getElementById('follow');
+    const exp = document.getElementById('expansion');
     if(myDiv.style.backgroundColor == 'whitesmoke'){
       myDiv.style.backgroundColor = 'rgb(33, 33, 33)';
       myDiv.style.color = 'whitesmoke';
       content.style.backgroundColor = 'rgb(31, 39, 44)';
+      back.style.backgroundColor = 'rgb(31, 39, 44)';
+      toggle.style.backgroundColor = 'rgb(31, 39, 44)';
+      share.style.backgroundColor = 'rgb(31, 39, 44)';
+      follow.style.backgroundColor = 'rgb(31, 39, 44)';
+      exp.style.backgroundColor = 'rgb(31, 39, 44)';
     }else{
       myDiv.style.backgroundColor = 'whitesmoke';
       content.style.backgroundColor = 'white';
       myDiv.style.color = 'black';
+      back.style.backgroundColor = 'whitesmoke';
+      toggle.style.backgroundColor = 'whitesmoke';
+      share.style.backgroundColor = 'whitesmoke';
+      follow.style.backgroundColor = 'whitesmoke';
+      exp.style.backgroundColor = 'whitesmoke';
     }
   }
   back(){
-    this.router.navigate(['/read/story/' + this.storyId])
+    this.router.navigate(['/stories/' + this.story.title + '/' + this.storyId])
   }
   onTableDataChange = (event: any): void => {
     this.page = event;
@@ -192,6 +206,9 @@ export class StoryPagesComponent implements OnInit {
   }
   openBottomSheet(): void {
     this._bottomSheet.open(StoryDialog);
+  }
+  followBottomSheet(): void {
+    this._bottomSheet.open(FollowAltBottomSheet);
   }
 
  
@@ -228,4 +245,52 @@ export class StoryDialog {
     navigator.clipboard.writeText(text);
     Notiflix.Notify.success('Link Copied!')    
   }
+}
+
+@Component({
+  selector: 'follow-bottom-sheet',
+  templateUrl: 'follow-alt.html',
+})
+export class FollowAltBottomSheet {
+  currentSite = window.location.href;
+  values = '';
+  subInput: boolean = false;
+
+  constructor(
+    private _bottomSheetRef: MatBottomSheetRef<FollowAltBottomSheet>,
+    private storyService:StoryService,
+    ) {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
+  subscribe(data){
+    Notiflix.Loading.pulse('Processing...')
+    this.storyService.addSub(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.success(
+          'Subscribed!',
+          'Your subscription was successful. Please check your email.',
+          'Okay',
+        )
+      },
+      error: (err) => {
+        Notiflix.Loading.remove();
+        Notiflix.Report.failure(
+          'Subscription Failed',
+          'Something went wrong as we tried to subscribe you. Please try again.',
+          'Okay',
+        )
+      }
+    })
+  }
+  subKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.subInput = true;
+    }
+  }
+ 
 }
