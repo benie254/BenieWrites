@@ -1,14 +1,8 @@
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import * as Notiflix from 'notiflix';
 import { AdminPoetryService } from 'src/app/modules/admin/services/poetry/poetry.service';
 import { PoetryService } from '../../services/poetry.service';
-
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
 
 @Component({
   selector: 'app-comments',
@@ -42,14 +36,6 @@ export class CommentsComponent implements OnInit {
     this.selectedId = localStorage.getItem('commentId');
     this.commentFeedbacks(this.selectedId);
   }
-  toggleRep(){
-    this.showRep = true;
-  }
-  closeRep(){
-    setTimeout(() => {
-      this.showRep = false;
-    },5)
-  }
   commentFeedbacks(id: any){
     this.poetryService.commentReplies(id).subscribe({
       next: (res) => {
@@ -62,11 +48,6 @@ export class CommentsComponent implements OnInit {
       data: {myId: this.selectedId},
     });
   }
-  
-  
-
-  
-
 }
 
 @Component({
@@ -74,10 +55,7 @@ export class CommentsComponent implements OnInit {
   templateUrl: 'replies.html',
 })
 export class RepliesBottomSheet implements OnInit {
-  storyLink = '';
-  currentSite = window.location.href;
   det: any;
-  showRep = false;
   liked = 'like';
   cReplies: any;
 
@@ -104,7 +82,6 @@ export class RepliesBottomSheet implements OnInit {
       }
     })
   }
-
   commentDetails(){
     Notiflix.Loading.pulse('fetching replies...')
     this.adminPoetry.commentDetails(this.data.myId).subscribe({
@@ -126,13 +103,5 @@ export class RepliesBottomSheet implements OnInit {
         },5)
       }
     })
-  }
-  toggleRep(){
-    this.showRep = true;
-  }
-  closeRep(){
-    setTimeout(() => {
-      this.showRep = false;
-    },5)
   }
 }
