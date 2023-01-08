@@ -153,3 +153,33 @@ a:hover, .poemTitle:hover{
 .border-50{
     border-radius:50%;
 }
+.xxsm{
+    font-size:xx-small;
+}
+.xsm{
+    font-size: x-small;
+}
+.smaller{
+    font-size: smaller;
+}
+.sm{
+    font-size: small;
+}
+.md{
+    font-size: medium;
+}
+.lg{
+    font-size: large;
+}
+.larger{
+    font-size: larger;
+}
+.xl{
+    font-size: x-large;
+}
+.xxl{
+    font-size: xx-large;
+}
+.welcome{
+    color: orange;
+}
