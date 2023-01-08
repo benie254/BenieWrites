@@ -29,6 +29,7 @@ import { ResultsComponent } from './components/results/results.component';
 import { MatListModule } from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import { PoemFooterComponent } from './components/poem-footer/poem-footer.component';
+import { ContactModule } from '../contact/contact.module';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { PoemFooterComponent } from './components/poem-footer/poem-footer.compon
     Ng2SearchPipeModule,
     MatListModule,
     MatTreeModule,
+    ContactModule,
   ]
 })
 export class PoemsModule { }

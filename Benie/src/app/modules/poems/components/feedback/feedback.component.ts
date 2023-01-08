@@ -79,6 +79,7 @@ export class FeedbackBottomSheet {
   templateUrl: 'follow.html',
 })
 export class FollowBottomSheet {
+  followImg = 'https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png';
   currentSite = window.location.href;
   values = '';
   subInput: boolean = false;

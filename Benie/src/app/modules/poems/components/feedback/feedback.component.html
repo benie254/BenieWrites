@@ -20,7 +20,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label class="bg-light" color="primary">Comment</mat-label>
                     <input type="number" name="poem" ngModel class="hide" [(ngModel)]="poemId">
-                    <textarea type="text" matInput ngModel name="comment"></textarea>
+                    <textarea type="text" class="textarea" matInput ngModel name="comment"></textarea>
                 </mat-form-field>
                 <div *ngIf="!noInput">
                     <mat-form-field>

@@ -33,8 +33,8 @@ import { TruncatePipe } from './pipes/trunc/truncate.pipe';
 import { HomeComponent } from './home/home.component';
 import { StoryFooterComponent } from './story-footer/story-footer.component';
 import { ResultsComponent } from './components/results/results.component';
-import { SubscribeComponent } from './components/subscribe/subscribe.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ContactModule } from '../contact/contact.module';
 
 
 @NgModule({
@@ -56,7 +56,6 @@ import { NotificationsComponent } from './components/notifications/notifications
     FollowBottomSheet,
     FollowAltBottomSheet,
     RepliesBottomSheet,
-    SubscribeComponent,
     NotificationsComponent
   ],
   imports: [
@@ -83,12 +82,12 @@ import { NotificationsComponent } from './components/notifications/notifications
     Ng2SearchPipeModule,
     NgxEditorModule,
     MatListModule,
+    ContactModule,
   ],
   exports: [
     TruncatePipe,
     DateAgoPipe,
     StoryFooterComponent,
-    SubscribeComponent,
   ],
 })
 export class StoriesModule { }

@@ -31,6 +31,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { StoriesModule } from './modules/stories/stories.module';
 import { HomeComponent } from './components/home/home.component';
 import { NavigationModule } from './modules/navigation/navigation.module';
+import { ContactModule } from './modules/contact/contact.module';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -83,6 +84,7 @@ const analytics = getAnalytics(app);
     MatChipsModule,
     StoriesModule,
     NavigationModule,
+    ContactModule,
   ],
   providers: [
     {
