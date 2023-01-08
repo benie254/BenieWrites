@@ -1,35 +1,40 @@
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-4">
-       <form #likeForm="ngForm" (ngSubmit)="(likePoem(likeForm.value))">
-        
-        <input type="text" name="like" ngModel style="display:none;" [(ngModel)]="liked">
-        <input type="number" name="poem" ngModel style="display:none;" [(ngModel)]="poemId">
-        <button mat-raised-button color="primary" type="submit"><i class="fa-solid fa-star"></i> Like <span style="font-size:x-small;" class="text-warning">{{likes.length}} likes</span></button> 
-       </form> 
-       <br>
-       <button mat-raised-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>
-       &nbsp;&nbsp;&nbsp;&nbsp;
-       <button mat-raised-button color="primary" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
-       <br><br>
-    </div>
-    <div class="col-md-6">
-        <form #commentForm="ngForm" (ngSubmit)="commentPoem(commentForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
-            <mat-form-field appearance="fill">
-                <mat-label class="bg-light" color="primary">Comment</mat-label>
-                <input type="number" name="poem" ngModel style="display:none;" [(ngModel)]="poemId">
-                <textarea style="height:100px;width:200px;" type="text" matInput ngModel name="comment"></textarea>
-            </mat-form-field>
-            <div *ngIf="!noInput">
-                <mat-form-field>
-                    <mat-label class="bg-light" color="primary">Name</mat-label>
-                    <input name="commented_by" matInput ngModel type="text">
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <form #likeForm="ngForm" (ngSubmit)="(likePoem(likeForm.value))">
+                <input type="text" name="like" ngModel class="hide" [(ngModel)]="liked">
+                <input type="number" name="poem" ngModel class="hide" [(ngModel)]="poemId">
+                <button mat-raised-button color="primary" type="submit">
+                    <i class="fa-solid fa-star"></i> Like <span class="xsm text-warning">{{likes.length}} likes</span>
+                </button> 
+           </form> 
+           <br>
+           <button mat-raised-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>
+           &nbsp;&nbsp;&nbsp;&nbsp;
+           <button mat-raised-button color="primary" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
+           <br><br>
+        </div>
+        <div class="col-md-6">
+            <form #commentForm="ngForm" (ngSubmit)="commentPoem(commentForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
+                <mat-form-field appearance="fill">
+                    <mat-label class="bg-light" color="primary">Comment</mat-label>
+                    <input type="number" name="poem" ngModel class="hide" [(ngModel)]="poemId">
+                    <textarea type="text" matInput ngModel name="comment"></textarea>
                 </mat-form-field>
-            </div>
-            &nbsp;<button mat-raised-button color="primary" *ngIf="!noInput" type="submit">Add <i class="fa-regular fa-comment"></i></button>
-
-        </form>
-        <br><br>
+                <div *ngIf="!noInput">
+                    <mat-form-field>
+                        <mat-label class="bg-light" color="primary">Name</mat-label>
+                        <input name="commented_by" matInput ngModel type="text">
+                    </mat-form-field>
+                </div>
+                &nbsp;
+                <button mat-raised-button color="primary" *ngIf="!noInput" type="submit">
+                    Add <i class="fa-regular fa-comment"></i>
+                </button>
+            </form>
+            <br><br>
+        </div>
+        <div class="col-md-1"></div>
     </div>
-    <div class="col-md-1"></div>
 </div>

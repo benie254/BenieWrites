@@ -186,3 +186,6 @@ a:hover, .poemTitle:hover{
 .hide{
     display: none;
 }
+textarea{
+    height:100px;width:200px;
+}
