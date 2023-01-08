@@ -72,7 +72,7 @@ export class SearchComponent implements OnInit {
     this.isLoading= true;
     this.getByDate(poemDate);
   }
-  getByDate(poemDate): void{
+  getByDate(poemDate: any): void{
     this.poetryService.searchByDate(poemDate).subscribe( data => {
         this.foundPoems = data;
         console.warn(data)

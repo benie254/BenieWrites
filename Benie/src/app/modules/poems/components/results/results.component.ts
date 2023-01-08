@@ -11,6 +11,7 @@ import { PoetryService } from '../../services/poetry.service';
 export class ResultsComponent implements OnInit {
   poems: any;
   categ = '';
+  nothingImg = 'https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg';
 
   constructor(
     private route:ActivatedRoute,
@@ -53,5 +54,4 @@ export class ResultsComponent implements OnInit {
   back(){
     history.back();
   }
-
 }

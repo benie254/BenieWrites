@@ -189,3 +189,14 @@ a:hover, .poemTitle:hover{
 textarea{
     height:100px;width:200px;
 }
+.top{
+    opacity:0.95;font-weight: bolder;
+}
+.myReader{
+    line-height:24px;
+    font-family:monospace
+}
+.pic{
+    width:75px;
+    height:35px;
+}

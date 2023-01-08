@@ -2,22 +2,35 @@
 <app-nav [poems]="poems"></app-nav>
 </div>
 <div class="container-fluid" *ngIf="poems && poems.length !== 0">
-    <div class="row" style="padding:2.5%;">
-        <h1 class="text-center"><span *ngIf="categ === 'Poems' || categ === 'Spoken-Word' || categ === 'One-Liners' || categ === 'Poetic-Notes' || categ === 'Poetic-Chains' else date">{{categ}}</span> <span><ng-template #date>{{categ | date}} Posts</ng-template></span></h1>
-        <div class="col-lg-6" style="padding:3%;" *ngFor="let p of poems">
-            <small class="divide col2">published &nbsp;<a routerLink="/poems/related/date/{{p.uploaded | date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> &nbsp;&nbsp; in &nbsp;<a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a></small>
-            <a routerLink="/poems/{{p.title}}/{{p.id}}"><img src="{{p.cover}}" style="min-height:200px;max-height:360px;max-width:100%;" alt=""></a>
-            <h1 class="text-primary"><a routerLink="/poems/{{p.title}}/{{p.id}}">{{p.title}}</a></h1>
+    <div class="row padding-xl">
+        <h1 class="text-center">
+            <span *ngIf="categ === 'Poems' || categ === 'Spoken-Word' || categ === 'One-Liners' || categ === 'Poetic-Notes' || categ === 'Poetic-Chains' else date">{{categ}}</span> 
+            <span>
+                <ng-template #date>{{categ | date}} Posts</ng-template>
+            </span>
+        </h1>
+        <div class="col-lg-6 padding-xxl" *ngFor="let p of poems">
+            <small class="divide col2">
+                published &nbsp;
+                <a routerLink="/poems/related/date/{{p.uploaded | date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> 
+                &nbsp;&nbsp; in &nbsp;
+                <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a>
+            </small>
+            <a routerLink="/poems/{{p.title}}/{{p.id}}">
+                <img src="{{p.cover}}" class="max-width" id="cover" alt="">
+            </a>
+            <h1 class="text-primary">
+                <a routerLink="/poems/{{p.title}}/{{p.id}}">{{p.title}}</a>
+            </h1>
             <p>{{p.excerpt}}</p>
         </div>
     </div>
     <br><br>
-    
 </div>
 <div *ngIf="!poems || poems.length === 0">
-    <span class="sticky-top"><span (click)="back()" type="button" class="btn btn-sm" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;</span>
-
-    <div class="container" style="padding:2.5%">
+    <span class="sticky-top">
+        <span (click)="back()" type="button" class="btn btn-sm col1"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;</span>
+    <div class="container padding-lg">
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-9">
@@ -25,12 +38,12 @@
             <p>However, we have plenty more options you could try.</p>
             <button mat-raised-button color="primary" routerLink="/poems/all">Explore options</button>
         </div>
-        <img src="https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg" style="max-height:390px;" alt="">
+        <img src="{{nothingImg}}" id="nothing" alt="">
     </div>
     </div>
 </div>
-<div class="content" style="padding:1.5%;">
-        <app-search></app-search>
+<div class="content padding-md">
+    <app-search></app-search>
 </div>
 <div>
     <app-poem-footer></app-poem-footer>

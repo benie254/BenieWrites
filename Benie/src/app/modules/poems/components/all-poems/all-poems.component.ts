@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
+import { Poem } from 'src/app/classes/poem/poem';
 import { PoetryService } from '../../services/poetry.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class AllPoemsComponent implements OnInit {
   getAllPoems(){
     Notiflix.Loading.pulse('fetching poems...')
     this.poetryService.getAllPoems().subscribe({
-      next: (res) => {
+      next: (res: Poem) => {
         Notiflix.Loading.remove();
         this.poems = res;
         console.warn(res)

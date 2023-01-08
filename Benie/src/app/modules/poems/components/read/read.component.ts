@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { Poem } from 'src/app/classes/poem/poem';
+import { Reaction } from 'src/app/classes/reaction/reaction';
+import { Subscriber } from 'src/app/classes/subscriber/subscriber';
 import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 import { PoetryService } from '../../services/poetry.service';
@@ -12,7 +15,7 @@ import { PoetryService } from '../../services/poetry.service';
   styleUrls: ['./read.component.css']
 })
 export class ReadComponent implements OnInit {
-  text = 'So, we live–we make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidable  make merry, as the winds in daylight. we leep going with every s the winds in daylight. we leep going with ev single and every worthy breath we draw and daaww We are unstoppable, formidab';
+  authorImg = 'https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png';
   locale: any;
   details: any;
   poemCategory = '';
@@ -33,11 +36,8 @@ export class ReadComponent implements OnInit {
   commentLikes: any;
   commentReplies: any;
 
-  
-
   constructor(
     private _bottomSheet: MatBottomSheet,
-    private router:Router,
     private poetryService:PoetryService,
     private route: ActivatedRoute,
   ) { }
@@ -55,7 +55,7 @@ export class ReadComponent implements OnInit {
   public trackByFn = (index, item): void => {
     return item.id;
   }
-  likePoem = (data: any): void => {
+  likePoem = (data: Poem): void => {
     Notiflix.Loading.pulse('processing...')
     this.poetryService.likePoem(data).subscribe({
       next: (res) => {
@@ -65,7 +65,7 @@ export class ReadComponent implements OnInit {
       }
     })
   }
-  commentPoem = (data: any): void => {
+  commentPoem = (data: Poem): void => {
     Notiflix.Loading.pulse('posting comment...')
     this.poetryService.commentPoem(data).subscribe({
       next: (res) => {
@@ -77,9 +77,8 @@ export class ReadComponent implements OnInit {
   }
   poemReactions(id: any){
     this.poetryService.poemLikes(id).subscribe({
-      next: (res) => {
+      next: (res: Reaction) => {
         this.likes = res;
-        console.warn(res)
       }
     })
   }
@@ -89,7 +88,6 @@ export class ReadComponent implements OnInit {
         this.comments = res;
         this.topComments = res.slice(0,2);
         for (let id of this.comments){
-          console.log("ids:",id.id)
           this.commentReactions(id.id);
         }
       }
@@ -231,7 +229,6 @@ export class ReadComponent implements OnInit {
   followBottomSheet(): void {
     this._bottomSheet.open(FollowerBottomSheet);
   }
-
 }
 
 @Component({
@@ -249,12 +246,11 @@ export class BottomSheetOverviewExampleSheet {
     event.preventDefault();
   }
   myLink(){
-    this.copyLink(window.location.href);
+    this.copyLink(this.currentSite);
   }
   copyLink(text: any){
     localStorage.setItem('myLink',text);
     this.storyLink = localStorage.getItem('myLink')
-    console.warn("my link",this.storyLink)
     this.clipBoard(this.storyLink)
   }
   clipBoard(text: any){
@@ -268,46 +264,14 @@ export class BottomSheetOverviewExampleSheet {
   templateUrl: 'follow.html',
 })
 export class FollowerBottomSheet {
-  currentSite = window.location.href;
-  values = '';
-  subInput: boolean = false;
-  matcher = new MyErrorStateMatcher();
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<FollowerBottomSheet>,
-    private storyService:StoryService,
     ) {}
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
-  }
-  subscribe(data){
-    Notiflix.Loading.pulse('Processing...')
-    this.storyService.addSub(data).subscribe({
-      next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.success(
-          'Subscribed!',
-          'Your subscription was successful. Please check your email.',
-          'Okay',
-        )
-      },
-      error: (err) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.failure(
-          'Subscription Failed',
-          'Something went wrong as we tried to subscribe you. Please try again.',
-          'Okay',
-        )
-      }
-    })
-  }
-  subKey(event: any){
-    this.values = event.target.value;
-    if(this.values){
-      this.subInput = true;
-    }
   }
  
 }

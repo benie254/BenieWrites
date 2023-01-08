@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { ActivatedRoute } from '@angular/router';
 import * as Notiflix from 'notiflix';
+import { Subscriber } from 'src/app/classes/subscriber/subscriber';
 import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
-import { PoetryService } from '../../services/poetry.service';
 
 @Component({
   selector: 'app-feedback',
@@ -22,14 +21,11 @@ export class FeedbackComponent implements OnInit {
 
   constructor(
     private _bottomSheet: MatBottomSheet,
-    private poetryService:PoetryService,
-    private route:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
   }
-  
-  
+
   onKey(event: any){
     this.values = event.target.value;
     if(this.values){
@@ -42,7 +38,6 @@ export class FeedbackComponent implements OnInit {
   followBottomSheet(): void {
     this._bottomSheet.open(FollowBottomSheet);
   }
-
 }
 
 @Component({
@@ -60,17 +55,16 @@ export class FeedbackBottomSheet {
     event.preventDefault();
   }
   myLink(){
-    this.copyLink(window.location.href);
+    this.copyLink(this.currentSite);
   }
   copyLink(text: any){
     localStorage.setItem('myLink',text);
     this.storyLink = localStorage.getItem('myLink')
-    console.warn("my link",this.storyLink)
     this.clipBoard(this.storyLink)
   }
   clipBoard(text: any){
     navigator.clipboard.writeText(text);
-    Notiflix.Notify.success('Link Copied!')    
+    Notiflix.Notify.success('link copied!')    
   }
 }
 
@@ -80,7 +74,6 @@ export class FeedbackBottomSheet {
 })
 export class FollowBottomSheet {
   followImg = 'https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png';
-  currentSite = window.location.href;
   values = '';
   subInput: boolean = false;
   matcher = new MyErrorStateMatcher();
@@ -94,7 +87,7 @@ export class FollowBottomSheet {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
   }
-  subscribe(data){
+  subscribe(data: Subscriber){
     Notiflix.Loading.pulse('Processing...')
     this.storyService.addSub(data).subscribe({
       next: (res) => {
@@ -102,14 +95,6 @@ export class FollowBottomSheet {
         Notiflix.Report.success(
           'Subscribed!',
           'Your subscription was successful. Please check your email.',
-          'Okay',
-        )
-      },
-      error: (err) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.failure(
-          'Subscription Failed',
-          'Something went wrong as we tried to subscribe you. Please try again.',
           'Okay',
         )
       }
@@ -121,7 +106,6 @@ export class FollowBottomSheet {
       this.subInput = true;
     }
   }
- 
 }
 
 

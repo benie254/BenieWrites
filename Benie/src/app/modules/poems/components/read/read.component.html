@@ -1,38 +1,71 @@
-<div class="container-fluid" style="min-height:100vh;" id="readBg">
-    <span class="sticky-top" style="opacity:0.95;font-weight: bolder;"><span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
-    <span>
-        <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
-    </span>  </span>
-<div class="row">
-    <div class="col-lg-1">
-        
-    </div>
-    <div class="col-lg-9">
-        <div style="min-width:100%;" id="content">
-            <small style="font-size:xx-small;"><a href="{{details.cover_source}}" target="_blank">Photo Source</a></small><br><br>
-        <img src="{{details.cover}}" class="img-fluid mb-3" style="max-height:540px;max-width:100%;" alt="">
-        
+<div class="container-fluid" id="readBg">
+    <span class="sticky-top" class="top">
+        <span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark col1">
+            <i class="fa-solid fa-chevron-left"></i> Go Back
+        </span> 
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <span>
+                <button id="toggle" class="btn btn-sm btn-dark col1">
+                    <mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle>
+                </button>
+            </span>
+            <span class="float-right">
+                <button id="follow" class="col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
+                    <i class="fa-solid fa-user-plus"></i> Follow
+                </button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="share" class="col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
+                    <i class="fa-solid fa-share-nodes"></i> Share
+                </button>
+                &nbsp;&nbsp;
+            </span>
+        </span>  
+    </span>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-9">
+            <div class="min-width" id="content">
+                <small class="xxsm">
+                    <a href="{{details.cover_source}}" target="_blank">Photo Source</a>
+                </small>
+                <br><br>
+                <img src="{{details.cover}}" class="img-fluid mb-3 max-width" id="cover" alt="">
+            
 
-        <br>
-        <br>
-        <div style="padding:2%;">
-            <h1 class="text-primary">{{details.title}}</h1>
-        <span class="col2"><small> <span><i class="fa-regular fa-star"></i> {{likes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{comments.length}}</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> {{readTime}}  &nbsp;&nbsp; </small></span>
-<br><br>
-        <p style="font-size:large;line-height:24px;font-family:monospace" [innerHTML]="details.description"></p>
-        <p><span><small class="col2">published <a routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> by <a routerLink="/about">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> in <a routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a></small></span></p>
+            <br>
+            <br>
+            <div class="padding-xl">
+                <h1 class="text-primary">{{details.title}}</h1>
+                <span class="col2">
+                    <small> 
+                        <span><i class="fa-regular fa-star"></i> {{likes.length}}</span> 
+                        &nbsp;&nbsp; 
+                        <span><i class="fa-regular fa-comment"></i> {{comments.length}}</span> 
+                        &nbsp;&nbsp; 
+                        <i class="fa-regular fa-clock"></i> {{readTime}}  
+                        &nbsp;&nbsp; 
+                    </small>
+                </span>
+                <br><br>
+                <p class="myReader lg" [innerHTML]="details.description"></p>
+                <p>
+                    <span>
+                        <small class="col2">
+                            published <a routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> 
+                            by <a routerLink="/about">Benie Langat <img src="{{authorImg}}" class="border-50" height="20px" width="20px" alt=""></a> 
+                            in <a routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a>
+                        </small>
+                    </span>
+                </p>
+            </div>
+            <br>
+            <hr class="w-50">
+            <small>
+                <app-feedback [poemId]="poemId" [likes]="likes" [likePoem]="likePoem" [commentPoem]="commentPoem"></app-feedback>
+            </small>
         </div>
-        <br>
-        <hr class="w-50">
-        <small>
-       <app-feedback [poemId]="poemId" [likes]="likes" [likePoem]="likePoem" [commentPoem]="commentPoem"></app-feedback>
-        
-        </small>
-        </div>
-    </div>
-    
-    <div class="col-lg-2">
-    </div>  
+        <div class="col-lg-2"></div>  
     </div>
     <br>
     <span>
@@ -45,25 +78,20 @@
                 <app-recent [poems]="poems"></app-recent>
             </div>
         </div>
-        
     </span>
-
-        <br>
-        <div class="container-fluid">
-            <small>
-                <span>
-                    <app-comments [trackByFn]="trackByFn" [comments]="comments" [topComments]="topComments" [likeComment]="likeComment" [replyComment]="replyComment"></app-comments>
-                    
-                </span>
-            </small> 
-        </div>
-        <br><br>
-        <div class="container-fluid">
-            <app-search></app-search>
-    
-            
-        </div>
-        <br><br><br><br>
+    <br>
+    <div class="container-fluid">
+        <small>
+            <span>
+                <app-comments [trackByFn]="trackByFn" [comments]="comments" [topComments]="topComments" [likeComment]="likeComment" [replyComment]="replyComment"></app-comments>
+            </span>
+        </small> 
+    </div>
+    <br><br>
+    <div class="container-fluid">
+        <app-search></app-search>
+    </div>
+    <br><br><br><br>
 </div>
 <app-poem-footer></app-poem-footer>
 

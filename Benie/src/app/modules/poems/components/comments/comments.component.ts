@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import * as Notiflix from 'notiflix';
+import { Feedback } from 'src/app/classes/feedback/feedback';
 import { AdminPoetryService } from 'src/app/modules/admin/services/poetry/poetry.service';
 import { PoetryService } from '../../services/poetry.service';
 
@@ -31,6 +32,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   copy(text: any){
     localStorage.setItem("commentId",text);
     this.selectedId = localStorage.getItem('commentId');
@@ -76,9 +78,10 @@ export class RepliesBottomSheet implements OnInit {
     this.commentFeedbacks();
     this.commentDetails();
   }
+
   commentFeedbacks(){
     this.poetryService.commentReplies(this.data.myId).subscribe({
-      next: (res) => {
+      next: (res: Feedback) => {
         this.cReplies = res;
       }
     })
@@ -86,13 +89,13 @@ export class RepliesBottomSheet implements OnInit {
   commentDetails(){
     Notiflix.Loading.pulse('fetching replies...')
     this.adminPoetry.commentDetails(this.data.myId).subscribe({
-      next: (res) => {
+      next: (res: Feedback) => {
         Notiflix.Loading.remove();
         this.det = res;
       }
     })
   }
-  replyComment = (data: any): void => {
+  replyComment = (data: Feedback): void => {
     Notiflix.Loading.pulse('posting reply...')
     this.poetryService.replyComment(data).subscribe({
       next: (res) => {
