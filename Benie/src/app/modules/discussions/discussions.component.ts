@@ -10,7 +10,7 @@ import { StoryService } from '../admin/services/story/story.service';
   styleUrls: ['./discussions.component.css']
 })
 export class DiscussionsComponent implements OnInit {
-
+  img = 'https://res.cloudinary.com/benie/image/upload/v1669953692/undraw_news_re_6uub_mtilyp.svg';
   constructor(
     private _bottomSheet: MatBottomSheet,
   ) { }
