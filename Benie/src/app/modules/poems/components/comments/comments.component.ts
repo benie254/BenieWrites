@@ -53,6 +53,7 @@ export class CommentsComponent implements OnInit {
 @Component({
   selector: 'feedback-bottom-sheet',
   templateUrl: 'replies.html',
+  styleUrls: ['./comments.component.css']
 })
 export class RepliesBottomSheet implements OnInit {
   det: any;
