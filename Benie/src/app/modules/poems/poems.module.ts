@@ -9,7 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import { TruncatePipe } from '../stories/pipes/trunc/truncate.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './components/nav/nav.component';
 import { BottomSheetOverviewExampleSheet, FollowerBottomSheet, ReadComponent } from './components/read/read.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,7 +28,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ResultsComponent } from './components/results/results.component';
 import { MatListModule } from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
-import { PoemFooterComponent } from './poem-footer/poem-footer.component';
+import { PoemFooterComponent } from './components/poem-footer/poem-footer.component';
 
 
 @NgModule({

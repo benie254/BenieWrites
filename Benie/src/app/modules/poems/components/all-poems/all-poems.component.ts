@@ -19,7 +19,7 @@ export class AllPoemsComponent implements OnInit {
     this.bg();
   }
   getAllPoems(){
-    Notiflix.Loading.pulse('Retrieving...')
+    Notiflix.Loading.pulse('fetching poems...')
     this.poetryService.getAllPoems().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
@@ -33,5 +33,4 @@ export class AllPoemsComponent implements OnInit {
     let s = (<HTMLDivElement>document.getElementById('sch'));
     s.style.color = 'white';
   }
-
 }
