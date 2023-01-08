@@ -1,22 +1,40 @@
 <app-navbar></app-navbar>
-<div class="container" style="padding:2.5%;">
+<div class="container padding-lg">
     <div class="row g-0">
         <div class="col-md-4">
-            <h1 style="color:blueviolet">{{author}} <br> <h5 class="col2">{{tag}}</h5></h1>
+            <h1 class="col1">{{author}} <br> <h5 class="col2">{{tag}}</h5></h1>
             <p>{{about}}</p>
             <p>{{closing}}</p>
             <br>
             <div>
-                <a style="margin:1.5%;" href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://twitter.com/share?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="whatsapp://send?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life. {{currentSite}} " data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
+                <a href="https://facebook.com/">
+                    <button class="margin-md" mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button>
+                </a> 
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://twitter.com/share?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life." target="_blank">
+                    <button class="margin-md" mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button>
+                </a> 
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://www.linkedin.com/">
+                    <button class="margin-md" mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button>
+                </a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="https://instagram.com/">
+                    <button class="margin-md" mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button>
+                </a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="whatsapp://send?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life. {{currentSite}} " data-action="share/whatsapp/share" target="_blank">
+                    <button class="margin-md" mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button>
+                </a> 
             </div> 
         </div>
         <div class="col-md-3">
-            <img src="{{img}}" style="max-height:300px;max-width:100%;" alt="">
+            <img id="about-img" src="{{img}}" alt="">
         </div>
         <div class="col-md-5">
-            <div style="padding:5%;margin:2.5%;">
+            <div class="padding-xxl margin-lg">
                 <form #subForm="ngForm" class="shadow" (ngSubmit)="subscribe(subForm.value)" (mouseover)="subKey($event)" (keydown)="subKey($event)" (keypress)="subKey($event)" (keyup)="subKey($event)">
-                    <h1 style="color:blueviolet" class=" text-center">
+                    <h1 class="col1 text-center">
                         Monthly Newsletter 
                         <br> 
                         <span>
@@ -48,49 +66,58 @@
     </div>
 </div>
 <hr>
-<div class="container-fluid" style="padding:1.5%;">
-    <div class="row" style="padding:1.5%;">
+<div class="container-fluid padding-md">
+    <div class="row padding-md">
         <div class="col-md-1"></div>
         <div class="col-md-5">
             <form #contForm="ngForm" class="shadow" (ngSubmit)="contact(contForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
-                <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5 class="col2">{{shortName}} built and designed this website <br> & owns all the written content.</h5></span></h1>
-                    <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>Message</mat-label>
-                        <textarea matInput name="message" placeholder="Type your message here..." ngModel #message="ngModel" required></textarea>
-                        <mat-error *ngIf="message.hasError('required') || message.pristine">
-                            Message is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                    <div class="row" *ngIf="!noInput">
-                        <div class="col-md-6">
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>Name</mat-label>
-                                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-                                <mat-error *ngIf="name.hasError('required') || name.pristine">
-                                    Your name is <strong>required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>Email</mat-label>
-                                <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
-                                <mat-error *ngIf="email.hasError('required') || email.pristine">
-                                    Your email is <strong>required</strong>
-                                </mat-error>
-                                <mat-error *ngIf="email.hasError('pattern') || email.pristine">
-                                    Please enter a <strong>valid email address</strong>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
+                <h1 class="col1 text-center">Need a Developer/Writer? 
+                    <br> 
+                    <span>
+                        <h5 class="col2">
+                            {{shortName}} built and designed this website 
+                            <br> 
+                            & owns all the written content.
+                        </h5>
+                    </span>
+                </h1>
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput name="message" placeholder="Type your message here..." ngModel #message="ngModel" required></textarea>
+                    <mat-error *ngIf="message.hasError('required') || message.pristine">
+                        Message is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="row" *ngIf="!noInput">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Name</mat-label>
+                            <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                            <mat-error *ngIf="name.hasError('required') || name.pristine">
+                                Your name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
                     </div>
-                    <button mat-raised-button color="accent" class="w-100" [disabled]="contForm.invalid"><i class="fa-regular fa-paper-plane"></i> Send Email</button>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+                            <mat-error *ngIf="email.hasError('required') || email.pristine">
+                                Your email is <strong>required</strong>
+                            </mat-error>
+                            <mat-error *ngIf="email.hasError('pattern') || email.pristine">
+                                Please enter a <strong>valid email address</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <button mat-raised-button color="accent" class="w-100" [disabled]="contForm.invalid"><i class="fa-regular fa-paper-plane"></i> Send Email</button>
             </form>
         </div>
         <div class="col-md-5">
             <div class="row g-0 text-center">
                 <div class="col-sm-6">
-                    <img src="{{authorImg}}" style="max-height:250px;" alt="">
+                    <img src="{{authorImg}}" id="authorImg" alt="">
                 </div>
                 <div class="col-sm-6">
                     <mat-list>

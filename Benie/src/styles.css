@@ -66,24 +66,66 @@ a:hover, .poemTitle:hover{
 .zoom-x1:hover{
     transform: scale(2);
 }
-.padding-sm{
+.padding-xsm{
     padding: 0.5%;
 }
-.padding-md{
+.padding-sm{
     padding: 1%;
 }
-.padding-lg{
+.padding-md{
     padding: 1.5%;
 }
-.padding-xl{
+.padding-lg{
     padding: 2.5%;
 }
-.padding-xxl{
+.padding-xl{
     padding: 3.5%;
 }
-.padding-xxxl{
+.padding-xxl{
     padding: 4%;
 }
-.padding-xxxl{
+.padding-xxl{
     padding: 5%;
+}
+.padding-xsm{
+    padding: 0.5%;
+}
+.padding-sm{
+    padding: 1%;
+}
+.padding-md{
+    padding: 1.5%;
+}
+.padding-lg{
+    padding: 2.5%;
+}
+.padding-xl{
+    padding: 3.5%;
+}
+.padding-xxl{
+    padding: 4%;
+}
+.padding-xxl{
+    padding: 5%;
+}
+.margin-xsm{
+    margin: 0.5%;
+}
+.margin-sm{
+    margin: 1%;
+}
+.margin-md{
+    margin: 1.5%;
+}
+.margin-lg{
+    margin: 2.5%;
+}
+.margin-xl{
+    margin: 3.5%;
+}
+.margin-xxl{
+    margin: 4%;
+}
+.margin-xxl{
+    margin: 5%;
 }
