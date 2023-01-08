@@ -38,10 +38,8 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
   }
   copy(text: any){
-    Notiflix.Notify.success("copied!")
     localStorage.setItem("commentId",text);
     this.selectedId = localStorage.getItem('commentId');
-    Notiflix.Notify.success(this.selectedId.toString());
     this.commentFeedbacks(this.selectedId);
   }
   toggleRep(){
@@ -56,7 +54,6 @@ export class CommentsComponent implements OnInit {
     this.poetryService.commentReplies(id).subscribe({
       next: (res) => {
         this.commentReplies = res;
-        Notiflix.Notify.success("replies!")
       }
     })
   }
@@ -104,21 +101,21 @@ export class RepliesBottomSheet implements OnInit {
     this.poetryService.commentReplies(this.data.myId).subscribe({
       next: (res) => {
         this.cReplies = res;
-        Notiflix.Notify.success("replies!")
       }
     })
   }
 
   commentDetails(){
+    Notiflix.Loading.pulse('fetching replies...')
     this.adminPoetry.commentDetails(this.data.myId).subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.det = res;
-        Notiflix.Notify.success("details!")
-        console.warn(res,"details")
       }
     })
   }
   replyComment = (data: any): void => {
+    Notiflix.Loading.pulse('posting reply...')
     this.poetryService.replyComment(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();

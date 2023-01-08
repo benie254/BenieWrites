@@ -445,13 +445,16 @@ export class RepliesBottomSheet implements OnInit {
   }
 
   commentDetails(){
+    Notiflix.Loading.pulse('fetching details...')
     this.adminPoetry.commentDetails(this.data.myId).subscribe({
       next: (res) => {
+        Notiflix.Loading.remove();
         this.det = res;
       }
     })
   }
   replyComment = (data: any): void => {
+    Notiflix.Loading.pulse('posting comment...')
     this.poetryService.replyComment(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();

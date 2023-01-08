@@ -1,9 +1,10 @@
-export class Chapter {
+export class Page {
     id?: number = 0;
     title: string = '';
+    cover: string = '';
+    description: string = '';
     story: number = 0;
+    chapter: number = 0;
     uploaded: string = '';
-    first_published: string = '';
-    last_updated: string = '';
     words: number = 0;
 }

@@ -3,12 +3,13 @@
     <span>
         <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
     </span>  </span>
-<div class="row g-0">
-    <div class="col-md-2">
-        <br>
+<div class="row">
+    <div class="col-lg-1">
+        
     </div>
-    <div class="col-md-8" id="content">
-        <small style="font-size:xx-small;"><a href="{{details.cover_source}}">Photo Source</a></small><br><br>
+    <div class="col-lg-9">
+        <div style="min-width:100%;" id="content">
+            <small style="font-size:xx-small;"><a href="{{details.cover_source}}" target="_blank">Photo Source</a></small><br><br>
         <img src="{{details.cover}}" class="img-fluid mb-3" style="max-height:540px;max-width:100%;" alt="">
         
 
@@ -19,7 +20,7 @@
         <span class="col2"><small> <span><i class="fa-regular fa-star"></i> {{likes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{comments.length}}</span> &nbsp;&nbsp; <i class="fa-regular fa-clock"></i> {{readTime}}  &nbsp;&nbsp; </small></span>
 <br><br>
         <p style="font-size:large;line-height:24px;font-family:monospace" [innerHTML]="details.description"></p>
-        <p><span><small class="col2">published <a routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> by <a href="">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> in <a routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a></small></span></p>
+        <p><span><small class="col2">published <a routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> by <a routerLink="/about">Benie Langat <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" style="border-radius:50%;" height="20px" width="20px" alt=""></a> in <a routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a></small></span></p>
         </div>
         <br>
         <hr class="w-50">
@@ -27,9 +28,10 @@
        <app-feedback [poemId]="poemId" [likes]="likes" [likePoem]="likePoem" [commentPoem]="commentPoem"></app-feedback>
         
         </small>
+        </div>
     </div>
     
-    <div class="col-md-2">
+    <div class="col-lg-2">
     </div>  
     </div>
     <br>
