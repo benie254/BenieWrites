@@ -34,6 +34,7 @@ import { TruncatePipe } from './pipes/trunc/truncate.pipe';
 import { HomeComponent } from './home/home.component';
 import { StoryFooterComponent } from './story-footer/story-footer.component';
 import { ResultsComponent } from './components/results/results.component';
+import { SubscribeComponent } from './components/subscribe/subscribe.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ResultsComponent } from './components/results/results.component';
     ResultsComponent,
     FollowBottomSheet,
     FollowAltBottomSheet,
-    RepliesBottomSheet
+    RepliesBottomSheet,
+    SubscribeComponent
   ],
   imports: [
     CommonModule,
@@ -86,6 +88,7 @@ import { ResultsComponent } from './components/results/results.component';
     TruncatePipe,
     DateAgoPipe,
     StoryFooterComponent,
+    SubscribeComponent,
   ],
 })
 export class StoriesModule { }

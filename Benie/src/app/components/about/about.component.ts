@@ -25,9 +25,7 @@ export class AboutComponent implements OnInit {
   email = 'davinci.monalissa@gmail.com';
   editor: Editor;
   values = '';
-  subValues = '';
   noInput: boolean = true;
-  subInput: boolean = false;
   matcher = new MyErrorStateMatcher();
   
   constructor(
@@ -36,24 +34,18 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  subscribe(data: Subscriber){
-    Notiflix.Loading.pulse('subscribing you...')
-    this.storyService.addSub(data).subscribe({
-      next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.success(
-          "You're In!",
-          'Your subscription was successful. Please check your email for more information.',
-          'Okay',
-        )
-      }
-    })
+  onKey(event: any){
+    this.values = event.target.value;
+    if(this.values){
+      this.noInput = false;
+    }
   }
   contact(data: Contact){
     Notiflix.Loading.pulse('sending message...')
     this.storyService.addContact(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
+        this.noInput = true;
         Notiflix.Report.success(
           'Message Sent!',
           "Your message was successfully delivered to Benie. Please check your email for a confirmation.",
@@ -61,17 +53,5 @@ export class AboutComponent implements OnInit {
         )
       }
     })
-  }
-  onKey(event: any){
-    this.values = event.target.value;
-    if(this.values){
-      this.noInput = false;
-    }
-  }
-  subKey(event: any){
-    this.values = event.target.value;
-    if(this.values){
-      this.subInput = true;
-    }
   }
 }
