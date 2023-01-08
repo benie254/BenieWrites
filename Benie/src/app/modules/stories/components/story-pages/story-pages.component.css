@@ -1,0 +1,11 @@
+#readSBg{
+    min-height: 100vh;
+}
+#sContent{
+    font-family:'Courier New', Courier, monospace;
+    line-height: 1.5em;
+}
+#chaptDet{
+    font-family:'Courier New', Courier, monospace;
+    font-weight:bolder;
+}

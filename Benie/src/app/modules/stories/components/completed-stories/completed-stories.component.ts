@@ -18,7 +18,7 @@ export class CompletedStoriesComponent implements OnInit {
     this.completedStories()
   }
   completedStories(){
-    Notiflix.Loading.pulse('Fetching...')
+    Notiflix.Loading.pulse('fetching stories...')
     this.service.getCompletedStories().subscribe({
       next: (data) => {
         this.compStories = data;

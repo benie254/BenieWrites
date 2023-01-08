@@ -12,6 +12,7 @@ export class ResultsComponent implements OnInit {
   related: any;
   title: any;
   searchResults: any;
+  exploreImg = 'https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg';
 
   constructor(
     private service:MyStoryService,
@@ -27,7 +28,7 @@ export class ResultsComponent implements OnInit {
     this.allStories();
   }
   relatedStories(id: any){
-    Notiflix.Loading.pulse('Retrieving...')
+    Notiflix.Loading.pulse('retrieving stories...')
     this.service.getRelatedStories(id).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();

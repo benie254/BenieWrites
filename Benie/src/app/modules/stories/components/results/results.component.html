@@ -1,76 +1,90 @@
 <div *ngIf="!related">
-    <span class="sticky-top"><span (click)="back()" type="button" class="btn btn-sm" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;</span>
-
-    <div class="container" style="padding:2.5%">
-    <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-9">
-            <h1 class="col2">Sorry, we found no related stories.</h1>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                  <a class="col1 nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Try a different category
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="col1 dropdown-item" routerLink="/stories/related/category/short-story" (click)="reload()">Short Stories</a></li>
-                    <li><a class="col1 dropdown-item" routerLink="/stories/related/category/flash-fiction" (click)="reload()">Flash Fiction</a></li>
-                    <li><a class="col1 dropdown-item" routerLink="/stories/related/category/novelette" (click)="reload()">Novelettes</a></li>
-                    <li><a class="col1 dropdown-item" routerLink="/stories/related/category/novel" (click)="reload()">Novels</a></li>
-                    <li><a class="col1 dropdown-item" routerLink="/stories/related/category/play" (click)="reload()">Plays</a></li>
-                  </ul>
-                </li>
-            
-                <li class="nav-item dropdown">
+    <span class="sticky-top">
+        <span (click)="back()" type="button" class="btn btn-sm col1">
+            <i class="fa-solid fa-chevron-left"></i> Go Back
+        </span> 
+    </span>
+    <div class="container padding-lg">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-9">
+                <h1 class="col2">Sorry, we found no related stories.</h1>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
                     <a class="col1 nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Or a different Genre
+                        Try a different category
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/mystery">Mystery</a></li>
-                      <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/thriller">Thriller</a></li>
-                      <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/mystery-thriller">Mystery/Thriller</a></li>
-                      <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/young-adult">Young Adult</a></li>
-                      <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/teen-fiction">Teen Fiction</a></li>
-                      <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/romance">Romance</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/category/short-story" (click)="reload()">Short Stories</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/category/flash-fiction" (click)="reload()">Flash Fiction</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/category/novelette" (click)="reload()">Novelettes</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/category/novel" (click)="reload()">Novels</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/category/play" (click)="reload()">Plays</a></li>
                     </ul>
-                  </li>
-            </ul>
-            <br>
-            <button mat-raised-button class="w-50" color="primary" routerLink="/stories/library">Explore all options</button>
-            
+                    </li>
+                
+                    <li class="nav-item dropdown">
+                        <a class="col1 nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Or a different Genre
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/mystery">Mystery</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/thriller">Thriller</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/mystery-thriller">Mystery/Thriller</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/young-adult">Young Adult</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/teen-fiction">Teen Fiction</a></li>
+                        <li><a class="col1 dropdown-item" routerLink="/stories/related/genre/romance">Romance</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <br>
+                <button mat-raised-button class="w-50" color="primary" routerLink="/stories/library">Explore all options</button>
+            </div>
+            <img src="{{exploreImg}}" id="explore" alt="">
         </div>
-        <img src="https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg" style="max-height:390px;" alt="">
-    </div>
     </div>
     <app-story-footer></app-story-footer>
 </div>
 <div *ngIf="related">
     <app-nav [searchResults]="searchResults"></app-nav>
 </div>
-<div class="container-fluid" style="padding:2.5%;" *ngIf="related">
+<div class="container-fluid padding-lg" *ngIf="related">
     <div class="row">
-        <h1 class="text-center"><span class="col1">{{related.length}}</span> {{title | titlecase}} Stories</h1>
+        <h1 class="text-center">
+            <span class="col1">{{related.length}}</span> 
+            {{title | titlecase}} Stories
+        </h1>
         <div class="col-lg-6 text-center" *ngFor="let s of related">
-            <div class="card mb-3"  style="max-width: 720px;">
+            <div class="card mb-3 storyCard">
                 <div class="text-center" >
-                  <a routerLink="/stories/{{s.title}}/{{s.id}}"><img class="img-fluid rounded-start shadow" style="max-height:220px;max-width:210px;float:left;" src="{{s.cover}}"  alt="" priority></a>
-                  <br>
-                  <h4 class="card-title text-center">
-                    <span class="col1" style="font-size:xx-large"><a routerLink="/stories/{{s.title}}/{{s.id}}">{{s.title}}</a></span>
+                    <a routerLink="/stories/{{s.title}}/{{s.id}}">
+                        <img class="img-fluid rounded-start shadow float-left cardImg" src="{{s.cover}}"  alt="" priority>
+                    </a>
                     <br>
-                    <span class="col2" style="font-size:smaller;">
-                        <small>
-                            <span><span><i class="fa-solid fa-spinner"></i> <a routerLink="/stories/related/status/{{s.status}}" class="col2">{{s.status}}</a> </span>
+                    <h4 class="card-title text-center">
+                        <span class="col1 xxl">
+                            <a routerLink="/stories/{{s.title}}/{{s.id}}">{{s.title}}</a>
                         </span>
-                        </small>
-                    </span>
-                </h4>
+                        <br>
+                        <span class="col2 smaller">
+                            <small>
+                                <span>
+                                    <span>
+                                        <i class="fa-solid fa-spinner"></i> <a routerLink="/stories/related/status/{{s.status}}" class="col2">{{s.status}}</a> 
+                                    </span>
+                                </span>
+                            </small>
+                        </span>
+                    </h4>
                     <p>{{s.description | truncate: [120, '...']}}</p>
-                   <br>
-                    <span><button mat-flat-button color="accent" class="w-50" routerLink="/stories/{{s.title}}/{{s.id}}">Read</button></span>
+                    <br>
+                    <span>
+                        <button mat-flat-button color="accent" class="w-50" routerLink="/stories/{{s.title}}/{{s.id}}">Read</button>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
-   
 </div>
 
 <br><br><br><br>

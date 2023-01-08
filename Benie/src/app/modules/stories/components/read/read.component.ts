@@ -51,6 +51,7 @@ export class ReadComponent implements OnInit {
   readHrs: any;
   commentLikes: any;
   commentReplies: any;
+  storyId: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
@@ -79,7 +80,7 @@ export class ReadComponent implements OnInit {
   public trackByFn = (index, item): void => {
     return item.id;
   }
-  likeStory(data: any){
+  likeStory = (data: any): void => {
     Notiflix.Loading.pulse('Processing...')
     this.service.addReaction(data).subscribe({
       next: (res) => {
@@ -89,7 +90,7 @@ export class ReadComponent implements OnInit {
       }
     })
   }
-  commentStory(data: any){
+  commentStory = (data: any): void => {
     Notiflix.Loading.pulse('Processing...')
     this.stoyService.addFeedback(data).subscribe({
       next: (res) => {
@@ -138,6 +139,7 @@ export class ReadComponent implements OnInit {
         Notiflix.Loading.remove();
         this.story = res;
         localStorage.setItem('storyId',this.story.id);
+        this.storyId = res.id;
         this.readTime = this.story.words/this.words;
         if(this.readTime >= 60){
           this.readHrs = this.readTime/60;
@@ -249,7 +251,7 @@ export class ReadComponent implements OnInit {
   back(){
     this.router.navigate(['/stories/library'])
   }
-  likeComment(data: any){
+  likeComment = (data: any): void => {
     this.poetryService.likeComment(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
@@ -274,7 +276,7 @@ export class ReadComponent implements OnInit {
       }
     })
   }
-  copyComment(text: any){
+  copyComment = (text: any): void => {
     localStorage.setItem("commentId",text);
     this.commentId = localStorage.getItem('commentId');
     this.commentFeedbacks(this.commentId)
@@ -307,23 +309,13 @@ export class ReadComponent implements OnInit {
       }
     });
   }
-  onKey(event: any){
-    this.values = event.target.value;
-    if(this.values){
-      this.noInput = false;
-    }
-  }
   openBottomSheet(): void {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet);
   }
   followBottomSheet(): void {
     this._bottomSheet.open(FollowBottomSheet);
   }
-  replyBottomSheet(): void {
-    this._bottomSheet.open(RepliesBottomSheet, {
-      data: {myId: this.commentId},
-    });
-  }
+  
 
  
   
@@ -364,10 +356,6 @@ export class BottomSheetOverviewExampleSheet {
   templateUrl: 'follow.html',
 })
 export class FollowBottomSheet {
-  currentSite = window.location.href;
-  values = '';
-  subInput: boolean = false;
-  matcher = new MyErrorStateMatcher();
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<FollowBottomSheet>,
@@ -378,100 +366,6 @@ export class FollowBottomSheet {
     this._bottomSheetRef.dismiss();
     event.preventDefault();
   }
-  subscribe(data){
-    Notiflix.Loading.pulse('Processing...')
-    this.storyService.addSub(data).subscribe({
-      next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.success(
-          'Subscribed!',
-          'Your subscription was successful. Please check your email.',
-          'Okay',
-        )
-      },
-      error: (err) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.failure(
-          'Subscription Failed',
-          'Something went wrong as we tried to subscribe you. Please try again.',
-          'Okay',
-        )
-      }
-    })
-  }
-  subKey(event: any){
-    this.values = event.target.value;
-    if(this.values){
-      this.subInput = true;
-    }
-  }
  
 }
 
-@Component({
-  selector: 'feedback-bottom-sheet',
-  templateUrl: 'replies.html',
-})
-export class RepliesBottomSheet implements OnInit {
-  storyLink = '';
-  currentSite = window.location.href;
-  det: any;
-  showRep = false;
-  liked = 'like';
-  cReplies: any;
-
-  constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: {myId: any},
-    private _bottomSheetRef: MatBottomSheetRef<RepliesBottomSheet>,
-    private adminPoetry:AdminPoetryService,
-    private poetryService:PoetryService,
-    ) {}
-
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
-  }
-
-  ngOnInit(){
-    this.commentFeedbacks();
-    this.commentDetails();
-  }
-  commentFeedbacks(){
-    this.poetryService.commentReplies(this.data.myId).subscribe({
-      next: (res) => {
-        this.cReplies = res;
-      }
-    })
-  }
-
-  commentDetails(){
-    Notiflix.Loading.pulse('fetching details...')
-    this.adminPoetry.commentDetails(this.data.myId).subscribe({
-      next: (res) => {
-        Notiflix.Loading.remove();
-        this.det = res;
-      }
-    })
-  }
-  replyComment = (data: any): void => {
-    Notiflix.Loading.pulse('posting comment...')
-    this.poetryService.replyComment(data).subscribe({
-      next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('reply posted!')
-        this.ngOnInit();
-        setTimeout(() => {
-          location.reload();
-        },5)
-      }
-    })
-  }
-  toggleRep(){
-    this.showRep = true;
-  }
-  closeRep(){
-    setTimeout(() => {
-      this.showRep = false;
-    },5)
-  }
-}

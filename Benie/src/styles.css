@@ -144,6 +144,9 @@ a:hover, .poemTitle:hover{
 .min-height{
     min-height: 100%;
 }
+.height-auto{
+    height: auto;
+}
 .float-left{
     float: left;
 }
@@ -199,4 +202,11 @@ textarea{
 .pic{
     width:75px;
     height:35px;
+}
+.storyCard, .cardImg{
+    max-width: 720px;
+}
+.cardImg{
+    min-height:250px;
+    max-width:210px;
 }

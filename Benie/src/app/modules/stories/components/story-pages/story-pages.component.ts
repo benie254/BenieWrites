@@ -36,6 +36,7 @@ export class StoryPagesComponent implements OnInit {
   readHrs: any;
   readSecs: any;
   st: any;
+  authorImg = 'https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg';
   
 
   constructor(
@@ -51,7 +52,7 @@ export class StoryPagesComponent implements OnInit {
     this.route.params.subscribe(params => this.chapDetails(params['id']));
     this.route.params.subscribe(params => this.chapPages(params['id']));
   }
-  likeStory(data: any){
+  likeStory = (data: any): void => {
     Notiflix.Loading.pulse('Processing...')
     this.service.addReaction(data).subscribe({
       next: (res) => {
@@ -61,7 +62,7 @@ export class StoryPagesComponent implements OnInit {
       }
     })
   }
-  commentStory(data: any){
+  commentStory = (data: any): void => {
     Notiflix.Loading.pulse('Processing...')
     this.storyService.addFeedback(data).subscribe({
       next: (res) => {

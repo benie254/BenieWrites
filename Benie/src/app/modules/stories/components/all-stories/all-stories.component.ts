@@ -30,7 +30,7 @@ export class AllStoriesComponent implements OnInit {
     myD.style.opacity = '1';
   }
   allStories(){
-    Notiflix.Loading.pulse('Fetching...')
+    Notiflix.Loading.pulse('fetching stories...')
     this.storyService.getAllStories().subscribe({
       next: (data) => {
         this.stories = data;
@@ -38,9 +38,8 @@ export class AllStoriesComponent implements OnInit {
       }
     })
   }
-  
   completedStories(){
-    Notiflix.Loading.pulse('Prepping the Lib...')
+    Notiflix.Loading.pulse('prepping library...')
     this.storyService.getCompletedStories().subscribe({
       next: (data) => {
         this.compStories = data;
@@ -48,6 +47,4 @@ export class AllStoriesComponent implements OnInit {
       }
     })
   }
-
-
 }

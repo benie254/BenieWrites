@@ -1,175 +1,180 @@
-<div class="container-fluid" style="height:auto;min-height:100vh;" id="readSBg">
-  <span class="sticky-top" style="opacity:0.95;font-weight: bolder;"><span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark" style="color:blueviolet"><i class="fa-solid fa-chevron-left"></i> Go Back</span> &nbsp;&nbsp;&nbsp;
+<div class="container-fluid height-auto" id="readSBg">
+  <span class="sticky-top top">
+    <span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark col1">
+      <i class="fa-solid fa-chevron-left"></i> Go Back
+    </span> 
+    &nbsp;&nbsp;&nbsp;
     <span>
-        <span><button id="toggle" class="btn btn-sm btn-dark" style="color:blueviolet;"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button></span> <span style="float:right;"><button id="follow" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>&nbsp;&nbsp;&nbsp;&nbsp;<button id="share" style="color:blueviolet" class="btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>&nbsp;&nbsp;</span>
-    </span>  </span>      
+      <span>
+        <button id="toggle" class="btn btn-sm btn-dark col1">
+          <mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle>
+        </button>
+      </span> 
+      <span class="float-right">
+        <button id="follow" class="col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
+          <i class="fa-solid fa-user-plus"></i> Follow
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button id="share" class="col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
+          <i class="fa-solid fa-share-nodes"></i> Share
+        </button>
+        &nbsp;&nbsp;
+      </span>
+    </span>  
+  </span>      
   <div class="row">
-      <div class="col-md-1">
-          <br><br>
-      </div>
-      <div class="col-md-8">
-        <!-- <div *ngIf="!chapSelected">
-            <a *ngFor="let c of chaps" type="button" (click)="copy(c.id);selectChap()" style="margin:2.5%;padding:1.5%;">{{c.title}}</a>
-        </div> -->
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+      <div>
         <div>
-          <div   >
-            
-              <!-- <h1 id="chapId">{{c.id}}</h1> -->
-                    
-                    <div>
-                      <div >
-                          <!-- <button *ngFor="let c of chaps" style="margin:1.5%;padding:1.5%;" mat-raised-button color="accent" routerLink="/read/story/chapter/{{c.id}}">{{c.title}}</button> -->
-                        </div>
-                    </div>
-                   
-                    
-                    <div>
-                      
-                      <mat-stepper class="shadow container" id="sContent" style="padding:2.5%;height:auto;font-size:large;font-family:'Courier New', Courier, monospace;line-height: 1.5em;">
-                        <mat-step state="book" labelPosition="bottom" #stepper>
-                          <div *ngFor="let p of chapterPages | paginate: { id:'readPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
-                              <h1 class="text-center" style="font-family:'Courier New', Courier, monospace;font-size:xx-large;font-weight:bolder">{{chapDet.title}} <br><span><h5><i class="fa-regular fa-file"></i> {{chapterPages.length}} pages &nbsp;&nbsp;&nbsp; <i class="fa-regular fa-clock"></i> {{readTime}} min read</h5></span></h1>
-                            <div [innerHTML]="p.description"></div>
-                          </div>
-                          <div class="d-flex justify-content-center">
-                            <pagination-controls
-                              id="readPage"
-                              previousLabel="Prev"
-                              nextLabel="Next"
-                              (pageChange)="onTableDataChange($event)"
-                            >
-                            </pagination-controls>
-                    </div>
-                    <hr>
-                          
-                          <div>
-                            <button mat-stroked-button color="primary" matStepperNext>Next Chapter</button> <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span> 
-                            
-                          </div>
-                          
-                          
-                          
-                        </mat-step>
-                        <mat-step state="book">
-                          <ng-template matStepLabel><span style="color:blueviolet;">End</span></ng-template>
-                          <ng-template matStepContent>
-                            <p>Enjoying this story? Drop your feedback below.</p>
-                            <div class="row">
-                              <div class="col-md-1"></div>
-                              <div class="col-md-4">
-                                 <form #likeForm="ngForm" (ngSubmit)="(likeStory(likeForm.value))">
-                                  
-                                  <input type="text" name="like" ngModel style="display:none;" [(ngModel)]="liked">
-                                  <input type="number" name="story" ngModel style="display:none;" [(ngModel)]="story.id">
-                                  <button style="margin:1.5%;" mat-raised-button color="accent" type="submit"><i class="fa-regular fa-star"></i> Like <span style="font-size:x-small;" class="col1">{{storyLikes.length}} likes</span></button> 
-                                  &nbsp;&nbsp;&nbsp;
-                                  <button style="margin:1.5%;" type="button" mat-raised-button color="accent" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
-                              </form> 
-                              </div>
-                              <div class="col-md-6">
-                                  <form #commentForm="ngForm" (ngSubmit)="commentStory(commentForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
-                                      <mat-form-field appearance="fill">
-                                          <mat-label class="bg-light" color="accent">Comment</mat-label>
-                                          <input type="number" name="story" ngModel style="display:none;" [(ngModel)]="story.id">
-                                          <textarea style="height:100px;width:200px;" type="text" matInput ngModel name="comment"></textarea>
-                                      </mat-form-field>
-                                      <div *ngIf="!noInput">
-                                          <mat-form-field>
-                                              <mat-label class="bg-light" color="accent">Name</mat-label>
-                                              <input name="commented_by" matInput ngModel type="text">
-                                          </mat-form-field>
-                                      </div>
-                                      &nbsp;<button mat-raised-button color="accent" *ngIf="!noInput" type="submit">Add <i class="fa-regular fa-comment"></i></button>
-                                  </form>
-                              </div>
-                              <div class="col-md-1"></div>
-                          </div>
-                            <br>
-                            
-                          <div>
-                            <button mat-stroked-button matStepperPrevious>Prev Chapter</button>  <span style="float:right"><button mat-stroked-button color="primary" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button></span>
-                          </div>
-                          <br>
-                          <div *ngIf="chaps">
-                            <h2 class="text-center text-primary">{{chaps.length}} chapters</h2>
-                            <button style="padding:0.5%;margin:1%;" *ngFor="let c of chaps" mat-raised-button color="accent" (click)="copy(c.id);">{{c.title}}</button>
-                          </div>
-                          </ng-template>
-                          </mat-step>
-                          <ng-template matStepperIcon="book">
-                            <mat-icon><i class="fa-solid fa-book-open-reader"></i></mat-icon>
-                          </ng-template>
-                          
-                          </mat-stepper>
-                      <!-- <app-story-pages [story]="story" [chapDet]="chapDet"></app-story-pages> -->
-                    </div>
-                
-                    
-                  
-                
-                
-              
-             
-                  
-              
-          
-          
+          <div>
+            <mat-stepper class="shadow container padding-lg height-auto lg" id="sContent">
+              <mat-step state="book" labelPosition="bottom" #stepper>
+                <div *ngFor="let p of chapterPages | paginate: { id:'readPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
+                  <h1 class="text-center xxl" id="chaptDet">{{chapDet.title}} <br><span><h5><i class="fa-regular fa-file"></i> {{chapterPages.length}} pages &nbsp;&nbsp;&nbsp; <i class="fa-regular fa-clock"></i> {{readTime}} min read</h5></span></h1>
+                  <div [innerHTML]="p.description"></div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <pagination-controls id="readPage" previousLabel="Prev" nextLabel="Next" pageChange)="onTableDataChange($event)"></pagination-controls>
+                </div>
+                <hr>
+                <div>
+                  <button mat-stroked-button color="primary" matStepperNext>Next Chapter</button> 
+                  <span class="float-right">
+                    <button mat-stroked-button color="primary" (click)="openBottomSheet()">
+                      <i class="fa-solid fa-share-nodes"></i> Share
+                    </button>
+                  </span> 
+                </div>
+              </mat-step>
+              <mat-step state="book">
+                <ng-template matStepLabel>
+                  <span class="col2">End</span>
+                </ng-template>
+                <ng-template matStepContent>
+                  <p>Enjoying this story? Drop your feedback below.</p>
+                  <app-feedback [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
+                  <br>
+                  <div>
+                    <button mat-stroked-button matStepperPrevious>Prev Chapter</button>  
+                    <span class="float-right">
+                      <button mat-stroked-button color="primary" (click)="openBottomSheet()">
+                        <i class="fa-solid fa-share-nodes"></i> Share
+                      </button>
+                    </span>
+                  </div>
+                  <br>
+                  <div *ngIf="chaps">
+                    <h2 class="text-center text-primary">{{chaps.length}} chapters</h2>
+                    <button class="padding-sm margin-md" *ngFor="let c of chaps" mat-raised-button color="accent" (click)="copy(c.id);">
+                      {{c.title}}
+                    </button>
+                  </div>
+                </ng-template>
+              </mat-step>
+              <ng-template matStepperIcon="book">
+                <mat-icon><i class="fa-solid fa-book-open-reader"></i></mat-icon>
+              </ng-template>
+            </mat-stepper>
+          </div>
         </div>
-        </div>
-          
-          <br>
-          
       </div>
-      <div class="col-md-3">
-          <div class="shadow" style="padding:1.5%;">
-              <br>
+      <br>
+    </div>
+    <div class="col-md-3">
+      <div class="shadow padding-md">
+        <br>
+        <small>
+          <h4 class="text-primary">
+            {{story.title}} 
+            <br> 
+            <span class="col2">
               <small>
-                  <h4 class="text-primary">{{story.title}} <br> 
-                      <span class="col2"><small><span><i class="fa-regular fa-star"></i> {{storyLikes.length}}</span> &nbsp;&nbsp; <span><i class="fa-regular fa-comment"></i> {{storyComments.length}}</span>  &nbsp;&nbsp; <span><i class="fa-solid fa-layer-group"></i> {{chaps.length}}</span> &nbsp;&nbsp;<i class="fa-regular fa-clock"></i> <span *ngIf="!readHrs && !readSecs"> {{readGen}}</span> <span *ngIf="!readSecs && readHrs"> {{readHrs}}</span> <span *ngIf="!readHrs && readSecs"> {{readSecs}}</span> &nbsp;&nbsp; <span *ngIf="story.status == 'ongoing'"><i><i class="fa-solid fa-spinner"></i> <a routerLink="/stories/related/status/{{story.status}}" class="col2">{{story.status}}</a> </i></span> <span *ngIf="story.status == 'completed'"><i><i class="fa-regular fa-circle-check"></i> <a routerLink="/stories/related/status/{{story.status}}">{{story.status}}</a></i></span></small></span>
-                  </h4>
-                  <p>{{story.description}}</p>
-                  <span>
-                      <mat-chip-list aria-label="Categories">
-                          <mat-chip color="primary" selected routerLink="/stories/related/category/{{story.category}}">{{story.category}}</mat-chip>
-                        </mat-chip-list>
-                        <!-- <mat-chip-list aria-label="Tags">
-                          <mat-chip color="primary" selected>Mystery</mat-chip>
-                          <mat-chip color="primary" selected>Thriller</mat-chip>
-                          <mat-chip color="primary" selected>Love</mat-chip>
-                          <mat-chip color="primary" selected>Life</mat-chip>
-                        </mat-chip-list> -->
-                        
-              </span>
-              <br>
-              <p><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="35" width="35" style="border-radius:50%;" alt=""></span> By <a routerLink="/about" class="col2">{{story.author}}</a> &nbsp;&nbsp;|&nbsp;&nbsp; <span>First published {{story.first_published | date}}</span></p>
-
+                <span>
+                  <i class="fa-regular fa-star"></i> {{storyLikes.length}}
+                </span> 
+                &nbsp;&nbsp; 
+                <span>
+                  <i class="fa-regular fa-comment"></i> {{storyComments.length}}
+                </span>  
+                &nbsp;&nbsp; 
+                <span>
+                  <i class="fa-solid fa-layer-group"></i> {{chaps.length}}
+                </span> 
+                &nbsp;&nbsp;<i class="fa-regular fa-clock"></i> 
+                <span *ngIf="!readHrs && !readSecs"> {{readGen}}</span> 
+                <span *ngIf="!readSecs && readHrs"> {{readHrs}}</span> 
+                <span *ngIf="!readHrs && readSecs"> {{readSecs}}</span> 
+                &nbsp;&nbsp; 
+                <span *ngIf="story.status == 'ongoing'">
+                  <i>
+                    <i class="fa-solid fa-spinner"></i> <a routerLink="/stories/related/status/{{story.status}}" class="col2">{{story.status}}</a> 
+                  </i>
+                </span> 
+                <span *ngIf="story.status == 'completed'">
+                  <i>
+                    <i class="fa-regular fa-circle-check"></i> <a routerLink="/stories/related/status/{{story.status}}">{{story.status}}</a>
+                  </i>
+                </span>
               </small>
-        
-      <hr>
-      <small>
+            </span>
+          </h4>
+          <p>{{story.description}}</p>
+          <span>
+            <mat-chip-list aria-label="Categories">
+              <mat-chip color="primary" selected routerLink="/stories/related/category/{{story.category}}">{{story.category}}</mat-chip>
+            </mat-chip-list>
+          </span>
+          <br>
+          <p>
+            <span>
+              <img src="{{authorImg}}" height="35" width="35" class="border-50" alt="">
+            </span> 
+            By <a routerLink="/about" class="col2">{{story.author}}</a> 
+            &nbsp;&nbsp;|&nbsp;&nbsp; 
+            <span>First published {{story.first_published | date}}</span>
+          </p>
+        </small>
+        <hr>
+        <small>
           <span *ngIf="storyComments">
-              <span> <span class="text-primary">Latest Comments</span> ({{topComments.length}} of <a routerLink="/stories/{{story.title}}/{{story.id}}">{{storyComments.length}}</a> )</span><br>
-              <span>
-                  <p *ngFor="let tc of topComments" class="shadow" style="font-size:small;margin:1.5%;padding:1.5%;"><span style="font-size:smaller;" class="col2">{{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span><span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> </span> <br> <span *ngIf="tc.comment">{{tc.comment}}</span><span *ngIf="!tc.comment">Beautiful story!</span> </p>
-              </span>
+            <span> 
+              <span class="text-primary">Latest Comments</span> 
+              ({{topComments.length}} of <a routerLink="/stories/{{story.title}}/{{story.id}}">{{storyComments.length}}</a> ) 
+            </span>
+            <br>
+            <span>
+              <p *ngFor="let tc of topComments" class="shadow sm margin-md padding-md">
+                <span class="smaller col2">
+                  {{tc.date | dateAgo}} 
+                  &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> 
+                  <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span>
+                  <span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> 
+                </span> 
+                <br> 
+                <span *ngIf="tc.comment">{{tc.comment}}</span>
+                <span *ngIf="!tc.comment">Beautiful story!</span> 
+              </p>
+            </span>
           </span>
           <span *ngIf="!storyComments">
             <span> Comments</span><br>
             <span>
-              <p class="shadow" style="font-size:smaller;margin:1.5%;padding:1.5%;"><span style="font-size:xx-small;">12/15/2022 &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> Anonymous</span> <br> Latest comments will appear here.</p>
+              <p class="shadow smaller margin-md padding-md">
+                <span class="xxsm">
+                  01/01/2023 &nbsp;&nbsp; | &nbsp;&nbsp; 
+                  <i class="fa-regular fa-circle-user"></i> Anonymous
+                </span> 
+                <br> 
+                Latest comments will appear here.
+              </p>
             </span>
-        </span>
-      </small>
-      <hr>
-      <img src="{{story.cover}}" style="max-height:100%;max-width:100%;" alt="" priority>
-          </div>
-      
+          </span>
+        </small>
+        <hr>
+        <img src="{{story.cover}}" class="max-height max-width" alt="" priority>
       </div>
+    </div>
   </div>
   <br><br>
-
 </div>
-
-
-
-     

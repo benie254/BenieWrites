@@ -1,29 +1,32 @@
 
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-6" *ngFor="let cs of compStories">
-            <div class="card mb-3"  style="max-width: 720px;">
-                <div class="text-center" >
-                  <img class="img-fluid rounded-start shadow" style="min-height:250px;max-width:210px;float:left;" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{cs.cover}}"  alt="" priority>
-                  <h3 class="card-title text-center">{{cs.title}}  
-                    <br> 
-                    <span class="smaller text-muted"> <span style="color:blueviolet"><i><i class="fa-regular fa-circle-check"></i> {{cs.status}}</i></span></span>
-                  </h3>
-                  <div class="card-body">
-                    <p class="card-text">{{cs.description | truncate:[265, '...']}}</p>
-                    <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{cs.id}}">Read</button></span></small></p>
-                  </div>
-                  
-                </div>
-            </div>
-              
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let cs of compStories">
+      <div class="card mb-3 storyCard">
+        <div class="text-center" >
+          <img class="img-fluid rounded-start shadow float-left cardImg" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{cs.cover}}"  alt="" priority>
+          <h3 class="card-title text-center">
+            {{cs.title}}  
+            <br> 
+            <span class="smaller text-muted"> 
+              <span class="col1">
+                <i><i class="fa-regular fa-circle-check"></i> {{cs.status}}</i>
+              </span>
+            </span>
+          </h3>
+          <div class="card-body">
+            <p class="card-text">{{cs.description | truncate:[265, '...']}}</p>
+            <p class="card-text">
+              <small>
+                <span>
+                  <button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{cs.id}}">Read</button>
+                </span>
+              </small>
+            </p>
+          </div>
         </div>
-        <i class="text-center" style="color:blueviolet">Stay tuned for more!</i>
-
-        
-            
-        
+      </div>
     </div>
-     
+  </div>
 </div>

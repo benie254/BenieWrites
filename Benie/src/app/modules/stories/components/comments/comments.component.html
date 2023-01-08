@@ -1,0 +1,106 @@
+<div class="container-fluid">
+    <span class="text-center">
+        <h1>
+            <span class="text-primary">{{topComments.length}}</span> of <span class="col1">{{storyComments.length}}</span> Comments 
+        </h1>
+    </span>
+    <div class="col-md-6" *ngFor="let tc of topComments ; trackBy: trackByFn">
+        <p class="shadow sm margin-md padding-md">
+            <span class="sm col2">
+                {{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> 
+                <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span>
+                <span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> 
+            </span> 
+            <br> 
+            <span *ngIf="tc.comment">{{tc.comment}}</span>
+            <span *ngIf="!tc.comment">Beautiful story!</span> 
+            <span>
+                <span>
+                    <form #likeCommentForm="ngForm" (ngSubmit)="(likeComment(likeCommentForm.value))">
+                        <mat-form-field class="hide">
+                            <input matInput type="text" name="like" ngModel class="hide" [(ngModel)]="like">
+                        </mat-form-field>
+                        <mat-form-field class="hide">
+                            <input matInput type="number" name="comment" ngModel [(ngModel)]="tc.id">
+                        </mat-form-field>
+                        <span>
+                            <button class="btn col1 btn-sm" type="submit"> 
+                                <i class="fa-solid fa-star col1"></i> <span class="sm"> Like</span>
+                            </button>  
+                            <span class="sm" class="col2"> {{tc.likes}} likes</span>
+                        </span>
+                    </form> 
+                </span> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                <button class="btn btn-sm col1" type="button" (click)="copyComment(tc.id);replyBottomSheet()"> 
+                    <i class="fa-regular fa-comment col1"></i> <span class="sm"> Reply </span> 
+                    &nbsp;&nbsp; 
+                </button> 
+                <span> 
+                    <span class="sm" class="col2"> 
+                        <a type="button" (click)="copyComment(tc.id);replyBottomSheet()"> &nbsp;{{tc.replies}} replies</a>
+                    </span>
+                </span>
+            </span>
+        </p>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel id="expansion" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="col1">
+                    View all
+                </mat-panel-title>
+                <mat-panel-description class="col1">
+                    {{storyComments.length}} comments
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+                <div class="col-md-6" *ngFor="let c of storyComments">
+                    <span class="divide sm">
+                        <span class="col2">
+                            <span>{{c.date | dateAgo}}</span> 
+                            &nbsp;&nbsp; | &nbsp;&nbsp; 
+                            <span><i class="fa-regular fa-circle-user"></i></span> 
+                            &nbsp; 
+                            <span *ngIf="c.commented_by">&nbsp;{{c.commented_by}}</span>
+                            <span *ngIf="!c.commented_by">&nbsp;Anonymous</span>
+                        </span> 
+                    </span> 
+                    <p class="sm margin-md padding-md">
+                        <span class="sm">
+                            <span *ngIf="c.comment">{{c.comment}}</span> 
+                            <span *ngIf="!c.comment">Beautiful poem!</span>
+                        </span> 
+                        <span>
+                            <span>
+                                <form #likeCommentForm="ngForm" (ngSubmit)="(likeComment(likeCommentForm.value))">
+                                    <input type="text" name="like" ngModel class="hide" [(ngModel)]="liked">
+                                    <input type="number" name="comment" ngModel class="hide" [(ngModel)]="c.id">
+                                    <span>
+                                        <button class="btn col1 btn-sm" type="submit"> 
+                                            <i class="fa-solid fa-star col1"></i> <span class="sm"> Like</span>
+                                        </button>  
+                                        <span class="xsm" class="col2"> {{c.likes}} likes</span>
+                                    </span>
+                                </form> 
+                            </span> 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            <button class="btn btn-sm col1" type="button" (click)="copyComment(c.id);replyBottomSheet()"> 
+                                <i class="fa-regular fa-comment col1"></i> 
+                                <span class="xsm"> Reply </span> 
+                                &nbsp;&nbsp; 
+                            </button> 
+                            <span> 
+                                <span class="xsm" class="col2"> 
+                                    <a type="button" (click)="copyComment(c.id);replyBottomSheet()"> 
+                                        &nbsp;{{c.replies}} replies
+                                    </a>
+                                </span>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion> 
+</div>

@@ -5,7 +5,7 @@ import { StoriesRoutingModule } from './stories-routing.module';
 import { StoriesComponent } from './stories.component';
 import { CompletedStoriesComponent } from './components/completed-stories/completed-stories.component';
 import { OngoingStoriesComponent } from './components/ongoing-stories/ongoing-stories.component';
-import { BottomSheetOverviewExampleSheet, FollowBottomSheet, ReadComponent, RepliesBottomSheet } from './components/read/read.component';
+import { BottomSheetOverviewExampleSheet, FollowBottomSheet, ReadComponent } from './components/read/read.component';
 import { AllStoriesComponent } from './components/all-stories/all-stories.component';
 import { FollowAltBottomSheet, StoryDialog, StoryPagesComponent } from './components/story-pages/story-pages.component';
 import { NavComponent } from './nav/nav.component';
@@ -35,6 +35,8 @@ import { StoryFooterComponent } from './story-footer/story-footer.component';
 import { ResultsComponent } from './components/results/results.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ContactModule } from '../contact/contact.module';
+import { FeedbackComponent, FollowAlt2BottomSheet } from './components/feedback/feedback.component';
+import { CommentsComponent, RepliesBottomSheet } from './components/comments/comments.component';
 
 
 @NgModule({
@@ -55,8 +57,11 @@ import { ContactModule } from '../contact/contact.module';
     ResultsComponent,
     FollowBottomSheet,
     FollowAltBottomSheet,
+    FollowAlt2BottomSheet,
     RepliesBottomSheet,
-    NotificationsComponent
+    NotificationsComponent,
+    FeedbackComponent,
+    CommentsComponent
   ],
   imports: [
     CommonModule,

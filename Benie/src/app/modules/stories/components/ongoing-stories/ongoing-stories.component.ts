@@ -18,7 +18,7 @@ export class OngoingStoriesComponent implements OnInit {
     this.ongoingStories()
   }
   ongoingStories(){
-    Notiflix.Loading.pulse('Fetching...')
+    Notiflix.Loading.pulse('fetching stories...')
     this.service.getOngoingStories().subscribe({
       next: (data) => {
         this.onStories = data;
