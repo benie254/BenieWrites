@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Editor } from 'ngx-editor';
 import * as Notiflix from 'notiflix';
+import { Contact } from 'src/app/classes/contact/contact';
+import { Subscriber } from 'src/app/classes/subscriber/subscriber';
 import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
-import { MyStoryService } from 'src/app/services/story/my-story.service';
 
 @Component({
   selector: 'app-about',
@@ -11,9 +12,7 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  currentSite = window.location.href;
   editor: Editor;
-  html: '';
   values = '';
   subValues = '';
   noInput: boolean = true;
@@ -21,55 +20,37 @@ export class AboutComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   
   constructor(
-    private service:MyStoryService,
     private storyService: StoryService,
   ) { }
 
   ngOnInit(): void {
   }
-  subscribe(data){
-    Notiflix.Loading.pulse('Processing...')
+  subscribe(data: Subscriber){
+    Notiflix.Loading.pulse('subscribing you...')
     this.storyService.addSub(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         Notiflix.Report.success(
-          'Subscribed!',
-          'Your subscription was successful. Please check your email.',
-          'Okay',
-        )
-      },
-      error: (err) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.failure(
-          'Subscription Failed',
-          'Something went wrong as we tried to subscribe you. Please try again.',
+          "You're In!",
+          'Your subscription was successful. Please check your email for more information.',
           'Okay',
         )
       }
     })
   }
-  contact(data){
-    Notiflix.Loading.pulse('Processing...')
+  contact(data: Contact){
+    Notiflix.Loading.pulse('sending message...')
     this.storyService.addContact(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
         Notiflix.Report.success(
-          'Sent!',
-          'Your message was delivered successfully. Please check your email.',
-          'Okay',
-        )
-      },
-      error: (err) => {
-        Notiflix.Loading.remove();
-        Notiflix.Report.failure(
-          'Sending Failed',
-          'Something went wrong as we tried to send your message. Please try again.',
+          'Message Sent!',
+          "Your message was successfully delivered to Benie. Please check your email for a confirmation.",
           'Okay',
         )
       }
     })
   }
-
   onKey(event: any){
     this.values = event.target.value;
     if(this.values){
@@ -82,7 +63,4 @@ export class AboutComponent implements OnInit {
       this.subInput = true;
     }
   }
-
-  
-
 }
