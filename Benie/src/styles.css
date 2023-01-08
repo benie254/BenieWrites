@@ -66,3 +66,24 @@ a:hover, .poemTitle:hover{
 .zoom-x1:hover{
     transform: scale(2);
 }
+.padding-sm{
+    padding: 0.5%;
+}
+.padding-md{
+    padding: 1%;
+}
+.padding-lg{
+    padding: 1.5%;
+}
+.padding-xl{
+    padding: 2.5%;
+}
+.padding-xxl{
+    padding: 3.5%;
+}
+.padding-xxxl{
+    padding: 4%;
+}
+.padding-xxxl{
+    padding: 5%;
+}
