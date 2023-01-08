@@ -28,10 +28,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { NgxEditorModule } from 'ngx-editor';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { StoriesModule } from './modules/stories/stories.module';
 import { HomeComponent } from './components/home/home.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { NavigationModule } from './modules/navigation/navigation.module';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -56,8 +55,6 @@ const analytics = getAnalytics(app);
     AppComponent,
     AboutComponent,
     HomeComponent,
-    FooterComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +82,7 @@ const analytics = getAnalytics(app);
     NgxEditorModule,
     MatChipsModule,
     StoriesModule,
+    NavigationModule,
   ],
   providers: [
     {
