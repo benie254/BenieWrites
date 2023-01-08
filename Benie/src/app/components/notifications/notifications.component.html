@@ -1,80 +1,99 @@
 <div class="container-fluid">
-    <div *ngIf="notifs">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="row">
-                  <div class="col-sm-1"></div>
-                    <div class="col-sm-11">
-                        <div class="card text-bg-light mb-3" style="max-width: 100%;" *ngFor="let ln of latestNotifs">
-                          <div class="text-center" >
-                            <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-                            <a *ngIf="ln.link" href="{{ln.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{ln.img}}"  alt="" priority></a>
-                            <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{ln.date | dateAgo}}</span></h5>
-                            <div class="card-body">
-                              <p class="card-text">{{ln.message}}</p>
-                            </div>
-                          </div>
-                          <div class="card-footer" *ngIf="ln.link">
-                            <a href="{{ln.link}}">Check it out</a>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-            </div>
-            <div class="col-lg-8">
-                <mat-accordion>
-                    <mat-expansion-panel (opened)="panelOpenState = true"
-                    (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                  <mat-panel-title>
-                  View all
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    {{notifs.length}} notifications
-                  </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <div class="row">
-                    <div class="col-md-6" *ngFor="let n of notifs">
-                      <div class="card text-bg-light mb-3" style="max-width: 100%;">
-                        <div class="text-center" >
-                          <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
-                          <a *ngIf="n.link" href="{{n.link}}"><img class="img-fluid rounded-start shadow" style="max-height:120px;max-width:210px;float:left;" src="{{n.img}}"  alt="" priority></a>
-                          <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" style="border-radius:50%;" height="25" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{n.date | dateAgo}}</span></h5>
-                          <div class="card-body">
-                            <p class="card-text">{{n.message}}</p>
-                          </div>
-                        </div>
-                        <div class="card-footer" *ngIf="n.link">
-                          <a href="{{n.link}}">Check it out</a>
-                        </div>
-                          
-                        </div>
-                    </div>
-                  </div>
-                  </mat-expansion-panel>
-                  </mat-accordion>
-            </div>
-            
-        </div>
-        
-        
-        
-    </div>
+  <div *ngIf="notifs">
     <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <div *ngIf="!notifs">
-                <div class="card text-bg-light mb-3" style="max-width: 100%;">
-                    <div class="card-header"><i class="fa-solid fa-bell"></i> Notification</div>
+      <div class="col-lg-4">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11">
+            <div class="card text-bg-light mb-3 max-width" *ngFor="let ln of latestNotifs">
+              <div class="text-center" >
+                <div class="card-header">
+                  <i class="fa-solid fa-bell"></i> Notification
+                </div>
+                <a *ngIf="ln.link" href="{{ln.link}}">
+                  <img class="notifImg img-fluid rounded-start shadow float-left" src="{{ln.img}}"  alt="" priority>
+                </a>
+                <h5 class="card-title">
+                  <span>
+                    <img src="{{authorImg}}" class="border-50" height="25" width="25" alt=""  priority>
+                  </span> 
+                  Benie 
+                  <span class="text-muted float-right">{{ln.date | dateAgo}}</span>
+                </h5>
+                <div class="card-body">
+                  <p class="card-text">{{ln.message}}</p>
+                </div>
+              </div>
+              <div class="card-footer" *ngIf="ln.link">
+                <a href="{{ln.link}}">Check it out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                View all
+              </mat-panel-title>
+              <mat-panel-description>
+                {{notifs.length}} notifications
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-md-6" *ngFor="let n of notifs">
+                <div class="card text-bg-light mb-3 max-width">
+                  <div class="text-center" >
+                    <div class="card-header">
+                      <i class="fa-solid fa-bell"></i> Notification
+                    </div>
+                    <a *ngIf="n.link" href="{{n.link}}">
+                      <img class="img-fluid rounded-start shadow float-left notifImg" src="{{n.img}}" alt="" priority>
+                    </a>
+                    <h5 class="card-title">
+                      <span>
+                        <img src="{{authorImg}}" class="border-50" height="25" width="25" alt=""  priority>
+                      </span> Benie <span class="text-muted float-right">{{n.date | dateAgo}}</span>
+                    </h5>
                     <div class="card-body">
-                      <h5 class="card-title"><span><img src="https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg" height="25" style="border-radius:50%;" width="25" alt=""  priority></span> Benie <span class="text-muted" style="float:right;">{{today | date}}</span></h5>
-                      <p class="card-text">Latest Notifications will appear here.</p>
+                      <p class="card-text">{{n.message}}</p>
                     </div>
                   </div>
+                  <div class="card-footer" *ngIf="n.link">
+                    <a href="{{n.link}}">Check it out</a>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        <div class="col-sm-4"></div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+            
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div *ngIf="!notifs">
+          <div class="card text-bg-light mb-3 max-width">
+            <div class="card-header">
+              <i class="fa-solid fa-bell"></i> Notification
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                <span>
+                  <img class="border-50" src="{{authorImg}}" height="25" width="25" alt=""  priority>
+                </span> 
+                  Benie 
+                  <span class="text-muted float-right">{{today | date}}</span>
+                </h5>
+              <p class="card-text">Latest Notifications will appear here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="col-sm-4"></div>
+  </div>
 </div>

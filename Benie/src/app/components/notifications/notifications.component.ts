@@ -12,6 +12,7 @@ export class NotificationsComponent implements OnInit {
   latestNotifs: any;
   panelOpenState = false;
   today = new Date();
+  authorImg = 'https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg';
 
   constructor(
     private service: MyStoryService,

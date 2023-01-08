@@ -129,3 +129,27 @@ a:hover, .poemTitle:hover{
 .margin-xxl{
     margin: 5%;
 }
+.max-width{
+    max-width: 100%;
+}
+.max-height{
+    max-height: 100%;
+}
+.full-height{
+    height: 100vh;
+}
+.min-width{
+    min-width: 100%;
+}
+.min-height{
+    min-height: 100%;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.border-50{
+    border-radius:50%;
+}
