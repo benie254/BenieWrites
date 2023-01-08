@@ -2,16 +2,16 @@
 <div class="container" style="padding:2.5%;">
     <div class="row g-0">
         <div class="col-md-4">
-            <h1 style="color:blueviolet">Benie Langat <br> <h5 class="col2">With words, I give my thoughts life.</h5></h1>
-            <p>Benie is a passionate writer and software developer. He enjoys the challenge in chess and loves the freedom in swimming. He loves music and art.</p>
-            <p>Benie writes from the depths of the heart, for you and for his soul.</p>
+            <h1 style="color:blueviolet">{{author}} <br> <h5 class="col2">{{tag}}</h5></h1>
+            <p>{{about}}</p>
+            <p>{{closing}}</p>
             <br>
             <div>
-                <a style="margin:1.5%;" href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://twitter.com/share?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="whatsapp://send?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life. https://benie.web.app " data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
+                <a style="margin:1.5%;" href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://twitter.com/share?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="whatsapp://send?text=Read stories and poems on Benie Writes, a personal blog - with words, I give my thoughts life. {{currentSite}} " data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
             </div> 
         </div>
         <div class="col-md-3">
-            <img src="https://res.cloudinary.com/benie/image/upload/v1670974359/undraw_reading_book_re_kqpk_y5d2ju.svg" style="max-height:300px;max-width:100%;" alt="">
+            <img src="{{img}}" style="max-height:300px;max-width:100%;" alt="">
         </div>
         <div class="col-md-5">
             <div style="padding:5%;margin:2.5%;">
@@ -53,7 +53,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-5">
             <form #contForm="ngForm" class="shadow" (ngSubmit)="contact(contForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
-                <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5 class="col2">Benie built and designed this website <br> & owns all the written content.</h5></span></h1>
+                <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5 class="col2">{{shortName}} built and designed this website <br> & owns all the written content.</h5></span></h1>
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Message</mat-label>
                         <textarea matInput name="message" placeholder="Type your message here..." ngModel #message="ngModel" required></textarea>
@@ -90,13 +90,13 @@
         <div class="col-md-5">
             <div class="row g-0 text-center">
                 <div class="col-sm-6">
-                    <img src="https://res.cloudinary.com/benie/image/upload/v1671583589/IMG_20220119_175206_763_lb4sg3-removebg-preview_dkprqf.png" style="max-height:250px;" alt="">
+                    <img src="{{authorImg}}" style="max-height:250px;" alt="">
                 </div>
                 <div class="col-sm-6">
                     <mat-list>
-                        <mat-list-item><i class="fa-solid fa-user"></i> Benson Langat</mat-list-item>
-                        <mat-list-item><i class="fa-solid fa-location-pin"></i> Nairobi, Kenya</mat-list-item>
-                        <mat-list-item><i class="fa-solid fa-envelope"></i> <span><a href="mailto:davinci.monalissa@gmail.com">Mail to Benie</a></span></mat-list-item>
+                        <mat-list-item><i class="fa-solid fa-user"></i> {{fullName}}</mat-list-item>
+                        <mat-list-item><i class="fa-solid fa-location-pin"></i> {{address}}</mat-list-item>
+                        <mat-list-item><i class="fa-solid fa-envelope"></i> <span><a href="mailto:{{email}}">Mail to {{shortName}}</a></span></mat-list-item>
                     </mat-list>
                 </div>
             </div>
