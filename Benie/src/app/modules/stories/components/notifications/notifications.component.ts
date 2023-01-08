@@ -22,7 +22,7 @@ export class NotificationsComponent implements OnInit {
     this.getNotifications();
   }
   getNotifications(){
-    Notiflix.Loading.pulse('Fetching...')
+    Notiflix.Loading.pulse('fetching...')
     this.service.getAllNotifications().subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
@@ -31,5 +31,4 @@ export class NotificationsComponent implements OnInit {
       }
     })
   }
-
 }

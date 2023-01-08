@@ -28,13 +28,13 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxEditorModule } from 'ngx-editor';
-import { NotificationsComponent } from '../../components/notifications/notifications.component';
 import { DateAgoPipe } from './pipes/date/date-ago.pipe';
 import { TruncatePipe } from './pipes/trunc/truncate.pipe';
 import { HomeComponent } from './home/home.component';
 import { StoryFooterComponent } from './story-footer/story-footer.component';
 import { ResultsComponent } from './components/results/results.component';
 import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 @NgModule({
@@ -48,7 +48,6 @@ import { SubscribeComponent } from './components/subscribe/subscribe.component';
     StoryDialog,
     StoryPagesComponent,
     NavComponent,
-    NotificationsComponent,
     DateAgoPipe,
     TruncatePipe,
     HomeComponent,
@@ -57,7 +56,8 @@ import { SubscribeComponent } from './components/subscribe/subscribe.component';
     FollowBottomSheet,
     FollowAltBottomSheet,
     RepliesBottomSheet,
-    SubscribeComponent
+    SubscribeComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,
