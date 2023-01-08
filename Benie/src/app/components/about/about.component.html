@@ -8,7 +8,6 @@
             <br>
             <div>
                 <a style="margin:1.5%;" href="https://facebook.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-facebook-f"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://twitter.com/share?text={{currentSite}} - Benie Writes- with words, I give my thoughts life." target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-twitter"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://www.linkedin.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-linkedin-in"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="https://instagram.com/"><button mat-raised-button color="primary"><i class="fa-brands fa-instagram"></i></button></a> &nbsp;&nbsp;&nbsp; <a style="margin:1.5%;" href="whatsapp://send?text={{currentSite}} - Benie Writes- with words, I give my thoughts life." data-action="share/whatsapp/share" target="_blank"><button mat-raised-button color="primary"><i class="fa-brands fa-whatsapp"></i></button></a> 
-            
             </div> 
         </div>
         <div class="col-md-3">
@@ -17,9 +16,62 @@
         <div class="col-md-5">
             <div style="padding:5%;margin:2.5%;">
                 <form #subForm="ngForm" class="shadow" (ngSubmit)="subscribe(subForm.value)" (mouseover)="subKey($event)" (keydown)="subKey($event)" (keypress)="subKey($event)" (keyup)="subKey($event)">
-                    <h1 style="color:blueviolet" class=" text-center">Monthly Newsletter <br> <span><h5>Never miss a story.</h5></span></h1>
-                            
-                            
+                    <h1 style="color:blueviolet" class=" text-center">
+                        Monthly Newsletter 
+                        <br> 
+                        <span>
+                            <h5>Never miss a story.</h5>
+                        </span>
+                    </h1>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+                        <mat-error *ngIf="email.hasError('required') || email.pristine">
+                            Your email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="email.hasError('pattern') || email.pristine">
+                            Please enter a <strong>valid email address</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    &nbsp;&nbsp;&nbsp;
+                    <mat-form-field appearance="fill" class="w-100" *ngIf="subInput">
+                        <mat-label>Name</mat-label>
+                        <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                        <mat-error *ngIf="name.hasError('required') || name.pristine">
+                            Your name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color="accent" class="w-100" [disabled]="subForm.invalid"><i class="fa-solid fa-user-plus"></i> Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container-fluid" style="padding:1.5%;">
+    <div class="row" style="padding:1.5%;">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <form #contForm="ngForm" class="shadow" (ngSubmit)="contact(contForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
+                <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5 class="col2">Benie built and designed this website <br> & owns all the written content.</h5></span></h1>
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput name="message" placeholder="Type your message here..." ngModel #message="ngModel" required></textarea>
+                        <mat-error *ngIf="message.hasError('required') || message.pristine">
+                            Message is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="row" *ngIf="!noInput">
+                        <div class="col-md-6">
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Name</mat-label>
+                                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+                                <mat-error *ngIf="name.hasError('required') || name.pristine">
+                                    Your name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Email</mat-label>
                                 <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
@@ -30,63 +82,10 @@
                                     Please enter a <strong>valid email address</strong>
                                 </mat-error>
                             </mat-form-field>
-                            &nbsp;&nbsp;&nbsp;
-                            <mat-form-field appearance="fill" class="w-100" *ngIf="subInput">
-                                <mat-label>Name</mat-label>
-                                <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-                                <mat-error *ngIf="name.hasError('required') || name.pristine">
-                                    Your name is <strong>required</strong>
-                                </mat-error>
-                            </mat-form-field>
-                            <button mat-raised-button color="accent" class="w-100" [disabled]="subForm.invalid"><i class="fa-solid fa-user-plus"></i> Subscribe</button>
-                </form>
-            </div>
-        </div>
-        
-    </div>
-</div>
-<hr>
-<div class="container-fluid" style="padding:1.5%;">
-    <div class="row" style="padding:1.5%;">
-        <div class="col-md-1"></div>
-        <div class="col-md-5">
-    <form #contForm="ngForm" class="shadow" (ngSubmit)="contact(contForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
-        <h1 style="color:blueviolet" class=" text-center">Need a Developer/Writer? <br> <span><h5 class="col2">Benie built and designed this website <br> & owns all the written content.</h5></span></h1>
-        
-        
-                
-                <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Message</mat-label>
-                    <textarea matInput name="message" placeholder="Type your message here..." ngModel #message="ngModel" required></textarea>
-                    <mat-error *ngIf="message.hasError('required') || message.pristine">
-                        Message is <strong>required</strong>
-                    </mat-error>
-                </mat-form-field>
-                <div class="row" *ngIf="!noInput">
-                    <div class="col-md-6">
-                        <mat-form-field appearance="fill" class="w-100">
-                            <mat-label>Name</mat-label>
-                            <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-                            <mat-error *ngIf="name.hasError('required') || name.pristine">
-                                Your name is <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <mat-form-field appearance="fill" class="w-100">
-                            <mat-label>Email</mat-label>
-                            <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
-                            <mat-error *ngIf="email.hasError('required') || email.pristine">
-                                Your email is <strong>required</strong>
-                            </mat-error>
-                            <mat-error *ngIf="email.hasError('pattern') || email.pristine">
-                                Please enter a <strong>valid email address</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <button mat-raised-button color="accent" class="w-100" [disabled]="contForm.invalid"><i class="fa-regular fa-paper-plane"></i> Send Email</button>
-    </form>
+                    <button mat-raised-button color="accent" class="w-100" [disabled]="contForm.invalid"><i class="fa-regular fa-paper-plane"></i> Send Email</button>
+            </form>
         </div>
         <div class="col-md-5">
             <div class="row g-0 text-center">
