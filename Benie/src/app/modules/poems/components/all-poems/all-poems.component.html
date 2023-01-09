@@ -10,9 +10,9 @@
                 &nbsp;&nbsp; in &nbsp;
                 <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a>
             </small>
-            <a routerLink="/poems/{{p.title}}/{{p.id}}"><img src="{{p.cover}}" id="cover" alt=""></a>
+            <a routerLink="/poems/{{p.category}}/{{p.title}}/read/{{p.id}}"><img src="{{p.cover}}" id="cover" alt=""></a>
             <h1 class="text-primary">
-                <a routerLink="/poems/{{p.title}}/{{p.id}}">{{p.title}}</a>
+                <a routerLink="/poems/{{p.category}}/{{p.title}}/read/{{p.id}}">{{p.title}}</a>
             </h1>
             <p>{{p.excerpt}}</p>
         </div>

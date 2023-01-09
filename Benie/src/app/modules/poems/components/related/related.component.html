@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-6" *ngFor="let tr of topRelated">
             <h4 class="text-primary">
-                <a type="button" (click)="copy(tr.id);copyT(tr.title);refresh()">{{tr.title}}</a> 
+                <a type="button" (click)="copy(tr.id);copyT(tr.category);copyT(tr.title);refresh()">{{tr.title}}</a> 
                 <br> 
                 <span class="smaller">
                     <small class="col2">
@@ -13,7 +13,7 @@
                     </small>
                 </span>
                 <br>
-                <span><a type="button" (click)="copy(tr.id);copyT(tr.title);refresh()"><img class="zoom max-width" id="cover" src="{{tr.cover}}" alt=""></a></span>
+                <span><a type="button" (click)="copy(tr.id);copyT(tr.category);copyT(tr.title);refresh()"><img class="zoom max-width" id="cover" src="{{tr.cover}}" alt=""></a></span>
             </h4>
         </div>
     </div>

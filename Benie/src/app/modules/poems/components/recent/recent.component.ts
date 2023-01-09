@@ -11,6 +11,7 @@ export class RecentComponent implements OnInit {
   @Input() poems: any;
   poemId: any;
   poemT: any;
+  poemC: any;
 
   constructor(
     private router:Router
@@ -27,12 +28,17 @@ export class RecentComponent implements OnInit {
     localStorage.setItem("poemTitle",text);
     this.poemT = localStorage.getItem("poemTitle");
   }
+  copyC(text: any){
+    localStorage.setItem("poemCateg",text);
+    this.poemC = localStorage.getItem("poemCateg");
+  }
   refresh(){
-    this.router.navigate(['/poems/' + this.poemT + '/' + this.poemId])
+    this.router.navigate(['/poems/' + this.poemC + '/' + this.poemT + '/' + 'read' + this.poemId])
     setTimeout(() => {
       location.reload();
       localStorage.removeItem("poemId");
       localStorage.removeItem("poemTitle");
+      localStorage.removeItem("poemCateg");
     },2)
   }
 

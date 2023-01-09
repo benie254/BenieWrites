@@ -1,27 +1,25 @@
 <div class="container-fluid height-auto" id="readSBg">
   <span class="sticky-top top">
-    <span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark col1">
-      <i class="fa-solid fa-chevron-left"></i> Go Back
-    </span> 
-    &nbsp;&nbsp;&nbsp;
     <span>
-      <span>
-        <button id="toggle" class="btn btn-sm btn-dark col1">
-          <mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle>
-        </button>
-      </span> 
-      <span class="float-right">
-        <button id="follow" class="col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
-          <i class="fa-solid fa-user-plus"></i> Follow
-        </button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <button id="share" class="col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
-          <i class="fa-solid fa-share-nodes"></i> Share
-        </button>
-        &nbsp;&nbsp;
-      </span>
-    </span>  
-  </span>      
+        <button id="back" class="smaller btn btn-sm btn-dark col1" (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Back</button>
+    </span> 
+    &nbsp;
+        <span>
+            <button id="toggle" class="smaller btn btn-sm btn-dark" style="color:blueviolet;">
+                <mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle>
+            </button>
+        </span>
+        <span class="float-right">
+            <button id="follow" class="smaller col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
+                <i class="fa-solid fa-user-plus"></i> Follow
+            </button>
+            &nbsp;
+            <button id="share" class="smaller col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
+                <i class="fa-solid fa-share-nodes"></i> Share
+            </button>
+            &nbsp;
+        </span>
+</span>     
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-8">
@@ -31,15 +29,17 @@
             <mat-stepper class="shadow container padding-lg height-auto lg" id="sContent">
               <mat-step state="book" labelPosition="bottom" #stepper>
                 <div *ngFor="let p of chapterPages | paginate: { id:'readPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
-                  <h1 class="text-center xxl" id="chaptDet">{{chapDet.title}} <br><span><h5><i class="fa-regular fa-file"></i> {{chapterPages.length}} pages &nbsp;&nbsp;&nbsp; <i class="fa-regular fa-clock"></i> {{readTime}} min read</h5></span></h1>
+                  <h1 class="text-center xxl" id="chaptDet">{{chapDet.title}} <br><span> <h5><span><i class="fa-solid fa-layer-group"></i> {{chaps.length}} <span *ngIf="story.category === 'flash-fiction'">part(s)</span><span *ngIf="story.category !== 'flash-fiction'">chapters</span></span> &nbsp; <i class="fa-regular fa-file"></i> {{chapterPages.length}} page(s) &nbsp;&nbsp;&nbsp; <i class="fa-regular fa-clock"></i> <span *ngIf="!readHrs && !readSecs"> {{readGen}}</span> 
+                    <span *ngIf="!readSecs && readHrs"> {{readHrs}}</span> 
+                    <span *ngIf="!readHrs && readSecs"> {{readSecs}}</span> read</h5></span></h1>
                   <div [innerHTML]="p.description"></div>
                 </div>
                 <div class="d-flex justify-content-center">
-                  <pagination-controls id="readPage" previousLabel="Prev" nextLabel="Next" pageChange)="onTableDataChange($event)"></pagination-controls>
+                  <pagination-controls id="readPage" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
                 </div>
                 <hr>
                 <div>
-                  <button mat-stroked-button color="primary" matStepperNext>Next Chapter</button> 
+                  <button mat-stroked-button color="primary" matStepperNext> <span *ngIf="story.category !== 'flash-fiction'">Next Chapter</span><span *ngIf="story.category === 'flash-fiction'">Feedback</span></button> 
                   <span class="float-right">
                     <button mat-stroked-button color="primary" (click)="openBottomSheet()">
                       <i class="fa-solid fa-share-nodes"></i> Share
@@ -52,11 +52,11 @@
                   <span class="col2">End</span>
                 </ng-template>
                 <ng-template matStepContent>
-                  <p>Enjoying this story? Drop your feedback below.</p>
-                  <app-feedback [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
+                  <p>Enjoy<span *ngIf="story.category !== 'flash-fiction'">ing</span><span *ngIf="story.category === 'flash-fiction'">ed</span> this story? Drop your feedback below.</p>
+                  <app-feedback [storyComments]="storyComments" [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
                   <br>
                   <div>
-                    <button mat-stroked-button matStepperPrevious>Prev Chapter</button>  
+                    <button mat-stroked-button matStepperPrevious>Prev <span *ngIf="story.category !== 'flash-fiction'">Chapter</span><span *ngIf="story.category === 'flash-fiction'">Part</span></button>  
                     <span class="float-right">
                       <button mat-stroked-button color="primary" (click)="openBottomSheet()">
                         <i class="fa-solid fa-share-nodes"></i> Share
@@ -65,8 +65,9 @@
                   </div>
                   <br>
                   <div *ngIf="chaps">
-                    <h2 class="text-center text-primary">{{chaps.length}} chapters</h2>
-                    <button class="padding-sm margin-md" *ngFor="let c of chaps" mat-raised-button color="accent" (click)="copy(c.id);">
+                    <h2 class="text-center text-primary" *ngIf="story.category !== 'flash-fiction'">{{chaps.length}} chapters</h2>
+                    <h2 class="text-center text-primary" *ngIf="story.category === 'flash-fiction'">{{chaps.length}} part(s)</h2>
+                    <button class="padding-sm" style="margin:1.5%;" *ngFor="let c of chaps" mat-raised-button color="accent" (click)="copy(c.id);">
                       {{c.title}}
                     </button>
                   </div>
@@ -76,6 +77,10 @@
                 <mat-icon><i class="fa-solid fa-book-open-reader"></i></mat-icon>
               </ng-template>
             </mat-stepper>
+          </div>
+          <br>
+          <div class="container">
+            <app-comments [storyId]="storyId" [storyComments]="storyComments" [topComments]="topComments" [likeComment]="likeComment" [commentId]="commentId"></app-comments> 
           </div>
         </div>
       </div>
@@ -113,7 +118,7 @@
                 </span> 
                 <span *ngIf="story.status == 'completed'">
                   <i>
-                    <i class="fa-regular fa-circle-check"></i> <a routerLink="/stories/related/status/{{story.status}}">{{story.status}}</a>
+                    <i class="fa-regular fa-circle-check"></i> <a routerLink="/stories/related/status/{{story.status}}" class="col2">{{story.status}}</a>
                   </i>
                 </span>
               </small>
@@ -173,8 +178,15 @@
         </small>
         <hr>
         <img src="{{story.cover}}" class="max-height max-width" alt="" priority>
+        <br><br>
+        <span>
+          <span>
+            <app-feedback [storyComments]="storyComments" [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
+          </span>
+        </span>
       </div>
     </div>
   </div>
-  <br><br>
+  <br>
+  <br>
 </div>

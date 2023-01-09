@@ -16,8 +16,11 @@ export class FeedbackComponent implements OnInit {
   liked = 'like';
   @Input() poemId: any;
   @Input() likes: any;
+  @Input() comments: any;
   @Input() likePoem: (data: any) => void;
   @Input() commentPoem: (data: any) => void;
+  storyId = '';
+  chapterId = '';
 
   constructor(
     private _bottomSheet: MatBottomSheet,

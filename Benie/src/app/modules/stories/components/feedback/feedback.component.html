@@ -2,18 +2,20 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
         <form #likeForm="ngForm" (ngSubmit)="(likeStory(likeForm.value))">
-            <input type="text" name="like" ngModel class="hide" [(ngModel)]="liked">
-            <input type="number" name="story" ngModel class="hide" [(ngModel)]="storyId">
-            <button class="margin-md" mat-raised-button color="accent" type="submit"><i class="fa-regular fa-star"></i> Like <span class="xsm" class="col1">{{storyLikes.length}} likes</span></button> 
-            &nbsp;&nbsp;&nbsp;
-            <button class="margin-md" type="button" mat-raised-button color="accent" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
+            <input type="text" name="like" ngModel style="display:none" [(ngModel)]="liked">
+            <input type="number" name="story" ngModel style="display:none" [(ngModel)]="storyId">
+            <button style="margin:1.5%;" mat-raised-button color="accent" type="submit"><i class="fa-regular fa-star"></i> Like <span class="xsm col1">{{storyLikes.length}} likes</span></button> 
+            <button style="margin:1.5%;" type="button" mat-raised-button color="accent" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
+            <button style="margin:1.5%;" type="button" mat-raised-button color="accent" (click)="openShareBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>
         </form> 
     </div>
     <div class="col-md-6">
         <form #commentForm="ngForm" (ngSubmit)="commentStory(commentForm.value)" (mouseover)="onKey($event)" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)">
             <mat-form-field appearance="fill">
-                <mat-label class="bg-light" color="accent">Comment</mat-label>
-                <input type="number" name="story" ngModel class="hide" [(ngModel)]="storyId">
+                <mat-label class="bg-light" color="accent">Comment <span class="xsm col1">{{storyComments.length}} comments</span></mat-label>
+                <input type="number" name="story" ngModel style="display:none" [(ngModel)]="storyId">
+                <input type="text" name="chapter" ngModel style="display:none" [(ngModel)]="chapterId">
+                <input type="text" name="poem" ngModel style="display:none" [(ngModel)]="poemId">
                 <textarea class="textarea" type="text" matInput ngModel name="comment"></textarea>
             </mat-form-field>
             <div *ngIf="!noInput">

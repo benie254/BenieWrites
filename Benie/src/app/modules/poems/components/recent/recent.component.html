@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-6" *ngFor="let p of poems">
             <h4 class="text-primary">
-                <a type="button" (click)="copy(p.id);copyT(p.title);refresh()">{{p.title}}</a> 
+                <a type="button" (click)="copy(p.id);;copyC(p.category);copyT(p.title);refresh()">{{p.title}}</a> 
                 <br> 
                 <span class="smaller">
                     <small class="col2">
@@ -14,7 +14,7 @@
                 </span>
                 <br>
                 <span>
-                    <a type="button" (click)="copy(p.id);copyT(p.title);refresh()">
+                    <a type="button" (click)="copy(p.id);copyC(p.category);copyT(p.title);refresh()">
                         <img class="zoom max-width" id="cover" src="{{p.cover}}" alt="">
                     </a>
                 </span>

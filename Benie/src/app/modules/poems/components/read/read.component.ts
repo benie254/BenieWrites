@@ -52,6 +52,37 @@ export class ReadComponent implements OnInit {
     )
     this.getAllPoems();
   }
+  poemDetails(id: number){
+    Notiflix.Loading.pulse("fetching poem...");
+    this.poetryService.getPoemDetails(id).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        this.details = res;
+        this.poemId = res.id;
+        this.poemCategory = res.category;
+        this.relatedPoems();
+        this.readGen = this.details.words/this.words;
+        if(this.readGen >= 60){
+          let readHrs: any = this.readGen/60;
+          let hrs = readHrs.toFixed(1)
+          let secs = (hrs+"").split(".")[1];
+          const mins = parseInt(secs)/10 * 60;
+          readHrs = Math.floor(readHrs) + ' hrs ' + mins + ' mins';
+          this.readTime = readHrs;
+        }else if(this.readGen < 1){
+          let readSecs = Math.round(this.readGen * 60) + ' secs';
+          this.readTime = readSecs;
+        }else{
+          this.readGen = this.details.words/this.words;
+          let read = this.readGen.toFixed(1);
+          let deci = (read+"").split(".")[1];
+          const sec = parseInt(deci)/10 * 60;
+          this.readGen = Math.floor(read) + ' mins ' + sec + ' secs';
+          this.readTime = this.readGen;
+        }
+      }
+    })
+  }
   public trackByFn = (index, item): void => {
     return item.id;
   }
@@ -67,10 +98,12 @@ export class ReadComponent implements OnInit {
   }
   commentPoem = (data: Poem): void => {
     Notiflix.Loading.pulse('posting comment...')
+    setTimeout(() => {
+      Notiflix.Notify.success("comment added!");
+      Notiflix.Loading.remove();
+    },200)
     this.poetryService.commentPoem(data).subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('comment added!')
         this.ngOnInit();
       }
     })
@@ -127,45 +160,15 @@ export class ReadComponent implements OnInit {
     })
   }
   getAllPoems(){
-    Notiflix.Loading.pulse('Retrieving...')
     this.poetryService.getAllPoems().subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
         this.allPoems = res;
         this.poems = res.slice(0,2);
         this.count = parseInt(this.allPoems.length) - parseInt(this.poems.length);
       }
     })
   }
-  poemDetails(id: number){
-    this.poetryService.getPoemDetails(id).subscribe({
-      next: (res) => {
-        this.details = res;
-        this.poemId = res.id;
-        this.poemCategory = res.category;
-        this.relatedPoems();
-        this.readGen = this.details.words/this.words;
-        if(this.readGen >= 60){
-          let readHrs: any = this.readGen/60;
-          let hrs = readHrs.toFixed(1)
-          let secs = (hrs+"").split(".")[1];
-          const mins = parseInt(secs)/10 * 60;
-          readHrs = Math.floor(readHrs) + ' hrs ' + mins + ' mins';
-          this.readTime = readHrs;
-        }else if(this.readGen < 1){
-          let readSecs = Math.round(this.readGen * 60) + ' secs';
-          this.readTime = readSecs;
-        }else{
-          this.readGen = this.details.words/this.words;
-          let read = this.readGen.toFixed(1);
-          let deci = (read+"").split(".")[1];
-          const sec = parseInt(deci)/10 * 60;
-          this.readGen = Math.floor(read) + ' mins ' + sec + ' secs';
-          this.readTime = this.readGen;
-        }
-      }
-    })
-  }
+  
   relatedPoems(){
     this.poetryService.getRelatedPoems(this.poemCategory).subscribe({
       next: (res) => {

@@ -16,11 +16,13 @@ export class CommentsComponent implements OnInit {
   @Input() storyComments: any;
   @Input() commentId: any;
   @Input() likeComment: (data: Reaction) => void;
-  @Input() copyComment: (text: any) => void;
   panelOpenState = false;
+  @Input() storyId: any;
+  commentReplies: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
+    private poetryService:PoetryService,
   ) { }
 
   ngOnInit(): void {
@@ -28,10 +30,26 @@ export class CommentsComponent implements OnInit {
   public trackByFn = (index, item): void => {
     return item.id;
   }
+  copyComment = (text: any): void => {
+    localStorage.removeItem("commentId");
+    localStorage.setItem("commentId",text);
+    this.commentId = localStorage.getItem('commentId');
+    this.commentFeedbacks(this.commentId)
+  }
   replyBottomSheet(): void {
-    this._bottomSheet.open(RepliesBottomSheet, {
-      data: {myId: this.commentId},
-    });
+    setTimeout(() => {
+      this._bottomSheet.open(RepliesBottomSheet, {
+        data: {myId: this.commentId, sId: this.storyId},
+      });
+    },15)
+  }
+  commentFeedbacks(id: number){
+    this.poetryService.commentReplies(id).subscribe({
+      next: (res) => {
+        this.commentReplies = res;
+        console.warn("comment likes",res);
+      }
+    })
   }
 
 }
@@ -47,9 +65,11 @@ export class RepliesBottomSheet implements OnInit {
   showRep = false;
   liked = 'like';
   cReplies: any;
+  storyId = this.data.sId;
+  poemId = '';
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: {myId: any},
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: {myId: any, sId: any},
     private _bottomSheetRef: MatBottomSheetRef<RepliesBottomSheet>,
     private adminPoetry:AdminPoetryService,
     private poetryService:PoetryService,
@@ -61,8 +81,8 @@ export class RepliesBottomSheet implements OnInit {
   }
 
   ngOnInit(){
-    this.commentFeedbacks();
     this.commentDetails();
+    this.commentFeedbacks();
   }
   commentFeedbacks(){
     this.poetryService.commentReplies(this.data.myId).subscribe({
@@ -82,15 +102,14 @@ export class RepliesBottomSheet implements OnInit {
     })
   }
   replyComment = (data: any): void => {
-    Notiflix.Loading.pulse('posting comment...')
+    Notiflix.Loading.pulse('posting reply...')
+    setTimeout(() => {
+      Notiflix.Notify.success("reply added!");
+      Notiflix.Loading.remove();
+    },100)
     this.poetryService.replyComment(data).subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('reply posted!')
         this.ngOnInit();
-        setTimeout(() => {
-          location.reload();
-        },5)
       }
     })
   }

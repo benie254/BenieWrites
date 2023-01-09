@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
 
@@ -20,6 +21,7 @@ export class StoriesComponent implements OnInit {
 
   constructor(
     private service: MyStoryService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

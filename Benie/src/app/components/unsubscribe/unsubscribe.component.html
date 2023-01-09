@@ -1,0 +1,71 @@
+
+<nav class="navbar bg-light navbar-expand-lg">
+    <div class="container-fluid" >
+      <a class="navbar-brand" href="/">
+        <img src="{{brand}}" class="border-50" height="25" width="25" alt="">
+        <span class="brand-font col1">Benie Writes 
+          <small class="xsm col2">
+            <i>"with words, I give my thoughts life."</i>
+          </small>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+        </ul>
+        <div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+<div class="container-fluid">
+    <span><button (click)="back()" class="btn btn-sm">Go Back</button></span>
+    <div style="padding:5%;">
+        <h1 class="text-center">
+            <span class="col1">Sad to see you leave <i class="fa-regular fa-face-sad-tear"></i></span>
+            <br>
+            <span>
+                <h4 class="col2"> One more thing before we say goodbye.</h4>
+            </span>
+        </h1>
+        <span class="text-center">
+            <p>
+                <span>
+                    <form #unsubForm="ngForm">
+                        <h3 class="text-center">Please enter the email address associated with your newsletter subscription below:</h3>
+                        <mat-form-field style="min-width:25%;" appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input type="email" (keydown)="onKey($event)" (keypress)="onKey($event)" (keyup)="onKey($event)" (mousedown)="onKey($event)" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" name="email" #email="ngModel" ngModel matInput>
+                            <mat-error *ngIf="email.hasError('required') || email.pristine">
+                                Email is <strong>required</strong>
+                            </mat-error>
+                            <mat-error *ngIf="email.hasError('pattern') || email.pristine">
+                                Please enter a <strong>valid email address</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="margin-sm">
+                            <button mat-raised-button color="primary" [disabled]="unsubForm.invalid" class="w-50" type="button" (click)="checkValues()">Unsubscribe</button>
+                        </div>
+                    </form>
+                    <h5 class="xxl">
+                        <span>Thank you for giving the Benie Writes newsletter a chance. 
+                            <br> It's been a delight to have you with us!
+                        </span>
+                        <br>
+                        <span>
+                            <img src="{{unsubImg}}" height="200" alt="">
+                        </span>
+                    </h5>
+                </span>
+            </p>
+        </span>
+    </div>
+</div>
+<app-footer></app-footer>

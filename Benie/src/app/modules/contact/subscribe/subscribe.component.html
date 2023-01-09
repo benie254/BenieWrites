@@ -1,28 +1,42 @@
-<form #subForm="ngForm" class="shadow" (ngSubmit)="subscribe(subForm.value)" (mouseover)="subKey($event)" (keydown)="subKey($event)" (keypress)="subKey($event)" (keyup)="subKey($event)">
-    <h1 class="col1 text-center">
-        Monthly Newsletter 
-        <br> 
-        <span>
-            <h5>Never miss a story.</h5>
-        </span>
-    </h1>
-    <mat-form-field appearance="fill" class="w-100">
-        <mat-label>Email</mat-label>
-        <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
-        <mat-error *ngIf="email.hasError('required') || email.pristine">
-            Your email is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="email.hasError('pattern') || email.pristine">
-            Please enter a <strong>valid email address</strong>
-        </mat-error>
-    </mat-form-field>
-    &nbsp;&nbsp;&nbsp;
-    <mat-form-field appearance="fill" class="w-100" *ngIf="subInput">
-        <mat-label>Name</mat-label>
-        <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
-        <mat-error *ngIf="name.hasError('required') || name.pristine">
-            Your name is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-    <button mat-raised-button color="accent" class="w-100" [disabled]="subForm.invalid"><i class="fa-solid fa-user-plus"></i> Subscribe</button>
-</form>
+<div class="container bg-light">
+    <form #subForm="ngForm" (ngSubmit)="subscribe(subForm.value)" (mouseover)="subKey($event)" (keydown)="subKey($event)" (keypress)="subKey($event)" (keyup)="subKey($event)">
+        <h1 class="col1 text-center">
+            <div class="row g-0 text-center padding-lg">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-3">
+                    <img src="{{subImg}}" id="pic" alt="">
+                </div>
+                <div class="col-lg-6">
+                    <span>
+                        Monthly Newsletter 
+            <br> 
+            <span>
+                <h5>Never miss a story.</h5>
+                    </span>
+            </span>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </h1>
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput name="email" placeholder="Enter email address..." ngModel #email="ngModel" [errorStateMatcher]="matcher" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+            <mat-error *ngIf="email.hasError('required') || email.pristine">
+                Your email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="email.hasError('pattern') || email.pristine">
+                Please enter a <strong>valid email address</strong>
+            </mat-error>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;
+        <mat-form-field appearance="fill" class="w-100" *ngIf="subInput">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" placeholder="Enter your name..." ngModel #name="ngModel" required>
+            <mat-error *ngIf="name.hasError('required') || name.pristine">
+                Your name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" class="w-100" [disabled]="subForm.invalid"><i class="fa-solid fa-user-plus"></i> Subscribe</button>
+    </form>
+    <br>
+</div>

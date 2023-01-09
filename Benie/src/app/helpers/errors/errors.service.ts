@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import * as Notiflix from 'notiflix';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/modules/admin/classes/user/user';
 import { MessageService } from 'src/app/modules/admin/services/errors/message.service';
@@ -22,6 +23,11 @@ export class ErrorsService {
     if (error.error.detail === 'Invalid token.') {
       this.logout();
       location.reload();
+    }
+    if(error.error.detail === 'Misdirected request'){
+      Notiflix.Notify.warning("Sorry!")
+      Notiflix.Notify.warning("That did not work")
+      Notiflix.Notify.failure("Something is wrong with your request")
     }
     if(error.error.email){
       this.messages.add(error.error.email);

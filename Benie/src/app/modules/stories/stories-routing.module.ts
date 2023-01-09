@@ -9,8 +9,9 @@ import { StoriesComponent } from './stories.component';
 const routes: Routes = [
   { path: '', component: StoriesComponent },
   { path: 'library', component: HomeComponent },
-  { path: ':id/:id', component: ReadComponent },
-  { path: ':id/chapter/:id', component: StoryPagesComponent },
+  { path: ':id/:id/preview/:id', component: ReadComponent },
+  { path: ':id/:id/chapter/:id', component: StoryPagesComponent },
+  { path: ':id/:id/read/:id', component: StoryPagesComponent },
   { path: 'related/:id/:id', component: ResultsComponent },
 ];
 

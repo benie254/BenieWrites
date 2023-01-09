@@ -46,8 +46,11 @@ export class AddStoryComponent implements OnInit {
   }
 
   addStory(data: any){
-    this.storyService.addStory(data).subscribe();
-    Notiflix.Notify.success('Added!');
+    this.storyService.addStory(data).subscribe({
+      next: (res) => {
+        Notiflix.Notify.success('Added!');
+      }
+    });
   }
   reset(){
     const form = (<HTMLFormElement>document.getElementById('storyForm'));

@@ -1,5 +1,5 @@
 <div class="container-fluid" style="min-height:300px;">
-    <p *ngIf="det" style="font-size:small;margin:1.5%;padding:1.5%;">
+    <p style="font-size:small;margin:1.5%;padding:1.5%;">
         <span style="font-size:smaller;" class="col2"><span>{{det.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> <span *ngIf="det.commented_by">&nbsp;{{det.commented_by}}</span><span *ngIf="!det.commented_by">&nbsp;Anonymous</span> </span></span> <br> <span *ngIf="det.comment">{{det.comment}}</span><span *ngIf="!det.comment">Beautiful piece!</span>
         <br><br>
         <span>
@@ -26,6 +26,8 @@
                 </mat-form-field>
                 <mat-form-field style="display:none;">
                     <input matInput type="number" style="display:none;" name="comment" ngModel [(ngModel)]="det.id">
+                    <input matInput type="number" style="display:none;" name="story" ngModel [(ngModel)]="storyId">
+                    <input matInput type="text" style="display:none;" name="poem" ngModel [(ngModel)]="poemId">
                 </mat-form-field>
                 <div>
                     <mat-form-field>

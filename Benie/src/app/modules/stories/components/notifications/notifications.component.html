@@ -14,11 +14,13 @@
                   <img class="notifImg img-fluid rounded-start shadow float-left" src="{{ln.img}}"  alt="" priority>
                 </a>
                 <h5 class="card-title">
+                 <a routerLink="/about">
                   <span>
                     <img src="{{authorImg}}" class="border-50" height="25" width="25" alt=""  priority>
                   </span> 
-                  Benie 
-                  <span class="text-muted float-right">{{ln.date | dateAgo}}</span>
+                  <span class="col1">Benie</span> 
+                 </a>
+                  <span class="col2 text-muted float-right">{{ln.date | dateAgo}}</span>
                 </h5>
                 <div class="card-body">
                   <p class="card-text">{{ln.message}}</p>
@@ -53,9 +55,12 @@
                       <img class="img-fluid rounded-start shadow float-left notifImg" src="{{n.img}}" alt="" priority>
                     </a>
                     <h5 class="card-title">
-                      <span>
-                        <img src="{{authorImg}}" class="border-50" height="25" width="25" alt=""  priority>
-                      </span> Benie <span class="text-muted float-right">{{n.date | dateAgo}}</span>
+                      <a routerLink="/about">
+                        <span>
+                          <img src="{{authorImg}}" class="border-50" height="25" width="25" alt=""  priority>
+                        </span> 
+                        <span class="col1">Benie</span> 
+                       </a><span class="text-muted float-right">{{n.date | dateAgo}}</span>
                     </h5>
                     <div class="card-body">
                       <p class="card-text">{{n.message}}</p>

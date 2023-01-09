@@ -81,21 +81,23 @@ export class ReadComponent implements OnInit {
     return item.id;
   }
   likeStory = (data: any): void => {
-    Notiflix.Loading.pulse('Processing...')
+    Notiflix.Loading.pulse('processing...')
     this.service.addReaction(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
-        Notiflix.Notify.success("Story liked!")
+        Notiflix.Notify.success("story liked!")
         this.ngOnInit();
       }
     })
   }
   commentStory = (data: any): void => {
-    Notiflix.Loading.pulse('Processing...')
+    Notiflix.Loading.pulse('posting comment...')
+    setTimeout(() => {
+      Notiflix.Notify.success("comment added!");
+      Notiflix.Loading.remove();
+    },200)
     this.stoyService.addFeedback(data).subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success("Comment added!")
         this.ngOnInit();
         this.values = '';
       }
@@ -163,8 +165,11 @@ export class ReadComponent implements OnInit {
     localStorage.removeItem('chapId');
     localStorage.setItem('chapId',text);
     this.chapId = localStorage.getItem('chapId');
-    console.warn('chap id:',this.chapId)
-    this.router.navigate(['/stories/' + this.story.title + '/chapter/' + this.chapId]);
+    if(this.story.category !== 'flash-fiction'){
+      this.router.navigate(['/stories/' + this.story.category + '/' + this.story.title + '/chapter/' + this.chapId]);
+    }else {
+      this.router.navigate(['/stories/' + this.story.category + '/' + this.story.title + '/read/' + this.chapId]);
+    }
   }
   
   
@@ -277,6 +282,7 @@ export class ReadComponent implements OnInit {
     })
   }
   copyComment = (text: any): void => {
+    localStorage.removeItem("commentId");
     localStorage.setItem("commentId",text);
     this.commentId = localStorage.getItem('commentId');
     this.commentFeedbacks(this.commentId)

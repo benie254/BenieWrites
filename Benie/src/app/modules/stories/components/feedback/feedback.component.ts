@@ -17,9 +17,12 @@ export class FeedbackComponent implements OnInit {
   @Input() commentStory: (data: Story) => void;
   @Input() storyId: any;
   @Input() storyLikes: any;
+  @Input() storyComments: any;
   liked = 'like';
   noInput = true;
   values = '';
+  chapterId = '';
+  poemId = '';
 
 
   constructor(
@@ -37,7 +40,39 @@ export class FeedbackComponent implements OnInit {
   followBottomSheet(): void {
     this._bottomSheet.open(FollowAlt2BottomSheet);
   }
+  openShareBottomSheet(): void {
+    this._bottomSheet.open(ShareBottomSheet);
+  }
 
+}
+
+@Component({
+  selector: 'bottom-sheet-overview-example-sheet',
+  templateUrl: 'share.html',
+})
+export class ShareBottomSheet {
+  storyLink = '';
+  currentSite = window.location.href;
+
+  constructor(private _bottomSheetRef: MatBottomSheetRef<ShareBottomSheet>) {}
+
+  openLink(event: MouseEvent): void {
+    this._bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
+  myLink(){
+    this.copyLink(window.location.href);
+  }
+  copyLink(text: any){
+    localStorage.setItem('myLink',text);
+    this.storyLink = localStorage.getItem('myLink')
+    console.warn("my link",this.storyLink)
+    this.clipBoard(this.storyLink)
+  }
+  clipBoard(text: any){
+    navigator.clipboard.writeText(text);
+    Notiflix.Notify.success('Link Copied!')    
+  }
 }
 
 @Component({

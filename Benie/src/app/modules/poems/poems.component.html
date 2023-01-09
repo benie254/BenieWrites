@@ -9,7 +9,7 @@
                 <div>
                     <br>
                     <span *ngIf="pinned">
-                        <h1 class="col1" id="featuredTitle"><a routerLink="/poems/{{pinned.title}}/{{pinned.id}}">{{pinned.title}}</a> <br> <span class="col2 xsm">{{pinned.uploaded | date}}</span></h1>
+                        <h1 class="col1" id="featuredTitle"><a routerLink="/poems/{{pinned.category}}/{{pinned.title}}/read/{{pinned.id}}">{{pinned.title}}</a> <br> <span class="col2 xsm">{{pinned.uploaded | date}}</span></h1>
                         <p [innerHTML]="pinned.description | truncate:[760, '...']"></p>
                     </span>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="card mb-3">
                     <div class="text-center" >
                         <h2 class="card-title text-center zoom poemTitle"> 
-                            <a routerLink="/poems/{{p.title}}/{{p.id}}">
+                            <a routerLink="/poems/{{p.category}}/{{p.title}}/read/{{p.id}}">
                                 <img class="img-fluid card-img-top rounded-start shadow pic" src="{{p.cover}}"  alt="" priority> 
                                 {{p.title}}
                             </a> 
@@ -37,7 +37,7 @@
                     <div class="card-footer text-center">
                         <span class="col2 xsm">
                             <a routerLink="/poems/related/date/{{p.uploaded|date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> 
-                            by <a routerLink="/about">Benson Langat</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+                            by <a routerLink="/about" class="col2">Benson Langat</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
                             <a routerLink="/poems/related/category/{{p.category}}" class="col2">{{p.category}}</a>
                         </span>
                     </div>

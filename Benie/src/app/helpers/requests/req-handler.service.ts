@@ -48,11 +48,6 @@ export class ReqHandlerService {
       )
     }  else if (error.status === 400){
       Notiflix.Loading.remove();
-      Notiflix.Report.failure(
-        error.statusText,
-        'Please fix the highlighted errors and try again',
-        'Okay',
-      )
       console.warn(error)
     }  else if (error.status === 401){
       Notiflix.Loading.remove();
@@ -84,7 +79,12 @@ export class ReqHandlerService {
         "Don't worry, this has nothing to do with you. Please give it another try.",
         'Okay',
       )
-    } else if (error.status === 500 || 501 || 503){
+    } else if (error.status === 421) {
+        Notiflix.Notify.warning("Sorry!")
+        Notiflix.Notify.warning("That did not work")
+        Notiflix.Notify.failure("Something is wrong with your request")
+    }
+    else if (error.status === 500 || 501 || 503){
       Notiflix.Loading.remove();
       Notiflix.Report.warning(
         error.statusText,

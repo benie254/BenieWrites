@@ -12,18 +12,21 @@
     <div class="col-sm-6" *ngFor="let s of searchResults | filter: searchText">
       <div class="card mb-3 storyCard">
         <div class="text-center" >
+         <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">
           <img class="img-fluid rounded-start shadow float-left cardImg" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{s.cover}}"  alt="" priority>
-          <h3 class="card-title text-center">{{s.title}}  
+         </a>
+          <h2 class="card-title text-center">
+            <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">{{s.title}}</a>  
           <br> 
-          <span class="smaller text-muted">  <span class="col1"><i><i class="fa-solid fa-spinner"></i> {{s.status}}</i></span></span>
-          </h3>
+          <span class="smaller text-muted">  <h4 class="col1"><i><i class="fa-solid fa-spinner"></i> {{s.status}}</i></h4></span>
+          </h2>
           <div class="card-body">
             <p class="card-text">{{s.description | truncate:[265, '...']}}</p>
-            <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/stories/{{s.title}}/{{s.id}}">Read</button></span></small></p>
+            <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">Read</button></span></small></p>
           </div>
         </div>
       </div>
     </div>
+    <i class="text-center col1">Stay tuned for more!</i>
   </div>
-  <i class="text-center col1">Stay tuned for more!</i>
 </div>

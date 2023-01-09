@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="text-center" >
                                                 <h2 class="card-title text-center poemTitle"> 
-                                                    <a routerLink="/poems/{{p.title}}/{{p.id}}">
+                                                    <a routerLink="/poems/{{p.category}}/{{p.title}}/read/{{p.id}}">
                                                         <img class="img-fluid card-img-top rounded-start shadow pic" src="{{p.cover}}"  alt="" priority> 
                                                         {{p.title}}
                                                     </a> 
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="text-center" >
                                     <h2 class="card-title text-center poemTitle"> 
-                                        <a routerLink="/poems/{{p.title}}/{{p.id}}">
+                                        <a routerLink="/poems/{{p.category}}/{{p.title}}/read/{{p.id}}">
                                             <img class="img-fluid card-img-top rounded-start shadow pic" src="{{p.cover}}"  alt="" priority> 
                                             {{p.title}}
                                         </a> 

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as Notiflix from 'notiflix';
-import { MyStoryService } from '../services/story/my-story.service';
 
 @Component({
   selector: 'app-home',

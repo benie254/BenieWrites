@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import * as Notiflix from 'notiflix';
 import { Subscriber } from 'src/app/classes/subscriber/subscriber';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
+import { MyErrorStateMatcher } from '../../admin/auth/services/matcher/matcher.service';
 
 @Component({
   selector: 'app-subscribe',
@@ -9,9 +10,10 @@ import { StoryService } from 'src/app/modules/admin/services/story/story.service
   styleUrls: ['./subscribe.component.css']
 })
 export class SubscribeComponent implements OnInit {
-  @Input() matcher: any;
+  matcher = new MyErrorStateMatcher();
   subValues = '';
   subInput: boolean = false;
+  subImg = 'https://res.cloudinary.com/benie/image/upload/v1668273866/Humaaans_-_Space_xjvahn.png';
 
   constructor(
     private storyService: StoryService,

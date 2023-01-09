@@ -20,8 +20,10 @@
                 <span>
                     <span>
                         <form #likeCForm="ngForm" (ngSubmit)="(likeComment(likeCForm.value))">
-                            <input type="text" name="like" ngModel class="hide" [(ngModel)]="liked">
-                            <input type="number" name="comment" ngModel class="hide" [(ngModel)]="tc.id">
+                            <input type="text" name="like" ngModel style="display:none" [(ngModel)]="liked">
+                            <input type="number" name="comment" ngModel style="display:none" [(ngModel)]="tc.id">
+                            <input type="number" name="story" ngModel style="display:none" [(ngModel)]="storyId">
+                            <input type="number" name="poem" ngModel style="display:none" [(ngModel)]="poemId">
                             <span>
                                 <button class="btn col1 btn-sm" type="submit"> 
                                     <i class="fa-solid fa-star col1"></i> <span class="xsm"> Like</span>
@@ -75,8 +77,8 @@
                         <span>
                             <span>
                                 <form #likeCForm="ngForm" (ngSubmit)="(likeComment(likeCForm.value))">
-                                    <input type="text" name="like" ngModel class="hide" [(ngModel)]="liked">
-                                    <input type="number" name="comment" ngModel class="hide" [(ngModel)]="c.id">
+                                    <input type="text" name="like" ngModel style="display:none" [(ngModel)]="liked">
+                                    <input type="number" name="comment" ngModel style="display:none" [(ngModel)]="c.id">
                                     <span>
                                         <button class="btn col1 btn-sm" type="submit"> 
                                             <i class="fa-solid fa-star col1"></i> <span class="xsm"> Like</span>

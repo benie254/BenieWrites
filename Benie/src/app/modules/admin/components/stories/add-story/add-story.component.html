@@ -6,7 +6,7 @@
               <h2>Add Story</h2>  <br>
               <mat-form-field class="w-75" appearance="fill">
                 <mat-label>Author </mat-label>
-                  <textarea matInput type="text" name="author" #author="ngModel" ngModel required></textarea>
+                  <input matInput type="text" name="author" #author="ngModel" ngModel required>
                   <mat-error *ngIf="author.hasError('required') || author.pristine">
                     Author is <strong>required</strong>
                   </mat-error>
@@ -15,8 +15,9 @@
                     <mat-label>Genre</mat-label>
                     
                     <mat-select name="genre" ngModel #genre="ngModel" required>
+                      <mat-option value="drama" name="genre" ngModel #genre="ngModel" type="text">Drama</mat-option>
                       <mat-option value="mystery" name="genre" ngModel #genre="ngModel" type="text">Mystery</mat-option>
-                      <mat-option value="mystery/thriller" name="genre" ngModel #genre="ngModel" type="text">Mystery/Thriller</mat-option>
+                      <mat-option value="mystery-thriller" name="genre" ngModel #genre="ngModel" type="text">Mystery/Thriller</mat-option>
                       <mat-option value="thriller" name="genre" ngModel #genre="ngModel" type="text">Thriller</mat-option>
                       <mat-option value="teen-fiction" name="genre" ngModel #genre="ngModel" type="text">Teen Fiction</mat-option>
                     </mat-select>
@@ -30,6 +31,7 @@
                     
                     <mat-select name="category" ngModel #category="ngModel" required>
                       <mat-option value="short-story" name="category" ngModel #category="ngModel" type="text">Short Story</mat-option>
+                      <mat-option value="flash-fiction" name="category" ngModel #category="ngModel" type="text">Flash Fiction</mat-option>
                       <mat-option value="novelette" name="category" ngModel #category="ngModel" type="text">Novelette</mat-option>
                       <mat-option value="novel" name="category" ngModel #category="ngModel" type="text">Novel</mat-option>
                       <mat-option value="play" name="category" ngModel #category="ngModel" type="text">Play</mat-option>
@@ -44,7 +46,7 @@
                     
                     <mat-select name="status" ngModel #status="ngModel" required>
                       <mat-option value="ongoing" name="status" ngModel #status="ngModel" type="text">Ongoing</mat-option>
-                      <mat-option value="complete" name="status" ngModel #status="ngModel" type="text">Completed</mat-option>
+                      <mat-option value="completed" name="status" ngModel #status="ngModel" type="text">Completed</mat-option>
                     </mat-select>
                     <mat-error *ngIf="status.hasError('required') || status.pristine">
                         Status is <strong>required</strong>

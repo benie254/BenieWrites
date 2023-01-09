@@ -4,18 +4,21 @@
     <div class="col-sm-6" *ngFor="let os of onStories">
       <div class="card mb-3 storyCard">
         <div class="text-center" >
-          <img class="img-fluid cardImg rounded-start shadow float-left" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{os.cover}}"  alt="" priority>
-          <h3 class="card-title text-center">{{os.title}} 
+          <a routerLink="/stories/{{os.category}}/{{os.title}}/preview/{{os.id}}">
+            <img class="img-fluid cardImg rounded-start shadow float-left" (mouseover)="onKey($event)" (mouseleave)="removeS($event)" src="{{os.cover}}"  alt="" priority>
+          </a>
+          <h2 class="card-title text-center">
+            <a routerLink="/stories/{{os.category}}/{{os.title}}/preview/{{os.id}}">{{os.title}}</a>  
           <br> 
-          <span class="smaller text-muted"><span class="col1"><i><i class="fa-solid fa-spinner"></i> {{os.status}}</i></span></span>
-          </h3>
+          <span class="smaller text-muted">  <h4 class="col1"><i><i class="fa-solid fa-spinner"></i> {{os.status}}</i></h4></span>
+          </h2>
           <div class="card-body">
             <p class="card-text">{{os.description | truncate:[265, '...']}}</p>
-            <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/read/story/{{os.id}}">Read</button></span></small></p>
+            <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/stories/{{os.category}}/{{os.title}}/preview/{{os.id}}">Read</button></span></small></p>
           </div>
         </div>
       </div>
     </div>
+    <i class="text-center col1">Stay tuned for more!</i>
   </div>
-  <i class="text-center col1">Stay tuned for more!</i>
 </div>

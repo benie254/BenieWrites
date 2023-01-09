@@ -1,28 +1,34 @@
-<div class="container-fluid">
-    <div class="container-fluid" id="readBg">
+<div class="container-fluid" id="readBg">
+    <div class="container-fluid">
         <span class="sticky-top top">
-            <span (click)="back()" type="button" id="back" class="btn btn-sm btn-dark col1"><i class="fa-solid fa-chevron-left"></i> Go Back</span> 
-            &nbsp;&nbsp;&nbsp;
             <span>
+                <button id="back" class="smaller btn btn-sm btn-dark col1" (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Back</button>
+            </span> 
+            &nbsp;
                 <span>
-                    <button id="toggle" class="btn btn-sm btn-dark col1"><mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle></button>
-                </span> 
-                <span class="float-right">
-                    <button id="follow" class="col1 btn btn-sm btn-dark" (click)="followBottomSheet()"><i class="fa-solid fa-user-plus"></i> Follow</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <button id="share" class="col1 btn btn-sm btn-dark" (click)="openBottomSheet()"><i class="fa-solid fa-share-nodes"></i> Share</button>
-                    &nbsp;&nbsp;
+                    <button id="toggle" class="smaller btn btn-sm btn-dark" style="color:blueviolet;">
+                        <mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle>
+                    </button>
                 </span>
-            </span>
-        </span>   
+                <span class="float-right">
+                    <button id="follow" class="smaller col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
+                        <i class="fa-solid fa-user-plus"></i> Follow
+                    </button>
+                    &nbsp;
+                    <button id="share" class="smaller col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
+                        <i class="fa-solid fa-share-nodes"></i> Share
+                    </button>
+                    &nbsp;
+                </span>
+        </span> 
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8" id="content">
-            <div>
+            <div class="col-md-8">
+            <div id="content">
                 <div class="padding-lg height-auto">
                     <div>
                         <div>
-                            <button *ngFor="let c of chaps" class="margin-md padding-sm" mat-raised-button color="primary" (click)="copy(c.id);">{{c.title}}</button>
+                            <button *ngFor="let c of chaps" style="margin:1%;" mat-raised-button color="primary" (click)="copy(c.id);">{{c.title}}</button>
                         </div>
                     </div>
                     <div class="padding-md">
@@ -83,7 +89,7 @@
                                             </span>
                                             <hr>
                                             <span>
-                                                <app-feedback [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
+                                                <app-feedback [storyComments]="storyComments" [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
                                             </span>
                                         </span>
                                     </p>
@@ -102,7 +108,7 @@
             <span>
                 <span>
                     <div class="row">
-                        <app-comments [storyComments]="storyComments" [topComments]="topComments" [likeComment]="likeComment" [copyComment]="copyComment" [commentId]="commentId"></app-comments> 
+                        <app-comments [storyId]="storyId" [storyComments]="storyComments" [topComments]="topComments" [likeComment]="likeComment"  [commentId]="commentId"></app-comments> 
                     </div>
                 </span>
             </span>

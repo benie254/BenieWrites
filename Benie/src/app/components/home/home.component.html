@@ -1,29 +1,70 @@
 <app-navbar></app-navbar>
-
-<div class="container-fluid" style="padding:5%;">
+<div class="container-fluid padding-xxl">
     <br>
     <div class="row">
         <div class="col-lg-4">
-            <h1 class="text-center"><span style="font-size:xx-large;">Find Stories Where They Live</span> <br> <span><small><span><small>A thrilling mix of everything you love.</small></span>  <small class="col2"><br><i>with a beautiful reader mode</i></small></small></span></h1>
-            <img src="{{storiesImg}}" style="height:250px;max-width:100%;" alt="">
-            <button mat-raised-button color="primary" class="w-100" routerLink="/stories">Go to Stories</button>
+            <div class="padding-xxl">
+                <h1 class="text-center">
+                    <span class="xxl">Where Stories Live</span> 
+                    <br> 
+                    <span>
+                        <small>
+                            <span>
+                                <small>A blend of everything you love.</small>
+                            </span>  
+                            <small class="col2">
+                                <br>
+                                <i>with a beautiful reader mode</i>
+                            </small>
+                        </small>
+                    </span>
+                </h1>
+                <img src="{{storiesImg}}" class="storiesImg max-width" alt="">
+                <button mat-raised-button color="primary" class="w-100" routerLink="/stories">Go to Stories</button>
+            </div>
             <br><br>
         </div>
         <div class="col-lg-4">
-            <div class="shadow" style="padding:1.5%;">
-                <h1 class="text-center"><span style="font-size:xx-large;">The Poetry Hub Is A Trip!</span> <br><small><span><small>And a dive into the depth of the soul.</small></span></small> <small class="col2"><br><small><i>every week!</i></small></small></h1>
-                
-                <img src="{{poetryImg}}" style="height:250px;max-width:100%;" alt="">
+            <div class="shadow padding-xxl">
+                <h1 class="text-center">
+                    <span class="xxl">The Poetry Hub</span> 
+                    <br>
+                    <small>
+                        <span>
+                            <small>A dive into the depth of the soul.</small>
+                        </span>
+                    </small> 
+                    <small class="col2">
+                        <br>
+                        <small><i>every week!</i></small>
+                    </small>
+                </h1>
+                <img src="{{poetryImg}}" class="storiesImg max-width" alt="">
                 <button mat-raised-button color="primary" class="w-100" routerLink="/poems">Go to Poetry</button>
             </div>
             <br><br>
         </div>
         <div class="col-lg-4">
-            <h1 class="text-center"><span style="font-size:xx-large;">Open Discussions & More</span> <br><small><span><small><small>Experiences, articles, stuff you can't miss.</small></small></span></small> <small class="col2"><br><small><i>every week!</i></small></small> </h1>
-            <img src="{{discussionImg}}" style="height:250px;max-width:100%;" alt="">
-            <button mat-raised-button color="primary" class="w-100" routerLink="/discussions">Go to Discussions</button>
+            <div class="padding-xxl">
+                <h1 class="text-center">
+                    <span class="xxl">Open Discussions</span> 
+                    <br>
+                    <small>
+                        <span>
+                            <small>
+                                <small>& stuff you can't miss.</small>
+                            </small>
+                        </span>
+                    </small> 
+                    <small class="col2">
+                        <br>
+                        <small><i>every week!</i></small>
+                    </small> 
+                </h1>
+                <img src="{{discussionImg}}" class="storiesImg max-width" alt="">
+                <button mat-raised-button color="primary" class="w-100" routerLink="/discussions">Go to Discussions</button>
+            </div>
         </div>
     </div>
 </div>
-<br><br><br><br>
 <app-footer></app-footer>

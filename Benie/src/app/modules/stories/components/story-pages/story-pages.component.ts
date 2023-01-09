@@ -3,6 +3,7 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
+import { PoetryService } from 'src/app/modules/poems/services/poetry.service';
 import { MyStoryService } from 'src/app/services/story/my-story.service';
 
 @Component({
@@ -37,6 +38,8 @@ export class StoryPagesComponent implements OnInit {
   readSecs: any;
   st: any;
   authorImg = 'https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg';
+  commentId: any;
+  commentReplies: any;
   
 
   constructor(
@@ -45,59 +48,47 @@ export class StoryPagesComponent implements OnInit {
     private route:ActivatedRoute,
     private router:Router,
     private storyService: StoryService,
+    private poetryService:PoetryService,
   ) { }
 
   ngOnInit(): void {
     // this.storyChaps();
-    this.route.params.subscribe(params => this.chapDetails(params['id']));
+    
     this.route.params.subscribe(params => this.chapPages(params['id']));
+    this.route.params.subscribe(params => this.chapDetails(params['id']));
   }
-  likeStory = (data: any): void => {
-    Notiflix.Loading.pulse('Processing...')
-    this.service.addReaction(data).subscribe({
+  
+  copy = (text: any): void => {
+    localStorage.removeItem('chapId');
+    localStorage.setItem('chapId',text);
+    this.chapId = localStorage.getItem('chapId');
+    console.warn('chap id:',this.chapId)
+    if(this.story.category !== 'flash-fiction'){
+      this.router.navigate(['/read/story/chapter/' + this.chapId]);
+    }else if(this.story.category === 'flash-fiction'){
+      this.router.navigate([ '/stories/' + this.story.category + '/' + this.story.title + '/read/' + this.chapId]);
+    }
+    setTimeout(() => {
+      location.reload();
+    },0)
+    
+  }
+  chapPages(id: any){
+    Notiflix.Loading.pulse('fetching content...');
+    this.service.getChapterPages(id).subscribe({
       next: (res) => {
+        this.chapterPages = res;
         Notiflix.Loading.remove();
-        Notiflix.Notify.success("Story liked!")
-        this.ngOnInit();
+        this.storyId = localStorage.getItem('storyId');
+        this.storyChaps(this.storyId);
+        this.storyDetails(this.storyId);
       }
     })
   }
-  commentStory = (data: any): void => {
-    Notiflix.Loading.pulse('Processing...')
-    this.storyService.addFeedback(data).subscribe({
+  storyChaps(id: any){
+    this.service.getStoryChapters(id).subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success("Comment added!")
-        this.ngOnInit();
-        this.values = '';
-      }
-    })
-  }
-  storyReactions(id: any){
-    this.service.getStoryReactions(id).subscribe({
-      next: (res) => {
-        this.storyLikes = res;
-      }
-    })
-  }
-  storyFeedbacks(id: any){
-    this.service.getStoryFeedbacks(id).subscribe({
-      next: (res) => {
-        this.storyComments = res;
-        this.topComments = this.storyComments.slice(0,2);
-        console.warn(this.topComments,"tc")
-        console.warn("comments",res)
-      }
-    })
-  }
-  
-  
-  
-  chapDetails(id){
-    this.service.getChapDetails(id).subscribe({
-      next: (res) => {
-        this.chapDet = res;
-        this.readTime = Math.floor(this.chapDet.words/this.words);
+        this.chaps = res;
       }
     })
   }
@@ -127,38 +118,99 @@ export class StoryPagesComponent implements OnInit {
       }
     })
   }
-  storyChaps(id: any){
-    this.service.getStoryChapters(id).subscribe({
+  chapDetails(id){
+    this.service.getChapDetails(id).subscribe({
       next: (res) => {
-        this.chaps = res;
-        console.warn(res,"chaps")
+        this.chapDet = res;
+        this.readTime = Math.floor(this.chapDet.words/this.words);
       }
     })
   }
-  copy = (text: any): void => {
-    localStorage.removeItem('chapId');
-    localStorage.setItem('chapId',text);
-    this.chapId = localStorage.getItem('chapId');
-    console.warn('chap id:',this.chapId)
-    this.router.navigate(['/read/story/chapter/' + this.chapId]);
-    setTimeout(() => {
-      location.reload();
-    },0)
-    
-  }
-  chapPages(id: any){
-    Notiflix.Loading.pulse('Fetching...');
-    this.service.getChapterPages(id).subscribe({
+  likeStory = (data: any): void => {
+    Notiflix.Loading.pulse('Processing...')
+    this.service.addReaction(data).subscribe({
       next: (res) => {
         Notiflix.Loading.remove();
-        this.chapterPages = res;
-        console.warn("chap pages",res);
-        this.storyId = localStorage.getItem('storyId');
-        this.storyDetails(this.storyId);
-        this.storyChaps(this.storyId);
+        Notiflix.Notify.success("Story liked!")
+        this.ngOnInit();
       }
     })
   }
+  commentStory = (data: any): void => {
+    Notiflix.Loading.pulse('posting comment...')
+    setTimeout(() => {
+      Notiflix.Notify.success("comment added!");
+      Notiflix.Loading.remove();
+    },200)
+    this.storyService.addFeedback(data).subscribe({
+      next: (res) => {
+        this.ngOnInit();
+        this.values = '';
+      }
+    })
+  }
+  storyReactions(id: any){
+    this.service.getStoryReactions(id).subscribe({
+      next: (res) => {
+        this.storyLikes = res;
+      }
+    })
+  }
+  storyFeedbacks(id: any){
+    this.service.getStoryFeedbacks(id).subscribe({
+      next: (res) => {
+        this.storyComments = res;
+        this.topComments = this.storyComments.slice(0,2);
+        console.warn(this.topComments,"tc")
+        console.warn("comments",res)
+      }
+    })
+  }
+  likeComment = (data: any): void => {
+    this.poetryService.likeComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('comment liked!');
+        this.ngOnInit();
+        setTimeout( () => {
+          location.reload();
+        },10)
+      }
+    })
+  }
+  replyComment(data: any){
+    this.poetryService.replyComment(data).subscribe({
+      next: (res) => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('reply posted!')
+        this.ngOnInit();
+        setTimeout( () => {
+          location.reload();
+        }, 10
+        )
+      }
+    })
+  }
+  copyComment = (text: any): void => {
+    localStorage.removeItem("commentId");
+    localStorage.setItem("commentId",text);
+    this.commentId = localStorage.getItem('commentId');
+    this.commentFeedbacks(this.commentId)
+  }
+  commentFeedbacks(id: number){
+    this.poetryService.commentReplies(id).subscribe({
+      next: (res) => {
+        this.commentReplies = res;
+        console.warn("comment likes",res);
+      }
+    })
+  }
+  
+  
+  
+  
+  
+  
   changeBg(event: any){
     const myDiv = (<HTMLDivElement>document.getElementById('readSBg'));
     const content = (<HTMLDivElement>document.getElementById('sContent'));
@@ -188,7 +240,11 @@ export class StoryPagesComponent implements OnInit {
     }
   }
   back(){
-    this.router.navigate(['/stories/' + this.story.title + '/' + this.storyId])
+    if(this.story.category !== 'flash-fiction'){
+      this.router.navigate(['/stories/' + this.story.category + '/' + this.story.title + '/' + this.storyId])
+    }else if(this.story.category === 'flash-fiction'){
+      history.back();
+    }
   }
   onTableDataChange = (event: any): void => {
     this.page = event;

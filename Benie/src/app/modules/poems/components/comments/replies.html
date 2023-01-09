@@ -42,7 +42,7 @@
                     <mat-label class="bg-light" color="primary">Reply</mat-label>
                     <textarea class="textarea" type="text" matInput ngModel name="msg"></textarea>
                 </mat-form-field>
-                <mat-form-field class="hide">
+                <mat-form-field style="display:none;">
                     <input matInput type="number" name="comment" ngModel [(ngModel)]="det.id">
                 </mat-form-field>
                 <div>
@@ -50,6 +50,8 @@
                         <mat-label class="bg-light" color="primary">Name</mat-label>
                         <input name="replied_by" matInput ngModel type="text">
                     </mat-form-field>
+                    <input matInput type="number" style="display:none;" name="story" ngModel [(ngModel)]="storyId">
+                    <input matInput type="text" style="display:none;" name="poem" ngModel [(ngModel)]="poemId">
                 </div>
                 &nbsp;
                 <button mat-raised-button color="primary" type="submit">

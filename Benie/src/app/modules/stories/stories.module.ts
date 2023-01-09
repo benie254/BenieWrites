@@ -33,10 +33,10 @@ import { TruncatePipe } from './pipes/trunc/truncate.pipe';
 import { HomeComponent } from './home/home.component';
 import { StoryFooterComponent } from './story-footer/story-footer.component';
 import { ResultsComponent } from './components/results/results.component';
-import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ContactModule } from '../contact/contact.module';
-import { FeedbackComponent, FollowAlt2BottomSheet } from './components/feedback/feedback.component';
+import { FeedbackComponent, FollowAlt2BottomSheet, ShareBottomSheet } from './components/feedback/feedback.component';
 import { CommentsComponent, RepliesBottomSheet } from './components/comments/comments.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 
 @NgModule({
@@ -58,6 +58,7 @@ import { CommentsComponent, RepliesBottomSheet } from './components/comments/com
     FollowBottomSheet,
     FollowAltBottomSheet,
     FollowAlt2BottomSheet,
+    ShareBottomSheet,
     RepliesBottomSheet,
     NotificationsComponent,
     FeedbackComponent,

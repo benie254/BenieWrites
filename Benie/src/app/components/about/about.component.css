@@ -2,6 +2,11 @@
     max-height:300px;
     max-width:100%;
 }
-#author-img{
+#authorImg{
     max-height:250px;
+    color:azure;
+    color:burlywood;
+}
+.linear{
+    background-image: linear-gradient(rgb(255, 255, 255),whitesmoke);
 }

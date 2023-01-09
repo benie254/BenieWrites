@@ -36,7 +36,7 @@
     </div>
   </nav>
 
- <div class="container-fluid">
+  <div class="container-fluid padding-lg">
     <div class="container-fluid" *ngFor="let s of searchResults">
         <div class="row g-0" *ngIf="s.pin === 'pinned'">
             <div class="col-lg-1"></div>
@@ -53,9 +53,12 @@
                 </div>
                 <div class="card mb-3"  style="max-width: 720px;">
                     <div class="text-center" >
-                      <a routerLink="/stories/{{s.title}}/{{s.id}}"><img class="img-fluid rounded-start shadow" style="min-height:350px;max-width:210px;float:left;" src="{{s.cover}}"  alt="" priority></a>
+                      
+                      
                       <h1 class="card-title text-center">
-                        <span class="col1" style="font-size:xx-large"><a routerLink="/stories/{{s.title}}/{{s.id}}">{{s.title}}</a></span>
+                        <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}"><img class="img-fluid rounded-start shadow" style="min-height:350px;max-width:210px;float:left;" src="{{s.cover}}"  alt="" priority></a>
+                        <span class="col1" style="font-size:xx-large"><a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}"><br>
+                          {{s.title}}</a></span>
                         <br>
                         <span class="col2" style="font-size:smaller;">
                             <h4>
@@ -68,54 +71,56 @@
                         <br>
                         <p>{{s.description}}</p>
                        <br>
-                        <span><button mat-flat-button color="accent" class="w-50" routerLink="/stories/{{s.title}}/{{s.id}}">Read</button></span>
+                        <span>
+                          <button mat-flat-button color="accent" class="w-50" routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">Read</button>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
       </div>
     <br>
-      <div class="container-fluid shadow" style="padding:1.5%;background-color: white;">
-        <div class="row" *ngIf="completed">
-            <h1 class="text-center col1">Completed Stories</h1>
-            <div class="col-lg-6" *ngFor="let s of topCom">
-                <div class="row g-0 mb-3 text-center">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
-                        <a routerLink="/stories/{{s.title}}/{{s.id}}"><img class="zoom-x1" src="{{s.cover}}" style="max-height:100px;" alt=""></a>
-                    </div>
-                    <div class="col-lg-6" style="text-align:left;">
-                        <h2><a routerLink="/stories/{{s.title}}/{{s.id}}">{{s.title}}</a></h2>
-                        <p>{{s.description | truncate: [150, '...']}}</p>
-                       <small><i class="col2">a <a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
-                    </div>
-                    <div class="col-lg-2"></div>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <br>
-        <div class="row" *ngIf="ongoing">
-            <h1 class="text-center col1">Ongoing Stories</h1>
-            <div class="col-lg-6" *ngFor="let s of topOn">
-                <div class="row g-0 mb-3 text-center">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-3">
-                        <a routerLink="/stories/{{s.title}}/{{s.id}}"><img class="zoom-x1" src="{{s.cover}}" style="max-height:100px;" alt=""></a>
-                    </div>
-                    <div class="col-lg-6" style="text-align:left;">
-                        <h2><a routerLink="/stories/{{s.title}}/{{s.id}}">{{s.title}}</a></h2>
-                        <p>{{s.description | truncate: [150, '...']}}</p>
-                        <small><i class="col2">a <a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
-                    </div>
-                    <div class="col-lg-2"></div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="text-center"><button mat-raised-button color="accent" class="w-15" routerLink="/stories/library"><i class="fa-solid fa-book"></i> Library <span><small style="font-size:xx-small;">{{searchResults.length}} stories</small></span></button></div>
-    </div>
-      <br><br><br><br>
+      
  </div>
-
+ <div class="container-fluid shadow" style="padding:2.5%;background-color: white;">
+  <div class="row" *ngIf="completed">
+      <h1 class="text-center col1">Completed Stories</h1>
+      <div class="col-lg-6" *ngFor="let s of topCom">
+          <div class="row g-0 mb-3 text-center">
+              <div class="col-lg-1"></div>
+              <div class="col-lg-3">
+                <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}"><img class="zoom-x1" src="{{s.cover}}" style="max-height:100px;" alt=""></a>
+              </div>
+              <div class="col-lg-6" style="text-align:left;">
+                  <h2><a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">{{s.title}}</a></h2>
+                  <p>{{s.description | truncate: [150, '...']}}</p>
+                 <small><i class="col2">a <a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
+              </div>
+              <div class="col-lg-2"></div>
+          </div>
+      </div>
+      <hr>
+  </div>
+  <br>
+  <div class="row" *ngIf="ongoing">
+      <h1 class="text-center col1">Ongoing Stories</h1>
+      <div class="col-lg-6" *ngFor="let s of topOn">
+          <div class="row g-0 mb-3 text-center">
+              <div class="col-lg-1"></div>
+              <div class="col-lg-3">
+                <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}"><img class="img-fluid rounded-start shadow" style="min-height:350px;max-width:210px;float:left;" src="{{s.cover}}"  alt="" priority><img class="zoom-x1" src="{{s.cover}}" style="max-height:100px;" alt=""></a>
+              </div>
+              <div class="col-lg-6" style="text-align:left;">
+                  <h2><a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}"><img class="img-fluid rounded-start shadow" style="min-height:350px;max-width:210px;float:left;" src="{{s.cover}}"  alt="" priority>{{s.title}}</a></h2>
+                  <p>{{s.description | truncate: [150, '...']}}</p>
+                 <small><i class="col2">a <a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
+              </div>
+              <div class="col-lg-2"></div>
+          </div>
+      </div>
+  </div>
+  <br>
+  <div class="text-center"><button mat-raised-button color="accent" class="w-15" routerLink="/stories/library"><i class="fa-solid fa-book"></i> Library <span><small style="font-size:xx-small;">{{searchResults.length}} stories</small></span></button></div>
+</div>
+<br><br>
 <app-story-footer></app-story-footer>

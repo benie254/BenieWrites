@@ -7,7 +7,7 @@ import { PoemsComponent } from './poems.component';
 
 const routes: Routes = [
   { path: '', component: PoemsComponent },
-  { path: ':id/:id', component: ReadComponent },
+  { path: ':id/:id/read/:id', component: ReadComponent },
   { path: 'all', component: AllPoemsComponent },
   { path: 'related/category/:id', component: ResultsComponent },
   { path: 'related/date/:id', component: ResultsComponent },
