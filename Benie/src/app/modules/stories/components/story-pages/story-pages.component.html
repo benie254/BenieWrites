@@ -1,28 +1,30 @@
 <div class="container-fluid height-auto" id="readSBg">
   <span class="sticky-top top">
     <span>
-        <button id="back" class="smaller btn btn-sm btn-dark col1" (click)="back()" type="button"><i class="fa-solid fa-chevron-left"></i> Back</button>
+        <button id="back" class="smaller btn btn-sm btn-dark col1" (click)="back()" type="button"><i class="fa-solid fa-angles-left"></i></button>
     </span> 
     &nbsp;
         <span>
-            <button id="toggle" class="smaller btn btn-sm btn-dark" style="color:blueviolet;">
-                <mat-slide-toggle (click)="changeBg($event)">Light<i class="fa-solid fa-arrows-left-right"></i>Dark</mat-slide-toggle>
+            <button id="toggle" class="smaller btn btn-sm btn-dark" style="color:blue;">
+                <span>
+                    <span><i class="fa-solid fa-moon"></i></span>&nbsp;&nbsp;<span><mat-slide-toggle style="height:5px;" (click)="changeBg($event)"></mat-slide-toggle></span>&nbsp;&nbsp;<span style="color:orange;"><i class="fa-regular fa-lightbulb"></i></span>
+
+                </span>
             </button>
         </span>
         <span class="float-right">
             <button id="follow" class="smaller col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
-                <i class="fa-solid fa-user-plus"></i> Follow
+                <i class="fa-solid fa-user-plus"></i>
             </button>
             &nbsp;
             <button id="share" class="smaller col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
-                <i class="fa-solid fa-share-nodes"></i> Share
+                <i class="fa-solid fa-share-nodes"></i>
             </button>
             &nbsp;
         </span>
-</span>     
+</span>   
   <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-8">
+    <div class="col-lg-8">
       <div>
         <div>
           <div>
@@ -86,7 +88,7 @@
       </div>
       <br>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-4 ">
       <div class="shadow padding-md">
         <br>
         <small>
@@ -180,9 +182,11 @@
         <img src="{{story.cover}}" class="max-height max-width" alt="" priority>
         <br><br>
         <span>
-          <span>
-            <app-feedback [storyComments]="storyComments" [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
-          </span>
+          <div class="row">
+            <div class="col-lg-12">
+              <app-feedback [storyComments]="storyComments" [storyId]="storyId" [likeStory]="likeStory" [storyLikes]="storyLikes" [commentStory]="commentStory"></app-feedback>
+            </div>
+          </div>
         </span>
       </div>
     </div>

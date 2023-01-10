@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-6" *ngFor="let os of onStories">
+  <div class="row padding-xl">
+    <div class="col-lg-6" *ngFor="let os of onStories | paginate: { id:'ongoingPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
       <div class="card mb-3 storyCard">
         <div class="text-center" >
           <a routerLink="/stories/{{os.category}}/{{os.title}}/preview/{{os.id}}">
@@ -13,11 +13,14 @@
           <span class="smaller text-muted">  <h4 class="col1"><i><i class="fa-solid fa-spinner"></i> {{os.status}}</i></h4></span>
           </h2>
           <div class="card-body">
-            <p class="card-text">{{os.description | truncate:[265, '...']}}</p>
+            <p class="card-text">{{os.description | truncate:[200, '...']}}</p>
             <p class="card-text"><small><span><button mat-raised-button color="accent" class="w-25" routerLink="/stories/{{os.category}}/{{os.title}}/preview/{{os.id}}">Read</button></span></small></p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="onStories">
+      <pagination-controls id="ongoingPage" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
     </div>
     <i class="text-center col1">Stay tuned for more!</i>
   </div>

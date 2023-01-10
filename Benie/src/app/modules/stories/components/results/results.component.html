@@ -3,9 +3,17 @@
         <span (click)="back()" type="button" class="btn btn-sm col1">
             <i class="fa-solid fa-chevron-left"></i> Go Back
         </span> 
+        <span style="float:right;">
+            <a class="navbar-brand" href="/stories">
+                <span class="brand-font font-md-2" style="color:blueviolet">The Stories Lib </span>
+                <img src="https://res.cloudinary.com/benie/image/upload/v1671555324/h02js8etvetdr5ctbmtf-removebg-preview_wge6nt.png" height="25" width="25" style="border-radius:50%;" alt="">
+                <span class="brand-font font-md-2" style="color:blueviolet">Benie Writes </span>
+                &nbsp;
+              </a>
+        </span>
     </span>
     <div class="container padding-lg">
-        <div class="row">
+        <div class="row padding-xl">
             <div class="col-lg-3"></div>
             <div class="col-lg-9">
                 <h1 class="col2">Sorry, we found no related stories.</h1>
@@ -43,7 +51,6 @@
             <img src="{{exploreImg}}" id="explore" alt="">
         </div>
     </div>
-    <app-story-footer></app-story-footer>
 </div>
 <div *ngIf="related">
     <app-nav [searchResults]="searchResults"></app-nav>
@@ -54,16 +61,16 @@
             <span class="col1">{{related.length}}</span> 
             {{title | titlecase}} Stories
         </h1>
-        <div class="col-lg-6 text-center" *ngFor="let s of related">
+        <div class="col-lg-6 text-center" *ngFor="let s of related | paginate: { id:'resultsPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
             <div class="card mb-3 storyCard">
                 <div class="text-center" >
-                    <a routerLink="/stories/{{s.title}}/{{s.id}}">
+                    <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">
                         <img class="img-fluid rounded-start shadow float-left cardImg" src="{{s.cover}}"  alt="" priority>
                     </a>
                     <br>
                     <h4 class="card-title text-center">
                         <span class="col1 xxl">
-                            <a routerLink="/stories/{{s.title}}/{{s.id}}">{{s.title}}</a>
+                            <a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">{{s.title}}</a>
                         </span>
                         <br>
                         <span class="col2 smaller">
@@ -76,16 +83,18 @@
                             </small>
                         </span>
                     </h4>
-                    <p>{{s.description | truncate: [120, '...']}}</p>
+                    <p>{{s.description | truncate: [200, '...']}}</p>
                     <br>
                     <span>
-                        <button mat-flat-button color="accent" class="w-50" routerLink="/stories/{{s.title}}/{{s.id}}">Read</button>
+                        <button mat-flat-button color="accent" class="w-50" routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">Read</button>
                     </span>
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center">
+            <pagination-controls id="resultsPage" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+          </div>
     </div>
 </div>
 
-<br><br><br><br>
 <app-story-footer></app-story-footer>

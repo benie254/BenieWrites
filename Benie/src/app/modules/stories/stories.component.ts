@@ -30,6 +30,11 @@ export class StoriesComponent implements OnInit {
     this.ongoingStories();
     this.completedStories();
   }
+  reload(){
+    setTimeout(() => {
+      location.reload();
+    },3)
+  }
   allStories(){
     Notiflix.Loading.pulse('Retrieving...')
     this.service.getAllStories().subscribe({

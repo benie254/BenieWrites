@@ -9,6 +9,10 @@ import { MyStoryService } from 'src/app/services/story/my-story.service';
 })
 export class OngoingStoriesComponent implements OnInit {
   onStories: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 4;
+  tableSizes: any = [2, 5, 10, 15];
 
   constructor(
     private service: MyStoryService,
@@ -25,6 +29,15 @@ export class OngoingStoriesComponent implements OnInit {
         Notiflix.Loading.remove();
       }
     })
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.ongoingStories();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.ongoingStories();
   }
 
 }

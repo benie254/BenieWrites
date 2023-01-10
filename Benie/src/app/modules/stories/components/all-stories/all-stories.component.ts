@@ -15,6 +15,10 @@ export class AllStoriesComponent implements OnInit {
   @Input() searchResults: any;
   @Input() searchText: any;
   @Input() titleValue: (text: any) => void;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 4;
+  tableSizes: any = [2, 5, 10, 15];
 
   constructor(
     private storyService:MyStoryService,
@@ -46,5 +50,14 @@ export class AllStoriesComponent implements OnInit {
         Notiflix.Loading.remove();
       }
     })
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.allStories();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.allStories();
   }
 }

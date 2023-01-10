@@ -67,6 +67,7 @@ export class RepliesBottomSheet implements OnInit {
   cReplies: any;
   poemId = this.data.pId;
   storyId = '';
+  commentId: any;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: {myId: any, pId: any},
@@ -84,7 +85,21 @@ export class RepliesBottomSheet implements OnInit {
     this.commentFeedbacks();
     this.commentDetails();
   }
-
+  copyComment(text: any){
+    setTimeout(() => {
+      localStorage.removeItem("commentId");
+      localStorage.setItem("commentId",text);
+      this.commentId = localStorage.getItem("commentId");
+      this.commentFeeds(this.commentId);
+    },2000)
+  }
+  commentFeeds(id: any){
+    this.poetryService.commentReplies(id).subscribe({
+      next: (res) => {
+        this.cReplies = res;
+      }
+    })
+  }
   commentFeedbacks(){
     this.poetryService.commentReplies(this.data.myId).subscribe({
       next: (res: Feedback) => {
@@ -106,8 +121,7 @@ export class RepliesBottomSheet implements OnInit {
     setTimeout(() => {
       Notiflix.Notify.success("reply added!");
       Notiflix.Loading.remove();
-      location.reload();
-    },100)
+    },1000)
     this.poetryService.replyComment(data).subscribe({
       next: (res) => {
         this.ngOnInit();

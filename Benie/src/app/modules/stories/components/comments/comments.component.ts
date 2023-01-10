@@ -5,6 +5,7 @@ import { Feedback } from 'src/app/classes/feedback/feedback';
 import { Reaction } from 'src/app/classes/reaction/reaction';
 import { AdminPoetryService } from 'src/app/modules/admin/services/poetry/poetry.service';
 import { PoetryService } from 'src/app/modules/poems/services/poetry.service';
+import { MyStoryService } from 'src/app/services/story/my-story.service';
 
 @Component({
   selector: 'app-comments',
@@ -19,16 +20,35 @@ export class CommentsComponent implements OnInit {
   panelOpenState = false;
   @Input() storyId: any;
   commentReplies: any;
+  commId: any;
+  commentLikes: any;
 
   constructor(
     private _bottomSheet: MatBottomSheet,
     private poetryService:PoetryService,
+    private storyService:MyStoryService,
   ) { }
 
   ngOnInit(): void {
   }
   public trackByFn = (index, item): void => {
     return item.id;
+  }
+  copyC = (text: any): void => {
+    setTimeout(() => {
+      localStorage.removeItem("commId");
+      localStorage.setItem("commId",text);
+      this.commId = localStorage.getItem('commId');
+      this.commentReactions(this.commId)
+    },1000)
+  }
+  commentReactions(id: number){
+    this.poetryService.commentReplies(id).subscribe({
+      next: (res) => {
+        this.commentLikes = res;
+        console.warn("comment likes",res);
+      }
+    })
   }
   copyComment = (text: any): void => {
     localStorage.removeItem("commentId");
@@ -67,6 +87,7 @@ export class RepliesBottomSheet implements OnInit {
   cReplies: any;
   storyId = this.data.sId;
   poemId = '';
+  commentId: any;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: {myId: any, sId: any},
@@ -83,6 +104,21 @@ export class RepliesBottomSheet implements OnInit {
   ngOnInit(){
     this.commentDetails();
     this.commentFeedbacks();
+  }
+  copyComment(text: any){
+    setTimeout(() => {
+      localStorage.removeItem("commentId");
+      localStorage.setItem("commentId",text);
+      this.commentId = localStorage.getItem("commentId");
+      this.commentFeeds(this.commentId);
+    },2000)
+  }
+  commentFeeds(id: any){
+    this.poetryService.commentReplies(id).subscribe({
+      next: (res) => {
+        this.cReplies = res;
+      }
+    })
   }
   commentFeedbacks(){
     this.poetryService.commentReplies(this.data.myId).subscribe({
@@ -106,7 +142,7 @@ export class RepliesBottomSheet implements OnInit {
     setTimeout(() => {
       Notiflix.Notify.success("reply added!");
       Notiflix.Loading.remove();
-    },100)
+    },1000)
     this.poetryService.replyComment(data).subscribe({
       next: (res) => {
         this.ngOnInit();

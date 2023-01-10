@@ -257,14 +257,14 @@ export class ReadComponent implements OnInit {
     this.router.navigate(['/stories/library'])
   }
   likeComment = (data: any): void => {
+    Notiflix.Loading.pulse('processing...');
     this.poetryService.likeComment(data).subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('comment liked!');
-        this.ngOnInit();
         setTimeout( () => {
-          location.reload();
-        },10)
+          Notiflix.Loading.remove();
+          Notiflix.Notify.success('comment liked!');
+          this.ngOnInit();
+        },500)
       }
     })
   }

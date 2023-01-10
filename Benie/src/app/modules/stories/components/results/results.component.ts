@@ -13,6 +13,11 @@ export class ResultsComponent implements OnInit {
   title: any;
   searchResults: any;
   exploreImg = 'https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg';
+  id: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 4;
+  tableSizes: any = [2, 5, 10, 15];
 
   constructor(
     private service:MyStoryService,
@@ -46,6 +51,15 @@ export class ResultsComponent implements OnInit {
   }
   back(){
     history.back();
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.relatedStories(this.title);
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.relatedStories(this.title);
   }
 
 }

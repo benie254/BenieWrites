@@ -203,11 +203,126 @@ textarea{
     width:75px;
     height:35px;
 }
-.storyCard, .cardImg{
-    max-width: 720px;
+.feat{
+    width: 100px;
+    height: 140px;
 }
-.cardImg{
-    min-height:250px;
-    max-height:250px;
-    max-width:210px;
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 480px) {
+    .cardImg{
+        max-height:480px;
+        width:100%;
+    }
+    #back, #follow, #toggle, #share{
+        font-size: xx-small;
+    }
+    .footer{
+        font-size:1px;
+    }
+    .featImg{
+        min-height:420px;
+        width:100%;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .cardImg{
+        height:290px;
+        width:220px;
+    }
+}
+
+@media only screen and (min-width: 552px){
+    .featImg{
+        min-height:420px;
+        width:100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .cardImg{
+        height:370px;
+        width:270px;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .storyCard{
+        max-width: 720px;
+    }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .cardImg{
+        height:320px;
+        width:250px;
+    }
+    .featImg{
+        height:420px;
+        width:330px;
+    }
+    .featCard{
+        width:100%;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .cardImg{
+        height:420px;
+        width:100%;
+    }
+    .storyCard{
+        width: 80%;
+    }
+    .featImg{
+        height:380px;
+        width:280px;
+    }
+    .featCard{
+        width:100%;
+    }
+    #discussImg{
+        min-height:250px;
+    }
+    
+}
+@media only screen and (min-width:1000px){
+    #discussImg{
+        min-height:280px;
+    }
+}
+@media only screen and (min-width:1024px){
+    #discussImg{
+        min-height:255px;
+    }
+}
+
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .cardImg{
+        height:280px;
+        width:200px;
+    }
+    .featImg{
+        height:400px;
+        width:330px;
+    }
+    .storyCard{
+        width: 100%;
+    }
+    .featCard{
+        width:100%;
+    }
+    #discussImg{
+        height:250px;
+    }
 }

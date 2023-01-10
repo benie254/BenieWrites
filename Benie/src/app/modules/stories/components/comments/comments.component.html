@@ -8,7 +8,7 @@
         <div class="col-md-6" *ngFor="let tc of topComments ; trackBy: trackByFn">
             <p class="shadow sm margin-md padding-md">
                 <span class="sm col2">
-                    {{tc.date | dateAgo}} &nbsp;&nbsp; | &nbsp;&nbsp; <i class="fa-regular fa-circle-user"></i> 
+                    {{tc.date | dateAgo}} &nbsp; <i class="fa-regular fa-circle-user"></i> 
                     <span *ngIf="tc.commented_by">&nbsp;{{tc.commented_by}}</span>
                     <span *ngIf="!tc.commented_by">&nbsp;Anonymous</span> 
                 </span> 
@@ -61,7 +61,7 @@
                     <span class="divide sm">
                         <span class="col2">
                             <span>{{c.date | dateAgo}}</span> 
-                            &nbsp;&nbsp; | &nbsp;&nbsp; 
+                            &nbsp;
                             <span><i class="fa-regular fa-circle-user"></i></span> 
                             &nbsp; 
                             <span *ngIf="c.commented_by">&nbsp;{{c.commented_by}}</span>
@@ -79,7 +79,7 @@
                                     <input type="text" name="like" ngModel style="display:none" [(ngModel)]="liked">
                                     <input type="number" name="comment" ngModel style="display:none" [(ngModel)]="c.id">
                                     <span>
-                                        <button class="btn col1 btn-sm" type="submit"> 
+                                        <button class="btn col1 btn-sm" type="submit" (click)="copyC(c.id)"> 
                                             <i class="fa-solid fa-star col1"></i> <span class="sm"> Like</span>
                                         </button>  
                                         <span class="xsm" class="col2"> {{c.likes}} likes</span>

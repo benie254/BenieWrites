@@ -40,6 +40,7 @@ export class StoryPagesComponent implements OnInit {
   authorImg = 'https://res.cloudinary.com/benie/image/upload/v1667972682/h02js8etvetdr5ctbmtf.jpg';
   commentId: any;
   commentReplies: any;
+  commentLikes: any;
   
 
   constructor(
@@ -126,6 +127,7 @@ export class StoryPagesComponent implements OnInit {
       }
     })
   }
+  
   likeStory = (data: any): void => {
     Notiflix.Loading.pulse('Processing...')
     this.service.addReaction(data).subscribe({
@@ -149,6 +151,7 @@ export class StoryPagesComponent implements OnInit {
       }
     })
   }
+  
   storyReactions(id: any){
     this.service.getStoryReactions(id).subscribe({
       next: (res) => {
@@ -161,20 +164,28 @@ export class StoryPagesComponent implements OnInit {
       next: (res) => {
         this.storyComments = res;
         this.topComments = this.storyComments.slice(0,2);
-        console.warn(this.topComments,"tc")
-        console.warn("comments",res)
+        for (let id of this.storyComments){
+          this.commentReactions(id.id);
+        }
+      }
+    })
+  }
+  commentReactions(id: number){
+    this.poetryService.commentLikes(id).subscribe({
+      next: (res) => {
+        this.commentLikes = res;
       }
     })
   }
   likeComment = (data: any): void => {
+    Notiflix.Loading.pulse('processing...')
     this.poetryService.likeComment(data).subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
-        Notiflix.Notify.success('comment liked!');
-        this.ngOnInit();
         setTimeout( () => {
-          location.reload();
-        },10)
+          Notiflix.Loading.remove();
+          Notiflix.Notify.success('comment liked!');
+          this.ngOnInit();
+        },500)
       }
     })
   }

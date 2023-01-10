@@ -54,7 +54,7 @@
                     <input matInput type="text" style="display:none;" name="poem" ngModel [(ngModel)]="poemId">
                 </div>
                 &nbsp;
-                <button mat-raised-button color="primary" type="submit">
+                <button mat-raised-button color="primary" type="submit" (click)="copyComment(det.id)">
                     Add <i class="fa-regular fa-comment"></i>
                 </button>
             </form>
