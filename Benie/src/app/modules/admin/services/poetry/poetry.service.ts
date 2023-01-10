@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service';
 
-// const api = 'http://127.0.0.1:8000/api/admin/';
-const api = 'https://beniewrites-api-production.up.railway.app/api/admin/';
+const api = 'http://127.0.0.1:8000/api/admin/';
+// const api = 'https://beniewrites-api-production.up.railway.app/api/admin/';
 
 @Injectable({
   providedIn: 'any'

@@ -4,9 +4,9 @@
 <div class="container-fluid" *ngIf="poems && poems.length !== 0">
     <div class="row padding-xl">
         <h1 class="text-center">
-            <span *ngIf="categ === 'Poems' || categ === 'Spoken-Word' || categ === 'One-Liners' || categ === 'Poetic-Notes' || categ === 'Poetic-Chains' else date">{{categ}}</span> 
+            <span *ngIf="categ === 'Poems' || categ === 'Spoken-Word' || categ === 'One-Liners' || categ === 'Poetic-Notes' || categ === 'Poetic-Chains' else date"><span class="text-primary">{{poems.length}}</span> {{categ}}</span> 
             <span>
-                <ng-template #date>{{categ | date}} Posts</ng-template>
+                <ng-template #date><span class="text-primary">{{poems.length}}</span> {{categ | date}} Posts</ng-template>
             </span>
         </h1>
         <div class="col-lg-6 padding-xxl" *ngFor="let p of poems">

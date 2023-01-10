@@ -34,21 +34,25 @@
                 <img src="{{details.cover}}" class="img-fluid mb-3 max-width" id="cover" alt="">
             
 
-            <br>
-            <br>
-            <div class="padding-xl">
-                <h1 class="text-primary">{{details.title}}</h1>
-                <span class="col2">
-                    <small> 
-                        <span><i class="fa-regular fa-star"></i> {{likes.length}}</span> 
-                        &nbsp;&nbsp; 
-                        <span><i class="fa-regular fa-comment"></i> {{comments.length}}</span> 
-                        &nbsp;&nbsp; 
-                        <i class="fa-regular fa-clock"></i> {{readTime}}  
-                        &nbsp;&nbsp; 
-                    </small>
-                </span>
-                <br><br>
+            <div class="padding-xxl">
+                <h1 class="text-primary">{{details.title}}
+                    <span>
+                        <h4>
+                            <span class="col2">
+                                <small> 
+                                    <span><i class="fa-regular fa-star"></i> {{likes.length}}</span> 
+                                    &nbsp;&nbsp; 
+                                    <span><i class="fa-regular fa-comment"></i> {{comments.length}}</span> 
+                                    &nbsp;&nbsp; 
+                                    <i class="fa-regular fa-clock"></i> {{readTime}}  
+                                    &nbsp;&nbsp; 
+                                </small>
+                            </span>
+                        </h4>
+                    </span>
+                </h1>
+                
+                <br>
                 <p class="myReader lg" [innerHTML]="details.description"></p>
                 <p>
                     <span>

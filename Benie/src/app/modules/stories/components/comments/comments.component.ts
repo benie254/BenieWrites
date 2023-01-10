@@ -51,10 +51,12 @@ export class CommentsComponent implements OnInit {
     })
   }
   copyComment = (text: any): void => {
-    localStorage.removeItem("commentId");
+    setTimeout(() => {
+      localStorage.removeItem("commentId");
     localStorage.setItem("commentId",text);
     this.commentId = localStorage.getItem('commentId');
     this.commentFeedbacks(this.commentId)
+    },1000)
   }
   replyBottomSheet(): void {
     setTimeout(() => {

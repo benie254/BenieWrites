@@ -91,7 +91,7 @@ export class RepliesBottomSheet implements OnInit {
       localStorage.setItem("commentId",text);
       this.commentId = localStorage.getItem("commentId");
       this.commentFeeds(this.commentId);
-    },2000)
+    },1000)
   }
   commentFeeds(id: any){
     this.poetryService.commentReplies(id).subscribe({
