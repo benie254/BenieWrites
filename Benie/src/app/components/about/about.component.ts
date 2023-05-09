@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Editor } from 'ngx-editor';
 import * as Notiflix from 'notiflix';
 import { Contact } from 'src/app/classes/contact/contact';
-import { Subscriber } from 'src/app/classes/subscriber/subscriber';
 import { MyErrorStateMatcher } from 'src/app/modules/admin/auth/services/matcher/matcher.service';
 import { StoryService } from 'src/app/modules/admin/services/story/story.service';
 

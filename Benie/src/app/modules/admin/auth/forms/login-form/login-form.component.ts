@@ -29,24 +29,36 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
     if(this.authService.currentUserValue){
       this.authenticated = false; 
-      this.router.navigate(['/auth/success/welcome/' + this.authService.currentUserValue.username])
+      this.router.navigate(['/admin/home/' + this.authService.currentUserValue.username])
     } else {
       this.authenticated = false; 
       this.authService.logout();
-      this.router.navigate(['/auth'])
+      this.router.navigate(['/admin'])
     }
   }
   isValid(event: boolean): void {
-    console.log(event);
+    // console.log(event);
   }
   logIn(userData: User): void {
-    Notiflix.Loading.hourglass('Processing... please wait.');
-    this.authService.login(userData).pipe(first()).subscribe({
+    Notiflix.Loading.hourglass('processing... please wait.');
+    this.authService.login(userData).subscribe({
       next: (data: User) => {
         Notiflix.Loading.remove();
-                Notiflix.Notify.success('Login successful! Welcome.');
-                location.reload();
-                this.router.navigate(['/auth/success/welcome/' + this.authService.currentUserValue.username])
+                Notiflix.Notify.success('Welcome, ' + data.username);
+                console.warn("token:",this.authService.currentUserValue);
+                console.warn("admin:",this.authService.currentUserValue.is_superuser);
+                if(this.authService.currentUserValue.is_staff === true){
+                  this.router.navigate(['/admin/home'])
+                  this.authenticated = true;
+                }else{
+                  this.authenticated = false;
+                  this.authService.logout();
+                  this.router.navigate(['/admin']);
+                  setTimeout(() => {
+                    location.reload();
+                  },5)
+                }
+                this.router.navigate(['/admin/home'])
                 this.authenticated = true;
               }
     }

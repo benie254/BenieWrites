@@ -45,8 +45,8 @@ export class PoemsComponent implements OnInit {
     Notiflix.Loading.pulse('Retrieving...')
     this.poetryService.getPinnedPoems().subscribe({
       next: (res) => {
-        Notiflix.Loading.remove();
         this.pinned = res;
+        Notiflix.Loading.remove();
       }
     })
   }

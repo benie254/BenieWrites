@@ -62,7 +62,7 @@ import { NotificationsComponent } from './components/notifications/notifications
     RepliesBottomSheet,
     NotificationsComponent,
     FeedbackComponent,
-    CommentsComponent
+    CommentsComponent,
   ],
   imports: [
     CommonModule,

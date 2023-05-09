@@ -5,10 +5,10 @@ import { map } from 'rxjs/operators';
 import { User } from '../../../classes/user/user';
 import { ReqHandlerService } from 'src/app/helpers/requests/req-handler.service';
 
-// const authAPI = 'http://127.0.0.1:8000/api/auth/';
-const authAPI = 'https://beniewrites-api-production.up.railway.app/api/auth/';
-// const apiURL = 'http://127.0.0.1:8000/api/';
-const apiURL = 'https://beniewrites-api-production.up.railway.app/api/';
+const authAPI = 'http://127.0.0.1:8000/api/benie/auth/';
+// const authAPI = 'https://beniewrites-api-production.up.railway.app/benie/auth/';
+const apiURL = 'http://127.0.0.1:8000/benie/';
+// const apiURL = 'https://beniewrites-api-production.up.railway.app/benie/';
 
 @Injectable({
   providedIn: 'any'
@@ -25,7 +25,6 @@ export class AuthService {
   apiReg = authAPI + 'register';
   
   constructor(
-    private http: HttpClient,
     private handler: ReqHandlerService,
     ) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));

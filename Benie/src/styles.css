@@ -1,8 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Denk+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+
+.denk{
+    font-family: 'Denk One' sans-serif;
+}
+h1, .head1{
+    font-family: 'Alegreya Sans SC';
+    font-size: 36px;
+}
+h2, h3, h4, h5 {
+    font-family: 'Denk One', sans-serif;
+}
+h2{
+    font-size: 20px;
+}
+h3{
+    font-size: larger;
+}
+h4{
+    font-size: large;
+}
+h5{
+    font-size: medium;
+}
+h6, i{
+    font-family: 'Yeon Sung';
+    
+}
+h2 a{
+    font-size:26px;
+}
+h3 a{
+    font-size: 20px;
+} 
+p, a, span{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: medium;
+}
+small{
+    font-family: 'Stylish', sans-serif;
+}
+
+
+small{
+    font-size: smaller;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Josefin Sans', sans-serif; }
 
 .center{
     display:inline-block;
@@ -197,7 +247,7 @@ textarea{
 }
 .myReader{
     line-height:24px;
-    font-family:monospace
+    font-family:monospace;
 }
 .pic{
     width:75px;

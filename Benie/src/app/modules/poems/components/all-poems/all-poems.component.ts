@@ -10,6 +10,10 @@ import { PoetryService } from '../../services/poetry.service';
 })
 export class AllPoemsComponent implements OnInit {
   poems: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 4;
+  tableSizes: any = [2, 5, 10, 15];
 
   constructor(
     private poetryService:PoetryService,
@@ -33,5 +37,14 @@ export class AllPoemsComponent implements OnInit {
   bg(){
     let s = (<HTMLDivElement>document.getElementById('sch'));
     s.style.color = 'white';
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.getAllPoems();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getAllPoems();
   }
 }

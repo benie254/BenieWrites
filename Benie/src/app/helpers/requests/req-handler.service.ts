@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { User } from 'src/app/modules/admin/classes/user/user';
 import { MessageService } from 'src/app/modules/admin/services/errors/message.service';
 import { ErrorsService } from '../errors/errors.service';
@@ -51,11 +51,11 @@ export class ReqHandlerService {
       console.warn(error)
     }  else if (error.status === 401){
       Notiflix.Loading.remove();
-      if (error.error.detail){
-        this.logout();
-      } else {
-        this.logout();
-      }
+      // if (error.error.detail){
+      //   this.logout();
+      // } else {
+      //   this.logout();
+      // }
     } else if (error.status === 403){
       Notiflix.Loading.remove();
       Notiflix.Report.warning(
@@ -118,7 +118,7 @@ export class ReqHandlerService {
     return this.http.get<T>(apiURL, options).pipe(
       catchError(
       (err) => this.handleError(err)
-      ) 
+      )
     )
   }
   handlePOST<T>(apiURL: string, payload?, options?): Observable<any>{
@@ -130,6 +130,7 @@ export class ReqHandlerService {
   }
   handlePUT<T>(apiURL: string, payload?, options?): Observable<any>{
     return this.http.put<T>(apiURL, payload, options).pipe(
+      retry(3),
       catchError(
         (err) => this.handleError(err)
       )

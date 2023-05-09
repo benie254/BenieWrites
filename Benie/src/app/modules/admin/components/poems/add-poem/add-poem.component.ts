@@ -67,7 +67,6 @@ export class AddPoemComponent implements OnInit, OnDestroy {
     this.poetryService.postPoem(data).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Added!');
-        this.ngOnInit();
       }
     });
   }

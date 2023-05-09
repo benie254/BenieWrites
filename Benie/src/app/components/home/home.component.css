@@ -1,3 +1,13 @@
 .storiesImg{
     height:250px;
 }
+h1{
+    font-family: 'Alegreya Sans SC';
+    font-size: 36px;
+}
+button{
+    font-family: 'Yeon Sung', cursive;
+}
+i{
+    font-size: 18px;
+}

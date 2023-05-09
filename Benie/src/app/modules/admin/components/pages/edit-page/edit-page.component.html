@@ -18,20 +18,7 @@
                     Title is <strong>required</strong>
                   </mat-error>
               </mat-form-field>
-              <div class="NgxEditor__Wrapper">
-                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
-                <ngx-editor
-                  [editor]="editor"
-                  [ngModel]="html"
-                  [disabled]="false"
-                  [placeholder]="'Type here...'"
-                  ngModel 
-                  name="description"
-                  [(ngModel)]="details.description" 
-                  #description="ngModel" 
-                  (keyup)="countWords(details.description)"
-                ></ngx-editor>
-              </div>
+              <angular-editor ngModel name="description" [config]="config" maxlength="1250" [(ngModel)]="details.description" #description="ngModel" (keyup)="countWords(details.description)"></angular-editor>
 
               <!-- <angular-editor ngModel name="description" [config]="config" maxlength="1250" [(ngModel)]="details.description" #description="ngModel" (keyup)="countWords(details.description)"></angular-editor> -->
               <div id="wordCount">{{counted}}</div> words

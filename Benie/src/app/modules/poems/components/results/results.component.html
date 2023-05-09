@@ -9,7 +9,7 @@
                 <ng-template #date><span class="text-primary">{{poems.length}}</span> {{categ | date}} Posts</ng-template>
             </span>
         </h1>
-        <div class="col-lg-6 padding-xxl" *ngFor="let p of poems">
+        <div class="col-lg-6 padding-xxl" *ngFor="let p of poems | paginate: { id:'resultsPage', itemsPerPage: tableSize, currentPage: page, totalItems: count}; let i = index">
             <small class="divide col2">
                 published &nbsp;
                 <a routerLink="/poems/related/date/{{p.uploaded | date: 'YYYY-MM-dd'}}" class="col2">{{p.uploaded | date}}</a> 
@@ -24,6 +24,9 @@
             </h1>
             <p>{{p.excerpt}}</p>
         </div>
+        <div class="d-flex justify-content-center" *ngIf="poems">
+            <pagination-controls id="resultsPage" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+          </div>
     </div>
     <br><br>
 </div>

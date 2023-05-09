@@ -22,6 +22,10 @@ export class SearchComponent implements OnInit {
   sInput: boolean = false;
   sValues = '';
   pInput: boolean = false;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 4;
+  tableSizes: any = [2, 5, 10, 15];
 
   constructor(
     private poetryService:PoetryService,
@@ -81,6 +85,7 @@ export class SearchComponent implements OnInit {
         } else {
           this.noPoem = false;
         }
+        this.onTableDataChange(this.page)
       }
     );
     setTimeout(
@@ -94,6 +99,15 @@ export class SearchComponent implements OnInit {
         }
       }.bind(this),1000
     );
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.allPoems();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.allPoems();
   }
 
 }

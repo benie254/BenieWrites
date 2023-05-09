@@ -1,14 +1,10 @@
 
 <nav class="navbar bg-light navbar-expand-lg">
   <div class="container-fluid" >
-    <a class="navbar-brand" href="/">
-      <img src="{{brand}}" class="border-50" height="25" width="25" alt="">
-      <span class="brand-font col1">Benie Writes 
-        <br>
-        <small class="xxsm col2">
-          <i>"with words, I give my thoughts life."</i>
-        </small>
-      </span>
+    <a class="navbar-brand col1" href="/">
+      <img src="{{brand}}" class="border-50" height="35" width="35" alt="">
+      Benie Writes 
+          <span class="col2 xsm"><br> <i>"with words, I give my thoughts life."</i></span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,8 +20,11 @@
         </li>
       </ul>
       <div>
-        <span>
+        <span *ngIf="!isAdmin">
           <a class="col1 nav-link active font-md-3 brand-font" aria-current="page" href="/about">About</a>
+        </span>
+        <span *ngIf="isAdmin">
+          <a class="col1 nav-link active font-md-3 brand-font" aria-current="page" type="button" (click)="logout()">Logout</a>
         </span>
       </div>
     </div>

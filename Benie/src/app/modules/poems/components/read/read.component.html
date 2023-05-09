@@ -1,11 +1,11 @@
 <div class="container-fluid" id="readBg">
     <span class="sticky-top top">
         <span>
-            <button id="back" class="smaller btn btn-sm btn-dark col1" (click)="back()" type="button"><i class="fa-solid fa-angles-left"></i></button>
+            <button id="back" class="small btn btn-sm btn-dark col1" (click)="back()" type="button"><i class="fa-solid fa-angles-left"></i></button>
         </span> 
         &nbsp;
             <span>
-                <button id="toggle" class="smaller btn btn-sm btn-dark" style="color:blue;">
+                <button id="toggle" class="small btn btn-sm btn-dark" style="color:blue;">
                     <span>
                         <span><i class="fa-solid fa-moon"></i></span>&nbsp;&nbsp;<span><mat-slide-toggle style="height:5px;" (click)="changeBg($event)"></mat-slide-toggle></span>&nbsp;&nbsp;<span style="color:orange;"><i class="fa-regular fa-lightbulb"></i></span>
 
@@ -13,11 +13,11 @@
                 </button>
             </span>
             <span class="float-right">
-                <button id="follow" class="smaller col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
+                <button id="follow" class="small col1 btn btn-sm btn-dark" (click)="followBottomSheet()">
                     <i class="fa-solid fa-user-plus"></i>
                 </button>
                 &nbsp;
-                <button id="share" class="smaller col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
+                <button id="share" class="small col1 btn btn-sm btn-dark" (click)="openBottomSheet()">
                     <i class="fa-solid fa-share-nodes"></i>
                 </button>
                 &nbsp;
@@ -53,13 +53,13 @@
                 </h1>
                 
                 <br>
-                <p class="myReader lg" [innerHTML]="details.description"></p>
+                <p class="myReader md" [innerHTML]="details.description"></p>
                 <p>
                     <span>
                         <small class="col2">
-                            published <a routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> 
-                            by <a routerLink="/about">Benie Langat <img src="{{authorImg}}" class="border-50" height="20px" width="20px" alt=""></a> 
-                            in <a routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a>
+                            published <a class="col2" routerLink="/poems/related/date/{{details.uploaded | date: 'YYYY-MM-dd'}}">{{details.uploaded | date }}</a> 
+                            by <a class="col2" routerLink="/about">Benie Langat <img src="{{authorImg}}" class="border-50" height="20px" width="20px" alt=""></a> 
+                            in <a class="col2" routerLink="/poems/related/category/{{details.category}}">{{details.category}}</a>
                         </small>
                     </span>
                 </p>

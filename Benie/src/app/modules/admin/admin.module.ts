@@ -56,6 +56,7 @@ import { EditContactComponent } from './components/contacts/edit-contact/edit-co
 import { AllPoemsComponent } from './components/poems/all-poems/all-poems.component';
 import { AddPoemComponent } from './components/poems/add-poem/add-poem.component';
 import { EditPoemComponent } from './components/poems/edit-poem/edit-poem.component';
+import { NavigationModule } from '../navigation/navigation.module';
 
 
 
@@ -120,6 +121,7 @@ import { EditPoemComponent } from './components/poems/edit-poem/edit-poem.compon
     ReactiveFormsModule,
     AngularEditorModule,
     MatExpansionModule,
+    NavigationModule,
   ]
 })
 export class AdminModule { }

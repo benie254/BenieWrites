@@ -12,6 +12,12 @@ export class ResultsComponent implements OnInit {
   poems: any;
   categ = '';
   nothingImg = 'https://res.cloudinary.com/benie/image/upload/v1669956626/undraw_questions_re_1fy7_w2hzi7.svg';
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 4;
+  tableSizes: any = [2, 5, 10, 15];
+  dateInput: any;
+  values = '';
 
   constructor(
     private route:ActivatedRoute,
@@ -48,10 +54,23 @@ export class ResultsComponent implements OnInit {
       next: (res) => {
         Notiflix.Loading.remove();
         this.poems = res;
+        this.onTableDataChange(this.page)
       }
     })
   }
   back(){
     history.back();
+  }
+  onKey(event: any){
+    this.values = event.target.value;
+  }
+  onTableDataChange = (event: any): void => {
+    this.page = event;
+    this.relatedPoems(this.categ);
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.relatedPoems(this.categ);
   }
 }

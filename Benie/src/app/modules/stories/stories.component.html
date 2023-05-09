@@ -117,7 +117,7 @@
               <div class="col-lg-6" style="text-align:left;">
                   <h2><a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">{{s.title}}</a></h2>
                   <p>{{s.description | truncate: [150, '...']}}</p>
-                 <small><i class="col2">a <a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
+                 <small><i class="col2"><span>a</span>&nbsp;<a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
               </div>
               <div class="col-lg-2"></div>
           </div>
@@ -137,14 +137,17 @@
               <div class="col-lg-6" style="text-align:left;">
                   <h2><a routerLink="/stories/{{s.category}}/{{s.title}}/preview/{{s.id}}">{{s.title}}</a></h2>
                   <p>{{s.description | truncate: [150, '...']}}</p>
-                 <small><i class="col2">a <a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
+                 <small><i class="col2"><span>a</span>&nbsp;<a routerLink="/stories/related/genre/{{s.genre}}" class="col2">{{s.genre}}</a> &nbsp; <a routerLink="/stories/related/category/{{s.category}}" class="col2">{{s.category}}</a></i></small>
               </div>
               <div class="col-lg-2"></div>
           </div>
       </div>
   </div>
   <br>
-  <div class="text-center"><button mat-raised-button color="accent" class="w-15" routerLink="/stories/library"><i class="fa-solid fa-book"></i> Library <span><small style="font-size:xx-small;">{{searchResults.length}} stories</small></span></button></div>
+  <div class="text-center">
+    <h1 class="col1" *ngIf="!searchResults.length">No Stories Uploaded Yet</h1>
+    <button *ngIf="searchResults.length" mat-raised-button color="accent" class="w-15" routerLink="/stories/library"><i class="fa-solid fa-book"></i> Library <span><small style="font-size:small;" class="col1 bolder">{{searchResults.length}} stories</small></span></button>
+  </div>
 </div>
 <br><br>
 <app-story-footer></app-story-footer>

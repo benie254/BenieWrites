@@ -5,6 +5,9 @@ import { PoetryService } from 'src/app/modules/poems/services/poetry.service';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 import { User } from '../../../classes/user/user';
 import { AdminPoetryService } from '../../../services/poetry/poetry.service';
+import { Poem } from 'src/app/classes/poem/poem';
+import { Subject, takeUntil } from 'rxjs';
+
 
 @Component({
   selector: 'app-edit-poem',
@@ -28,6 +31,7 @@ export class EditPoemComponent implements OnInit, OnDestroy {
   counted: any;
   limitReached: boolean = false;
   poems: any;
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private service:PoetryService,
@@ -50,11 +54,10 @@ export class EditPoemComponent implements OnInit, OnDestroy {
       }
     })
   }
-  editItem(data: any){
-    this.adminPoetry.editPoem(this.selected,data).subscribe({
+  editItem(data: Poem){
+    this.adminPoetry.editPoem(this.selected,data).pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res) => {
         Notiflix.Notify.success('Updated!');
-        this.ngOnInit();
       }
     })
   }
@@ -129,6 +132,8 @@ export class EditPoemComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.editor.destroy();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
 
